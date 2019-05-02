@@ -7,7 +7,7 @@
             <span></span>
             <span></span>
         </button>
-        <a class="navbar-brand text-brand" href="/">Home<span class="color-b">Switch</span>Home</a>
+        <a class="navbar-brand text-brand" href="{{ url('/') }}">Home<span class="color-b">Switch</span>Home</a>
         {{-- <a href="/"><img id="logo" src="{{ asset('img/HSH-Complete.svg') }}" alt="" height="20%" width="20%"></a> --}}
         <span data-placement="bottom" data-toggle="tooltip" title="Buscar propiedades">
       <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
@@ -24,8 +24,8 @@
                             <span class="ion-ios-person"></span>Acceder
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="login">Iniciar Sesión</a>
-                            <a class="dropdown-item" href="register">Crear cuenta</a>
+                            <a class="dropdown-item" href="{{ url('login') }}">Iniciar Sesión</a>
+                            <a class="dropdown-item" href="{{ url('register') }}">Crear cuenta</a>
                         </div>
                     @endguest
                     @auth
@@ -34,8 +34,8 @@
                             <span class="ion-ios-person" ></span > {{ Auth::user()->nombre }}
                         </a >
                         <div class="dropdown-menu" aria - labelledby = "navbarDropdown" >
-                            <a class="dropdown-item" href = "perfil" > Mi cuenta </a >
-                            <a class="dropdown-item" href = "logout" > Cerrar Sesión </a >
+                            <a class="dropdown-item" href = "{{ url('perfil') }}" > Mi cuenta </a >
+                            <a class="dropdown-item" href = "{{ url('logout') }}" > Cerrar Sesión </a >
                         </div >
                 </li>
                 @endauth
@@ -43,13 +43,13 @@
                     <a class="nav-link" href="">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="faq">FAQ</a>
+                    <a class="nav-link" href="{{ url('faq') }}">FAQ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contacto">Contacto</a>
+                    <a class="nav-link" href="{{ url('contacto') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:orangered;" href="contacto"><span class="fa fa-fire"></span>HOTSALE</a>
+                    <a class="nav-link" style="color:orangered;" href="{{ url('hotsale') }}"><span class="fa fa-fire"></span>HOTSALE</a>
                 </li>
             </ul>
         </div>

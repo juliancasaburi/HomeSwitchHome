@@ -177,7 +177,7 @@
                             <h2 class="title-a">Últimas propiedades agregadas</h2>
                         </div>
                         <div class="title-link">
-                            <a href="propiedades">Ver todas
+                            <a href={{ url('propiedades') }}>Ver todas
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
@@ -194,7 +194,7 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="propiedad">206 Mount
+                                        <a href={{ url('propiedad') }}>206 Mount
                                             <br /> Olive Road Two</a>
                                     </h2>
                                 </div>
@@ -241,7 +241,7 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="propiedad">157 West
+                                        <a href={{ url('propiedad') }}>157 West
                                             <br /> Central Park</a>
                                     </h2>
                                 </div>
@@ -249,7 +249,7 @@
                                     <div class="price-box d-flex">
                                         <span class="price-a">Ver más</span>
                                     </div>
-                                    <a href="propiedad" class="link-a">Ver más
+                                    <a href={{ url('propiedad') }} class="link-a">Ver más
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>
@@ -288,7 +288,7 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="propiedad">245 Azabu
+                                        <a href={{ url('propiedad') }}>245 Azabu
                                             <br /> Nishi Park let</a>
                                     </h2>
                                 </div>
@@ -296,7 +296,7 @@
                                     <div class="price-box d-flex">
                                         <span class="price-a">Ver más</span>
                                     </div>
-                                    <a href="propiedad" class="link-a">Ver más
+                                    <a href={{ url('propiedad') }} class="link-a">Ver más
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>
@@ -335,7 +335,7 @@
                             <div class="card-overlay-a-content">
                                 <div class="card-header-a">
                                     <h2 class="card-title-a">
-                                        <a href="propiedad">204 Montal
+                                        <a href={{ url('propiedad') }}>204 Montal
                                             <br /> South Bela Two</a>
                                     </h2>
                                 </div>
@@ -343,7 +343,7 @@
                                     <div class="price-box d-flex">
                                         <span class="price-a">Ver más</span>
                                     </div>
-                                    <a href="propiedad" class="link-a">Ver más
+                                    <a href={{ url('propiedad') }} class="link-a">Ver más
                                         <span class="ion-ios-arrow-forward"></span>
                                     </a>
                                 </div>

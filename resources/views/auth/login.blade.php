@@ -6,10 +6,10 @@
     <section class="intro-single">
         <div class="container">
             <div class="text-center mb-4">
-                <a class="navbar-brand text-brand" href="index.php">Home<span class="color-b">Switch</span>Home</a>
+                <a class="navbar-brand text-brand" href={{ url('/') }}>Home<span class="color-b">Switch</span>Home</a>
                 <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
                 <p>No tienes una cuenta?<p>
-                    <a href="registro.html">Registrate!</a>
+                    <a href={{ url('register') }}>Registrate!</a>
             </div>
             <form class="form-signin" method="POST" action="{{ route('login') }}">
                 @csrf

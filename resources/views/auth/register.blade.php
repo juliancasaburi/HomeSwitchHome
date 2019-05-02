@@ -79,7 +79,7 @@
 @section('content')
     <form class="form-signin" action="{{ route('register') }}" method="POST">
         @csrf
-        <a class="navbar-brand text-brand" href="index.html">Home<span class="color-b">Switch</span>Home</a>
+        <a class="navbar-brand text-brand" href={{ url('/') }}>Home<span class="color-b">Switch</span>Home</a>
         <h1 class="h3 mb-3 font-weight-normal">Crear una cuenta</h1>
         <label for="inputApellido">Apellido</label>
         <input type="text" name="apellido" id="inputApellido" class="form-control @error('apellido') is-invalid @enderror" placeholder="Apellido" required autofocus>

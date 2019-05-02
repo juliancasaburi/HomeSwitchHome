@@ -91,13 +91,13 @@
                 <nav class="nav-footer">
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <a href="/">Home</a>
+                            <a href={{ url('/') }}>Home</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="faq">FAQ</a>
+                            <a href={{ url('faq') }}>FAQ</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="contacto">Contacto</a>
+                            <a href={{ url('contacto') }}>Contacto</a>
                         </li>
                     </ul>
                 </nav>
