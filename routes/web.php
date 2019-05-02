@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('logout', function() {
+    Session::flush();
+    Auth::logout();
+    return Redirect::to("/");
+});
+
+Auth::routes(['verify' => true]);
