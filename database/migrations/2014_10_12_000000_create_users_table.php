@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('apellido', 40);
             $table->string('password');
             $table->smallInteger('creditos')->default(2);
+            $table->decimal('saldo', 7,2)->default(0.0);
             $table->string('tarjeta_credito', 30)->nullable();
             $table->string('tarjeta_debito', 30)->nullable();
-            $table->string('email')->unique();
+            $table->string('email', 50)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('nacionalidad', 30);
             $table->string('DNI', 40);
