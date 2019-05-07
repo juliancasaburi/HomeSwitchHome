@@ -7,6 +7,15 @@ body {
   color: #555555;
 }
 
+hr {
+  height: 4px;
+  margin-bottom: 5px;
+}
+
+.hr-primary{
+  background-image: -webkit-linear-gradient(left, rgba(66,133,244,.8), rgba(66, 133, 244,.6), rgba(0,0,0,0));
+}
+
 h1,
 h2,
 h3,
@@ -967,6 +976,14 @@ a:hover {
   background-color: transparent;
   padding-right: 0;
   padding-left: 0;
+}
+
+/*======================================
+//--//-->   LOGIN
+======================================*/
+
+.login {
+  padding: 12rem 0rem 3rem;
 }
 
 /*======================================
@@ -2021,6 +2038,13 @@ footer .credits {
   width: 100%;
   max-width: 420px;
   padding: 15px;
+  margin: 0 auto;
+}
+
+
+.form-register {
+  width: 50%;
+  padding-top: 150px;
   margin: 0 auto;
 }
 

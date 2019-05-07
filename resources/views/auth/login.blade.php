@@ -3,10 +3,9 @@
 @section('title', '- Iniciar Sesión')
 
 @section('content')
-    <section class="intro-single">
+    <section class="login">
         <div class="container">
             <div class="text-center mb-4">
-                <a class="navbar-brand text-brand" href={{ url('/') }}>Home<span class="color-b">Switch</span>Home</a>
                 <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
                 <p>No tienes una cuenta?<p>
                     <a href={{ url('register') }}>Registrate!</a>
@@ -19,8 +18,8 @@
                     <label for="email">Email</label>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <strong>{{ $message }}</strong>
+                     </span>
                     @enderror
                 </div>
 
@@ -29,8 +28,8 @@
                     <label for="inputPassword">Contraseña</label>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
 
@@ -52,6 +51,10 @@
                             {{ __('Login') }}
                         </button>
 
+                    </div>
+                </div>
+                <div class="form-group row mb-0">
+                    <div class="col-md-8 offset-md-4">
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Olvidaste tu contraseña?') }}

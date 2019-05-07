@@ -49,13 +49,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'apellido' => ['required', 'string', 'max:255'],
-            'nombre' => ['required', 'string', 'max:255'],
-            'nacionalidad' => ['required'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
+            'apellido' => ['required', 'string', 'max:40'],
+            'nombre' => ['required', 'string', 'max:40'],
+            'pais' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:usuarios'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'fecha_nacimiento' => ['required'],
-            'DNI' => ['required'],
+            'DNI' => ['required', 'string', 'unique:usuarios'],
+            'numero_tarjeta' => ['required', 'string', 'min:16', 'max:16'],
+            'fecha_caducidad_tarjeta' => ['required'],
+            'cvv_tarjeta' => ['required', 'min:3', 'max:3'],
         ]);
     }
 
@@ -68,22 +71,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'activa' => 1,
+            'email' => $data['email'],
             'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
-            'email' => $data['email'],
-            'email_verified_at' => null,
-            'password' => Hash::make($data['password']),
-            'creditos' => 2,
-            'saldo' => 0.0,
-            'tarjeta_credito' => null,
-            'tarjeta_debito' => null,
-            'verificado' => 0,
-            'nacionalidad' => $data['nacionalidad'],
+            'pais' => $data['pais'],
             'DNI' => $data['DNI'],
             'fecha_nacimiento' => $data['fecha_nacimiento'],
-            'fecha_registro' => now(),
-            'premium' => 0,
+            'password' => Hash::make($data['password']),
+            'numero_tarjeta' => $data['numero_tarjeta'],
         ]);
     }
 }
