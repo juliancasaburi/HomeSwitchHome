@@ -15,8 +15,9 @@
                     </div>
                     <div class="w-footer-a">
                         <ul class="list-unstyled">
-                            <li class="color-a">
-                                <span class="color-text-a">Email .</span> contacto@homeswitchhome.online</li>
+                            <li class="color-b">
+                                <span class="color-text-b">Email</span>
+                                <a href="mailto:contacto@homeswitchhome.online" target="_top">contacto@homeswitchhome.online</a></li>
                         </ul>
                     </div>
                 </div>
