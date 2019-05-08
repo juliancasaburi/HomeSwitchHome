@@ -21,11 +21,10 @@
     <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
+    <link href="{{ asset('lib/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
 
     <!-- Main Stylesheet File -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
