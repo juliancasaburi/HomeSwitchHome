@@ -522,8 +522,8 @@ a:hover {
 .navbar-default {
   transition: all .5s ease-in-out;
   background-color: #ffffff;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
@@ -1973,7 +1973,7 @@ footer .credits {
 
 @media (max-width: 767px) {
   .text-brand {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
   }
 
   .section-t8 {
