@@ -12,7 +12,7 @@
         <span data-placement="bottom" data-toggle="tooltip" title="Buscar propiedades">
       <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
               data-target="#navbarTogglerDemo01" aria-expanded="false">
-        <span class="fa fa-search" aria-hidden="true"></span>
+        <span class="fas fa-search fa-xs" aria-hidden="true"></span>
       </button>
       </span>
         <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
@@ -49,14 +49,14 @@
                     <a class="nav-link" href="{{ url('contacto') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:orangered;" href="{{ url('hotsale') }}"><span class="fa fa-fire"></span>HOTSALE</a>
+                    <a class="nav-link" style="color:orangered;" href="{{ url('hotsale') }}"><span class="fas fa-fire"></span>HOTSALE</a>
                 </li>
             </ul>
         </div>
         <span data-placement="bottom" data-toggle="tooltip" title="Buscar propiedades">
       <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
               data-target="#navbarTogglerDemo01" aria-expanded="false">
-        <span class="fa fa-search" aria-hidden="true"></span>
+        <span class="fas fa-search" aria-hidden="true"></span>
       </button>
         </span>
     </div>

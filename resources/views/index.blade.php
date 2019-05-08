@@ -94,7 +94,7 @@
                     <div class="card-box-c foo">
                         <div class="card-header-c d-flex">
                             <div class="card-box-ico">
-                                <span class="fa fa-usd"></span>
+                                <span class="fas fa-gavel"></span>
                             </div>
                             <div class="card-title-c align-self-center">
                                 <h2 class="title-c">SUBASTA</h2>
@@ -118,7 +118,7 @@
                     <div class="card-box-c foo">
                         <div class="card-header-c d-flex">
                             <div class="card-box-ico">
-                                <span class="fa fa-fire"></span>
+                                <span class="fas fa-fire"></span>
                             </div>
                             <div class="card-title-c align-self-center">
                                 <h2 class="title-c">HOTSALE</h2>
@@ -142,7 +142,7 @@
                     <div class="card-box-c foo">
                         <div class="card-header-c d-flex">
                             <div class="card-box-ico">
-                                <span class="fa fa-ticket"></span>
+                                <span class="fas fa-ticket-alt"></span>
                             </div>
                             <div class="card-title-c align-self-center">
                                 <h2 class="title-c">PREMIUM</h2>

@@ -105,17 +105,12 @@
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a href="#">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <i class="fab fa-facebook-square" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
                             <a href="#">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                <i class="fab fa-twitter-square" aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>
