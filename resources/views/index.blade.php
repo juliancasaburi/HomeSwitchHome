@@ -4,7 +4,7 @@
     <!--/ Carousel Start /-->
     <div class="intro intro-carousel">
         <div id="carousel" class="owl-carousel owl-theme">
-            <div class="carousel-item-a intro-item bg-image" style="background-image: url(img/slide-1.jpg)">
+            <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset('img/slide-1.jpg')}})">
                 <div class="overlay overlay-a"></div>
                 <div class="intro-content display-table">
                     <div class="table-cell">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item-a intro-item bg-image" style="background-image: url(img/slide-2.jpg)">
+            <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset('img/slide-2.jpg')}})">
                 <div class="overlay overlay-a"></div>
                 <div class="intro-content display-table">
                     <div class="table-cell">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item-a intro-item bg-image" style="background-image: url(img/slide-3.jpg)">
+            <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset('img/slide-3.jpg')}})">
                 <div class="overlay overlay-a"></div>
                 <div class="intro-content display-table">
                     <div class="table-cell">
@@ -188,7 +188,7 @@
                 <div class="carousel-item-b">
                     <div class="card-box-a card-shadow">
                         <div class="img-box-a">
-                            <img src="img/property-6.jpg" alt="" class="img-a img-fluid">
+                            <img src="{{asset('img/property-6.jpg')}}" alt="" class="img-a img-fluid">
                         </div>
                         <div class="card-overlay">
                             <div class="card-overlay-a-content">
@@ -235,7 +235,7 @@
                 <div class="carousel-item-b">
                     <div class="card-box-a card-shadow">
                         <div class="img-box-a">
-                            <img src="img/property-3.jpg" alt="" class="img-a img-fluid">
+                            <img src="{{asset('img/property-3.jpg')}}" alt="" class="img-a img-fluid">
                         </div>
                         <div class="card-overlay">
                             <div class="card-overlay-a-content">
@@ -282,7 +282,7 @@
                 <div class="carousel-item-b">
                     <div class="card-box-a card-shadow">
                         <div class="img-box-a">
-                            <img src="img/property-7.jpg" alt="" class="img-a img-fluid">
+                            <img src="{{asset('img/property-7.jpg')}}" alt="" class="img-a img-fluid">
                         </div>
                         <div class="card-overlay">
                             <div class="card-overlay-a-content">
@@ -329,7 +329,7 @@
                 <div class="carousel-item-b">
                     <div class="card-box-a card-shadow">
                         <div class="img-box-a">
-                            <img src="img/property-10.jpg" alt="" class="img-a img-fluid">
+                            <img src="{{asset('img/property-10.jpg')}}" alt="" class="img-a img-fluid">
                         </div>
                         <div class="card-overlay">
                             <div class="card-overlay-a-content">
