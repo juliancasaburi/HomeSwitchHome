@@ -24,7 +24,9 @@ Route::get('logout', function() {
 Auth::routes(['verify' => true]);
 
 Route::prefix('admin')->group(function() {
+    Route::get('/', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
 });
 //
