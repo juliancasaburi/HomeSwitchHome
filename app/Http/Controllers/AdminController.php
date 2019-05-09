@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    protected function guard(){
+        return Auth::guard('admin');
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -22,6 +27,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        return view('dashboard');
     }
 }
