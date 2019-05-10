@@ -17,9 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('profile', function () {
-    return view('user-profile');
-})->middleware('auth');
+Route::get('/profile', 'UserController@showUserProfile');
 
 Route::get('logout', function() {
     Session::flush();

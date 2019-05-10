@@ -30,7 +30,7 @@
 								Menu
 							</li>
 							<li class="nav-item ">
-								<a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Mi Cuenta <span class="badge badge-success">6</span></a>
+								<a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Mi Cuenta</a>
 								<div id="submenu-1" class="collapse submenu" style="">
 									<ul class="nav flex-column">
 										<li class="nav-item">
@@ -38,10 +38,10 @@
 											<div id="submenu-1-2" class="collapse submenu" style="">
 												<ul class="nav flex-column">
 													<li class="nav-item">
-														<a class="nav-link" href="index.html">Modificar email</a>
+														<a class="nav-link" href="#">Modificar email</a>
 													</li>
 													<li class="nav-item">
-														<a class="nav-link" href="ecommerce-product.html">Modificar contraseña</a>
+														<a class="nav-link" href="#">Modificar contraseña</a>
 													</li>
 												</ul>
 											</div>
@@ -57,10 +57,10 @@
 								<div id="submenu-2" class="collapse submenu" style="">
 									<ul class="nav flex-column">
 										<li class="nav-item">
-											<a class="nav-link" href="pages/cards.html">Reservas pasadas <span class="badge badge-secondary">New</span></a>
+											<a class="nav-link" href="#">Reservas pasadas</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="pages/general.html">Reservas activas</a>
+											<a class="nav-link" href="#">Reservas activas</a>
 										</li>
 									</ul>
 								</div>
@@ -117,20 +117,25 @@
 											<div class="user-avatar-info">
 												<div class="m-b-20">
 													<div class="user-avatar-name">
-														<h2 class="mb-1">Nombre del Usuario</h2>
+														<h2 class="mb-1">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</h2>
 													</div>
-													<div class="rating-star  d-inline-block">
-														<i class="fas fa-ticket-alt"></i>
-														<p class="d-inline-block text-dark">PREMIUM </p>
-													</div>
+													@if (Auth::user()->premium == 1)
+														<div class="rating-star  d-inline-block">
+															<i class="fas fa-ticket-alt"></i>
+															<p class="d-inline-block text-dark">USUARIO PREMIUM</p>
+														</div>
+													@else
+														<div class="rating-star  d-inline-block">
+															<i class="fas fa-user"></i>
+															<p class="d-inline-block text-dark">USUARIO REGULAR</p>
+														</div>
+													@endif
 												</div>
 												<div class="user-avatar-address">
 													<p>
-														<span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>País</span>
-														<span class="mb-2 ml-xl-4 d-xl-inline-block d-block">Se unió el: 1 Enero, 2017  </span>
-														<span class=" mb-2 d-xl-inline-block d-block ml-xl-4">Hombre
-	                                                                </span>
-														<span class=" mb-2 d-xl-inline-block d-block ml-xl-4">21 Años </span>
+														<span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>{{ Auth::user()->pais }}</span>
+														<span class="mb-2 ml-xl-4 d-xl-inline-block d-block">Se unió el: {{ Auth::user()->created_at }}  </span>
+														<span class=" mb-2 d-xl-inline-block d-block ml-xl-4">{{ Auth::user()->age }} años </span>
 													</p>
 												</div>
 											</div>
@@ -158,7 +163,7 @@
 								<div class="card-body">
 									<div class="d-inline-block">
 										<h5 class="text-muted">Créditos</h5>
-										<h2 class="mb-0"> 0</h2>
+										<h2 class="mb-0">{{ Auth::user()->creditos }}</h2>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
 										<i class="fas fa-coins fa-fw fa-sm text-info"></i>
@@ -177,7 +182,7 @@
 								<div class="card-body">
 									<div class="d-inline-block">
 										<h5 class="text-muted">Saldo</h5>
-										<h2 class="mb-0"> 1,000,000</h2>
+										<h2 class="mb-0">{{ Auth::user()->saldo }}</h2>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
 										<i class="fas fa-money-check-alt fa-fw fa-sm text-primary"></i>
@@ -212,7 +217,7 @@
 										<tbody>
 										<tr>
 											<td>
-												<div class="m-r-10"><img src="img/dribbble.png" alt="user" width="35"></div>
+												<div class="m-r-10"><img src="{{ asset('img/dribbble.png') }}" alt="user" width="35"></div>
 											</td>
 											<td>Rino Venda Road Five </td>
 											<td>9 Mayo, 2019</td>

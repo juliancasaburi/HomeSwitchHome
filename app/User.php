@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\VerificarEmail;
 use App\Notifications\ResetPassword;
+use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -65,5 +66,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    /**
+     * Accessor for Age.
+     */
+    public function getAgeAttribute()
+    {
+        return Carbon::parse($this->attributes['fecha_nacimiento'])->age;
     }
 }
