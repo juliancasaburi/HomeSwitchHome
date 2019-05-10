@@ -62,7 +62,6 @@
 	});
 	$('.close-box-collapse, .click-closed').on('click', function () {
 		$('body').removeClass('box-collapse-open').addClass('box-collapse-closed');
-		$('.menu-list ul').slideUp(700);
 	});
 
 	/*--/ Navbar Menu Reduce /--*/

@@ -2,6 +2,10 @@
 //--//-->   STYLES GENERALES
 ======================================*/
 
+.text-hotsale {
+  color: #ff4500
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: #555555;

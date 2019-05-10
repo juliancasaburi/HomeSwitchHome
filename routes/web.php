@@ -15,13 +15,17 @@ Route::get('/', function () {
     return view('index');
 });
 
+Auth::routes(['verify' => true]);
+
+Route::get('profile', function () {
+    return view('user-profile');
+})->middleware('auth');
+
 Route::get('logout', function() {
     Session::flush();
     Auth::logout();
     return Redirect::to("/");
 });
-
-Auth::routes(['verify' => true]);
 
 Route::prefix('admin')->group(function() {
     Route::get('/', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

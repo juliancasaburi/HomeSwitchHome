@@ -33,7 +33,8 @@
 
     <link href="{{ asset('css/widgets.min.css') }}" rel="stylesheet">
 
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+    <!-- Additional per-page css -->
+    @yield('css')
 </head>
 
 {{-- Navbar --}}
@@ -45,8 +46,10 @@
 
     @yield('content')
 
-    @include('layouts.partials.footer')
 </div>
+
+{{-- Footer --}}
+@include('layouts.partials.footer')
 
 {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script --}}
 <!-- JavaScript Libraries -->
@@ -57,11 +60,12 @@
 <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('lib/scrollreveal/scrollreveal.min.js') }}"></script>
-<!-- Contact Form JavaScript File -->
-<script src="{{ asset('js/contactform.js') }}"></script>
 
 <!-- Template Main Javascript File -->
 <script src="{{ asset('js/main.js') }}"></script>
+
+<!-- Include per-page JS -->
+@yield('js')
 
 <script>
     $(document).ready(function(){

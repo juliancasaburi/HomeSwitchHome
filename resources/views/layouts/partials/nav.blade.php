@@ -49,7 +49,7 @@
                     <a class="nav-link" href="{{ url('contacto') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:orangered;" href="{{ url('hotsale') }}"><span class="fas fa-fire"></span>HOTSALE</a>
+                    <a class="nav-link" style="color:orangered;" href="{{ url('hotsale') }}"><span class="fas fa-fire fa-fw fa-sm text-hotsale"></span>HOTSALE</a>
                 </li>
             </ul>
         </div>
