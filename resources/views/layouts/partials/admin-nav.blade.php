@@ -10,7 +10,7 @@
                 <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
                 <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                     <div class="nav-user-info">
-                        <h5 class="mb-0 text-white nav-user-name">Nombre Apellido </h5>
+                        <h5 class="mb-0 text-white nav-user-name">{{ Auth::user()->nombre}} {{ Auth::user()->apellido}} </h5>
                         <span class="status"></span><span class="ml-2">Administrador</span>
                     </div>
                     <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt mr-2"></i>Mi Cuenta</a>
