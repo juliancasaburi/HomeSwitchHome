@@ -34,7 +34,7 @@
                             <span class="ion-ios-person" ></span > {{ Auth::user()->nombre }}
                         </a >
                         <div class="dropdown-menu" aria - labelledby = "navbarDropdown" >
-                            <a class="dropdown-item" href = "{{ url('perfil') }}" > Mi cuenta </a >
+                            <a class="dropdown-item" href = "{{ url('profile') }}" > Mi cuenta </a >
                             <a class="dropdown-item" href = "{{ url('logout') }}" > Cerrar Sesión </a >
                         </div >
                 </li>
