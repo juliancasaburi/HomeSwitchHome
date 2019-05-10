@@ -11,7 +11,7 @@ class Property extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'pais', 'provincia', 'ciudad', 'calle', 'precio', 'estrellas', 'capacidad', 'habitaciones', 'baños', 'garages',
+        'nombre', 'pais', 'provincia', 'localidad', 'calle', 'numero', 'precio', 'estrellas', 'capacidad', 'habitaciones', 'baños', 'garages',
     ];
 }
 
