@@ -72,7 +72,7 @@ class PropertyCreationController extends Controller
         if ($request->has('foto')) {
             // Get image file
             $image = $request->file('foto');
-            // Make a image name based on user name and current timestamp
+            // Make a image name based on property's name and current timestamp
             $name = str_slug($request->input('nombre')).'_'.time();
             // Define folder path
             $folder = '/images/';
