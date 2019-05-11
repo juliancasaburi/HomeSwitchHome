@@ -72,7 +72,7 @@
                         <div id="submenu-5" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Ver listado</a>
+                                    <a class="nav-link" href={{ url('admin/dashboard/user-list') }}>Ver listado</a>
                                 </li>
                             </ul>
                         </div>

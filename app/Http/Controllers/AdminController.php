@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -38,5 +39,16 @@ class AdminController extends Controller
     public function showPropertyCreationForm()
     {
         return view('admin-create-property');
+    }
+
+    /**
+     * Show the User list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserList()
+    {
+        $users = User::all();
+        return view('admin-users-list')->with ('users',$users);
     }
 }

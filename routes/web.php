@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
     Route::get('/dashboard/create-property', 'AdminController@showPropertyCreationForm')->name('admin.createProperty');
     Route::post('/dashboard/create-property', 'PropertyCreationController@store')->name('property.create');
+    Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');
 });
 
 //
