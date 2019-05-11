@@ -27,7 +27,7 @@ class CreatePropertiesTable extends Migration
             $table->tinyInteger('habitaciones');
             $table->tinyInteger('baños');
             $table->tinyInteger('garages');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
