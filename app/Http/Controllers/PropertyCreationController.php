@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class PropertyCreationController extends Controller
 {
@@ -14,7 +15,7 @@ class PropertyCreationController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     public function index()
@@ -24,8 +25,7 @@ class PropertyCreationController extends Controller
 
     public function store(Request $request)
     {
-        // Form validation
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nombre' => ['required', 'string'],
             'pais' => ['required', 'string'],
             'provincia' => ['required', 'string'],
@@ -42,15 +42,20 @@ class PropertyCreationController extends Controller
                         ->whereCalle($request->calle)
                         ->whereNumero($request->numero);
                 }),
-                ],
+            ],
             'precio' => ['required', 'numeric'],
             'estrellas' => ['required', 'numeric'],
             'capacidad' => ['required', 'numeric'],
             'habitaciones' => ['required', 'numeric'],
             'banios' => ['required', 'numeric'],
             'garages' => ['required', 'numeric'],
-            'foto'     =>  'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'foto'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
+
+        if($validator->fails()){
+            // Return user back and show an error flash message
+            return redirect('admin/dashboard/create-property')->withErrors($validator);
+        }
 
         $property = new Property;
         $property->nombre = $request->nombre;
@@ -68,7 +73,7 @@ class PropertyCreationController extends Controller
 
         $property->save();
 
-        // Check if a profile image has been uploaded
+        // Check if a property photo has been uploaded
         if ($request->has('foto')) {
             // Get image file
             $image = $request->file('foto');
@@ -80,14 +85,11 @@ class PropertyCreationController extends Controller
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             // Upload image
             $this->uploadOne($image, $folder, 'media', $name);
-            // Set user profile image path in database to filePath
+            // Set property photo image path in database to filePath
             $property->image_path = $filePath;
+            // Save property record
+            $property->save();
         }
-        // Persist user record to database
-        $property->save();
-
-        // Message
-        $request->session()->flash('alert-success', 'Propiedad creada exitosamente!');
 
         // Return user back and show a flash message
         return redirect('admin/dashboard/create-property')->with('alert-success', 'Propiedad creada exitosamente!');

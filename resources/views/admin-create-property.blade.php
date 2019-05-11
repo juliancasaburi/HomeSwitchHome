@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputFoto">Foto</label>
-                                            <input type="file" name="foto" class="form-control" id="inputFoto" required>
+                                            <input type="file" name="foto" class="form-control" id="inputFoto">
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
@@ -399,6 +399,15 @@
                     @if(session()->has('alert-success'))
                         <div class="alert alert-success" data-expires="5000">
                             {{ session()->get('alert-success') }}
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endif
                 </div>
