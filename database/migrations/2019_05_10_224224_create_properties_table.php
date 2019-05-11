@@ -18,8 +18,8 @@ class CreatePropertiesTable extends Migration
             $table->string('nombre');
             $table->string('pais');
             $table->string('provincia');
-            $table->string('ciudad');
             $table->string('localidad');
+            $table->string('calle');
             $table->string('numero');
             $table->decimal('precio', 9,2);
             $table->tinyInteger('estrellas');
