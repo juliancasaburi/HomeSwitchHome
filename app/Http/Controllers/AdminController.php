@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
 
     protected function guard(){
-        return Auth::guard('admin');
+        return Auth::guard('auth:admin');
     }
 
     /**
@@ -28,5 +28,15 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin-dashboard');
+    }
+
+    /**
+     * Show the Property Creation Form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showPropertyCreationForm()
+    {
+        return view('admin-create-property');
     }
 }

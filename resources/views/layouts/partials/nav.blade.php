@@ -35,7 +35,10 @@
                         </a >
                         <div class="dropdown-menu" aria - labelledby = "navbarDropdown" >
                             <a class="dropdown-item" href = "{{ url('profile') }}" > Mi cuenta </a >
-                            <a class="dropdown-item" href = "{{ url('logout') }}" > Cerrar Sesión </a >
+                            <a class="dropdown-item" href = "{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar Sesión </a >
+                            <form id="logout-form" action="{{ 'App\User' == Auth::getProvider()->getModel() ? url('logout') : url('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </div >
                 </li>
                 @endauth

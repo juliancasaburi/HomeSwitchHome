@@ -14,7 +14,10 @@
                         <span class="status"></span><span class="ml-2">Administrador</span>
                     </div>
                     <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt mr-2"></i>Mi Cuenta</a>
-                    <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                    <a class="dropdown-item" href="{{ url('admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                    <form id="logout-form" action="{{ 'App\Admin' == Auth::getProvider()->getModel() ? url('admin/logout') : url('admin/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </li>
         </ul>
