@@ -27,8 +27,8 @@
     <link rel="stylesheet" href="{{ asset('lib/charts/morris-bundle/morris.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/charts/chartist-bundle/chartist.css') }}">
-    <link rel="stylesheet" href="{{ asset('libcharts/c3charts/c3.css"') }}">
-    <link rel="stylesheet" href="{{ asset('lib/fonts/flag-icon-css/flag-icon.min.css"') }}">
+    <link rel="stylesheet" href="{{ asset('libcharts/c3charts/c3.css') }}">
+    <link rel="stylesheet" href="{{ asset('lib/fonts/flag-icon-css/flag-icon.min.css') }}">
 
     <link href="{{ asset('css/themes.min.css') }}" rel="stylesheet">
 
