@@ -69,7 +69,7 @@ class PropertyCreationController extends Controller
         $property->capacidad = $request->capacidad;
         $property->habitaciones = $request->habitaciones;
         $property->baños = $request->banios;
-        $property->garages = $request->garages;
+        $property->capacidad_vehiculos = $request->capacidadVehiculos;
 
         $property->save();
 

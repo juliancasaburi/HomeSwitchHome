@@ -379,8 +379,8 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                            <label for="inputGarages">Garages</label>
-                                            <input type="number" name="garages" class="form-control" id="inputGarages" placeholder="Garages(Cantidad)" required>
+                                            <label for="inputCapacidadVehiculos">Capacidad Vehiculos</label>
+                                            <input type="number" name="capacidadVehiculos" class="form-control" id="inputCapacidadVehiculos" placeholder="Capacidad Vehiculos" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
