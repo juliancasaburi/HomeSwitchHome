@@ -1,6 +1,6 @@
 @extends('layouts.admin-dashboard-layout')
 
-@section('title', '- Admin Dashboard - Listado de Usuarios')
+@section('title', '- Admin Dashboard - Listado de propiedades')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/datatables/css/dataTables.bootstrap4.css') }}">
@@ -32,7 +32,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Usuarios</a></li>
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Propiedades</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Ver listado</li>
                                     </ol>
                                 </nav>
@@ -49,50 +49,58 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Listado de Usuarios</h5>
+                            <h5 class="card-header">Listado de propiedades</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
                                         <thead>
                                         <tr>
-                                            <th>Nombre y Apellido</th>
-                                            <th>Email</th>
-                                            <th>Tipo</th>
-                                            <th>Pais</th>
-                                            <th>Fecha de nacimiento</th>
-                                            <th>DNI</th>
-                                            <th>Creditos</th>
-                                            <th>Saldo</th>
+                                            <th>Nombre</th>
+                                            <th>País</th>
+                                            <th>Provincia</th>
+                                            <th>Localidad</th>
+                                            <th>Calle</th>
+                                            <th>Numero</th>
+                                            <th>Precio</th>
+                                            <th>Estrellas</th>
+                                            <th>Capacidad</th>
+                                            <th>Habitaciones</th>
+                                            <th>Baños</th>
+                                            <th>Garages</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($users as $u)
-                                        <tr>
-                                            <td>{{ $u->nombre}} {{$u->apellido}}</td>
-                                            <td>{{ $u->email }}</td>
-                                            @if($u->premium == 1)
-                                                <td><i class="fas fa-ticket-alt"></i>Premium</td>
-                                            @else
-                                                <td><i class="fas fa-user"></i>Regular</td>
-                                            @endif
-                                            <td>{{ $u->pais }}</td>
-                                            <td>{{ $u->fecha_nacimiento }}</td>
-                                            <td>{{ $u->DNI }}</td>
-                                            <td>{{ $u->creditos }}</td>
-                                            <td>{{ $u->saldo }}</td>
-                                        </tr>
-                                            @endforeach
+                                        @foreach ($properties as $p)
+                                            <tr>
+                                                <td>{{ $p->nombre}}</td>
+                                                <td>{{ $p->pais }}</td>
+                                                <td>{{ $p->provincia }}</td>
+                                                <td>{{ $p->localidad }}</td>
+                                                <td>{{ $p->calle }}</td>
+                                                <td>{{ $p->numero }}</td>
+                                                <td>{{ $p->precio }}</td>
+                                                <td>{{ $p->estrellas }}</td>
+                                                <td>{{ $p->capacidad }}</td>
+                                                <td>{{ $p->habitaciones }}</td>
+                                                <td>{{ $p->baños }}</td>
+                                                <td>{{ $p->garages }}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th>Nombre y Apellido</th>
-                                            <th>Email</th>
-                                            <th>Tipo</th>
-                                            <th>Pais</th>
-                                            <th>Fecha de nacimiento</th>
-                                            <th>DNI</th>
-                                            <th>Creditos</th>
-                                            <th>Saldo</th>
+                                            <th>Nombre</th>
+                                            <th>País</th>
+                                            <th>Provincia</th>
+                                            <th>Localidad</th>
+                                            <th>Calle</th>
+                                            <th>Numero</th>
+                                            <th>Precio</th>
+                                            <th>Estrellas</th>
+                                            <th>Capacidad</th>
+                                            <th>Habitaciones</th>
+                                            <th>Baños</th>
+                                            <th>Garages</th>
                                         </tr>
                                         </tfoot>
                                     </table>

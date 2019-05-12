@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Property;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -50,5 +51,11 @@ class AdminController extends Controller
     {
         $users = User::all();
         return view('admin-users-list')->with ('users',$users);
+    }
+
+    public function showPropertyList()
+    {
+        $properties = Property::all();
+        return view('admin-properties-list')->with ('properties',$properties);
     }
 }
