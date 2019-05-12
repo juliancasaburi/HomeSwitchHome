@@ -11,6 +11,12 @@
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', function () {
     return view('index');
 });
@@ -30,6 +36,12 @@ Route::post('logout', function() {
     return Redirect::to("/");
 });
 
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::prefix('admin')->group(function() {
     Route::get('/', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -40,5 +52,13 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/create-property', 'PropertyCreationController@store')->name('property.create');
     Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Property Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/property', 'PropertyController@index');
 
 //
