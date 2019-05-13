@@ -55,6 +55,8 @@
                                     <table class="table table-striped table-bordered first">
                                         <thead>
                                         <tr>
+                                            <th></th>
+                                            <th>ID</th>
                                             <th>Nombre</th>
                                             <th>País</th>
                                             <th>Provincia</th>
@@ -72,7 +74,9 @@
                                         <tbody>
                                         @foreach ($properties as $p)
                                             <tr>
-                                                <td>{{ $p->nombre}}</td>
+                                                <td> <a href="#"><i class="far fa-edit"></i> Editar</a> </td>
+                                                <td>{{ $p->id }}</td>
+                                                <td><a href={{ url('property?id=').$p->id }}>{{ $p->nombre}}</a></td>
                                                 <td>{{ $p->pais }}</td>
                                                 <td>{{ $p->provincia }}</td>
                                                 <td>{{ $p->localidad }}</td>
@@ -89,6 +93,8 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th></th>
+                                            <th>ID</th>
                                             <th>Nombre</th>
                                             <th>País</th>
                                             <th>Provincia</th>
