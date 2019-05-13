@@ -13,7 +13,7 @@ class CreatePropertiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('properties', function (Blueprint $table) {
+        Schema::create('propiedades', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('pais');
@@ -38,6 +38,6 @@ class CreatePropertiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('properties');
+        Schema::dropIfExists('propiedades');
     }
 }

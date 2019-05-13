@@ -12,13 +12,17 @@ class Property extends Model
      *
      * @var array
      */
+
+    protected $table = 'propiedades';
+
     protected $fillable = [
         'nombre', 'pais', 'provincia', 'localidad', 'calle', 'numero', 'estrellas', 'capacidad', 'habitaciones', 'baños', 'capacidad_vehiculos',
     ];
-
+    
     public function getImageAttribute()
     {
         return $this->image_path;
     }
+
 }
 
