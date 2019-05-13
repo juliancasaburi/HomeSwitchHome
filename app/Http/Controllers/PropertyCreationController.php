@@ -86,7 +86,7 @@ class PropertyCreationController extends Controller
             // Upload image
             $this->uploadOne($image, $folder, 'media', $name);
             // Set property photo image path in database to filePath
-            $property->image_path = $filePath;
+            $property->image_path = '/uploads'.$filePath;
             // Save property record
             $property->save();
         }
