@@ -21,7 +21,6 @@ class CreatePropertiesTable extends Migration
             $table->string('localidad');
             $table->string('calle');
             $table->string('numero');
-            $table->decimal('precio', 9,2);
             $table->tinyInteger('estrellas');
             $table->tinyInteger('capacidad');
             $table->tinyInteger('habitaciones');

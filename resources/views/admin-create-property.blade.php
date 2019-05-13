@@ -344,13 +344,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                            <label for="inputPrecio">Precio</label>
-                                            <input type="number" name="precio" step="0.01" class="form-control" id="inputPrecio" placeholder="Precio($ USD)" required>
-                                            <div class="valid-feedback">
-                                                Válido
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputEstrellas">Estrellas</label>
                                             <input type="number" name="estrellas" class="form-control" id="inputEstrellas" placeholder="1 al 5"" required>
                                             <div class="valid-feedback">

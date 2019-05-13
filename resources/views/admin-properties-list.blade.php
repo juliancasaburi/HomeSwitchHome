@@ -63,7 +63,6 @@
                                             <th>Localidad</th>
                                             <th>Calle</th>
                                             <th>Numero</th>
-                                            <th>Precio</th>
                                             <th>Estrellas</th>
                                             <th>Capacidad</th>
                                             <th>Habitaciones</th>
@@ -74,7 +73,7 @@
                                         <tbody>
                                         @foreach ($properties as $p)
                                             <tr>
-                                                <td> <a href="#"><i class="far fa-edit"></i> Editar</a> </td>
+                                                <td><button class="btn-primary"><i class="far fa-edit"></i>Editar</button></td>
                                                 <td>{{ $p->id }}</td>
                                                 <td><a href={{ url('property?id=').$p->id }}>{{ $p->nombre}}</a></td>
                                                 <td>{{ $p->pais }}</td>
@@ -82,7 +81,6 @@
                                                 <td>{{ $p->localidad }}</td>
                                                 <td>{{ $p->calle }}</td>
                                                 <td>{{ $p->numero }}</td>
-                                                <td>{{ $p->precio }}</td>
                                                 <td>{{ $p->estrellas }}</td>
                                                 <td>{{ $p->capacidad }}</td>
                                                 <td>{{ $p->habitaciones }}</td>
@@ -101,7 +99,6 @@
                                             <th>Localidad</th>
                                             <th>Calle</th>
                                             <th>Numero</th>
-                                            <th>Precio</th>
                                             <th>Estrellas</th>
                                             <th>Capacidad</th>
                                             <th>Habitaciones</th>

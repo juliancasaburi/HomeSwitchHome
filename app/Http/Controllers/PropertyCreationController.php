@@ -43,7 +43,6 @@ class PropertyCreationController extends Controller
                         ->whereNumero($request->numero);
                 }),
             ],
-            'precio' => ['required', 'numeric'],
             'estrellas' => ['required', 'numeric'],
             'capacidad' => ['required', 'numeric'],
             'habitaciones' => ['required', 'numeric'],
@@ -64,7 +63,6 @@ class PropertyCreationController extends Controller
         $property->localidad = $request->localidad;
         $property->calle = $request->calle;
         $property->numero = $request->numero;
-        $property->precio = $request->precio;
         $property->estrellas = $request->estrellas;
         $property->capacidad = $request->capacidad;
         $property->habitaciones = $request->habitaciones;
