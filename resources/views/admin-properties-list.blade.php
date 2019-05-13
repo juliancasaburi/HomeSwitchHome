@@ -83,7 +83,7 @@
                                                 <td>{{ $p->capacidad }}</td>
                                                 <td>{{ $p->habitaciones }}</td>
                                                 <td>{{ $p->baños }}</td>
-                                                <td>{{ $p->garages }}</td>
+                                                <td>{{ $p->capacidad_vehiculos }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
