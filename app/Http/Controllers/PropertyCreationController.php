@@ -48,7 +48,7 @@ class PropertyCreationController extends Controller
             'capacidad' => ['required', 'numeric'],
             'habitaciones' => ['required', 'numeric'],
             'banios' => ['required', 'numeric'],
-            'garages' => ['required', 'numeric'],
+            'capacidadVehiculos' => ['required', 'numeric'],
             'foto'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
