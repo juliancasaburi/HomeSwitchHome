@@ -55,11 +55,14 @@
                                     <table class="table table-striped table-bordered first">
                                         <thead>
                                         <tr>
-                                            <th>Nombre y Apellido</th>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Nombre/s</th>
+                                            <th>Apellido/s</th>
                                             <th>Email</th>
                                             <th>Tipo</th>
                                             <th>Pais</th>
-                                            <th>Fecha de nacimiento</th>
+                                            <th>Fecha de nacimiento & Edad</th>
                                             <th>DNI</th>
                                             <th>Creditos</th>
                                             <th>Saldo</th>
@@ -68,7 +71,11 @@
                                         <tbody>
                                         @foreach ($users as $u)
                                         <tr>
-                                            <td>{{ $u->nombre}} {{$u->apellido}}</td>
+                                            <!-- <td> <a href="#"><i class="far fa-edit"></i> Editar</a> </td> -->
+                                            <td><button class="btn-primary"><i class="far fa-edit"></i>Editar</button></td>
+                                            <td>{{ $u->id}}</td>
+                                            <td>{{ $u->nombre}}</td>
+                                            <td>{{ $u->apellido }}</td>
                                             <td>{{ $u->email }}</td>
                                             @if($u->premium == 1)
                                                 <td><i class="fas fa-ticket-alt"></i>Premium</td>
@@ -76,7 +83,7 @@
                                                 <td><i class="fas fa-user"></i>Regular</td>
                                             @endif
                                             <td>{{ $u->pais }}</td>
-                                            <td>{{ $u->fecha_nacimiento }}</td>
+                                            <td>{{ $u->fecha_nacimiento }} ({{ $u->age}})</td>
                                             <td>{{ $u->DNI }}</td>
                                             <td>{{ $u->creditos }}</td>
                                             <td>{{ $u->saldo }}</td>
@@ -85,7 +92,10 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th>Nombre y Apellido</th>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Nombre/s</th>
+                                            <th>Apellido/s</th>
                                             <th>Email</th>
                                             <th>Tipo</th>
                                             <th>Pais</th>
