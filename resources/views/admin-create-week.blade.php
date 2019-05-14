@@ -44,7 +44,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <h5 class="card-header">Crear una semana</h5>
-                            <form class="needs-validation" action="{{ route('week.create') }}" role="form" enctype="multipart/form-data" method="POST">
+                            <form class="needs-validation" action="{{ route('week.create') }}" role="form" method="POST">
                                 @csrf
                                 <div class="row">
 
@@ -60,8 +60,8 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <label for="inputDia">Semana desde el dia</label>
-                                        <input type="date" name="dia" class="form-control" id="inputDia" required>
+                                        <label for="inputFecha">Semana desde el dia</label>
+                                        <input type="date" name="fecha" class="form-control" id="inputFecha" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>
@@ -71,21 +71,29 @@
                                     <button class="btn btn-primary" type="submit">Crear semana</button>
                                 </div>
                             </form>
-                            </div>
                         </div>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- week creation form -->
-                    <!-- ============================================================== -->
-                    @if(session()->has('alert-success'))
-                        <div class="alert alert-success" data-expires="5000">
-                            {{ session()->get('alert-success') }}
-                        </div>
-                    @endif
-
                 </div>
+                <!-- ============================================================== -->
+                <!-- week creation form -->
+                <!-- ============================================================== -->
+                @if(session()->has('alert-success'))
+                    <div class="alert alert-success" data-expires="5000">
+                        {{ session()->get('alert-success') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
+    </div>
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper -->
