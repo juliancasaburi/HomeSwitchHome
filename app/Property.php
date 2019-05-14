@@ -24,5 +24,8 @@ class Property extends Model
         return $this->image_path;
     }
 
+    public function weeks(){
+        return $this->hasMany(Week::class);
+    }
 }
 
