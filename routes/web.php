@@ -52,6 +52,8 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/create-property', 'PropertyCreationController@store')->name('property.create');
     Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');//  Usuarios->Ver listado de usuarios. Dashboard.
     Route::get('/dashboard/properties-list', 'AdminController@showPropertyList')->name('admin.propertyList');//  Propiedades->Ver listado de propiedades. Dashboard.
+    Route::get('/dashboard/create-week', 'AdminController@showWeekCreationForm')->name('admin.createWeek');
+    Route::post('/dashboard/create-week', 'WeekCreationController@store')->name('week.create');
 });
 
 /*

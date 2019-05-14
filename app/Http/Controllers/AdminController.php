@@ -58,4 +58,9 @@ class AdminController extends Controller
         $properties = Property::all();
         return view('admin-properties-list')->with ('properties',$properties);
     }
+
+    public function showWeekCreationForm(){
+        $properties = Property::all();
+        return view('admin-create-week')->with('properties', $properties);
+    }
 }

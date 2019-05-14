@@ -43,7 +43,7 @@
                                     <a class="nav-link" href="#">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Crear Semana</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/create-week') }}">Crear Semana</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Modificar Semana</a>
