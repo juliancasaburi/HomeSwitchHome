@@ -14,7 +14,7 @@
                         Menu
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Mi cuenta</a>
+                        <a class="nav-link" href="{{ url('admin/dashboard') }}"><i class="fab fa-fw fa-black-tie"></i>Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-hotel"></i>Propiedades</a>
