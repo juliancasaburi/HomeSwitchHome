@@ -9,7 +9,7 @@ class Week extends Model
     protected $table = 'semanas';
 
     protected $fillable = [
-        'propiedad_id', 'fecha', 'precio'
+        'propiedad_id', 'fecha',
     ];
 
     public function property(){

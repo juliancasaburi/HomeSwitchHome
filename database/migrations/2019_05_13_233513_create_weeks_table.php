@@ -16,7 +16,6 @@ class CreateWeeksTable extends Migration
         Schema::create('semanas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('propiedad_id')->unsigned();
-            $table->decimal('precio');
             $table->date('fecha');
             $table->timestamps();
 
