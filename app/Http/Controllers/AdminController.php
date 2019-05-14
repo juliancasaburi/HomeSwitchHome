@@ -29,7 +29,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin-dashboard');
+        return view('admin-dashboard')->with(
+            [
+                'usersCount' => User::all()->count(),
+                'premiumUsersCount' => User::where('premium', 1)->count(),
+                'propertiesCount' => Property::all()->count(),
+            ]
+        );
     }
 
     /**

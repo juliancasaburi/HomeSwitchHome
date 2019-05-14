@@ -21,7 +21,6 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <h2 class="pageheader-title">Admin Dashboard</h2>
-                                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -37,14 +36,14 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     <div class="ecommerce-widget">
-
+                        <h3>Estadisticas Usuarios</h3>
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Total</h5>
+                                        <h5 class="text-muted">Cantidad Usuarios</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$1,000,000</h1>
+                                            <h1 class="mb-1">{{ $usersCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -52,29 +51,22 @@
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Reservas</h5>
+                                        <h5 class="text-muted">Cantidad premium</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$333,333</h1>
+                                            <h1 class="mb-1">{{ $premiumUsersCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <h3>Estadisticas Propiedades</h3>
+                        <div class="row">
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Suscripciones</h5>
+                                        <h5 class="text-muted">Cantidad Propiedades</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$333,333</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Premium</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$333,333</h1>
+                                            <h1 class="mb-1">{{ $propertiesCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
