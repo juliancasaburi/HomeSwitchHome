@@ -70,6 +70,13 @@
 <script src="{{ asset('lib/charts/c3charts/C3chartjs.js') }}"></script>
 <script src="{{ asset('assets/libs/js/dashboard-ecommerce.js') }}"></script>
 
+<script>
+    // Result alert
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+    });
+</script>
+
 <!-- Include per-page JS -->
 @yield('js')
 

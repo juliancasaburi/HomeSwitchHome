@@ -233,10 +233,5 @@
                 alert ('Saldo y créditos no pueden estar vacíos');
             }
         }
-
-        // Result alert
-        $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-            $(".alert").slideUp(500);
-        });
     </script>
 @endsection
