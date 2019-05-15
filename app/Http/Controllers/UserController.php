@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Rules\CurrentPassword;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
     public function modifyEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'password' => 'required|min:8',
+            'password' => ['required',new CurrentPassword()],
             'newEmail' => 'required|email|unique:usuarios,email',
         ]);
 
