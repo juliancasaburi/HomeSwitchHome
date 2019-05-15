@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Property;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -68,5 +69,34 @@ class AdminController extends Controller
     public function showWeekCreationForm(){
         $properties = Property::all();
         return view('admin-create-week')->with('properties', $properties);
+    }
+
+    public function editUser(Request $request){
+        $userHasBeenModified = false;
+        $validator = Validator::make($request->all(), [
+            'saldo' => ['numeric'],
+            'creditos' => ['numeric'],
+        ]);
+
+        if($validator->fails()){
+            // Return admin back and show an error flash message
+            return redirect('admin/dashboard/user-list')->withErrors($validator);
+        }
+
+        $user = User::find($request->userID);
+        if ($request->userCreditos != $user->creditos) {
+            $user->creditos = $request->userCreditos;
+            $userHasBeenModified = true;
+        }
+        if ($request->userSaldo != $user->saldo) {
+            $user->saldo = $request->userSaldo;
+            $userHasBeenModified = true;
+        }
+        if ($userHasBeenModified) {
+            $user->save();
+            // Return user back and show a flash message
+            return redirect('admin/dashboard/user-list')->with('alert-success', 'Usuario modificado');
+        }
+        return redirect('admin/dashboard/user-list')->with('alert-warning', 'Los datos no cambiaron');
     }
 }
