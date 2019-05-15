@@ -36,6 +36,9 @@ Route::post('logout', function() {
     return Redirect::to("/");
 });
 
+Route::get('/profile/modify-email', 'UserController@showEmailForm');
+Route::post('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
