@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('contact', function () {
+    return view('contact');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/profile', 'UserController@showUserProfile');
