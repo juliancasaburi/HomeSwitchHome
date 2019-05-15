@@ -15,7 +15,7 @@ class CreateAuctionsTable extends Migration
     {
         Schema::create('subastas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('semana_id');
+            $table->bigInteger('semana_id')->unsigned()->index();
             $table->decimal('precio_inicial', 9, 2);
             $table->dateTime('inicio');
             $table->dateTime('fin');

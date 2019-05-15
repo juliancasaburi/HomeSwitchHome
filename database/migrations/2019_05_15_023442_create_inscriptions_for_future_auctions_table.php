@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatInscriptionsForFutureAuctionsTable extends Migration
+class CreateInscriptionsForFutureAuctionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreatInscriptionsForFutureAuctionsTable extends Migration
     {
         Schema::create('inscripciones_a_subastas_futuras', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('usuario_id');
-            $table->bigInteger('subasta_id');
+            $table->bigInteger('usuario_id')->unsigned()->index();
+            $table->bigInteger('subasta_id')->unsigned()->index();
             $table->dateTime('inicio');
             $table->dateTime('fin');
             $table->timestamps();
