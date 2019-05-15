@@ -75,4 +75,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->age;
     }
+
+    public function auctionInscriptions(){
+        return $this->hasMany(InscriptionForFutureAuction::class);
+    }
 }
