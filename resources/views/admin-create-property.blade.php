@@ -417,6 +417,10 @@
     <script src="{{ asset('lib/parsley/parsley.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script>
+        $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert").slideUp(500);
+        });
+
         $('#form').parsley();
     </script>
     <script>
