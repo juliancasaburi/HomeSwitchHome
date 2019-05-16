@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Property;
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Facades\Validator;
+use App\User;
+use App\Property;
+use App\Auction;
 
 class AdminController extends Controller
 {
@@ -57,13 +58,13 @@ class AdminController extends Controller
     public function showUserList()
     {
         $users = User::all();
-        return view('admin-users-list')->with ('users',$users);
+        return view('admin-user-list')->with ('users',$users);
     }
 
     public function showPropertyList()
     {
         $properties = Property::all();
-        return view('admin-properties-list')->with ('properties',$properties);
+        return view('admin-property-list')->with ('properties',$properties);
     }
 
     public function showWeekCreationForm(){
@@ -98,5 +99,11 @@ class AdminController extends Controller
             return redirect('admin/dashboard/user-list')->with('alert-success', 'Usuario modificado');
         }
         return redirect('admin/dashboard/user-list')->with('alert-warning', 'Los datos no cambiaron');
+    }
+
+    public function showAuctionList()
+    {
+        $auctions = Auction::all();
+        return view('admin-auction-list')->with ('auctions',$auctions);
     }
 }
