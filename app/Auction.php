@@ -13,7 +13,13 @@ class Auction extends Model
     ];
 
     public function week(){
-        return $this->hasOne(Property::class);
+        return $this->hasOne(Week::class, 'id', 'semana_id');
+    }
+
+    public function propertyName(){
+        $week = $this->week();
+        $property = $week->property();
+        return $property->nombre;
     }
 }
 
