@@ -60,7 +60,7 @@
                                 <div class="card-overlay-a-content">
                                     <div class="card-header-a">
                                         <h2 class="card-title-a">
-                                            <a href="#"> {{$p->localidad}},
+                                            <a href="{{ url('property?id=').$p->id }}"> {{$p->localidad}},
                                                 <br /> {{$p->provincia}},
                                                 <br /> {{$p->pais}}</a>
                                         </h2>
