@@ -52,7 +52,7 @@
                                         <label for="inputIdPropiedad">Propiedad</label>
                                         <select class="form-control" name="idPropiedad" id="inputIdPropiedad">
                                             @foreach ($properties as $p)
-                                                <option value={{ $p->id}}>{{ $p->nombre}}</option>
+                                                <option value={{ $p->id}}>{{ $p->id}} - {{ $p->nombre}}</option>
                                             @endforeach
                                         </select>
                                         <div class="valid-feedback">
