@@ -6,7 +6,8 @@
     </div>
     <span class="close-box-collapse right-boxed ion-ios-close"></span>
     <div class="box-collapse-wrap form">
-        <form class="form-a" action="propiedades" method="post">
+        <form class="form-a" action="{{url('properties')}}" method="get">
+            @csrf
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
@@ -16,6 +17,12 @@
                 </div>
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
+                        <label for="fechaDesde">Fecha desde</label>
+                        <input type="date" class="form-control form-control-lg form-control-a" id="fechaDesde">
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-group">
                         <label for="pais">País</label>
                         <select class="form-control form-control-lg form-control-a" id="pais">
                             <option>Pais1</option>
@@ -23,12 +30,21 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6 mb-2">
+                <div class="col-md-4 mb-2">
                     <div class="form-group">
-                        <label for="ciudad">Ciudad</label>
-                        <select class="form-control form-control-lg form-control-a" id="ciudad">
-                            <option>Ciudad1</option>
-                            <option>Ciudad2</option>
+                        <label for="provincia">Provincia/Estado</label>
+                        <select class="form-control form-control-lg form-control-a" id="provincia">
+                            <option>Provincia1</option>
+                            <option>Provincia2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <div class="form-group">
+                        <label for="ciudad">Localidad</label>
+                        <select class="form-control form-control-lg form-control-a" id="localidad">
+                            <option>Localidad1</option>
+                            <option>Localidad2</option>
                         </select>
                     </div>
                 </div>

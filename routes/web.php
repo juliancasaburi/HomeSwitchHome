@@ -73,6 +73,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/property-list', 'AdminController@showPropertyList')->name('admin.propertyList');//  Propiedades->Ver listado de propiedades. Dashboard.
     Route::get('/dashboard/create-week', 'AdminController@showWeekCreationForm')->name('admin.createWeek');
     Route::post('/dashboard/create-week', 'WeekCreationController@store')->name('week.create');
+    Route::get('/dashboard/auction-list', 'AdminController@showAuctionList')->name('admin.propertyList');//  Propiedades->Ver listado de propiedades. Dashboard.
     //--------------------------------------------
 });
 
@@ -83,5 +84,6 @@ Route::prefix('admin')->group(function() {
 */
 
 Route::get('/property', 'PropertyController@index');
+Route::get('/properties', 'PropertyController@showGrid');
 
 //
