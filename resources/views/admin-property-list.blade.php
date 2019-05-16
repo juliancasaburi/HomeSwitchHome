@@ -68,12 +68,13 @@
                                             <th>Habitaciones</th>
                                             <th>Baños</th>
                                             <th>Garages</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($properties as $p)
                                             <tr>
-                                                <td><button class="btn-primary"><i class="fas fa-tools"></i>Administrar</button></td>
+                                                <td><button class="btn-primary"  data-toggle="modal" data-target="#adminPropertyModal" data-pid="{{ $p->id }}"><i class="fas fa-tools"></i>Administrar</button></td>
                                                 <td>{{ $p->id }}</td>
                                                 <td><a href={{ url('property?id=').$p->id }}>{{ $p->nombre}}</a></td>
                                                 <td>{{ $p->pais }}</td>
@@ -86,6 +87,7 @@
                                                 <td>{{ $p->habitaciones }}</td>
                                                 <td>{{ $p->baños }}</td>
                                                 <td>{{ $p->capacidad_vehiculos }}</td>
+                                                <td><button class="btn-primary"><i class="fas fa-tools"></i>Editar</button></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -104,6 +106,7 @@
                                             <th>Habitaciones</th>
                                             <th>Baños</th>
                                             <th>Garages</th>
+                                            <th></th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -121,6 +124,24 @@
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="adminPropertyModal" tabindex="-1" role="dialog" aria-labelledby="adminPropertyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="adminPropertyModalLabel">Administrar propiedad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <a id="btn-createweek" class="btn btn-secondary" href="">Crear semana</a>
+                    <button type="button" id="btn-createauction" class="btn btn-primary">Crear subasta</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
