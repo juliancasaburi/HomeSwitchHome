@@ -215,5 +215,5 @@
 	<script src="{{ asset('lib/charts/charts-bundle/Chart.bundle.js') }}"></script>
 	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
 	<!-- dashboard js -->
-	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}js/dashboard-influencer.js"></script>
+	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
 @endsection
