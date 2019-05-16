@@ -62,7 +62,7 @@
                                     <a class="nav-link" href="#">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Crear Inscripcion</a>
+                                    <a class="nav-link" href="#">Crear Inscripcion</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Modificar Inscripcion</a>
@@ -78,10 +78,10 @@
                         <div id="submenu-5" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="}">Ver todas</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/auction-list') }}">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Crear Subasta</a>
+                                    <a class="nav-link" href="#">Crear Subasta</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Modificar Subasta</a>
