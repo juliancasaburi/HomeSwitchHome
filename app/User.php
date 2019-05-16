@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\VerificarEmail;
 use App\Notifications\ResetPassword;
+use App\Notifications\EmailChanged;
 use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -58,6 +59,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Send the email change notification.
+     *
+     * @return void
+     */
+    public function sendEmailChangedNotification()
+    {
+        $this->notify(new EmailChanged); // notificacion
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token
@@ -80,3 +91,4 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(InscriptionForFutureAuction::class);
     }
 }
+
