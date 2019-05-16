@@ -66,6 +66,7 @@
                     @if(session()->has('alert-success'))
                         <div class="alert alert-success" data-expires="5000">
                             {{ session()->get('alert-success') }}
+                            {{ Auth::user()->sendEmailChangedNotification()}}
                         </div>
                     @elseif (session()->has('alert-warning'))
                         <div class="alert alert-warning" data-expires="5000">
