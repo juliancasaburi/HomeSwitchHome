@@ -17,6 +17,8 @@ class CreateAuctionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('semana_id')->unsigned()->index();
             $table->decimal('precio_inicial', 9, 2);
+            $table->dateTime('inscripcion_inicio');
+            $table->dateTime('inscripcion_fin');
             $table->dateTime('inicio');
             $table->dateTime('fin');
             $table->timestamps();

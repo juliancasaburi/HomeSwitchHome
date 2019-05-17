@@ -15,4 +15,8 @@ class Week extends Model
     public function property(){
         return $this->belongsTo(Property::class,'id', 'id');
     }
+
+    public function auction(){
+        return $this->hasOne(Auction::class,'id', 'semana_id');
+    }
 }

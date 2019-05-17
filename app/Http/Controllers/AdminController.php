@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Property;
 use App\Auction;
+use App\Week;
 
 class AdminController extends Controller
 {
@@ -105,5 +106,12 @@ class AdminController extends Controller
     {
         $auctions = Auction::all();
         return view('admin-auction-list')->with ('auctions',$auctions);
+    }
+
+    public function showAuctionCreationForm(){
+        return view('admin-create-auction', [
+            'properties' => Property::all(),
+            'weeks' => Week::all(),
+        ]);
     }
 }

@@ -68,14 +68,19 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
     Route::get('/dashboard/create-property', 'AdminController@showPropertyCreationForm')->name('admin.createProperty');
     Route::post('/dashboard/create-property', 'PropertyCreationController@store')->name('property.create');
-    Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');//  Usuarios->Ver listado de usuarios. Dashboard.
+    Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');
     Route::post('/dashboard/user-list', 'AdminController@editUser')->name('admin.editUser');
-    Route::get('/dashboard/property-list', 'AdminController@showPropertyList')->name('admin.propertyList');//  Propiedades->Ver listado de propiedades. Dashboard.
+    Route::get('/dashboard/property-list', 'AdminController@showPropertyList')->name('admin.propertyList');
     Route::get('/dashboard/create-week', 'AdminController@showWeekCreationForm')->name('admin.createWeek');
     Route::post('/dashboard/create-week', 'WeekCreationController@store')->name('week.create');
-    Route::get('/dashboard/auction-list', 'AdminController@showAuctionList')->name('admin.propertyList');//  Propiedades->Ver listado de propiedades. Dashboard.
+    Route::get('/dashboard/auction-list', 'AdminController@showAuctionList')->name('admin.propertyList');
+    Route::get('/dashboard/create-auction', 'AdminController@showAuctionCreationForm')->name('admin.createAuction');
+    Route::post('/dashboard/create-auction', 'AuctionCreationController@store')->name('auction.create');
     //--------------------------------------------
 });
+
+// Auction creation helper
+Route::get('weeks/get/{id}', 'AuctionCreationController@getWeeks');
 
 /*
 |--------------------------------------------------------------------------

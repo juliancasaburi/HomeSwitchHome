@@ -59,12 +59,6 @@
                                     <a class="nav-link" href="#">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Crear Inscripcion</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Modificar Inscripcion</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="#">Eliminar Inscripcion</a>
                                 </li>
                             </ul>
@@ -78,7 +72,7 @@
                                     <a class="nav-link" href="{{ url('admin/dashboard/auction-list') }}">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Crear Subasta</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/create-auction') }}">Crear Subasta</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Modificar Subasta</a>
