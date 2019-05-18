@@ -13,12 +13,16 @@ class Auction extends Model
     ];
 
     public function week(){
-        return $this->hasOne(Week::class, 'id', 'semana_id');
+        return $this->belongsTo(Week::class, 'semana_id', 'id');
+    }
+
+    public function inscriptions(){
+        return $this->hasMany(InscriptionForFutureAuction::class, 'subasta_id', 'id');
     }
 
     public function propertyName(){
-        $week = $this->week();
-        $property = $week->property();
+        $week = $this->week;
+        $property = $week->property;
         return $property->nombre;
     }
 }

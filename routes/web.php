@@ -79,8 +79,17 @@ Route::prefix('admin')->group(function() {
     //--------------------------------------------
 });
 
+/*
+|--------------------------------------------------------------------------
+| Auction Routes
+|--------------------------------------------------------------------------
+*/
+
 // Auction creation helper
 Route::get('weeks/get/{id}', 'AuctionCreationController@getWeeks');
+
+// Auction inscription
+Route::post('/auctionSignin', 'InscriptionForFutureAuctionController@store')->name('auction.signIn');
 
 /*
 |--------------------------------------------------------------------------

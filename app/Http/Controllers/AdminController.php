@@ -8,6 +8,7 @@ use App\User;
 use App\Property;
 use App\Auction;
 use App\Week;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -37,6 +38,14 @@ class AdminController extends Controller
                 'usersCount' => User::all()->count(),
                 'premiumUsersCount' => User::where('premium', 1)->count(),
                 'propertiesCount' => Property::all()->count(),
+                'weeksCount' => Week::all()->count(),
+                'pendingAuctionsCount' => Auction::where('inscripcion_inicio', '>', Carbon::now())->count(),
+                'inscriptionAuctionsCount' => Auction::where('inscripcion_inicio', '<=', Carbon::now())
+                    ->where('inscripcion_fin', '>', Carbon::now())
+                    ->count(),
+                'activeAuctionsCount' => Auction::where('inicio', '<=', Carbon::now())
+                    ->where('fin', '>', Carbon::now())
+                    ->count(),
             ]
         );
     }

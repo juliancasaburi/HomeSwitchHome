@@ -17,8 +17,6 @@ class CreateInscriptionsForFutureAuctionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('usuario_id')->unsigned()->index();
             $table->bigInteger('subasta_id')->unsigned()->index();
-            $table->dateTime('inicio');
-            $table->dateTime('fin');
             $table->timestamps();
 
             $table->foreign('usuario_id')->references('id')->on('usuarios');

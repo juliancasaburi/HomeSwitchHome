@@ -67,10 +67,17 @@
                                     </div>
                                     <div class="card-body-a">
                                         <div class="price-box d-flex">
-                                            <span class="alert-info">0 inscripciones</span>
-                                        </div>
-                                        <div class="price-box d-flex">
-                                            <span class="alert-info">0 subastas</span>
+                                            @switch($weeks[$loop->index])
+                                                @case(0)
+                                                <span class="alert-danger">0 subastas en inscripción</span>
+                                                @break
+                                                @case(1)
+                                                <span class="alert-info">1 subasta en inscripción</span>
+                                                @break
+                                                @default
+                                                <span class="alert-info">{{ $weeks[$loop->index] }} subastas en inscripción</span>
+                                                @break
+                                            @endswitch
                                         </div>
                                         <a href={{ url('property?id=').$p->id }} class="link-a"> Ver info y semanas</a>
                                         <span class="ion-ios-arrow-forward"></span>

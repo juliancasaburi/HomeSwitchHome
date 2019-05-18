@@ -13,10 +13,10 @@ class Week extends Model
     ];
 
     public function property(){
-        return $this->belongsTo(Property::class,'id', 'id');
+        return $this->belongsTo(Property::class,'propiedad_id', 'id');
     }
 
     public function auction(){
-        return $this->hasOne(Auction::class,'id', 'semana_id');
+        return $this->hasOne(Auction::class,'semana_id', 'id');
     }
 }

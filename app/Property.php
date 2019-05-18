@@ -25,7 +25,7 @@ class Property extends Model
     }
 
     public function weeks(){
-        return $this->hasMany(Week::class);
+        return $this->hasMany(Week::class, "propiedad_id", "id");
     }
 }
 

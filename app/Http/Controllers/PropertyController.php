@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Property;
+use App\Week;
+use Carbon\Carbon;
 
 class PropertyController extends Controller
 {
@@ -18,13 +20,22 @@ class PropertyController extends Controller
          $property = Property::where('id', Request()->id)
             ->get()->first();
 
-        // If property id doesn't exist, show error 404 page
+        // If property id doesn't exist, show 404 error page
         if(empty($property)) {
             abort(404);
         }
 
-        // Property exists
-        return view('property')->with ('property', $property);
+        // Property exists, pass only those weeks where the auctions are in registration period.
+        $weeks = $property->weeks()->whereHas('auction', function ($query) {
+            $query->where('inscripcion_inicio', '<=', Carbon::now())
+            ->where('inscripcion_fin', '>', Carbon::now());
+        })->get();
+
+         // Return view
+        return view('property', [
+            'property' => $property,
+            'weeks' => $weeks,
+        ]);
     }
 
     /**
@@ -34,7 +45,15 @@ class PropertyController extends Controller
      */
     public function showGrid()
     {
-        $properties = Property::paginate(2);
-        return view('properties')->with ('properties', $properties);
+        $properties = Property::has('weeks')->paginate(2);
+        $weeks = array();
+        foreach($properties as $p){
+            array_push($weeks, $p->weeks()->whereHas('auction', function ($query) {
+                $query->where('inscripcion_fin', '>=', Carbon::now());})->count());
+        }
+        return view('properties', [
+            'properties' => $properties,
+            'weeks' => $weeks,
+        ]);
     }
 }
