@@ -16,7 +16,7 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 <h6 align="center"> A laravel 5.8 project </h6>
 <ol>
-    <li> Create a MariaDB database named u280573530_hsh with utf8_unicode_ci encoding</li>
+    <li> Create a MariaDB database named u280573530_hsh with utf8mb4_unicode_ci encoding</li>
     <li> Install composer https://getcomposer.org/download/ </li>
     <li> Pull project </li>
     <li> Rename .env.example file to .env inside your project root and fill information. </li>
