@@ -98,7 +98,7 @@
                                             <th>Email</th>
                                             <th>Tipo</th>
                                             <th>Pais</th>
-                                            <th>Fecha de nacimiento</th>
+                                            <th>Fecha de nacimiento & Edad</th>
                                             <th>DNI</th>
                                             <th>Creditos</th>
                                             <th>Saldo</th>
