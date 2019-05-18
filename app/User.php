@@ -88,7 +88,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function auctionInscriptions(){
-        return $this->hasMany(InscriptionForFutureAuction::class, 'usuario_id', 'id');
+        return $this->hasMany(InscriptionForFutureAuction::class);
     }
 
     public function reservations(){

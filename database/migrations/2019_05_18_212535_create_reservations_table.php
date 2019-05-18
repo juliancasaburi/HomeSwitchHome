@@ -17,7 +17,7 @@ class CreateReservationsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('semana_id')->unsigned();
             $table->bigInteger('usuario_id')->unsigned();
-            $table->decimal('valor_reservado');
+            $table->decimal('valor_reservado', 9, 2);
             $table->tinyInteger('modo_reserva');
             $table->timestamps();
 

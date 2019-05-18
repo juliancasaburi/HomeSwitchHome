@@ -13,7 +13,7 @@ class Reservation extends Model
     protected $table = 'reservas';
 
     public function week(){
-        return $this->hasOne(Week::class, 'propiedad_id', 'id');
+        return $this->hasOne(Week::class);
     }
 
     public function user(){
