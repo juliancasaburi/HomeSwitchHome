@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     protected $fillable = [
-        'valor_reservado', 'modo_reserva',
+        'usuario_id', 'valor_reservado', 'fecha', 'modo_reserva',
     ];
 
     protected $table = 'reservas';
