@@ -17,9 +17,7 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('contact', function () {
     return view('contact');

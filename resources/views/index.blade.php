@@ -4,75 +4,30 @@
     <!--/ Carousel Start /-->
     <div class="intro intro-carousel">
         <div id="carousel" class="owl-carousel owl-theme">
-            <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset('img/slide-1.jpg')}})">
-                <div class="overlay overlay-a"></div>
-                <div class="intro-content display-table">
-                    <div class="table-cell">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="intro-body">
-                                        <p class="intro-title-top">Doral, Florida
-                                            <br> 78345</p>
-                                        <h1 class="intro-title mb-4">
-                                            <span class="color-b">204 </span> Mount
-                                            <br> Olive Road Two</h1>
-                                        <p class="intro-subtitle intro-price">
-                                            <a href="#"><span class="price-a">Ver más</span></a>
-                                        </p>
+            @foreach($properties as $p)
+                <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset($p->image_path)}})">
+                    <div class="overlay overlay-a"></div>
+                    <div class="intro-content display-table">
+                        <div class="table-cell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="intro-body">
+                                            <p class="intro-title-top">{{$p->pais}}
+                                                <br> {{$p->provincia}} <br> {{$p->localidad}}</p>
+                                            <h1 class="intro-title mb-4">
+                                                <span class="color-b">{{$p->numero}} </span> {{$p->calle}}</h1>
+                                            <p class="intro-subtitle intro-price">
+                                                <a href="{{ url('property?id=').$p->id }}"><span class="price-a">Ver más</span></a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset('img/slide-2.jpg')}})">
-                <div class="overlay overlay-a"></div>
-                <div class="intro-content display-table">
-                    <div class="table-cell">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="intro-body">
-                                        <p class="intro-title-top">Doral, Florida
-                                            <br> 78345</p>
-                                        <h1 class="intro-title mb-4">
-                                            <span class="color-b">204 </span> Rino
-                                            <br> Venda Road Five</h1>
-                                        <p class="intro-subtitle intro-price">
-                                            <a href="#"><span class="price-a">Ver más</span></a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset('img/slide-3.jpg')}})">
-                <div class="overlay overlay-a"></div>
-                <div class="intro-content display-table">
-                    <div class="table-cell">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="intro-body">
-                                        <p class="intro-title-top">Doral, Florida
-                                            <br> 78345</p>
-                                        <h1 class="intro-title mb-4">
-                                            <span class="color-b">204 </span> Alira
-                                            <br> Roan Road One</h1>
-                                        <p class="intro-subtitle intro-price">
-                                            <a href="#"><span class="price-a">Ver más</span></a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!--/ Carousel end /-->
