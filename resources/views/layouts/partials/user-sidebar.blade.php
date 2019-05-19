@@ -44,6 +44,9 @@
                                     <a class="nav-link" href="{{url('/profile/inscription-list')}}">Inscripciones a subastas</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{url('/profile/bid-list')}}">Mis pujas</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="#">Reservas pasadas</a>
                                 </li>
                                 <li class="nav-item">

@@ -52,6 +52,9 @@ Route::post('/profile/modify-email', 'UserController@modifyEmail')->name('user.m
 // Inscriptions
 Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList');
 
+// Bids
+Route::get('/profile/bid-list', 'UserController@showBidList')->name('user.bidList');
+
 // Auctions
 Route::get('/auction', function() {
     return view('auction');
