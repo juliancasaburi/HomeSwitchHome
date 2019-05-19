@@ -9,15 +9,6 @@ use Auth;
 class AuctionController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
@@ -34,15 +25,20 @@ class AuctionController extends Controller
 
         $latestBid = $auction->latestBid->first();
 
-        $myLatestBid = $auction->latestBidForUser(Auth::user());
-
-        // Auction exists,
+        if(Auth::user()) {
+            $myLatestBid = $auction->latestBidForUser(Auth::user());
+            // Return view
+            return view('auction', [
+                'auction' => $auction,
+                'latestBid' => $latestBid,
+                'myLatestBid' => $myLatestBid,
+            ]);
+        }
 
         // Return view
         return view('auction', [
             'auction' => $auction,
             'latestBid' => $latestBid,
-            'myLatestBid' => $myLatestBid,
         ]);
     }
 }

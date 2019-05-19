@@ -110,6 +110,9 @@
                             <div class="title-box-d section-t4">
                                 <h3 class="title-d">Subastas en período de inscripción para esta propiedad</h3>
                             </div>
+                            @guest
+                                <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                            @endguest
                         </div>
                     </div>
                     <div class="table-responsive section-t4">
@@ -120,7 +123,9 @@
                                 <th>Estadía</th>
                                 <th>Piso</th>
                                 <th>Plazo inscripción</th>
-                                <th></th>
+                                @auth
+                                    <th></th>
+                                @endauth
                             </tr>
                             </thead>
                             <tbody>
@@ -130,15 +135,17 @@
                                     <td>{{ $w->fecha }} hasta {{ date('Y-m-d', strtotime($w->fecha. ' + 7 days'))}}</td>
                                     <td>${{ $w->auction->precio_inicial }}</td>
                                     <td>{{ $w->auction->inscripcion_inicio }} hasta {{ $w->auction->inscripcion_fin }}</td>
-                                    @if($w->auction()->whereHas('inscriptions', function ($query){
-                                        $query->where('usuario_id', Auth::user()->id);
-                                        })->count() == 0 &&  Auth::user()->creditos > 0)
-                                        <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->auction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
-                                    @elseif(Auth::user()->creditos == 0)
-                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
-                                    @else
-                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
-                                    @endif
+                                    @auth
+                                        @if($w->auction()->whereHas('inscriptions', function ($query){
+                                            $query->where('usuario_id', Auth::user()->id);
+                                            })->count() == 0 &&  Auth::user()->creditos > 0)
+                                            <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->auction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                        @elseif(Auth::user()->creditos == 0)
+                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
+                                        @else
+                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
+                                        @endif
+                                    @endauth
                                 </tr>
                             @endforeach
                             </tbody>
@@ -148,7 +155,9 @@
                                 <th>Estadía</th>
                                 <th>Piso</th>
                                 <th>Plazo inscripción</th>
-                                <th></th>
+                                @auth
+                                    <th></th>
+                                @endauth
                             </tr>
                             </tfoot>
                         </table>

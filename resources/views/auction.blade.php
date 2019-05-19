@@ -37,10 +37,12 @@
                                         <strong>Precio inicial</strong>
                                         <span>${{ $auction->precio_inicial }}</span>
                                     </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Mi última puja:</strong>
-                                        <span>$ {{ $myLatestBid->first()->monto }} <br> {{ $myLatestBid->first()->created_at }}</span>
-                                    </li>
+                                    @auth
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Mi última puja:</strong>
+                                            <span>$ {{ $myLatestBid->first()->monto }} <br> {{ $myLatestBid->first()->created_at }}</span>
+                                        </li>
+                                    @endauth
                                     <li class="d-flex justify-content-between">
                                         <strong>Última puja:</strong>
                                         @if($auction->bids->count() == 0)
@@ -49,7 +51,12 @@
                                             <span>$ {{ $latestBid->monto }} ({{ $latestBid->user->nombre }}) <br> {{ $latestBid->created_at }}</span>
                                         @endif
                                     </li>
-                                    <button class="btn btn-b" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+                                    @auth
+                                        <button class="btn btn-b" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+                                    @endauth
+                                    @guest
+                                        <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                    @endguest
                                 </ul>
                             </div>
                         </div>
@@ -79,7 +86,12 @@
                                     </div>
                                 </div>
                                 <div class="card-footer-d text-center">
-                                    <button class="btn btn-a" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+                                    @auth
+                                        <button class="btn btn-a" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+                                    @endauth
+                                    @guest
+                                        <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                    @endguest
                                 </div>
                             </div>
                         </div>
@@ -88,7 +100,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Auction End -->
 
     <!-- Modal -->
