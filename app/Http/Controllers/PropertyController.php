@@ -45,7 +45,7 @@ class PropertyController extends Controller
      */
     public function showGrid()
     {
-        $properties = Property::has('weeks')->paginate(2);
+        $properties = Property::has('weeks')->orderBy('nombre', 'asc')->paginate(2);
         $weeks = array();
         foreach($properties as $p){
             array_push($weeks, $p->weeks()->whereHas('auction', function ($query) {

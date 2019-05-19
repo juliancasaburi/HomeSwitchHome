@@ -1,6 +1,6 @@
 @extends('layouts.mainlayout')
 
-@section('title', ' - Propiedad '.$property->nombre)
+@section('title', ' - Semana '. $week->fecha. ' de Propiedad '.$week->property->nombre)
 
 @section('content')
     <!--/ Property Single Start /-->
@@ -18,17 +18,17 @@
                 @endif
                 <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
                     <div class="carousel-item-a">
-                        <img src="{{asset($property->image_path)}}" alt="">
+                        <img src="{{asset($week->property->image_path)}}" alt="">
                     </div>
                     <div class="carousel-item-a">
-                        <img src="{{asset($property->image_path)}}" alt="">
+                        <img src="{{asset($week->property->image_path)}}" alt="">
                     </div>
                     <div class="carousel-item-a">
-                        <img src="{{asset($property->image_path)}}" alt="">
+                        <img src="{{asset($week->property->image_path)}}" alt="">
                     </div>
                 </div>
                 <div class="row card-header">
-                    <h3 class="title-a color-b">{{ $property->nombre }}</h3>
+                    <h3 class="title-a color-b">{{ $week->property->nombre }} | Semana {{ $week->fecha }}</h3>
                 </div>
                 <div class="row justify-content-between card-header">
                     <div class="col-md-4 col-lg-4">
@@ -44,19 +44,19 @@
                                 <ul class="list">
                                     <li class="d-flex justify-content-between">
                                         <strong>Capacidad:</strong>
-                                        <span>{{ $property->capacidad }}</span>
+                                        <span>{{ $week->property->capacidad }}</span>
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <strong>Habitaciones:</strong>
-                                        <span>{{ $property->habitaciones }}</span>
+                                        <span>{{ $week->property->habitaciones }}</span>
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <strong>Baños:</strong>
-                                        <span>{{ $property->baños }}</span>
+                                        <span>{{ $week->property->baños }}</span>
                                     </li>
                                     <li class="d-flex justify-content-between">
                                         <strong>Capacidad Vehiculos:</strong>
-                                        <span>{{ $property->capacidad_vehiculos }}</span>
+                                        <span>{{ $week->property->capacidad_vehiculos }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -76,18 +76,18 @@
                                     <ul class="list">
                                         <li class="d-flex justify-content-between">
                                             <strong>ID:</strong>
-                                            <span>{{ $property->id }}</span>
+                                            <span>{{ $week->property->id }}</span>
                                         </li>
                                         <li class="d-flex justify-content-between">
                                             <strong>Nombre:</strong>
-                                            <span>{{ $property->nombre }}</span>
+                                            <span>{{ $week->property->nombre }}</span>
                                         </li>
                                         <li class="d-flex justify-content-between">
                                             <strong>Estrellas:</strong>
                                             <ul class="list">
                                                 <li class="d-flex justify-content-between">
-                                                    <span>{{ $property->estrellas }}</span>
-                                                    @for ($i = 1; $i <= $property->estrellas; $i++)
+                                                    <span>{{ $week->property->estrellas }}</span>
+                                                    @for ($i = 1; $i <= $week->property->estrellas; $i++)
                                                         <i class="far fa-star fa-xs fa-fw fa-sm text-primary"></i>
                                                         <br>
                                                     @endfor
@@ -96,7 +96,7 @@
                                         </li>
                                         <li class="d-flex justify-content-between">
                                             <strong>Ubicación:</strong>
-                                            <span>{{ $property->calle }}, {{ $property->numero }}, <br> {{ $property->localidad }}, {{ $property->provincia }}, {{ $property->pais }}</span>
+                                            <span>{{ $week->property->calle }}, {{ $week->property->numero }}, <br> {{ $week->property->localidad }}, {{ $week->property->provincia }}, {{ $week->property->pais }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -108,7 +108,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="title-box-d section-t4">
-                                <h3 class="title-d">Subastas en período de inscripción para esta propiedad</h3>
+                                <h3 class="title-d">Subasta para esta semana</h3>
                             </div>
                             @guest
                                 <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
@@ -119,8 +119,6 @@
                         <table class="table table-striped table-bordered first">
                             <thead>
                             <tr>
-                                <th>Número</th>
-                                <th>Estadía</th>
                                 <th>Piso</th>
                                 <th>Plazo inscripción</th>
                                 @auth
@@ -129,30 +127,28 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($weeks as $w)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td><a href="{{'/week?id='.$w->id}}">{{ $w->fecha }} hasta {{ date('Y-m-d', strtotime($w->fecha. ' + 7 days'))}} <br> Ver semana</a></td>
-                                    <td>${{ $w->auction->precio_inicial }}</td>
-                                    <td>{{ $w->auction->inscripcion_inicio }} hasta {{ $w->auction->inscripcion_fin }}</td>
-                                    @auth
-                                        @if($w->auction()->whereHas('inscriptions', function ($query){
+                            <tr>
+                                <td>${{ $week->auction->precio_inicial }}</td>
+                                <td>{{ $week->auction->inscripcion_inicio }} hasta {{ $week->auction->inscripcion_fin }}</td>
+                                @auth
+                                    @if($week->auction->inscripcion_inicio <= Carbon\Carbon::now() && $week->auction->inscripcion_fin > Carbon\Carbon::now())
+                                        @if($week->auction()->whereHas('inscriptions', function ($query){
                                             $query->where('usuario_id', Auth::user()->id);
                                             })->count() == 0 &&  Auth::user()->creditos > 0)
-                                            <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->auction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                            <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $week->auction->id }}" data-wd="{{ $week->fecha }}" data-aup="{{ $week->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
                                         @elseif(Auth::user()->creditos == 0)
                                             <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
                                         @else
                                             <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
                                         @endif
-                                    @endauth
-                                </tr>
-                            @endforeach
+                                    @else
+                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Innscripcion finalizada</button></td>
+                                    @endif
+                                @endauth
+                            </tr>
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Número</th>
-                                <th>Estadía</th>
                                 <th>Piso</th>
                                 <th>Plazo inscripción</th>
                                 @auth
@@ -170,7 +166,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="inscriptionModalLabel">Inscribirse a una subasta</h5>
+                        <h5 class="modal-title" id="inscriptionModalLabel">Inscribirse a la subasta</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

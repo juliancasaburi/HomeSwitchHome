@@ -49,7 +49,7 @@
                     <a class="nav-link" href="{{ url('contact') }}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:orangered;" href="{{ url('hotsale') }}"><span class="fas fa-fire fa-fw fa-sm text-hotsale"></span>HOTSALE</a>
+                    <a class="nav-link" href="{{ url('properties') }}"><span class="fas fa-hotel fa-fw fa-sm color-b"></span>Propiedades</a>
                 </li>
             </ul>
         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.mainlayout')
 
-@section('title', '- Propiedades')
+@section('title', '- Semanas')
 
 @section('content')
     <!--/ Intro Single star /-->
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-8">
                     <div class="title-single-box">
-                        <h1 class="title-single">Nuestras propiedades</h1>
+                        <h1 class="title-single">Nuestras semanas</h1>
                         <span class="color-text-a">Ordenalas según tu preferencia</span>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                                 <a href={{ url('/') }}>Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                Propiedades
+                                Semanas
                             </li>
                         </ol>
                     </nav>
@@ -38,58 +38,53 @@
                     <div class="grid-option">
                         <form>
                             <select class="custom-select">
-                                <option selected>Nombre</option>
-                                <option>Sin Orden</option>
+                                <option selected>Sin Orden</option>
                             </select>
                         </form>
                     </div>
                 </div>
-                @foreach($properties as $p)
+                @foreach($weeks as $w)
                     <div class="col-md-4">
                         <div class="card-box-a card-shadow">
                             <div class="img-box-a">
-                                <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
+                                <img src="{{asset($w->property->image_path)}}" alt="" class="img-a img-fluid">
                             </div>
                             <div class="card-overlay">
                                 <div class="price-box d-flex float-right">
-                                    @for ($i = 1; $i <= $p->estrellas; $i++)
+                                    @for ($i = 1; $i <= $w->property->estrellas; $i++)
                                         <span><i class="far fa-star fa-2x fa-fw star"></i></span>
                                     @endfor
                                 </div>
                                 <div class="card-overlay-a-content">
                                     <div class="card-header-a">
                                         <h2 class="card-title-a">
-                                            <a href="{{ url('property?id=').$p->id }}"> {{$p->localidad}},
-                                                <br /> {{$p->provincia}},
-                                                <br /> {{$p->pais}}</a>
+                                            <a href="{{ url('property?id=').$w->property->id }}"> {{$w->property->localidad}},
+                                                <br /> {{$w->property->provincia}},
+                                                <br /> {{$w->property->pais}}</a>
                                         </h2>
                                     </div>
                                     <div class="card-body-a">
                                         <div class="price-box d-flex">
-                                            @switch($weeks[$loop->index])
-                                                @case(0)
-                                                <span class="alert-danger">0 subastas en inscripción</span>
-                                                @break
-                                                @case(1)
-                                                <span class="alert-info">1 subasta en inscripción</span>
-                                                @break
-                                                @default
-                                                <span class="alert-info">{{ $weeks[$loop->index] }} subastas en inscripción</span>
-                                                @break
-                                            @endswitch
+                                            @if($w->auction->inscripcion_inicio <= Carbon\Carbon::now() && $w->auction->inscripcion_fin > Carbon\Carbon::now())
+                                                <span class="alert-info">Subasta en inscripción</span>
+                                            @elseif($w->auction->inicio <= Carbon\Carbon::now() && $w->auction->fin > Carbon\Carbon::now())
+                                                <span class="alert-danger">Subasta en curso</span>
+                                            @else
+                                                <span class="alert-warning">Subasta en espera</span>
+                                            @endif
                                         </div>
-                                        <a href={{ url('property?id=').$p->id }} class="link-a"> Ver info y semanas</a>
+                                        <a href={{ url('week?id=').$w->id }} class="link-a"> Ver semana</a>
                                         <span class="ion-ios-arrow-forward"></span>
                                     </div>
                                     <div class="card-footer-a">
                                         <ul class="card-info d-flex justify-content-around">
                                             <li>
                                                 <h4 class="card-info-title">Capacidad</h4>
-                                                <span>{{$p->capacidad}}</span>
+                                                <span>{{$w->property->capacidad}}</span>
                                             </li>
                                             <li>
                                                 <h4 class="card-info-title">Habitaciones</h4>
-                                                <span>{{$p->habitaciones}}</span>
+                                                <span>{{$w->property->habitaciones}}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -102,7 +97,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <nav class="pagination-a">
-                        {{ $properties->links() }}
+                        {{ $weeks->links() }}
                     </nav>
                 </div>
             </div>

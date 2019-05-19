@@ -116,4 +116,12 @@ Route::post('/auction/bid', 'BidController@store');
 Route::get('/property', 'PropertyController@index');
 Route::get('/properties', 'PropertyController@showGrid');
 
+/*
+|--------------------------------------------------------------------------
+| Week Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/week', 'WeekController@index');
+Route::get('/weeks', 'WeekController@showGrid');
+
 //
