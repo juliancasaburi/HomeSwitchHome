@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Rules\CurrentPassword;
+use App\Bid;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -63,7 +65,13 @@ class UserController extends Controller
 
     public function showInscriptionList()
     {
-        $inscriptions = InscriptionForFutureAuction::all();
+        $inscriptions = Auth::user()->auctionInscriptions;
         return view('user-inscription-list')->with ('inscriptions',$inscriptions);
+    }
+
+    public function showBidList()
+    {
+        $bids = Auth::user()->bids;
+        return view('user-bid-list')->with ('bids',$bids);
     }
 }
