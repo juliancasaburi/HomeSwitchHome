@@ -11,4 +11,12 @@ class Bid extends Model
     protected $fillable = [
         'usuario_id', 'subasta_id', 'monto',
     ];
+
+    public function auction(){
+        return $this->belongsTo(Auction::class, 'subasta_id', 'id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'usuario_id', 'id');
+    }
 }

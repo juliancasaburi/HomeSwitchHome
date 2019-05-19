@@ -41,6 +41,9 @@
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{url('/profile/inscription-list')}}">Inscripciones a subastas</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="#">Reservas pasadas</a>
                                 </li>
                                 <li class="nav-item">

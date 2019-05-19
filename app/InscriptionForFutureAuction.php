@@ -19,6 +19,13 @@ class InscriptionForFutureAuction extends Model
     public function user(){
         return $this->belongsTo(User::class, 'usuario_id', 'id');
     }
+
+    public function property()
+    {
+        $auction = $this->auction;
+        $property = $auction->property();
+        return $property;
+    }
 }
 
 

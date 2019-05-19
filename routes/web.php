@@ -36,8 +36,6 @@ Route::get('logout', function() {
 
 //--------- Authenticated Users routes ---------
 
-Route::get('/profile', 'UserController@showUserProfile');
-
 Route::post('logout', function() {
     Auth::logout();
     Session::flush();
@@ -45,8 +43,19 @@ Route::post('logout', function() {
     return Redirect::to("/");
 });
 
+Route::get('/profile', 'UserController@showUserProfile');
+
+// Modify email
 Route::get('/profile/modify-email', 'UserController@showEmailForm');
 Route::post('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');
+
+// Inscriptions
+Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList');
+
+// Auctions
+Route::get('/auction', function() {
+    return view('auction');
+});
 
 //----------------------------------------------
 
@@ -90,6 +99,10 @@ Route::get('weeks/get/{id}', 'AuctionCreationController@getWeeks');
 
 // Auction inscription
 Route::post('/auctionSignin', 'InscriptionForFutureAuctionController@store')->name('auction.signIn');
+
+// Auction
+Route::get('/auction', 'AuctionController@index');
+Route::post('/auction/bid', 'BidController@store');
 
 /*
 |--------------------------------------------------------------------------

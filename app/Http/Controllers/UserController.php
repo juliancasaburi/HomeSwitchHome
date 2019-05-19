@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\InscriptionForFutureAuction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -58,5 +59,11 @@ class UserController extends Controller
         $usuario->save();
 
         return redirect('/profile/modify-email')->with('alert-success', 'Tu email se ha modificado exitosamente!');
+    }
+
+    public function showInscriptionList()
+    {
+        $inscriptions = InscriptionForFutureAuction::all();
+        return view('user-inscription-list')->with ('inscriptions',$inscriptions);
     }
 }

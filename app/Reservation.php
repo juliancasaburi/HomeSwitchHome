@@ -13,10 +13,10 @@ class Reservation extends Model
     protected $table = 'reservas';
 
     public function week(){
-        return $this->hasOne(Week::class);
+        return $this->hasOne(Week::class, 'semana_id', 'id');
     }
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

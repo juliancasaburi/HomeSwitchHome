@@ -117,6 +117,12 @@ hr {
   color: #C5B358;
 }
 
+/*------/ Auction /-----*/
+
+.auction {
+  padding: 12rem 3rem 0rem 3rem;
+}
+
 /*------/ Modals  /------*/
 
 .modal {
