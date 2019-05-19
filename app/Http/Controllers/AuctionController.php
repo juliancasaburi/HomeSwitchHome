@@ -27,14 +27,14 @@ class AuctionController extends Controller
         $auction = Auction::where('id', Request()->id)
             ->get()->first();
 
-        $latestBid = $auction->latestBid->first();
-
-        $myLatestBid = $auction->latestBidForUser(Auth::user());
-
         // If auction id doesn't exist, show 404 error page
         if(empty($auction)) {
             abort(404);
         }
+
+        $latestBid = $auction->latestBid->first();
+
+        $myLatestBid = $auction->latestBidForUser(Auth::user());
 
         // Auction exists,
 
