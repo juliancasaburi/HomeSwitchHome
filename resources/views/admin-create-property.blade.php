@@ -49,6 +49,11 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="crearSemanas" id="crearSemanas" class="custom-control-input"><span class="custom-control-label">Crear semanas para {{Carbon\Carbon::today()->year}}</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputNombre">Nombre</label>
                                             <input type="text" name="nombre" class="form-control" id="inputNombre" placeholder="Nombre" required>
                                             <div class="valid-feedback">

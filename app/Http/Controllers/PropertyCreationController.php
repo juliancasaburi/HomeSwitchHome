@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Property;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use App\Property;
+use App\Week;
+use DateTime;
+use DateInterval;
 
 class PropertyCreationController extends Controller
 {
@@ -85,10 +89,35 @@ class PropertyCreationController extends Controller
             $this->uploadOne($image, $folder, 'media', $name);
             // Set property photo image path in database to filePath
             $property->image_path = '/uploads'.$filePath;
-            // Save property record
             $property->save();
         }
 
+        if($request->crearSemanas == 'on'){
+            // Create a new DateTime object
+            $date = new DateTime();
+
+            // Modify the date to next monday
+            $date->modify('next monday');
+
+            // Get year
+            $year = $date->format("Y");
+            $weekYear = $year;
+
+            // Create all weeks starting from today (or next monday) for current year
+            while($weekYear == $year) {
+                $strDate = $date->format('Y-m-d');
+
+                // Create a Week and save it
+                $week = new Week();
+                $week->propiedad_id = $property->id;
+                $week->fecha = $strDate;
+                $week->save();
+
+                $date->add(new DateInterval('P7D'));
+                $weekYear = $date->format("Y");
+            }
+            return redirect('admin/dashboard/create-property')->with('alert-success', 'Propiedad y semanas creadas!');
+        }
         // Return user back and show a flash message
         return redirect('admin/dashboard/create-property')->with('alert-success', 'Propiedad creada exitosamente!');
     }
