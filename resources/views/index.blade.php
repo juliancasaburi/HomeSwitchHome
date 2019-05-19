@@ -122,7 +122,7 @@
     </section>
     <!--/ Services End /-->
 
-    <!--/ Property Start /-->
+    <!--/ Property grid Start /-->
     <section class="section-property section-t8">
         <div class="container">
             <div class="row">
@@ -140,190 +140,64 @@
                 </div>
             </div>
             <div id="property-carousel" class="owl-carousel owl-theme">
-                <div class="carousel-item-b">
-                    <div class="card-box-a card-shadow">
-                        <div class="img-box-a">
-                            <img src="{{asset('img/property-6.jpg')}}" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="price-box d-flex float-right">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                @endfor
+                @foreach($properties as $p)
+                    <div class="carousel-item-b">
+                        <div class="card-box-a card-shadow">
+                            <div class="img-box-a">
+                                <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
                             </div>
-                            <div class="card-overlay-a-content">
-                                <div class="card-header-a">
-                                    <h2 class="card-title-a">
-                                        <a href={{ url('propiedad') }}>206 Mount
-                                            <br /> Olive Road Two</a>
-                                    </h2>
+                            <div class="card-overlay">
+                                <div class="price-box d-flex float-right">
+                                    @for ($i = 1; $i <= $p->estrellas; $i++)
+                                        <span><i class="far fa-star fa-2x fa-fw star"></i></span>
+                                    @endfor
                                 </div>
-                                <div class="card-body-a">
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 inscripciones</span>
+                                <div class="card-overlay-a-content">
+                                    <div class="card-header-a">
+                                        <h2 class="card-title-a">
+                                            <a href="{{ url('property?id=').$p->id }}"> {{$p->localidad}},
+                                                <br /> {{$p->provincia}},
+                                                <br /> {{$p->pais}}</a>
+                                        </h2>
                                     </div>
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 subastas</span>
-                                    </div>
-                                    <a href="#" class="link-a">Ver info y semanas
+                                    <div class="card-body-a">
+                                        <div class="price-box d-flex">
+                                            @switch($weeks[$loop->index])
+                                                @case(0)
+                                                <span class="alert-danger">0 subastas en inscripción</span>
+                                                @break
+                                                @case(1)
+                                                <span class="alert-info">1 subasta en inscripción</span>
+                                                @break
+                                                @default
+                                                <span class="alert-info">{{ $weeks[$loop->index] }} subastas en inscripción</span>
+                                                @break
+                                            @endswitch
+                                        </div>
+                                        <a href={{ url('property?id=').$p->id }} class="link-a"> Ver info y semanas</a>
                                         <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                </div>
-                                <div class="card-footer-a">
-                                    <ul class="card-info d-flex justify-content-around">
-                                        <li>
-                                            <h4 class="card-info-title">Capacidad</h4>
-                                            <span>2</span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Habitaciones</h4>
-                                            <span>4</span>
-                                        </li>
-                                    </ul>
+                                    </div>
+                                    <div class="card-footer-a">
+                                        <ul class="card-info d-flex justify-content-around">
+                                            <li>
+                                                <h4 class="card-info-title">Capacidad</h4>
+                                                <span>{{$p->capacidad}}</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Habitaciones</h4>
+                                                <span>{{$p->habitaciones}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item-b">
-                    <div class="card-box-a card-shadow">
-                        <div class="img-box-a">
-                            <img src="{{asset('img/property-3.jpg')}}" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="price-box d-flex float-right">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                @endfor
-                            </div>
-                            <div class="card-overlay-a-content">
-                                <div class="card-header-a">
-                                    <h2 class="card-title-a">
-                                        <a href={{ url('propiedad') }}>157 West
-                                            <br /> Central Park</a>
-                                    </h2>
-                                </div>
-                                <div class="card-body-a">
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 inscripciones</span>
-                                    </div>
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 subastas</span>
-                                    </div>
-                                    <a href="#" class="link-a">Ver info y semanas
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                </div>
-                                <div class="card-footer-a">
-                                    <ul class="card-info d-flex justify-content-around">
-                                        <li>
-                                            <h4 class="card-info-title">Capacidad</h4>
-                                            <span>2</span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Habitaciones</h4>
-                                            <span>4</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item-b">
-                    <div class="card-box-a card-shadow">
-                        <div class="img-box-a">
-                            <img src="{{asset('img/property-7.jpg')}}" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="price-box d-flex float-right">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                @endfor
-                            </div>
-                            <div class="card-overlay-a-content">
-                                <div class="card-header-a">
-                                    <h2 class="card-title-a">
-                                        <a href={{ url('propiedad') }}>245 Azabu
-                                            <br /> Nishi Park let</a>
-                                    </h2>
-                                </div>
-                                <div class="card-body-a">
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 inscripciones</span>
-                                    </div>
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 subastas</span>
-                                    </div>
-                                    <a href="#" class="link-a">Ver info y semanas
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                </div>
-                                <div class="card-footer-a">
-                                    <ul class="card-info d-flex justify-content-around">
-                                        <li>
-                                            <h4 class="card-info-title">Capacidad</h4>
-                                            <span>2</span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Habitaciones</h4>
-                                            <span>4</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item-b">
-                    <div class="card-box-a card-shadow">
-                        <div class="img-box-a">
-                            <img src="{{asset('img/property-10.jpg')}}" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="price-box d-flex float-right">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                @endfor
-                            </div>
-                            <div class="card-overlay-a-content">
-                                <div class="card-header-a">
-                                    <h2 class="card-title-a">
-                                        <a href={{ url('propiedad') }}>204 Montal
-                                            <br /> South Bela Two</a>
-                                    </h2>
-                                </div>
-                                <div class="card-body-a">
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 inscripciones</span>
-                                    </div>
-                                    <div class="price-box d-flex">
-                                        <span class="alert-info">0 subastas</span>
-                                    </div>
-                                    <a href="#" class="link-a">Ver info y semanas
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                </div>
-                                <div class="card-footer-a">
-                                    <ul class="card-info d-flex justify-content-around">
-                                        <li>
-                                            <h4 class="card-info-title">Capacidad</h4>
-                                            <span>2</span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Habitaciones</h4>
-                                            <span>4</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-    <!--/ Property End /-->
+    <!--/ Property grid End /-->
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>
