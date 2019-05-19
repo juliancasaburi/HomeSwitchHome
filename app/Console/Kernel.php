@@ -33,17 +33,19 @@ class Kernel extends ConsoleKernel
                 if (!DB::table('pujas')->where('subasta_id', $a->id)->get()->isEmpty()) {
                     $winnerBid = DB::table('pujas')->where('subasta_id', $a->id)->latest()->first();
                     $winnerUser = DB::table('usuarios')->where('usuario_id', $winnerBid->id)->first();
-                    while (($winnerUser->saldo < $winnerBid->monto) && (DB::table('pujas')->where('subasta_id', $a->id)->get()->except($winnerBid->id)->count() > 0)) {
+                    while ((($winnerUser->creditos == 0) || ($winnerUser->saldo < $winnerBid->monto)) && (DB::table('pujas')->where('subasta_id', $a->id)->get()->except($winnerBid->id)->count() > 0)) {
                         $winnerBid = DB::table('pujas')->where('subasta_id', $a->id)->except($winnerBid->id)->latest()->first();
                         $winnerUser = DB::table('usuarios')->where('usuario_id', $winnerBid->id)->first();
                     }
-                    if ($winnerUser->saldo >= $winnerBid->monto) {
+                    if ($winnerUser->saldo >= $winnerBid->monto && $winnerUser->creditos != 0) {
                         $reservation = new Reservation();
                         $reservation->usuario_id = $winnerUser->id;
                         $reservation->valor_reservado = $winnerBid->monto;
                         $reservation->fecha = Carbon::now();
                         $reservation->modo_reserva = 0;
                         $reservation->save();
+                        $winnerUser->creditos -= 1;
+                        $winnerUser->saldo -= $winnerBid->monto;
                     }
                 }
             }
