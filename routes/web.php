@@ -58,6 +58,9 @@ Route::get('/auction', function() {
     return view('auction');
 });
 
+//Reservations
+Route::get('/profile/past-reservations', 'UserController@showPastReservations')->name('user.pastReservations');
+
 //----------------------------------------------
 
 /*

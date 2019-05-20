@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\InscriptionForFutureAuction;
+use App\Property;
+use App\Reservation;
 use App\User;
+use App\Week;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -73,5 +76,12 @@ class UserController extends Controller
     {
         $bids = Auth::user()->bids;
         return view('user-bid-list')->with ('bids',$bids);
+    }
+
+    public function showPastReservations(){
+
+        $reservations = Auth::user()->reservations;
+
+        return view('user-past-reservations')->with('reservations', $reservations);
     }
 }
