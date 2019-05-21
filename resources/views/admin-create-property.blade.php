@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputNombre">Nombre</label>
-                                            <input type="text" name="nombre" class="form-control" id="inputNombre" placeholder="Nombre" required>
+                                            <input type="text" name="nombre" class="form-control" id="inputNombre" placeholder="Nombre" required autofocus>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>

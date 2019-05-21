@@ -127,7 +127,7 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <label for="amount">Monto</label>
-                                <input type="number" step="0.01" name="amount" class="form-control" id="amount" placeholder="">
+                                <input type="number" step="0.01" name="amount" class="form-control" id="amount" placeholder="" autofocus>
                                 <div class="valid-feedback">
                                     Válido
                                 </div>
@@ -156,6 +156,11 @@
         {
             $("#bidModal .modal-body input").val("")
         }) ;
+
+        // Set autofocus atribute
+        $('#bidModal').on('shown.bs.modal', function (event) {
+            $(event.currentTarget).find('[autofocus]').focus();
+        });
 
         // Button
         function form_submit() {

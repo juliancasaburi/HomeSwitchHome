@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="inputPassword">
+                            <input type="password" class="form-control" name="password" id="inputPassword" autofocus>
                         </div>
                         <div class="form-group">
                             <label for="inputNewEmail">Nuevo email</label>

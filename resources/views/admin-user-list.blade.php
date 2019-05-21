@@ -171,7 +171,7 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <label for="inputUserCreditos">Creditos</label>
-                                <input type="number" name="userCreditos" class="form-control" id="inputUserCreditos" placeholder="" value="">
+                                <input type="number" name="userCreditos" class="form-control" id="inputUserCreditos" placeholder="" value="" autofocus>
                                 <div class="valid-feedback">
                                     Válido
                                 </div>
@@ -219,6 +219,12 @@
             $(event.currentTarget).find('input[name="userSaldo"]').attr('value',saldo);
             $(event.currentTarget).find('input[name="userSaldo"]').attr('placeholder',saldo);
             $(event.currentTarget).find('input[name="userID"]').attr('value',id);
+            $(event.currentTarget).find('[autofocus]').focus();
+        });
+
+        // Set autofocus atribute
+        $('#editUserModal').on('shown.bs.modal', function (event) {
+            $(event.currentTarget).find('[autofocus]').focus();
         });
 
         // Button

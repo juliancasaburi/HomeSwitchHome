@@ -50,7 +50,7 @@
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <label for="inputIdPropiedad">Propiedad</label>
-                                        <select class="form-control" name="idPropiedad" id="inputIdPropiedad">
+                                        <select class="form-control" name="idPropiedad" id="inputIdPropiedad" autofocus>
                                             @foreach ($properties as $p)
                                                 <option value={{ $p->id}}>{{ $p->id}} - {{ $p->nombre}}</option>
                                             @endforeach
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                        <label for="inputFecha">Semana desde el dia</label>
+                                        <label for="inputFecha">Semana desde el dia <br> (Debe ser un Lunes)</label>
                                         <input type="date" name="fecha" class="form-control" id="inputFecha" required>
                                         <div class="valid-feedback">
                                             Válido

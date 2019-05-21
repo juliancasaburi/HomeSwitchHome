@@ -50,7 +50,7 @@
 
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <label for="inputIdPropiedad">Propiedad</label>
-                                        <select class="form-control" name="idPropiedad" id="inputIdPropiedad" required>
+                                        <select class="form-control" name="idPropiedad" id="inputIdPropiedad" required autofocus>
                                             <option value="" selected>
                                                 Seleccione una propiedad
                                             </option>
