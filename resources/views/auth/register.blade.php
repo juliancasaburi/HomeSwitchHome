@@ -270,31 +270,31 @@
             <option value="Zimbabwe">Zimbabwe</option>
         </select>
         <label for="inputEmail">Email</label>
-        <input type="text" name="email" id="inputEmail" class="form-control @error('email') is-invalid @enderror" placeholder="Email" required>
+        <input type="text" name="email" id="inputEmail" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
         @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
         <label for="inputPassword">Password</label>
-        <input type="text" name="password" id="inputPassword" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required>
+        <input type="text" name="password" id="inputPassword" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required autocomplete="off">
         @error('password')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
         <label for="password-confirm">Confirmar Password</label>
-        <input type="text" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Contraseña" required>
+        <input type="text" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Contraseña" required autocomplete="off">
         @error('password')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
         <label for="inputFechaNacimiento">Fecha de nacimiento</label>
-        <input type="date" class="form-control" name="fecha_nacimiento" id="inputFechaNacimiento" oninput="validarFechaNacimiento()" required>
+        <input type="date" class="form-control" name="fecha_nacimiento" id="inputFechaNacimiento" oninput="validarFechaNacimiento()" required autocomplete="off">
         <div class="invalid-feedback" id="fechaInvalida"></div>
         <label for="inputDNI">DNI</label>
-        <input type="text" name="DNI" id="inputDNI" class="form-control @error('DNI') is-invalid @enderror" placeholder="DNI" required>
+        <input type="text" name="DNI" id="inputDNI" class="form-control @error('DNI') is-invalid @enderror" placeholder="DNI" required autocomplete="off">
         @error('DNI')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -303,21 +303,21 @@
         <hr class="hr-primary">
         <h2>Datos de pago</h2>
         <label for="inputNumeroTarjeta">Numero</label>
-        <input type="string" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control @error('numeroTarjeta') is-invalid @enderror" placeholder="**** **** **** ****" minlength="16" maxlength="16" required>
+        <input type="string" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control @error('numeroTarjeta') is-invalid @enderror" placeholder="**** **** **** ****" minlength="16" maxlength="16" required autocomplete="off">
         @error('numeroTarjeta')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
         <label for="inputfechaCaducidadTarjeta">Fecha de caducidad</label>
-        <input type="month" name="fecha_caducidad_tarjeta" id="inputFechaCaducidadTarjeta" class="form-control @error('fechaCaducidadTarjeta') is-invalid @enderror" placeholder="MM/AA" required>
+        <input type="month" name="fecha_caducidad_tarjeta" id="inputFechaCaducidadTarjeta" class="form-control @error('fechaCaducidadTarjeta') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
         @error('fechaCaducidadTarjeta')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
         <label for="inputCvvTarjeta">CVV</label>
-        <input type="string" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required>
+        <input type="string" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
         @error('cvvTarjeta')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
