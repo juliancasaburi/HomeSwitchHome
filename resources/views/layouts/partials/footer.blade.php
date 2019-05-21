@@ -39,6 +39,9 @@
                         <li class="list-inline-item">
                             <a href={{ url('contact') }}>Contacto</a>
                         </li>
+                        <li class="list-inline-item">
+                            <a data-toggle="modal" href="#modalTOS">Términos y condiciones</a>
+                        </li>
                     </ul>
                 </nav>
                 <div class="socials-a">
@@ -66,3 +69,23 @@
     </div>
 </footer>
 <!--/ Footer End /-->
+
+<!-- Modal TOS -->
+<div class="modal fade" id="modalTOS" tabindex="-1" role="dialog" aria-labelledby="modalTOSTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTOSLongTitle">Términos y Condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" style="width:100%" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
