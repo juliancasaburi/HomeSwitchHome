@@ -37,33 +37,37 @@
                                         <strong>Precio inicial</strong>
                                         <span>${{ $auction->precio_inicial }}</span>
                                     </li>
-                                    @auth
-                                        @if($myLatestBid)
-                                            <li class="d-flex justify-content-between">
-                                                <strong>Mi última puja:</strong>
-                                                <span>$ {{ $myLatestBid->monto }} <br> {{ $myLatestBid->created_at }}</span>
-                                            </li>
-                                        @else
-                                            <li class="d-flex justify-content-between">
-                                                <strong>Mi puja más reciente:</strong>
-                                                <span>Aún no participaste en esta puja</span>
-                                            </li>
-                                        @endif
-                                    @endauth
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Puja más reciente:</strong>
-                                        @if($auction->bids->count() == 0)
-                                            <span> Nadie participó aún <i class="fas fa-frown"></i></span>
-                                        @else
-                                            <span>Monto: <strong>$ {{ $latestBid->monto }}</strong> <br>Usuario: <strong>({{ $latestBid->user->nombre }}) </strong> <br>Fecha: <strong>{{ $latestBid->created_at }}</strong></span>
-                                        @endif
-                                    </li>
-                                    @auth
-                                        <button class="btn btn-b" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
-                                    @endauth
-                                    @guest
-                                        <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
-                                    @endguest
+                                    @if($enabled == true)
+                                        @auth
+                                            @if($myLatestBid)
+                                                <li class="d-flex justify-content-between">
+                                                    <strong>Mi última puja:</strong>
+                                                    <span>$ {{ $myLatestBid->monto }} <br> {{ $myLatestBid->created_at }}</span>
+                                                </li>
+                                            @else
+                                                <li class="d-flex justify-content-between">
+                                                    <strong>Mi puja más reciente:</strong>
+                                                    <span>Aún no participaste en esta puja</span>
+                                                </li>
+                                            @endif
+                                        @endauth
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Puja más reciente:</strong>
+                                            @if($auction->bids->count() == 0)
+                                                <span> Nadie participó aún <i class="fas fa-frown"></i></span>
+                                            @else
+                                                <span>Monto: <strong>$ {{ $latestBid->monto }}</strong> <br>Usuario: <strong>({{ $latestBid->user->nombre }}) </strong> <br>Fecha: <strong>{{ $latestBid->created_at }}</strong></span>
+                                            @endif
+                                        </li>
+                                        @auth
+                                            <button class="btn btn-b" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+                                        @endauth
+                                        @guest
+                                            <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                        @endguest
+                                    @else
+                                        <h8 class="title-d">La subasta aún no ha comenzado</h8>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -73,34 +77,44 @@
                             <div class="card-img-d">
                                 <img src="{{asset($auction->property->image_path)}}" alt="" class="img-d img-fluid">
                             </div>
-                            <div class="card-overlay card-overlay-hover">
-                                <div class="card-header-d section-t4">
-                                    <div class="card-title-d align-self-center">
-                                        <h3 class="title-d">
-                                            Última
-                                            <br> Puja
-                                        </h3>
+                            @if($enabled == true)
+                                <div class="card-overlay card-overlay-hover">
+                                    <div class="card-header-d section-t4">
+                                        <div class="card-title-d align-self-center">
+                                            <h3 class="title-d">
+                                                Última
+                                                <br> Puja
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body-d">
+                                        <p class="content-d color-text-a">
+                                            {{ $latestBid->user->nombre }}
+                                        </p>
+                                        <div class="info-agents color-a">
+                                            <p>
+                                                <strong>Monto: </strong>$ {{ $latestBid->monto }}</p>
+                                            <strong>Fecha: </strong> {{ $latestBid->created_at }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer-d text-center">
+                                        @auth
+                                            <button class="btn btn-a" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+                                        @endauth
+                                        @guest
+                                            <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                        @endguest
                                     </div>
                                 </div>
-                                <div class="card-body-d">
-                                    <p class="content-d color-text-a">
-                                        {{ $latestBid->user->nombre }}
-                                    </p>
-                                    <div class="info-agents color-a">
-                                        <p>
-                                            <strong>Monto: </strong>$ {{ $latestBid->monto }}</p>
-                                        <strong>Fecha: </strong> {{ $latestBid->created_at }}</p>
+                            @else
+                                <div class="card-overlay card-overlay-hover">
+                                    <div class="card-header-d section-t4">
+                                        <div class="card-title-d align-self-center">
+                                            <h3 class="title-d">La subasta aún no ha comenzado</h3>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-footer-d text-center">
-                                    @auth
-                                        <button class="btn btn-a" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
-                                    @endauth
-                                    @guest
-                                        <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
-                                    @endguest
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

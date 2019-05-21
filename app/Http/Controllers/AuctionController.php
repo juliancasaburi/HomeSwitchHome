@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Auction;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AuctionController extends Controller
 {
@@ -25,12 +26,15 @@ class AuctionController extends Controller
 
         $latestBid = $auction->latestBid->first();
 
+        $enabled = $auction->inicio < Carbon::now();
+
         if(Auth::user()) {
             $myLatestBid = $auction->latestBidForUser(Auth::user())->first();
             // Return view
             return view('auction', [
                 'auction' => $auction,
                 'latestBid' => $latestBid,
+                'enabled' => $enabled,
                 'myLatestBid' => $myLatestBid,
             ]);
         }
@@ -39,6 +43,7 @@ class AuctionController extends Controller
         return view('auction', [
             'auction' => $auction,
             'latestBid' => $latestBid,
+            'enabled' => $enabled,
         ]);
     }
 }
