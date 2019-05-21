@@ -24,7 +24,7 @@ class AuctionController extends Controller
             abort(404);
         }
 
-        $latestBid = $auction->latestBid->first();
+        $latestBid = $auction->latestBid;
 
         $enabled = $auction->inicio < Carbon::now();
 

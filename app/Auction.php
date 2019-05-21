@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Integer;
 
 class Auction extends Model
 {
@@ -31,11 +33,15 @@ class Auction extends Model
     }
 
     public function latestBid(){
-        return $this->hasMany(Bid::class, 'subasta_id', 'id')->latest();
+        return $this->hasOne(Bid::class, 'subasta_id', 'id')->latest();
     }
 
     public function latestBidForUser(User $user){
         return $this->hasMany(Bid::class, 'subasta_id', 'id')->where('usuario_id', $user->id)->latest();
+    }
+
+    public function uniqueBidders(int $auctionID){
+        return DB::table('pujas')->where('subasta_id', '=', $auctionID)->distinct()->count('usuario_id');
     }
 
     public function propertyName(){
