@@ -18,6 +18,7 @@ class CreateWeeksTable extends Migration
             $table->bigInteger('propiedad_id')->unsigned();
             $table->date('fecha');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('propiedad_id')->references('id')->on('propiedades');
         });

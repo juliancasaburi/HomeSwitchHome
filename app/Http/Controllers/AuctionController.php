@@ -17,7 +17,9 @@ class AuctionController extends Controller
     public function index()
     {
         $auction = Auction::where('id', Request()->id)
-            ->get()->first();
+            ->withTrashed()
+            ->get()
+            ->first();
 
         // If auction id doesn't exist, show 404 error page
         if(empty($auction)) {

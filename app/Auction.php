@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Integer;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Auction extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'subastas';
 
     protected $fillable = [
@@ -16,7 +18,7 @@ class Auction extends Model
     ];
 
     public function week(){
-        return $this->belongsTo(Week::class, 'semana_id', 'id');
+        return $this->belongsTo(Week::class, 'semana_id', 'id')->withTrashed();
     }
 
     public function inscriptions(){

@@ -10,14 +10,16 @@ class WeekController extends Controller
 {
 
     /**
-     * Show the property list.
+     * Show a week.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $week = Week::where('id', Request()->id)
-            ->get()->first();
+            ->withTrashed()
+            ->get()
+            ->first();
 
         // If property id doesn't exist, show 404 error page
         if(empty($week)) {
@@ -31,7 +33,7 @@ class WeekController extends Controller
     }
 
     /**
-     * Show the property grid.
+     * Show the week grid.
      *
      * @return \Illuminate\Http\Response
      */

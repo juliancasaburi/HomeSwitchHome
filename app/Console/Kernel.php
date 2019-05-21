@@ -47,6 +47,8 @@ class Kernel extends ConsoleKernel
                         $winnerUser->creditos -= 1;
                         $winnerUser->saldo -= $winnerBid->monto;
                         $winnerUser->save();
+                        $a->week->delete();
+                        $a->delete();
                     }
                 }
             }

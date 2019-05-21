@@ -113,7 +113,7 @@ class AdminController extends Controller
 
     public function showAuctionList()
     {
-        $auctions = Auction::all();
+        $auctions = Auction::withTrashed()->get();
         return view('admin-auction-list')->with ('auctions',$auctions);
     }
 

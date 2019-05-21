@@ -13,7 +13,7 @@ class InscriptionForFutureAuction extends Model
     ];
 
     public function auction(){
-        return $this->belongsTo(Auction::class, 'subasta_id', 'id');
+        return $this->belongsTo(Auction::class, 'subasta_id', 'id')->withTrashed();
     }
 
     public function user(){

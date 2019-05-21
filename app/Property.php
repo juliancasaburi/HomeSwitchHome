@@ -25,6 +25,10 @@ class Property extends Model
     }
 
     public function weeks(){
+        return $this->hasMany(Week::class, "propiedad_id", "id")->withTrashed();
+    }
+
+    public function activeWeeks(){
         return $this->hasMany(Week::class, "propiedad_id", "id");
     }
 }

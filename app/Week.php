@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Week extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'semanas';
 
     protected $fillable = [
@@ -17,7 +21,7 @@ class Week extends Model
     }
 
     public function auction(){
-        return $this->hasOne(Auction::class, 'semana_id', 'id');
+        return $this->hasOne(Auction::class, 'semana_id', 'id')->withTrashed();
     }
 
     public function reservation(){

@@ -22,6 +22,7 @@ class CreateAuctionsTable extends Migration
             $table->dateTime('inicio');
             $table->dateTime('fin');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('semana_id')->references('id')->on('semanas');
         });

@@ -26,7 +26,7 @@ class PropertyController extends Controller
         }
 
         // Property exists, pass only those weeks where the auctions are in registration period.
-        $weeks = $property->weeks()->whereHas('auction', function ($query) {
+        $weeks = $property->activeWeeks()->whereHas('auction', function ($query) {
             $query->where('inscripcion_inicio', '<=', Carbon::now())
             ->where('inscripcion_fin', '>', Carbon::now());
         })->get();

@@ -13,7 +13,7 @@ class Reservation extends Model
     protected $table = 'reservas';
 
     public function week(){
-        return $this->belongsTo(Week::class, 'semana_id', 'id');
+        return $this->belongsTo(Week::class, 'semana_id', 'id')->withTrashed();
     }
 
     public function user(){
