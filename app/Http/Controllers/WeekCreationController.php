@@ -23,7 +23,17 @@ class WeekCreationController extends Controller
     {
         // Is input a YYYY-MM-DD date?
         $validator = Validator::make($request->all(), [
-            'fecha' => ['required', 'date'],
+            'fecha' => ['required', 'date',
+                /*  Validates Week for given Property doesn't already exist.
+                        Combination of (property, week start date) must be unique
+                    */
+                Rule::unique('semanas')->where(function ($query) use ($request) {
+
+                    return $query
+                        ->where('propiedad_id', $request->idPropiedad)
+                        ->where('fecha', $request->fecha);
+                }),
+            ],
         ]);
 
         if($validator->fails()){ // Input is not a YYYY-MM-DD date
