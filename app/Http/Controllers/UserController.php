@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 use App\Rules\CurrentPassword;
 use App\Bid;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -83,5 +84,29 @@ class UserController extends Controller
         $reservations = Auth::user()->reservations;
 
         return view('user-past-reservations')->with('reservations', $reservations);
+    }
+
+    public function addBalance()
+    {
+        // validate
+        $rules = array(
+            'amount'       => ['required', 'numeric', 'min:1'],
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator);
+        } else {
+            // store
+            $user = Auth::user();
+            $user->saldo += Input::get('amount');
+            $user->save();
+
+            // redirect
+            return redirect()->back()->with('alert-success', '$'.Input::get('amount').' fueron cargados en tu cuenta!');
+        }
     }
 }

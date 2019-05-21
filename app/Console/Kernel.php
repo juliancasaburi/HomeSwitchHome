@@ -46,6 +46,7 @@ class Kernel extends ConsoleKernel
                         $reservation->save();
                         $winnerUser->creditos -= 1;
                         $winnerUser->saldo -= $winnerBid->monto;
+                        $winnerUser->save();
                     }
                 }
             }

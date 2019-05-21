@@ -41,7 +41,11 @@ Route::post('logout', function() {
     return Redirect::to("/");
 });
 
+// Profile
+
 Route::get('/profile', 'UserController@showUserProfile');
+
+Route::put('/add-balance', 'UserController@addBalance');
 
 // Modify email
 Route::get('/profile/modify-email', 'UserController@showEmailForm');
