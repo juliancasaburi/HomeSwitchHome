@@ -42,10 +42,10 @@ class PropertyCreationController extends Controller
                 Rule::unique('propiedades')->where(function ($query) use ($request) {
 
                     return $query
-                        ->wherePais($request->pais)
-                        ->whereLocalidad($request->localidad)
-                        ->whereCalle($request->calle)
-                        ->whereNumero($request->numero);
+                        ->where('pais', $request->pais)
+                        ->where('localidad', $request->localidad)
+                        ->where('calle', $request->calle)
+                        ->where('numero', $request->numero);
                 }),
             ],
             'estrellas' => ['required', 'numeric'],
