@@ -142,7 +142,7 @@
                                             <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
                                         @endif
                                     @else
-                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Innscripcion finalizada</button></td>
+                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripcion finalizada</button></td>
                                     @endif
                                 @endauth
                             </tr>

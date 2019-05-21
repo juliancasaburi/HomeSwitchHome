@@ -104,65 +104,81 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-between card-header">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="title-box-d section-t4">
-                                <h3 class="title-d">Subastas en período de inscripción para esta propiedad</h3>
+                @if($weeks->count() == 0)
+                    <div class="row justify-content-between card-header">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d section-t4">
+                                    <h3 class="title-d">Subastas en período de inscripción para esta propiedad</h3>
+                                </div>
+                                <h6> No hay subastas en período de inscripción para esta propiedad</h6>
+                                @guest
+                                    <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                @endguest
                             </div>
-                            @guest
-                                <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
-                            @endguest
                         </div>
                     </div>
-                    <div class="table-responsive section-t4">
-                        <table class="table table-striped table-bordered first">
-                            <thead>
-                            <tr>
-                                <th>Número</th>
-                                <th>Estadía</th>
-                                <th>Piso</th>
-                                <th>Plazo inscripción</th>
-                                @auth
-                                    <th></th>
-                                @endauth
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($weeks as $w)
+                @else
+                    <div class="row justify-content-between card-header">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d section-t4">
+                                    <h3 class="title-d">Subastas en período de inscripción para esta propiedad</h3>
+                                </div>
+                                @guest
+                                    <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                @endguest
+                            </div>
+                        </div>
+                        <div class="table-responsive section-t4">
+                            <table class="table table-striped table-bordered first">
+                                <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td><a href="{{'/week?id='.$w->id}}">{{ $w->fecha }} hasta {{ date('Y-m-d', strtotime($w->fecha. ' + 7 days'))}} <br> Ver semana</a></td>
-                                    <td>${{ $w->auction->precio_inicial }}</td>
-                                    <td>{{ $w->auction->inscripcion_inicio }} hasta {{ $w->auction->inscripcion_fin }}</td>
+                                    <th>Número</th>
+                                    <th>Estadía</th>
+                                    <th>Piso</th>
+                                    <th>Plazo inscripción</th>
                                     @auth
-                                        @if($w->auction()->whereHas('inscriptions', function ($query){
-                                            $query->where('usuario_id', Auth::user()->id);
-                                            })->count() == 0 &&  Auth::user()->creditos > 0)
-                                            <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->auction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
-                                        @elseif(Auth::user()->creditos == 0)
-                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
-                                        @else
-                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
-                                        @endif
+                                        <th></th>
                                     @endauth
                                 </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Número</th>
-                                <th>Estadía</th>
-                                <th>Piso</th>
-                                <th>Plazo inscripción</th>
-                                @auth
-                                    <th></th>
-                                @endauth
-                            </tr>
-                            </tfoot>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($weeks as $w)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td><a href="{{'/week?id='.$w->id}}">{{ $w->fecha }} hasta {{ date('Y-m-d', strtotime($w->fecha. ' + 7 days'))}} <br> Ver semana</a></td>
+                                        <td>${{ $w->auction->precio_inicial }}</td>
+                                        <td>{{ $w->auction->inscripcion_inicio }} hasta {{ $w->auction->inscripcion_fin }}</td>
+                                        @auth
+                                            @if($w->auction()->whereHas('inscriptions', function ($query){
+                                                $query->where('usuario_id', Auth::user()->id);
+                                                })->count() == 0 &&  Auth::user()->creditos > 0)
+                                                <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->auction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                            @elseif(Auth::user()->creditos == 0)
+                                                <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
+                                            @else
+                                                <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
+                                            @endif
+                                        @endauth
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Número</th>
+                                    <th>Estadía</th>
+                                    <th>Piso</th>
+                                    <th>Plazo inscripción</th>
+                                    @auth
+                                        <th></th>
+                                    @endauth
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
         <!-- Modal -->

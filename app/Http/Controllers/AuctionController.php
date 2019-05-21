@@ -26,7 +26,7 @@ class AuctionController extends Controller
         $latestBid = $auction->latestBid->first();
 
         if(Auth::user()) {
-            $myLatestBid = $auction->latestBidForUser(Auth::user());
+            $myLatestBid = $auction->latestBidForUser(Auth::user())->first();
             // Return view
             return view('auction', [
                 'auction' => $auction,

@@ -1,6 +1,6 @@
 @extends('layouts.mainlayout')
 
-@section('title', ' - Subasta ')
+@section('title', ' - Subasta - Semana '.$auction->week->fecha. ' - De propiedad '.$auction->week->property->nombre)
 
 @section('content')
     <!--/ Auction Start /-->
@@ -38,17 +38,24 @@
                                         <span>${{ $auction->precio_inicial }}</span>
                                     </li>
                                     @auth
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Mi última puja:</strong>
-                                            <span>$ {{ $myLatestBid->first()->monto }} <br> {{ $myLatestBid->first()->created_at }}</span>
-                                        </li>
+                                        @if($myLatestBid)
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Mi última puja:</strong>
+                                                <span>$ {{ $myLatestBid->monto }} <br> {{ $myLatestBid->created_at }}</span>
+                                            </li>
+                                        @else
+                                            <li class="d-flex justify-content-between">
+                                                <strong>Mi puja más reciente:</strong>
+                                                <span>Aún no participaste en esta puja</span>
+                                            </li>
+                                        @endif
                                     @endauth
                                     <li class="d-flex justify-content-between">
-                                        <strong>Última puja:</strong>
+                                        <strong>Puja más reciente:</strong>
                                         @if($auction->bids->count() == 0)
                                             <span> Nadie participó aún <i class="fas fa-frown"></i></span>
                                         @else
-                                            <span>$ {{ $latestBid->monto }} ({{ $latestBid->user->nombre }}) <br> {{ $latestBid->created_at }}</span>
+                                            <span>Monto: <strong>$ {{ $latestBid->monto }}</strong> <br>Usuario: <strong>({{ $latestBid->user->nombre }}) </strong> <br>Fecha: <strong>{{ $latestBid->created_at }}</strong></span>
                                         @endif
                                     </li>
                                     @auth
