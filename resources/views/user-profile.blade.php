@@ -94,15 +94,15 @@
 						<!-- ============================================================== -->
 						<!-- Credits   -->
 						<!-- ============================================================== -->
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+						<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 							<div class="card">
 								<div class="card-body">
 									<div class="d-inline-block">
 										<h5 class="text-muted">Créditos</h5>
-										<h2 class="mb-0">{{ Auth::user()->creditos }}</h2>
+										<h4 class="mb-0">{{ Auth::user()->creditos }}</h4>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
-										<i class="fas fa-coins fa-fw fa-sm text-info"></i>
+										<i data-toggle="tooltip" data-placement="bottom" title="Se renovarán el {{Auth::user()->created_at->addYear()}}" class="fas fa-coins fa-fw fa-sm text-info"></i>
 									</div>
 								</div>
 							</div>
@@ -113,15 +113,15 @@
 						<!-- ============================================================== -->
 						<!-- Balance  -->
 						<!-- ============================================================== -->
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+						<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 							<div class="card">
 								<div class="card-body">
 									<div class="d-inline-block">
 										<h5 class="text-muted">Saldo</h5>
-										<h2 class="mb-0">{{ Auth::user()->saldo }}</h2>
+										<h4 class="mb-0">{{ Auth::user()->saldo }}</h4>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
-										<i class="fas fa-money-check-alt fa-fw fa-sm text-primary"></i>
+										<a href="#" data-toggle="tooltip" data-placement="bottom" title="Cargar Saldo"><i class="fas fa-money-check-alt fa-fw fa-sm text-primary"></i></a>
 									</div>
 								</div>
 							</div>

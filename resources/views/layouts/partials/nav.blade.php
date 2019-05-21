@@ -9,7 +9,7 @@
         </button>
         <a class="navbar-brand text-brand" href="{{ url('/') }}">Home<span class="color-b">Switch</span>Home</a>
         {{-- <a href="/"><img id="logo" src="{{ asset('img/HSH-Complete.svg') }}" alt="" height="20%" width="20%"></a> --}}
-        <span data-placement="bottom" data-toggle="tooltip" title="Buscar propiedades">
+        <span data-placement="bottom" data-toggle="tooltip" title="Buscar estadías">
       <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
               data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fas fa-search fa-xs" aria-hidden="true"></span>
@@ -53,7 +53,7 @@
                 </li>
             </ul>
         </div>
-        <span data-placement="bottom" data-toggle="tooltip" title="Buscar propiedades">
+        <span data-placement="bottom" data-toggle="tooltip" title="Buscar estadías">
       <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
               data-target="#navbarTogglerDemo01" aria-expanded="false">
         <span class="fas fa-search" aria-hidden="true"></span>
