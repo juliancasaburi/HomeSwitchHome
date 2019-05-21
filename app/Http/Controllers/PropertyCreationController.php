@@ -36,12 +36,13 @@ class PropertyCreationController extends Controller
             'localidad' => ['required', 'string'],
             'calle' => ['required', 'string'],
             'numero' => ['required', 'string',
-                /*  Valida que la propiedad no exista.
-                    La combinacioón (localidad, calle, número) debe ser única
+                /*  Validates Property doesn't already exist.
+                    Combination of (country, city, street, property number) must be unique
                 */
                 Rule::unique('propiedades')->where(function ($query) use ($request) {
 
                     return $query
+                        ->wherePais($request->pais)
                         ->whereLocalidad($request->localidad)
                         ->whereCalle($request->calle)
                         ->whereNumero($request->numero);
