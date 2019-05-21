@@ -32,16 +32,32 @@ class AuctionCreationController extends Controller
             'precioInicial' => ['required', 'numeric'],
         ]);
 
+        if($request->inscripcionFechaCierre <= $request->inscripcionFechaApertura){
+            // Redirect back and flash error message
+            return redirect('admin/dashboard/create-auction')->with('alert-error', 'Fecha finaliza Inscripcion debe ser mayor a Fecha comienzo Inscripcion');
+        }
+
+        if($request->subastaFechaApertura <= $request->inscripcionFechaCierre){
+            // Redirect back and flash error message
+            return redirect('admin/dashboard/create-auction')->with('alert-error', 'Fecha comienzo Subasta debe ser mayor a Fecha finaliza Inscripcion');
+        }
+
+        if($request->subastaFechaCierre <= $request->subastaFechaAperura){
+            // Redirect back and flash error message
+            return redirect('admin/dashboard/create-auction')->with('alert-error', 'Fecha finaliza Subasta debe ser mayor a Fecha comienzo Subasta');
+        }
+
         if($validator->fails()){
             // Redirect back and show an error flash message
             return redirect('admin/dashboard/create-auction')->withErrors($validator);
         }
 
-        // Create an Auction and save it
+        // Week already exists?
         $week = Week::where('propiedad_id', $request->idPropiedad)
             ->where('fecha', $request->semana)
             ->first();
         if (Auction::where('semana_id', $week->id)->count() == 0) {
+            // Create Auction and save it to DB
             $auction = new Auction();
             $auction->semana_id = $week->id;
             $auction->precio_inicial = $request->precioInicial;
