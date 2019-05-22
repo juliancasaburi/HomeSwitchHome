@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Notifications\ReservationCancelled;
+use App\Notifications\ReservationObtained;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -77,6 +79,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    /**
+     * Send the reservation cancelled notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendReservationCancelledNotification($propertyName, $date)
+    {
+        $this->notify(new ReservationCancelled($propertyName, $date));
     }
 
     /**

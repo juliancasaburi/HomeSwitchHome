@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Property;
@@ -125,9 +126,18 @@ class AdminController extends Controller
         ]);
     }
 
-    public function showReservationsList()
+    public function showReservationList()
     {
-        $reservations = Reservation::all();
-        return view('admin-reservations-list')->with ('reservations',$reservations);
+        $reservations = Reservation::withTrashed()->get();
+        return view('admin-reservation-list')->with ('reservations',$reservations);
+    }
+
+    public function cancelReservation()
+    {
+        $reservation = Reservation::find(Input::get('reservationID'));
+        $reservation->user->sendReservationCancelledNotification($reservation->week->property->nombre, $reservation->week->fecha);
+        $reservation->delete();
+        return redirect()->back()->with('alert-success', 'Reserva '.Input::get('reservationID').' cancelada');
+
     }
 }

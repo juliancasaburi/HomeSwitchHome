@@ -20,6 +20,7 @@ class CreateReservationsTable extends Migration
             $table->decimal('valor_reservado', 9, 2);
             $table->tinyInteger('modo_reserva');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('semana_id')->references('id')->on('semanas');
             $table->foreign('usuario_id')->references('id')->on('usuarios');

@@ -6,7 +6,7 @@
     <link href="{{ asset('lib/fonts/circular-std/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/charts/morris-bundle/morris.css') }}">
-    <link rel="stylesheet" href="{{ asset('ib/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lib/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
 @endsection
 
 @section('content')
