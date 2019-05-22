@@ -24,10 +24,10 @@
                         <div id="submenu-1" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/profile/modify-email">Modificar email</a>
+                                    <a class="nav-link" href="{{ url('/profile/modify-email') }}">Modificar email</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/profile/modify-password">Modificar contraseña</a>
+                                    <a class="nav-link" href="{{url('/profile/modify-password')}}">Modificar contraseña</a>
                                 </li>
                             </ul>
                         </div>
