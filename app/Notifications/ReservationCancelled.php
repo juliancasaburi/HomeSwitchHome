@@ -47,7 +47,7 @@ class ReservationCancelled extends Notification
         return (new MailMessage)
             ->subject('HSH | Reserva cancelada')
             ->greeting('Hola, ' . $notifiable->nombre)
-            ->line('Hemos cancelado tu reserva de la propiedad' .$this->property_name. ' para la semana ' .$this->date)
+            ->line('Hemos cancelado tu reserva de la propiedad ' .$this->property_name. ' para la semana ' .$this->date)
             ->line('Gracias por utilizar nuestra aplicación!')
             ->salutation('Home Switch Home - Cadena de Residencias');
     }
