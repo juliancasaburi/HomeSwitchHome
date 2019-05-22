@@ -126,6 +126,8 @@ class UserController extends Controller
         // validate
         $rules = array(
             'amount'       => ['required', 'numeric', 'min:1'],
+            'fecha_caducidad_tarjeta' => ['required'],
+            'cvv_tarjeta' => ['required', 'min:3', 'max:3'],
         );
 
         $validator = Validator::make(Input::all(), $rules);
