@@ -18,7 +18,6 @@ class CreateReservationsTable extends Migration
             $table->bigInteger('semana_id')->unsigned();
             $table->bigInteger('usuario_id')->unsigned();
             $table->decimal('valor_reservado', 9, 2);
-            $table->dateTime('fecha');
             $table->tinyInteger('modo_reserva');
             $table->timestamps();
 

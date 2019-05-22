@@ -7,6 +7,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Reservation;
+use App\Auction;
+use App\User;
+use App\Bid;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,29 +31,29 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            $auctionsToBeClosed = DB::table('subastas')->where('fin', '<=', Carbon::now())->get();
+            $auctionsToBeClosed = Auction::where('fin', '<=', Carbon::now())->get();
             foreach($auctionsToBeClosed as $a) {
                 if (!DB::table('pujas')->where('subasta_id', $a->id)->get()->isEmpty()) {
-                    $winnerBid = DB::table('pujas')->where('subasta_id', $a->id)->latest()->first();
-                    $winnerUser = DB::table('usuarios')->where('usuario_id', $winnerBid->id)->first();
-                    while ((($winnerUser->creditos == 0) || ($winnerUser->saldo < $winnerBid->monto)) && (DB::table('pujas')->where('subasta_id', $a->id)->get()->except($winnerBid->id)->count() > 0)) {
-                        $winnerBid = DB::table('pujas')->where('subasta_id', $a->id)->except($winnerBid->id)->latest()->first();
-                        $winnerUser = DB::table('usuarios')->where('usuario_id', $winnerBid->id)->first();
+                    $winnerBid = Bid::where('subasta_id', $a->id)->latest()->first();
+                    $winnerUser = $winnerBid->user;
+                    while ((($winnerUser->creditos == 0) || ($winnerUser->saldo < $winnerBid->monto)) && (DB::table('pujas')->where('subasta_id', $a->id)->where('id', '<>',$winnerBid->id)->get()->count() > 0)) {
+                        $winnerBid = Bid::where('subasta_id', $a->id)->where('id', '<>', $winnerBid->id)->latest()->first();
+                        $winnerUser = $winnerBid->user;
                     }
-                    if ($winnerUser->saldo >= $winnerBid->monto && $winnerUser->creditos != 0) {
+                    if ($winnerUser) {
                         $reservation = new Reservation();
                         $reservation->usuario_id = $winnerUser->id;
                         $reservation->valor_reservado = $winnerBid->monto;
-                        $reservation->fecha = Carbon::now();
+                        $reservation->semana_id = $a->week->id;
                         $reservation->modo_reserva = 0;
                         $reservation->save();
                         $winnerUser->creditos -= 1;
                         $winnerUser->saldo -= $winnerBid->monto;
                         $winnerUser->save();
-                        $a->week->delete();
-                        $a->delete();
                     }
                 }
+                $a->delete();
+                $a->week->delete();
             }
         })->everyMinute();
 
