@@ -8,6 +8,7 @@ use App\User;
 use App\Property;
 use App\Auction;
 use App\Week;
+use App\Reservation;
 use Carbon\Carbon;
 
 class AdminController extends Controller
@@ -122,5 +123,11 @@ class AdminController extends Controller
             'properties' => Property::all(),
             'weeks' => Week::all(),
         ]);
+    }
+
+    public function showReservationsList()
+    {
+        $reservations = Reservation::all();
+        return view('admin-reservations-list')->with ('reservations',$reservations);
     }
 }

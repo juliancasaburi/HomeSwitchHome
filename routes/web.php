@@ -97,6 +97,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/auction-list', 'AdminController@showAuctionList')->name('admin.propertyList');
     Route::get('/dashboard/create-auction', 'AdminController@showAuctionCreationForm')->name('admin.createAuction');
     Route::post('/dashboard/create-auction', 'AuctionCreationController@store')->name('auction.create');
+    Route::get('/dashboard/reservations-list', 'AdminController@showReservationsList')->name('admin.reservationsList');
     //--------------------------------------------
 });
 

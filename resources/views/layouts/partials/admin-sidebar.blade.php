@@ -88,7 +88,7 @@
                         <div id="submenu-6" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Ver todas</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/reservations-list') }}">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Cancelar una Reserva</a>
