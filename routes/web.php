@@ -51,6 +51,10 @@ Route::put('/add-balance', 'UserController@addBalance');
 Route::get('/profile/modify-email', 'UserController@showEmailForm');
 Route::post('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');
 
+// Modify password
+Route::get('/profile/modify-password', 'UserController@showPasswordForm');
+Route::post('/profile/modify-password', 'UserController@modifyPassword');
+
 // Inscriptions
 Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList');
 

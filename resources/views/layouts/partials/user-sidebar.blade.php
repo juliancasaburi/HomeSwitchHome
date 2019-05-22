@@ -27,7 +27,7 @@
                                     <a class="nav-link" href="/profile/modify-email">Modificar email</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Modificar contraseña</a>
+                                    <a class="nav-link" href="/profile/modify-password">Modificar contraseña</a>
                                 </li>
                             </ul>
                         </div>
