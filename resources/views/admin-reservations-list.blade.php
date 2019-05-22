@@ -57,7 +57,7 @@
                                           <tr>
                                             <th>ID</th>
                                             <th>Semana ID</th>
-                                            <th>Usuario ID</th>
+                                            <th>Usuario</th>
                                             <th>Propiedad</th>
                                             <th>Fecha</th>
                                             <th>Valor</th>
@@ -68,8 +68,8 @@
                                         @foreach ($reservations as $r)
                                           <tr>
                                             <td>{{ $r->id}}</td>
-                                            <td><a href="#">{{ $r->semana_id }}</a></td>                                         
-                                            <td>{{ $r->usuario_id}}</td>
+                                            <td><a href={{ url('week?id=').$r->week->id }}>{{ $r->semana_id }}</a></td>
+                                            <td>ID: {{ $r->usuario_id}} <br> {{ $r->user->nombre}} {{ $r->user->apellido}}</td>
                                             <td><a href={{ url('property?id=').$r->week->property->id }}>{{ $r->week->property->nombre}}</a></td>
                                             <td>{{ $r->week->fecha}}</td>
                                             <td>{{ $r->valor_reservado}}</td>
@@ -87,7 +87,7 @@
                                       <tr>
                                         <th>ID</th>
                                         <th>Semana ID</th>
-                                        <th>Usuario ID</th>
+                                        <th>Usuario</th>
                                         <th>Propiedad</th>
                                         <th>Fecha</th>
                                         <th>Valor</th>
