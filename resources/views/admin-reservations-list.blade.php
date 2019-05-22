@@ -68,10 +68,10 @@
                                         @foreach ($reservations as $r)
                                           <tr>
                                             <td>{{ $r->id}}</td>
-                                            <td>{{ $r->semana_id}}</td>
+                                            <td><a href="#">{{ $r->semana_id }}</a></td>                                         
                                             <td>{{ $r->usuario_id}}</td>
                                             <td><a href={{ url('property?id=').$r->week->property->id }}>{{ $r->week->property->nombre}}</a></td>
-                                            <td>{{ $r->fecha}}</td>
+                                            <td>{{ $r->week->fecha}}</td>
                                             <td>{{ $r->valor_reservado}}</td>
                                             @if($r->modo_reserva == 0)
                                               <td><i class="fas fa-gavel fa-fw fa-sm"></i> Subasta</td>
