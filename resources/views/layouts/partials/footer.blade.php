@@ -5,7 +5,7 @@
             <div class="col-sm-12">
                 <div class="widget-a">
                     <div class="w-header-a">
-                        <a class="navbar-brand text-brand" href="{{ url('/') }}">Home<span class="color-b">Switch</span>Home</a>
+                            <a href="{{ url('/') }}"><img id="logo" src="{{ asset('img/HSH-Complete.svg') }}" alt="Home Switch Home Logo" height="20%" width="20%"></a>
                     </div>
                     <div class="w-body-a">
                         <p class="w-text-a color-text-a">
