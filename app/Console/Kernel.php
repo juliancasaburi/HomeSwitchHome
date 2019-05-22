@@ -10,6 +10,7 @@ use App\Reservation;
 use App\Auction;
 use App\User;
 use App\Bid;
+use App\Notifications\ReservationObtained;
 
 class Kernel extends ConsoleKernel
 {
@@ -40,7 +41,7 @@ class Kernel extends ConsoleKernel
                         $winnerBid = Bid::where('subasta_id', $a->id)->where('id', '<>', $winnerBid->id)->latest()->first();
                         $winnerUser = $winnerBid->user;
                     }
-                    if ($winnerUser) {
+                    if (($winnerUser->creditos > 0) && ($winnerUser->saldo >= $winnerBid->monto)) {
                         $reservation = new Reservation();
                         $reservation->usuario_id = $winnerUser->id;
                         $reservation->valor_reservado = $winnerBid->monto;
@@ -50,6 +51,7 @@ class Kernel extends ConsoleKernel
                         $winnerUser->creditos -= 1;
                         $winnerUser->saldo -= $winnerBid->monto;
                         $winnerUser->save();
+                        $winnerUser->notify(new ReservationObtained($a->week->property->nombre, $a->week->fecha));
                     }
                 }
                 $a->delete();
