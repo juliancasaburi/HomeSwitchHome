@@ -41,7 +41,7 @@ class EmailChanged extends Notification
     {
 
         return (new MailMessage)
-            ->subject('Cambio de email')
+            ->subject('HSH | Cambio de email')
             ->greeting('Hola, ' . $notifiable->nombre)
             ->line('La modificacion de tu direccion de correo se ha realizado con exito.')
             ->line('Gracias por utilizar nuestra aplicación!')

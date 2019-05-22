@@ -46,7 +46,7 @@ class VerificarEmail extends Notification
     {
 
         return (new MailMessage)
-                    ->subject('Verificar Email')
+                    ->subject('HSH | Verificar Email')
                     ->greeting('Hola, ' . $notifiable->nombre)
                     ->line('Para finalizar tu registro debes verificar tu email. Por favor, clickea el siguiente enlace')
                     ->action('Verificar e-mail', $this->verificationUrl($notifiable))

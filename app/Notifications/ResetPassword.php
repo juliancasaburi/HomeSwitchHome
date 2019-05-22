@@ -48,7 +48,7 @@ class ResetPassword extends Notification
     {
         $link = url( "/password/reset/" . $this->token );
         return (new MailMessage)
-            ->subject('Reestablecer contraseña')
+            ->subject('HSH | Reestablecer contraseña')
             ->greeting('Hola, ' . $notifiable->nombre)
             ->line('Para restablecer tu contraseña clickea el siguiente enlace')
             ->action('Restablecer contraseña', $link)
