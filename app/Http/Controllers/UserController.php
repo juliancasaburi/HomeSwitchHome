@@ -14,7 +14,7 @@ use App\Rules\CurrentPassword;
 use App\Bid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -72,7 +72,7 @@ class UserController extends Controller
       return view('user-password-form');
     }
 
-    public function modifyPassword(Request $request){
+    public function modifyPassword(){
         $rules = [
           'mypassword' => 'required',
           'password' => 'required|confirmed|min:8',
@@ -83,15 +83,15 @@ class UserController extends Controller
           'password.confirmed' => 'Las contraseñas no coinciden',
           'password.min' => 'El minimo permitido son 8 caracteres',
         ];
-        $validator = Validator::make($request->all(), $rules, $messages);
+        $validator = Validator::make(Input::all(), $rules, $messages);
         if ($validator->fails()){
           return redirect('/profile/modify-password')->withErrors($validator);
         }
         else{
-          if (Hash::check($request->mypassword, Auth::user()->password)){
-            $user = new User;
-            $user->where('email', '=' , Auth::user()->email)
-              ->update(['password' => bcrypt($request->password)]);
+          if (Hash::check(Input::get('mypassword'), Auth::user()->password)){
+            $user = Auth::user();
+            $user->password = bcrypt(Input::get('password'));
+            $user->save();
               return redirect('/profile')->with('alert-success', 'Contraseña cambiada exitosamente');
           }
           else

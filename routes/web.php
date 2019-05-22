@@ -53,7 +53,7 @@ Route::post('/profile/modify-email', 'UserController@modifyEmail')->name('user.m
 
 // Modify password
 Route::get('/profile/modify-password', 'UserController@showPasswordForm');
-Route::post('/profile/modify-password', 'UserController@modifyPassword');
+Route::put('/profile/modify-password', 'UserController@modifyPassword');
 
 // Inscriptions
 Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList');

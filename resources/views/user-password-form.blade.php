@@ -42,9 +42,10 @@
                     <!-- ============================================================== -->
                     <!-- content  -->
                     <!-- ============================================================== -->
-                    <form method="post" action="{{url('profile/modify-password')}}">
-                      {{csrf_field()}}
+                    <form method="POST" action="{{url('profile/modify-password')}}">
                       <div class="form-group">
+                          <input type="hidden" name="_method" value="PUT">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <label for="mypassword">Contraseña actual</label>
                         <input type="password" name="mypassword" class="form-control">
                         <div class="text-danger">{{$errors->first('mypassword')}}</div>
