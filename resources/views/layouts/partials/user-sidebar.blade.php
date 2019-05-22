@@ -43,10 +43,7 @@
                                     <a class="nav-link" href="{{url('/profile/bid-list')}}">Mis pujas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.pastReservations') }}">Reservas pasadas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Reservas activas</a>
+                                    <a class="nav-link" href="{{ route('user.reservations') }}">Reservas</a>
                                 </li>
                             </ul>
                         </div>

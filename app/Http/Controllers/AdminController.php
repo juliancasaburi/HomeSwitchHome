@@ -135,8 +135,7 @@ class AdminController extends Controller
     public function cancelReservation()
     {
         $reservation = Reservation::find(Input::get('reservationID'));
-        $reservation->user->sendReservationCancelledNotification($reservation->week->property->nombre, $reservation->week->fecha);
-        $reservation->delete();
+        $reservation->cancel();
         return redirect()->back()->with('alert-success', 'Reserva '.Input::get('reservationID').' cancelada');
 
     }

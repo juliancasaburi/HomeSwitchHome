@@ -87,9 +87,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @param  string  $token
      * @return void
      */
-    public function sendReservationCancelledNotification($propertyName, $date)
+    public function sendReservationCancelledNotification($propertyName, $date, $balance)
     {
-        $this->notify(new ReservationCancelled($propertyName, $date));
+        $this->notify(new ReservationCancelled($propertyName, $date, $balance));
     }
 
     /**
@@ -106,6 +106,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function reservations(){
         return $this->hasMany(Reservation::class, 'usuario_id', 'id');
+    }
+
+    public function reservationsWithTrashed(){
+        return $this->hasMany(Reservation::class, 'usuario_id', 'id')->withTrashed();
     }
 
     public function bids(){

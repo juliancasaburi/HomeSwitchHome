@@ -12,16 +12,19 @@ class ReservationCancelled extends Notification
 
     protected $property_name;
     protected $date;
+    protected $balance;
+
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($property_name, $date)
+    public function __construct($property_name, $date, $balance)
     {
         $this->property_name = $property_name;
         $this->date = $date;
+        $this->balance = $balance;
     }
 
     /**
@@ -48,6 +51,7 @@ class ReservationCancelled extends Notification
             ->subject('HSH | Reserva cancelada')
             ->greeting('Hola, ' . $notifiable->nombre)
             ->line('Hemos cancelado tu reserva de la propiedad ' .$this->property_name. ' para la semana ' .$this->date)
+            ->line('Te acreditamos ' .$this->balance. ' y 1 crédito')
             ->line('Gracias por utilizar nuestra aplicación!')
             ->salutation('Home Switch Home - Cadena de Residencias');
     }

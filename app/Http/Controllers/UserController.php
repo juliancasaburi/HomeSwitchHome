@@ -114,11 +114,11 @@ class UserController extends Controller
         return view('user-bid-list')->with ('bids',$bids);
     }
 
-    public function showPastReservations(){
+    public function showReservations(){
 
-        $reservations = Auth::user()->reservations;
+        $reservations = Auth::user()->reservationsWithTrashed;
 
-        return view('user-past-reservations')->with('reservations', $reservations);
+        return view('user-reservation-list')->with('reservations', $reservations);
     }
 
     public function addBalance()
@@ -143,5 +143,16 @@ class UserController extends Controller
             // redirect
             return redirect()->back()->with('alert-success', '$'.Input::get('amount').' fueron cargados en tu cuenta!');
         }
+    }
+
+    public function cancelReservation()
+    {
+        $reservation = Reservation::find(Input::get('reservationID'));
+        $balance = $reservation->valor_reservado;
+        $reservation->cancel();
+        return redirect()->back()
+            ->with('alert-success-title', 'Reserva '.Input::get('reservationID').' cancelada ')
+            ->with('alert-success', 'Te acreditamos 1 crédito y $'.$balance);
+
     }
 }
