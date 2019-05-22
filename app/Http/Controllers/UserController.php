@@ -49,9 +49,9 @@ class UserController extends Controller
         return view('user-email-form');
     }
 
-    public function modifyEmail(Request $request)
+    public function modifyEmail()
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make(Input::all(), [
             'password' => ['required',new CurrentPassword()],
             'newEmail' => 'required|email|unique:usuarios,email',
         ]);
@@ -61,9 +61,10 @@ class UserController extends Controller
             return redirect('/profile/modify-email')->withErrors($validator);
         }
 
-        $usuario = User::find($request->actualEmail);
-        $usuario->email = $request->newEmail;
+        $usuario = Auth::user();
+        $usuario->email = Input::get('newEmail');
         $usuario->save();
+        $usuario->sendEmailChangedNotification();
 
         return redirect('/profile/modify-email')->with('alert-success', 'Tu email se ha modificado exitosamente!');
     }

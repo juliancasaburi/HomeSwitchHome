@@ -43,7 +43,8 @@
                     <!-- content  -->
                     <!-- ============================================================== -->
                     <form class="needs-validation" action="{{ route('user.modifyEmail') }}" role="form" method="POST">
-                        @csrf
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="actualEmail">Email actual</label>
                             <input type="text" class="form-control" id="actualEmail" placeholder="{{ Auth::user()->email }}" readonly="readonly">
@@ -66,7 +67,6 @@
                     @if(session()->has('alert-success'))
                         <div class="alert alert-success" data-expires="5000">
                             {{ session()->get('alert-success') }}
-                            {{ Auth::user()->sendEmailChangedNotification()}}
                         </div>
                     @elseif (session()->has('alert-warning'))
                         <div class="alert alert-warning" data-expires="5000">

@@ -49,7 +49,7 @@ Route::put('/add-balance', 'UserController@addBalance');
 
 // Modify email
 Route::get('/profile/modify-email', 'UserController@showEmailForm');
-Route::post('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');
+Route::put('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');
 
 // Modify password
 Route::get('/profile/modify-password', 'UserController@showPasswordForm');
