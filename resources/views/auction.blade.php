@@ -66,7 +66,7 @@
                                             <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
                                         @endguest
                                     @else
-                                        <h8 class="title-d">La subasta aún no ha comenzado</h8>
+                                        <h8 class="title-d">La subasta aún no ha comenzado o ha finalizado</h8>
                                     @endif
                                 </ul>
                             </div>
