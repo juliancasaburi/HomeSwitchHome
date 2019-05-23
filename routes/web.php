@@ -47,23 +47,23 @@ Route::post('logout', function() {
 
 // Profile
 
-Route::get('/profile', 'UserController@showUserProfile');
+Route::get('/profile', 'UserController@showUserProfile')->middleware('verified');
 
 Route::put('/add-balance', 'UserController@addBalance');
 
 // Modify email
-Route::get('/profile/modify-email', 'UserController@showEmailForm');
+Route::get('/profile/modify-email', 'UserController@showEmailForm')->middleware('verified');
 Route::put('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');
 
 // Modify password
-Route::get('/profile/modify-password', 'UserController@showPasswordForm');
+Route::get('/profile/modify-password', 'UserController@showPasswordForm')->middleware('verified');
 Route::put('/profile/modify-password', 'UserController@modifyPassword');
 
 // Inscriptions
-Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList');
+Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList')->middleware('verified');
 
 // Bids
-Route::get('/profile/bid-list', 'UserController@showBidList')->name('user.bidList');
+Route::get('/profile/bid-list', 'UserController@showBidList')->name('user.bidList')->middleware('verified');;
 
 // Auctions
 Route::get('/auction', function() {
@@ -71,7 +71,7 @@ Route::get('/auction', function() {
 });
 
 //Reservations
-Route::get('/profile/reservation-list', 'UserController@showReservations')->name('user.reservations');
+Route::get('/profile/reservation-list', 'UserController@showReservations')->name('user.reservations')->middleware('verified');
 Route::put('/profile/reservation-list', 'UserController@cancelReservation')->name('user.cancelReservation');
 //----------------------------------------------
 
