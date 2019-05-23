@@ -22,7 +22,7 @@ class WeekController extends Controller
             ->first();
 
         // If property id doesn't exist, show 404 error page
-        if(empty($week)) {
+        if(empty($week) || !$week->auction) {
             abort(404);
         }
 
@@ -39,7 +39,7 @@ class WeekController extends Controller
      */
     public function showGrid()
     {
-        $weeks = Week::join('subastas', 'semanas.id', '=', 'subastas.semana_id')->orderBy('inscripcion_inicio', 'asc')->paginate(2);
+        $weeks = Week::has('auction')->paginate(2);
         return view('weeks', [
             'weeks' => $weeks,
         ]);
