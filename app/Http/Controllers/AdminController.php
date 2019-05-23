@@ -11,6 +11,8 @@ use App\Auction;
 use App\Week;
 use App\Reservation;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Price;
 
 class AdminController extends Controller
 {
@@ -39,6 +41,7 @@ class AdminController extends Controller
             [
                 'usersCount' => User::all()->count(),
                 'premiumUsersCount' => User::where('premium', 1)->count(),
+                'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
                 'propertiesCount' => Property::all()->count(),
                 'weeksCount' => Week::all()->count(),
                 'pendingAuctionsCount' => Auction::where('inscripcion_inicio', '>', Carbon::now())->count(),
@@ -138,5 +141,27 @@ class AdminController extends Controller
         $reservation->cancel();
         return redirect()->back()->with('alert-success', 'Reserva '.Input::get('reservationID').' cancelada');
 
+    }
+
+    public function showUpdatePriceForm(){
+        $concepts = Price::all();
+        return view('admin-prices')->with('concepts', $concepts);
+    }
+
+    public function updatePrice(){
+        $validator = Validator::make(Input::all(), [
+            'price' => ['required', 'numeric'],
+        ]);
+
+        if($validator->fails()){
+            // Return admin back and show an error flash message
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $price = Price::find(Input::get('idConcept'));
+        $price->valor = Input::get('price');
+        $price->save();
+
+        return redirect()->back()->with('alert-success', 'Precio establecido en $'.Input::get('price'));
     }
 }

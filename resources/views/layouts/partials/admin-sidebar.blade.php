@@ -106,6 +106,9 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ url('admin/dashboard/prices') }}"><i class="fas fa-cash-register"></i>Precios</a>
+                    </li>
                 </ul>
             </div>
         </nav>

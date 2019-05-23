@@ -103,6 +103,8 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/create-auction', 'AuctionCreationController@store')->name('auction.create');
     Route::get('/dashboard/reservation-list', 'AdminController@showReservationList')->name('admin.reservationList');
     Route::put('/dashboard/reservation-list', 'AdminController@cancelReservation')->name('admin.cancelReservation');
+    Route::get('/dashboard/prices', 'AdminController@showUpdatePriceForm')->name('admin.updatePrices');
+    Route::put('/dashboard/prices', 'AdminController@updatePrice')->name('admin.updatePrice');
     //--------------------------------------------
 });
 

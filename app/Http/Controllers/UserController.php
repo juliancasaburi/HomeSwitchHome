@@ -15,6 +15,7 @@ use App\Bid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -41,7 +42,12 @@ class UserController extends Controller
 
     public function showUserProfile()
     {
-        return view('user-profile');
+        return view('user-profile')->with(
+            [
+                'premiumUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
+                'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
+            ]
+        );
     }
 
     public function showEmailForm()
@@ -70,35 +76,35 @@ class UserController extends Controller
     }
 
     public function showPasswordForm(){
-      return view('user-password-form');
+        return view('user-password-form');
     }
 
     public function modifyPassword(){
         $rules = [
-          'mypassword' => 'required',
-          'password' => 'required|confirmed|min:8',
+            'mypassword' => 'required',
+            'password' => 'required|confirmed|min:8',
         ];
         $messages = [
-          'mypassword.required' => 'El campo es requerido',
-          'password.required' => 'El campo es requerido',
-          'password.confirmed' => 'Las contraseñas no coinciden',
-          'password.min' => 'El minimo permitido son 8 caracteres',
+            'mypassword.required' => 'El campo es requerido',
+            'password.required' => 'El campo es requerido',
+            'password.confirmed' => 'Las contraseñas no coinciden',
+            'password.min' => 'El minimo permitido son 8 caracteres',
         ];
         $validator = Validator::make(Input::all(), $rules, $messages);
         if ($validator->fails()){
-          return redirect('/profile/modify-password')->withErrors($validator);
+            return redirect('/profile/modify-password')->withErrors($validator);
         }
         else{
-          if (Hash::check(Input::get('mypassword'), Auth::user()->password)){
-            $user = Auth::user();
-            $user->password = bcrypt(Input::get('password'));
-            $user->save();
-              return redirect('/profile')->with('alert-success', 'Contraseña cambiada exitosamente');
-          }
-          else
-          {
-            return redirect('/profile/modify-password')->with('alert-success', 'Datos incorrectos');
-          }
+            if (Hash::check(Input::get('mypassword'), Auth::user()->password)){
+                $user = Auth::user();
+                $user->password = bcrypt(Input::get('password'));
+                $user->save();
+                return redirect('/profile')->with('alert-success', 'Contraseña cambiada exitosamente');
+            }
+            else
+            {
+                return redirect('/profile/modify-password')->with('alert-success', 'Datos incorrectos');
+            }
         }
     }
 

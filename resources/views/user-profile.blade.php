@@ -59,11 +59,15 @@
 														<div class="rating-star  d-inline-block">
 															<i class="fas fa-ticket-alt text-success"></i>
 															<p class="d-inline-block text-dark">USUARIO PREMIUM</p>
+															<br>
+															<p class="d-inline-block text-dark">Costo subscripción: ${{ $premiumUserSubscriptionPrice }}</p>
 														</div>
 													@else
 														<div class="rating-star  d-inline-block">
 															<i class="fas fa-user"></i>
 															<p class="d-inline-block text-dark">USUARIO REGULAR</p>
+															<br>
+															<p class="d-inline-block text-dark">Costo subscripción: ${{ $normalUserSubscriptionPrice }}</p>
 														</div>
 													@endif
 												</div>
@@ -72,6 +76,7 @@
 														<span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>{{ Auth::user()->pais }}</span>
 														<span class="mb-2 ml-xl-4 d-xl-inline-block d-block">Se unió el: {{ Auth::user()->created_at }}  </span>
 														<span class=" mb-2 d-xl-inline-block d-block ml-xl-4">{{ Auth::user()->age }} años </span>
+														<span class=" mb-2 d-xl-inline-block d-block ml-xl-4">Próximo ciclo de facturación: {{ Auth::user()->created_at->addMonths(1)}} </span>
 													</p>
 												</div>
 											</div>
