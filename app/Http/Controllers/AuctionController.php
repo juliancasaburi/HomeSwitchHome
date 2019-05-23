@@ -28,7 +28,7 @@ class AuctionController extends Controller
 
         $latestBid = $auction->latestBid;
 
-        $enabled = ($auction->inicio < Carbon::now() && !$auction->trashed());
+        $enabled = ($auction->inicio <= Carbon::now() && $auction->fin > Carbon::now() && !$auction->trashed());
 
         if(Auth::user()) {
             $myLatestBid = $auction->latestBidForUser(Auth::user())->first();
