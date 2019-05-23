@@ -66,7 +66,22 @@
                                             <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
                                         @endguest
                                     @else
-                                        <h8 class="title-d">La subasta aún no ha comenzado o ha finalizado</h8>
+                                        @if($auction->inscripcion_inicio <= \Carbon\Carbon::now() && $auction->inscripcion_fin > \Carbon\Carbon::now())
+                                            <h8>La subasta está en período de inscripción. Puedes inscribirte clickeando el siguiente botón</h8>
+                                            @auth
+                                                @if($auction->whereHas('inscriptions', function ($query){
+                                                    $query->where('usuario_id', Auth::user()->id);
+                                                    })->count() == 0 &&  Auth::user()->creditos > 0)
+                                                    <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $auction->id }}" data-wd="{{ $auction->week->fecha }}" data-aup="{{ $auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                                @elseif(Auth::user()->creditos == 0)
+                                                    <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
+                                                @else
+                                                    <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
+                                                @endif
+                                            @endauth
+                                        @else
+                                            <h6 class="title-d">La subasta aún no ha comenzado o ha finalizado</h6>
+                                        @endif
                                     @endif
                                 </ul>
                             </div>
