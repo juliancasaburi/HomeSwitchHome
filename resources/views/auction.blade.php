@@ -53,7 +53,7 @@
                                         @endauth
                                         <li class="d-flex justify-content-between">
                                             <strong>Puja más reciente:</strong>
-                                            @if($auction->bids->count() == 0)
+                                            @if(!$latestBid)
                                                 <span> Nadie participó aún <i class="fas fa-frown"></i></span>
                                             @else
                                                 <span>Monto: <strong>$ {{ $latestBid->monto }}</strong> <br>Usuario: <strong>({{ $latestBid->user->nombre }}) </strong> <br>Fecha: <strong>{{ $latestBid->created_at }}</strong></span>
@@ -103,16 +103,24 @@
                                             </h3>
                                         </div>
                                     </div>
-                                    <div class="card-body-d">
-                                        <p class="content-d color-text-a">
-                                            {{ $latestBid->user->nombre }}
-                                        </p>
-                                        <div class="info-agents color-a">
-                                            <p>
-                                                <strong>Monto: </strong>$ {{ $latestBid->monto }}</p>
-                                            <strong>Fecha: </strong> {{ $latestBid->created_at }}</p>
+                                    @if($latestBid)
+                                        <div class="card-body-d">
+                                            <p class="content-d color-text-a">
+                                                {{ $latestBid->user->nombre }}
+                                            </p>
+                                            <div class="info-agents color-a">
+                                                <p>
+                                                    <strong>Monto: </strong>$ {{ $latestBid->monto }}</p>
+                                                <strong>Fecha: </strong> {{ $latestBid->created_at }}</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="card-body-d">
+                                            <p class="content-d color-text-a">
+                                                Aún no hubo una puja
+                                            </p>
+                                        </div>
+                                    @endif
                                     <div class="card-footer-d text-center">
                                         @auth
                                             <button class="btn btn-a" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>

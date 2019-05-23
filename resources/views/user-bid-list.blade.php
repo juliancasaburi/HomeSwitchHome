@@ -73,7 +73,7 @@
                                                 <td><a href={{ url('auction?id=').$b->auction->id }}>Ver subasta</a></td>
                                                 <td>{{ $b->created_at }}</td>
                                                 <td>${{ $b->monto }}</td>
-                                                @if($b->auction->latestBid->first()->id == $b->id)
+                                                @if($b->auction->latestBid->user->id == Auth::user()->id)
                                                     <td>Ganando</td>
                                                 @else
                                                     <td>Perdiendo</td>
