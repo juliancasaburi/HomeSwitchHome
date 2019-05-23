@@ -14,7 +14,7 @@
                         Menu
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{( url('/profile') )}}" data-toggle="modal" data-target="#balanceModal"><i class="fa fa-fw fa-user-circle"></i>Mi cuenta - Inicio</a>
+                        <a class="nav-link" href="{{( url('/profile') )}}"><i class="fa fa-fw fa-user-circle"></i>Mi cuenta - Inicio</a>
                     </li>
                     <li class="nav-divider">
                         Acciones
