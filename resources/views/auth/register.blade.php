@@ -277,14 +277,14 @@
         </span>
         @enderror
         <label for="inputPassword">Password</label>
-        <input type="text" name="password" id="inputPassword" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required autocomplete="off">
+        <input type="password" name="password" id="inputPassword" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required autocomplete="off">
         @error('password')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
         <label for="password-confirm">Confirmar Password</label>
-        <input type="text" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Contraseña" required autocomplete="off">
+        <input type="password" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Contraseña" required autocomplete="off">
         @error('password')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
