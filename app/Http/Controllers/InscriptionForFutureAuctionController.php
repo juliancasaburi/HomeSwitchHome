@@ -16,7 +16,7 @@ class InscriptionForFutureAuctionController extends Controller
 
     public function store(Request $request)
     {
-        if(User::where('id', $request->uid)->first()->creditos == 0){
+        if(User::find($request->uid)->first()->creditos == 0){
             // Return user back and show a flash message
             return redirect()->back()->with('alert-error', 'No tienes créditos');
         }

@@ -62,15 +62,13 @@
                                         @auth
                                             <button class="btn btn-b" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
                                         @endauth
-                                        @guest
-                                            <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
-                                        @endguest
                                     @else
-                                        @if($auction->inscripcion_inicio <= \Carbon\Carbon::now() && $auction->inscripcion_fin > \Carbon\Carbon::now())
-                                            <h8>La subasta está en período de inscripción. Puedes inscribirte clickeando el siguiente botón</h8>
+                                        @if(!$auction->trashed() && $auction->inscripcion_inicio <= \Carbon\Carbon::now() && $auction->inscripcion_fin > \Carbon\Carbon::now())
+                                            <h8>La subasta está en período de inscripción.</h8>
                                             @auth
+                                                <h8>Puedes inscribirte clickeando el siguiente botón</h8>
                                                 @if($auction->whereHas('inscriptions', function ($query){
-                                                    $query->where('usuario_id', Auth::user()->id);
+                                                    $query->where('usuario_id', '=', Auth::user()->id);
                                                     })->count() == 0 &&  Auth::user()->creditos > 0)
                                                     <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $auction->id }}" data-wd="{{ $auction->week->fecha }}" data-aup="{{ $auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
                                                 @elseif(Auth::user()->creditos == 0)
@@ -83,6 +81,9 @@
                                             <h6 class="title-d">La subasta aún no ha comenzado o ha finalizado</h6>
                                         @endif
                                     @endif
+                                    @guest
+                                        <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                    @endguest
                                 </ul>
                             </div>
                         </div>
@@ -139,7 +140,7 @@
 
     <!-- Auction End -->
 
-    <!-- Modal -->
+    <!-- Bid Modal -->
     <div class="modal fade" id="bidModal" tabindex="-1" role="dialog" aria-labelledby="bidModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -173,7 +174,42 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver a la información</button>
-                    <button type="button" class="btn btn-primary" onclick="form_submit()">Pujar</button>
+                    <button type="button" class="btn btn-primary" onclick="bid_submit()">Pujar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inscription Modal -->
+    <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inscriptionModalLabel">Inscribirse a una subasta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="weekDate">Semana:</h3>
+                    <h3 id="initialPrice">Precio inicial:</h3>
+                    <form class="needs-validation" id="inscriptionForm" action="{{ route('auction.signIn') }}" role="form" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="uid"></label>
+                                <input type="text" name="uid" class="form-control" id="uid" value="" hidden>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="auid"></label>
+                                <input type="text" name="auid" class="form-control" id="auid" value="" hidden>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No inscribir</button>
+                    <button type="button" id="submitInscription" class="btn btn-primary" onclick="inscription_submit()">Inscribir</button>
                 </div>
             </div>
         </div>
@@ -185,7 +221,7 @@
 
 @section('js')
     <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script> // Edit User
+    <script> // Bid modal
 
         // Reset modal input after closing it
         $('#bidModal').on('hidden.bs.modal', function(e)
@@ -199,8 +235,61 @@
         });
 
         // Button
-        function form_submit() {
+        function bid_submit() {
             document.getElementById("bidForm").submit();
+        }
+    </script>
+
+    <script> // Inscription modal
+
+        // Reset modal input after closing it
+        $('#inscriptionModal').on('hidden.bs.modal', function(e)
+        {
+            $("#inscriptionModal .modal-body input").val("");
+
+            var date = document.getElementById('weekDate');
+
+            // removing everything inside the node
+            while (date.firstChild) {
+                date.removeChild(date.firstChild);
+            }
+
+            // appending new text node
+            date.appendChild(document.createTextNode('Semana: '));
+
+            var initialPrice = document.getElementById('initialPrice');
+
+            // removing everything inside the node
+            while (initialPrice.firstChild) {
+                initialPrice.removeChild(initialPrice.firstChild);
+            }
+
+            // appending new text node
+            initialPrice.appendChild(document.createTextNode('Precio Inicial: '));
+        }) ;
+
+        // Display user data
+        $('#inscriptionModal').on('show.bs.modal', function (event) {
+            var weekDate = $(event.relatedTarget).data('wd');
+            var auctionPrice = $(event.relatedTarget).data('aup');
+            var auctionID = $(event.relatedTarget).data('auid');
+            var userID = $(event.relatedTarget).data('uid');
+
+            $(event.currentTarget).find('input[name="auid"]').attr('value', auctionID);
+            $(event.currentTarget).find('input[name="uid"]').attr('value', userID);
+
+            var date = document.getElementById('weekDate');
+            // appending new text node
+            date.appendChild(document.createTextNode(weekDate));
+
+            var initialPrice = document.getElementById('initialPrice');
+            // appending new text node
+            initialPrice.appendChild(document.createTextNode(auctionPrice));
+        });
+
+        // Button
+        function inscription_submit() {
+            document.getElementById("inscriptionForm").submit();
         }
     </script>
 @endsection
