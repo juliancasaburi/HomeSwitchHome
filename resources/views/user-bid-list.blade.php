@@ -45,11 +45,11 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <!-- ============================================================== -->
-                    <!-- inscription table  -->
+                    <!-- User Bid table  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Listado de Inscripciones</h5>
+                            <h5 class="card-header">Listado de Pujas</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <!-- ============================================================== -->
-                    <!-- end inscription table  -->
+                    <!-- end User Bid table  -->
                     <!-- ============================================================== -->
                 </div>
             </div>
