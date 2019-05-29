@@ -34,22 +34,34 @@ class AuctionCreationController extends Controller
 
         if($request->inscripcionFechaCierre <= $request->inscripcionFechaApertura){
             // Redirect back and flash error message
-            return redirect('admin/dashboard/create-auction')->with('alert-error', 'Fecha finaliza Inscripcion debe ser mayor a Fecha comienzo Inscripcion');
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->with('alert-error', 'Fecha finaliza Inscripcion debe ser mayor a Fecha comienzo Inscripcion');
         }
 
         if($request->subastaFechaApertura <= $request->inscripcionFechaCierre){
             // Redirect back and flash error message
-            return redirect('admin/dashboard/create-auction')->with('alert-error', 'Fecha comienzo Subasta debe ser mayor a Fecha finaliza Inscripcion');
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->with('alert-error', 'Fecha comienzo Subasta debe ser mayor a Fecha finaliza Inscripcion');
         }
 
         if($request->subastaFechaCierre <= $request->subastaFechaAperura){
             // Redirect back and flash error message
-            return redirect('admin/dashboard/create-auction')->with('alert-error', 'Fecha finaliza Subasta debe ser mayor a Fecha comienzo Subasta');
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->with('alert-error', 'Fecha finaliza Subasta debe ser mayor a Fecha comienzo Subasta');
         }
 
         if($validator->fails()){
             // Redirect back and show an error flash message
-            return redirect('admin/dashboard/create-auction')->withErrors($validator);
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->withErrors($validator);
         }
 
         // Week already exists?
@@ -69,7 +81,10 @@ class AuctionCreationController extends Controller
             // Redirect back and flash success message
             return redirect('admin/dashboard/create-auction')->with('alert-success', 'Subasta creada exitosamente!');
         }
-        return redirect('admin/dashboard/create-auction')->with('alert-error', 'Ya existe una subasta para esta semana');
+        return redirect()
+            ->back()
+            ->withInput($request->all())
+            ->with('alert-error', 'Ya existe una subasta para esta semana');
     }
 
 public function getWeeks($id) {

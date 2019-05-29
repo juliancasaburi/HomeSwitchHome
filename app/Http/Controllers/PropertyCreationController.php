@@ -29,6 +29,10 @@ class PropertyCreationController extends Controller
 
     public function store(Request $request)
     {
+        $messages = [
+            'numero.unique' => 'Ya existe una propiedad en esa combinación de país/provincia/localidad/calle/numero',
+        ];
+
         $validator = Validator::make($request->all(), [
             'nombre' => ['required', 'string'],
             'pais' => ['required', 'string'],
@@ -54,11 +58,14 @@ class PropertyCreationController extends Controller
             'banios' => ['required', 'numeric'],
             'capacidadVehiculos' => ['required', 'numeric'],
             'foto'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+        ], $messages);
 
         if($validator->fails()){
             // Return user back and show an error flash message
-            return redirect('admin/dashboard/create-property')->withErrors($validator);
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                ->withErrors($validator);
         }
 
         $property = new Property;

@@ -20,7 +20,6 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Admin Dashboard</h2>
-                            <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -50,12 +49,12 @@
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" name="crearSemanas" id="crearSemanas" class="custom-control-input"><span class="custom-control-label">Crear semanas para {{Carbon\Carbon::today()->year}}</span>
+                                                <input type="checkbox" name="crearSemanas" id="crearSemanas" class="custom-control-input" value="{{ old('crearSemanas') }}"><span class="custom-control-label">Crear semanas para {{Carbon\Carbon::today()->year}}</span>
                                             </label>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputNombre">Nombre</label>
-                                            <input type="text" name="nombre" class="form-control" id="inputNombre" placeholder="Nombre" required autofocus>
+                                            <input type="text" name="nombre" class="form-control" value="{{ old('nombre') }}" id="inputNombre" placeholder="Nombre" required autofocus>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
@@ -320,28 +319,28 @@
                                     <div class="form-row">
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
                                             <label for="inputProvincia">Provincia</label>
-                                            <input type="text" name="provincia" class="form-control" id="inputProvincia" placeholder="Provincia" required>
+                                            <input type="text" name="provincia" class="form-control" value="{{ old('provincia') }}" id="inputProvincia" placeholder="Provincia" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
                                             <label for="inputLocalidad">Localidad</label>
-                                            <input type="text" name="localidad" class="form-control" id="inputLocalidad" placeholder="Localidad" required>
+                                            <input type="text" name="localidad" class="form-control" value="{{ old('localidad') }}" id="inputLocalidad" placeholder="Localidad" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
                                             <label for="inputCalle">Calle</label>
-                                            <input type="text" name="calle" class="form-control" id="inputCalle" placeholder="Calle" required>
+                                            <input type="text" name="calle" class="form-control" value="{{ old('calle') }}" id="inputCalle" placeholder="Calle" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
                                             <label for="inputNumero">Numero</label>
-                                            <input type="text" name="numero" class="form-control" id="inputNumero" placeholder="Numero" required>
+                                            <input type="text" name="numero" class="form-control" value="{{ old('numero') }}" id="inputNumero" placeholder="Numero" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
@@ -350,35 +349,35 @@
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputEstrellas">Estrellas</label>
-                                            <input type="number" name="estrellas" class="form-control" id="inputEstrellas" placeholder="1 al 5" required>
+                                            <input type="number" name="estrellas" class="form-control" value="{{ old('estrellas') }}" id="inputEstrellas" placeholder="1 al 5" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputCapacidad">Capacidad</label>
-                                            <input type="number" name="capacidad" class="form-control" id="inputCapacidad" placeholder="Capacidad(Personas)" required>
+                                            <input type="number" name="capacidad" class="form-control" value="{{ old('capacidad') }}" id="inputCapacidad" placeholder="Capacidad(Personas)" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputHabitaciones">Habitaciones</label>
-                                            <input type="number" name="habitaciones" class="form-control" id="inputCapacidad" placeholder="Habitaciones(Cantidad)" required>
+                                            <input type="number" name="habitaciones" class="form-control" value="{{ old('habitaciones') }}" id="inputCapacidad" placeholder="Habitaciones(Cantidad)" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputBaños">Baños</label>
-                                            <input type="number" name="banios" class="form-control" id="inputBanios" placeholder="Baños(Cantidad)" required>
+                                            <input type="number" name="banios" class="form-control" value="{{ old('banios') }}" id="inputBanios" placeholder="Baños(Cantidad)" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>
                                         </div>
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                             <label for="inputCapacidadVehiculos">Capacidad Vehiculos</label>
-                                            <input type="number" name="capacidadVehiculos" class="form-control" id="inputCapacidadVehiculos" placeholder="Capacidad Vehiculos" required>
+                                            <input type="number" name="capacidadVehiculos" class="form-control" value="{{ old('capacidadVehiculos') }}" id="inputCapacidadVehiculos" placeholder="Capacidad Vehiculos" required>
                                             <div class="valid-feedback">
                                                 Válido
                                             </div>

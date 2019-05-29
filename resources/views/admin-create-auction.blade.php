@@ -20,7 +20,6 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Admin Dashboard</h2>
-                            <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -67,35 +66,35 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2 ">
                                         <label for="fechaApertura">Inscripción fecha apertura</label>
-                                        <input type="datetime-local" name="inscripcionFechaApertura" class="form-control" id="fechaApertura" required>
+                                        <input type="datetime-local" name="inscripcionFechaApertura" class="form-control" value="{{ old('inscripcionFechaApertura') }}" id="fechaApertura" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2 ">
                                         <label for="inscripcionFechaCierre">Inscripción fecha finaliza</label>
-                                        <input type="datetime-local" name="inscripcionFechaCierre" class="form-control" id="inscripcionFechaCierre" required>
+                                        <input type="datetime-local" name="inscripcionFechaCierre" class="form-control" value="{{ old('inscripcionFechaCierre') }}" id="inscripcionFechaCierre" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                         <label for="subastaFechaApertura">Subasta fecha comienzo</label>
-                                        <input type="datetime-local" name="subastaFechaApertura" class="form-control" id="subastaFechaApertura" required>
+                                        <input type="datetime-local" name="subastaFechaApertura" class="form-control" value="{{ old('subastaFechaApertura') }}" id="subastaFechaApertura" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                         <label for="subastaFechaCierre">Subasta fecha finaliza</label>
-                                        <input type="datetime-local" name="subastaFechaCierre" class="form-control" id="subastaFechaCierre" required>
+                                        <input type="datetime-local" name="subastaFechaCierre" class="form-control" value="{{ old('subastaFechaCierre') }}" id="subastaFechaCierre" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <label for="subastaFechaCierre">Precio inicial (Piso)</label>
-                                        <input type="number" step=0.01 name="precioInicial" class="form-control" id="precioInicial" required>
+                                        <input type="number" step=0.01 name="precioInicial" class="form-control" value="{{ old('precioInicial') }}" id="precioInicial" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>
