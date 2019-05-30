@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function showUserProfile()
     {
-        return view('user-profile')->with(
+        return view('user.user-profile')->with(
             [
                 'premiumUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
                 'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
@@ -52,7 +52,7 @@ class UserController extends Controller
 
     public function showEmailForm()
     {
-        return view('user-email-form');
+        return view('user.user-email-form');
     }
 
     public function modifyEmail()
@@ -76,7 +76,7 @@ class UserController extends Controller
     }
 
     public function showPasswordForm(){
-        return view('user-password-form');
+        return view('user.user-password-form');
     }
 
     public function modifyPassword(){
@@ -111,20 +111,20 @@ class UserController extends Controller
     public function showInscriptionList()
     {
         $inscriptions = Auth::user()->auctionInscriptions;
-        return view('user-inscription-list')->with ('inscriptions',$inscriptions);
+        return view('user.user-inscription-list')->with ('inscriptions',$inscriptions);
     }
 
     public function showBidList()
     {
         $bids = Auth::user()->bids;
-        return view('user-bid-list')->with ('bids',$bids);
+        return view('user.user-bid-list')->with ('bids',$bids);
     }
 
     public function showReservations(){
 
         $reservations = Auth::user()->reservationsWithTrashed;
 
-        return view('user-reservation-list')->with('reservations', $reservations);
+        return view('user.user-reservation-list')->with('reservations', $reservations);
     }
 
     public function addBalance()

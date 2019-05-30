@@ -37,7 +37,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin-dashboard')->with(
+        return view('admin.admin-dashboard')->with(
             [
                 'usersCount' => User::all()->count(),
                 'premiumUsersCount' => User::where('premium', 1)->count(),
@@ -62,7 +62,7 @@ class AdminController extends Controller
      */
     public function showPropertyCreationForm()
     {
-        return view('admin-create-property');
+        return view('admin.admin-create-property');
     }
 
     /**
@@ -73,18 +73,18 @@ class AdminController extends Controller
     public function showUserList()
     {
         $users = User::all();
-        return view('admin-user-list')->with ('users',$users);
+        return view('admin.admin-user-list')->with ('users',$users);
     }
 
     public function showPropertyList()
     {
         $properties = Property::all();
-        return view('admin-property-list')->with ('properties',$properties);
+        return view('admin.admin-property-list')->with ('properties',$properties);
     }
 
     public function showWeekCreationForm(){
         $properties = Property::all();
-        return view('admin-create-week')->with('properties', $properties);
+        return view('admin.admin-create-week')->with('properties', $properties);
     }
 
     public function editUser(Request $request){
@@ -119,11 +119,11 @@ class AdminController extends Controller
     public function showAuctionList()
     {
         $auctions = Auction::withTrashed()->get();
-        return view('admin-auction-list')->with ('auctions',$auctions);
+        return view('admin.admin-auction-list')->with ('auctions',$auctions);
     }
 
     public function showAuctionCreationForm(){
-        return view('admin-create-auction', [
+        return view('admin.admin-create-auction', [
             'properties' => Property::all(),
             'weeks' => Week::all(),
         ]);
@@ -132,7 +132,7 @@ class AdminController extends Controller
     public function showReservationList()
     {
         $reservations = Reservation::withTrashed()->get();
-        return view('admin-reservation-list')->with ('reservations',$reservations);
+        return view('admin.admin-reservation-list')->with ('reservations',$reservations);
     }
 
     public function cancelReservation()
@@ -145,7 +145,7 @@ class AdminController extends Controller
 
     public function showUpdatePriceForm(){
         $concepts = Price::all();
-        return view('admin-prices')->with('concepts', $concepts);
+        return view('admin.admin-prices')->with('concepts', $concepts);
     }
 
     public function updatePrice(){

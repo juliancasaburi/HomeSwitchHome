@@ -16,7 +16,7 @@ class WeekCreationController extends Controller
 
     public function index()
     {
-        return view('admin.createWeek');
+        return view('admin.admin.createWeek');
     }
 
     public function store(Request $request)

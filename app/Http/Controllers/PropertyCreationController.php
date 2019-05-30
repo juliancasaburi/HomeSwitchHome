@@ -24,7 +24,7 @@ class PropertyCreationController extends Controller
 
     public function index()
     {
-        return view('admin.createProperty');
+        return view('admin.admin.createProperty');
     }
 
     public function store(Request $request)

@@ -18,7 +18,7 @@ class AuctionCreationController extends Controller
 
     public function index()
     {
-        return view('admin.createAuction');
+        return view('admin.admin.createAuction');
     }
 
     public function store(Request $request)
