@@ -122,6 +122,7 @@ Route::post('/auctionSignin', 'InscriptionForFutureAuctionController@store')->na
 
 // Auction
 Route::get('/auction', 'AuctionController@index');
+Route::get('/auction/active-auctions', 'AuctionController@showActiveAuctions')->name('auction.active');
 Route::post('/auction/bid', 'BidController@store');
 
 /*

@@ -48,4 +48,9 @@ class AuctionController extends Controller
             'enabled' => $enabled,
         ]);
     }
+
+    public function showActiveAuctions(){
+        $auctions = Auction::where('inicio', '<=', Carbon::now())->where('fin', '>=', Carbon::now())->get();
+        return view('admin/admin-active-auction-list')->with('auctions',$auctions);
+    }
 }

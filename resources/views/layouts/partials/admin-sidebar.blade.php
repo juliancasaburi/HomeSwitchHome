@@ -72,6 +72,9 @@
                                     <a class="nav-link" href="{{ url('admin/dashboard/auction-list') }}">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/auction/active-auctions') }}">Ver subastas activas</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/create-auction') }}">Crear Subasta</a>
                                 </li>
                                 <li class="nav-item">
