@@ -29,7 +29,7 @@ class AuctionCreationController extends Controller
             'inscripcionFechaCierre' => ['required', 'date'],
             'subastaFechaApertura' => ['required', 'date'],
             'subastaFechaCierre' => ['required', 'date'],
-            'precioInicial' => ['required', 'numeric'],
+            'precioInicial' => ['required', 'numeric', 'gte:0'],
         ]);
 
         if($request->inscripcionFechaCierre <= $request->inscripcionFechaApertura){

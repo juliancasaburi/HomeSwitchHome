@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                         <label for="inputPrice">Precio</label>
-                                        <input type="number" step="0.01" name="price" class="form-control" placeholder="{{$c->valor}}" id="price" required>
+                                        <input type="number" step="0.01" name="price" class="form-control" placeholder="0.00" id="price" required>
                                         <div class="valid-feedback">
                                             Válido
                                         </div>

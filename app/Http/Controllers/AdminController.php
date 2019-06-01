@@ -42,6 +42,7 @@ class AdminController extends Controller
                 'usersCount' => User::all()->count(),
                 'premiumUsersCount' => User::where('premium', 1)->count(),
                 'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
+                'premiumPlusPrice' => DB::table('precios')->where('concepto', 'Plus usuario premium')->pluck('valor')->first(),
                 'propertiesCount' => Property::all()->count(),
                 'weeksCount' => Week::all()->count(),
                 'pendingAuctionsCount' => Auction::where('inscripcion_inicio', '>', Carbon::now())->count(),
@@ -150,7 +151,7 @@ class AdminController extends Controller
 
     public function updatePrice(){
         $validator = Validator::make(Input::all(), [
-            'price' => ['required', 'numeric'],
+            'price' => ['required', 'numeric', 'gte:0'],
         ]);
 
         if($validator->fails()){
@@ -162,7 +163,9 @@ class AdminController extends Controller
         $price->valor = Input::get('price');
         $price->save();
 
-        return redirect()->back()->with('alert-success', 'Precio establecido en $'.Input::get('price'));
+        return redirect()
+            ->back()
+            ->with('alert-success', $price->concepto.' establecido en $'.Input::get('price'));
     }
 
     public function showActiveAuctions(){
