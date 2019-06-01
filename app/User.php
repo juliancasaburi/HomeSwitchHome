@@ -4,12 +4,14 @@ namespace App;
 
 use App\Notifications\ReservationCancelled;
 use App\Notifications\ReservationObtained;
+use Faker\Provider\Payment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\VerificarEmail;
 use App\Notifications\ResetPassword;
 use App\Notifications\EmailChanged;
+use App\Notifications\PaymentDetailsChanged;
 use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -68,6 +70,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailChangedNotification()
     {
         $this->notify(new EmailChanged); // notificacion
+    }
+
+    /**
+     * Send the payment details changed notification.
+     *
+     * @return void
+     */
+    public function sendPaymentDetailsChangedNotification()
+    {
+        $this->notify(new PaymentDetailsChanged); // notificacion
     }
 
     /**

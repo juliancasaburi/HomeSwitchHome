@@ -184,6 +184,7 @@ class UserController extends Controller
                 $user = Auth::user();
                 $user->numero_tarjeta = Input::get('numeroTarjeta');
                 $user->save();
+                $user->sendPaymentDetailsChangedNotification();
                 return redirect()->back()->with('alert-success', 'Datos de pago modificados exitosamente!');
             }
             else
