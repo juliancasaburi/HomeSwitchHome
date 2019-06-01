@@ -25,7 +25,6 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <h3 class="mb-2">Mi Cuenta</h3>
-                                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -65,11 +64,32 @@
                     <!-- end content  -->
                     <!-- ============================================================== -->
 
-                    @if (Session::has('message'))
-                      <div class="text-danger">
-                        {{Session::get('massage')}}
-                      </div>
-                    @endif
+                    <!-- ============================================================== -->
+                    <!-- Alerts  -->
+                    <!-- ============================================================== -->
+                    @if(session()->has('alert-success'))
+                        <div class="alert alert-success alert-dismissible" data-expires="10000">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            {{ session()->get('alert-success') }}
+                        </div>
+                    @elseif (session()->has('alert-error'))
+                        <div class="alert alert-danger alert-dismissible" data-expires="10000">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            {{ session()->get('alert-error') }}
+                        </div>
+                    @elseif ($errors->any())
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                @endif
+                <!-- ============================================================== -->
+                    <!-- End Alerts  -->
+                    <!-- ============================================================== -->
                 </div>
             </div>
         </div>

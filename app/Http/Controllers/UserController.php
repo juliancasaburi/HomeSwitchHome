@@ -103,7 +103,7 @@ class UserController extends Controller
             }
             else
             {
-                return redirect('/profile/modify-password')->with('alert-success', 'Datos incorrectos');
+                return redirect('/profile/modify-password')->with('alert-error', 'Contraseña actual incorrecta');
             }
         }
     }

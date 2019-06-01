@@ -78,11 +78,6 @@
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                             {{ session()->get('alert-success') }}
                         </div>
-                    @elseif (session()->has('alert-warning'))
-                        <div class="alert alert-warning alert-dismissible" data-expires="10000">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            {{ session()->get('alert-warning') }}
-                        </div>
                     @elseif (session()->has('alert-error'))
                         <div class="alert alert-danger alert-dismissible" data-expires="10000">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
