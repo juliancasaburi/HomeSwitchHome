@@ -7,15 +7,23 @@
     <section class="auction nav-arrow-b">
         <div class="container">
             <div class="col-sm-12 ">
+                <!-- ============================================================== -->
+                <!-- Alerts  -->
+                <!-- ============================================================== -->
                 @if(session()->has('alert-success'))
-                    <div class="alert alert-success" data-expires="5000">
+                    <div class="alert alert-success alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                         {{ session()->get('alert-success') }}
                     </div>
                 @elseif (session()->has('alert-error'))
-                    <div class="alert alert-danger" data-expires="5000">
+                    <div class="alert alert-error alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                         {{ session()->get('alert-error') }}
                     </div>
                 @endif
+                <!-- ============================================================== -->
+                <!-- End Alerts  -->
+                <!-- ============================================================== -->
                 <div class="row card-header">
                     <h3 class="title-a color-b">{{ $auction->property->nombre }}</h3>
                 </div>
