@@ -73,10 +73,20 @@
                                                 <td><a href={{ url('auction?id=').$b->auction->id }}>Ver subasta</a></td>
                                                 <td>{{ $b->created_at }}</td>
                                                 <td>${{ $b->monto }}</td>
-                                                @if($b->auction->latestBid->user->id == Auth::user()->id)
-                                                    <td>Ganando</td>
+                                                @if(!$b->auction->trashed())
+                                                    @if($b->auction->latestBid->user->id == Auth::user()->id)
+                                                        <td>Ganando</td>
+                                                    @else
+                                                        <td>Perdiendo</td>
+                                                    @endif
                                                 @else
-                                                    <td>Perdiendo</td>
+                                                    @if($b->auction->week->reservation && $b->auction->week->reservation->usuario_id == Auth::user()->id)
+                                                        <td>Ganada</td>
+                                                    @elseif($b->auction->week->reservation)
+                                                        <td>Perdida</td>
+                                                        @else
+                                                            <td>Cancelada</td>
+                                                    @endif
                                                 @endif
                                             </tr>
                                         @endforeach
