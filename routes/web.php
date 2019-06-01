@@ -109,6 +109,7 @@ Route::prefix('admin')->group(function() {
     Route::put('/dashboard/reservation-list', 'AdminController@cancelReservation')->name('admin.cancelReservation');
     Route::get('/dashboard/prices', 'AdminController@showUpdatePriceForm')->name('admin.updatePrices');
     Route::put('/dashboard/prices', 'AdminController@updatePrice')->name('admin.updatePrice');
+    Route::get('/dashboard/active-auctions', 'AdminController@showActiveAuctions')->name('admin.activeAuction');
     //--------------------------------------------
 });
 
@@ -126,7 +127,6 @@ Route::post('/auctionSignin', 'InscriptionForFutureAuctionController@store')->na
 
 // Auction
 Route::get('/auction', 'AuctionController@index');
-Route::get('/auction/active-auctions', 'AuctionController@showActiveAuctions')->name('auction.active');
 Route::post('/auction/bid', 'BidController@store');
 
 /*

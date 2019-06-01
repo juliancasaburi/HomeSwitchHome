@@ -164,4 +164,9 @@ class AdminController extends Controller
 
         return redirect()->back()->with('alert-success', 'Precio establecido en $'.Input::get('price'));
     }
+
+    public function showActiveAuctions(){
+        $auctions = Auction::where('inicio', '<=', Carbon::now())->where('fin', '>=', Carbon::now())->get();
+        return view('admin/admin-active-auction-list')->with('auctions',$auctions);
+    }
 }
