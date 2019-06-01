@@ -58,7 +58,7 @@
                             <label for="inputNewEmail">Nuevo email</label>
                             <input type="text" class="form-control" name="newEmail" id="inputNewEmail">
                         </div>
-                        <button type="submit" class="btn btn-secondary">Cambiar email</button>
+                        <button type="submit" class="btn btn-primary">Cambiar email</button>
                     </form>
                     <!-- ============================================================== -->
                     <!-- end content  -->
