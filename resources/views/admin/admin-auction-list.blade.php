@@ -72,7 +72,13 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
-                                                <td><button class="btn-primary"><i class="fas fa-tools"></i>Administrar</button></td>
+                                                @if($a->deleted_at <= $a->fin)
+                                                    <td>Cancelada</td>
+                                                @elseif($a->trashed())
+                                                    <td>Finalizada</td>
+                                                @else
+                                                    <td><button class="btn-primary"><i class="fas fa-tools"></i>Administrar</button></td>
+                                                @endif
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
                                                 <td><a href={{ url('week?id=').$a->week->id }}>ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
                                                 <td><a href={{ url('property?id=').$a->week->property->id }}>ID: {{ $a->week->property->id }} "{{ $a->week->property->nombre }}"</a></td>
