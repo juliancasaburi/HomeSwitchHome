@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputNewEmail">Nuevo email</label>
-                            <input type="text" class="form-control" name="newEmail" id="inputNewEmail">
+                            <input type="text" class="form-control" name="newEmail" id="inputNewEmail" autocomplete="off">
                         </div>
                         <button type="submit" class="btn btn-primary">Cambiar email</button>
                     </form>

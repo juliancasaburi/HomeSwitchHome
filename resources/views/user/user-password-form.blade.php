@@ -51,12 +51,12 @@
                       </div>
                       <div class="form-group">
                         <label for="password">Contraseña nueva</label>
-                        <input type="password" name="password" class="form-control">
+                        <input type="password" name="password" class="form-control" autocomplete="off">
                         <div class="text-danger">{{$errors->first('password')}}</div>
                       </div>
                       <div class="form-group">
                         <label for="mypassword">Confirmar contraseña nueva</label>
-                        <input type="password" name="password_confirmation" class="form-control">
+                        <input type="password" name="password_confirmation" class="form-control" autocomplete="off">
                       </div>
                       <button type="submit" class="btn btn-primary">Cambiar contraseña</button>
                     </form>
