@@ -16,6 +16,7 @@ class CreatePremiumRequestsTable extends Migration
         Schema::create('solicitudes_premium', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('usuario_id')->unsigned();
+            $table->decimal('valor', 9,2);
             $table->timestamps();
             $table->foreign('usuario_id')->references('id')->on('usuarios');
         });

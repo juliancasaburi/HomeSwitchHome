@@ -15,7 +15,7 @@ class PremiumRequest extends Model
      * @var array
      */
     protected $fillable = [
-        'usuario_id',
+        'usuario_id', 'valor',
     ];
 
     public function user(){

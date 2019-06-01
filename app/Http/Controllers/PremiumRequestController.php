@@ -34,6 +34,7 @@ class PremiumRequestController extends Controller
             // Create a PremiumRequest
             $premiumRequest = new PremiumRequest();
             $premiumRequest->usuario_id = $user->id;
+            $premiumRequest->valor = $premiumConcept->valor;
             $premiumRequest->save();
             $user->saldo -= $premiumConcept->valor;
             $user->save();
@@ -51,11 +52,16 @@ class PremiumRequestController extends Controller
 
     public function delete(Request $request)
     {
-        PremiumRequest::where('usuario_id', $request->userID)->delete();
+        $premiumRequest = PremiumRequest::where('usuario_id', $request->userID)->first();
+
+        $user = User::find($request->userID);
+        $user->saldo += $premiumRequest->valor;
+        $user->save();
+        $premiumRequest->delete();
 
         // Redirect back and flash success message
         return redirect()
             ->back()
-            ->with('alert-success', 'Solicitud cancelada');
+            ->with('alert-success', 'Solicitud cancelada. Te devolvimos $'. $premiumRequest->valor);
     }
 }
