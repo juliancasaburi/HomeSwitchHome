@@ -48,4 +48,14 @@ class PremiumRequestController extends Controller
                 ->with('alert-error', 'Tu saldo es menor a '.$premiumConcept->valor);
         }
     }
+
+    public function delete(Request $request)
+    {
+        PremiumRequest::where('usuario_id', $request->userID)->delete();
+
+        // Redirect back and flash success message
+        return redirect()
+            ->back()
+            ->with('alert-success', 'Solicitud cancelada');
+    }
 }

@@ -54,9 +54,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#balanceModal"><i class="fas fa-hand-holding-usd"></i>Cargar Saldo</a>
                     </li>
-                    @if(!Auth::user()->premium)
+                    @if(!Auth::user()->premium && !Auth::user()->premiumRequest)
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#premiumModal"><i class="fas fa-ticket-alt"></i>Solicitar Premium</a>
+                        </li>
+                    @elseif(!Auth::user()->premium)
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#cancelPremiumRequestModal"><i class="fas fa-ticket-alt"></i>Cancelar solicitud Premium</a>
                         </li>
                     @endif
                 </ul>
@@ -155,6 +159,34 @@
 </div>
 <!-- End Request premium Modal -->
 
+<!-- Cancel Premium Request Modal -->
+<div class="modal fade" id="cancelPremiumRequestModal" tabindex="-1" role="dialog" aria-labelledby="cancelPremiumRequestLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelPremiumRequestLabel">Cancelar Solicitud de Membresía Premium</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" id="cancelPremiumRequestForm" action="{{ url('cancel-premium-request') }}" role="form" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="row">
+                        <input type="text" name="userID" id="userID" value="{{Auth::user()->id}}" hidden>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-primary" onclick="cancelPremiumRequestForm_submit()">Cancelar solicitud</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Cancel Premium Request Modal -->
+
 <script>
     // Button
     function balance_submit() {
@@ -167,5 +199,12 @@
     // Button
     function premiumForm_submit() {
         document.getElementById("premiumForm").submit();
+    }
+</script>
+
+<script>
+    // Button
+    function cancelPremiumRequestForm_submit() {
+        document.getElementById("cancelPremiumRequestForm").submit();
     }
 </script>

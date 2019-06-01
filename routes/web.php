@@ -53,6 +53,8 @@ Route::put('/add-balance', 'UserController@addBalance');
 
 Route::post('/request-premium', 'PremiumRequestController@store');
 
+Route::delete('/cancel-premium-request', 'PremiumRequestController@delete');
+
 // Modify email
 Route::get('/profile/modify-email', 'UserController@showEmailForm')->middleware('verified');
 Route::put('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');

@@ -3,8 +3,6 @@
 namespace App;
 
 use App\Notifications\ReservationCancelled;
-use App\Notifications\ReservationObtained;
-use Faker\Provider\Payment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -126,6 +124,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bids(){
         return $this->hasMany(Bid::class, 'usuario_id', 'id');
+    }
+
+    public function premiumRequest(){
+        return $this->hasOne(PremiumRequest::class, 'usuario_id', 'id');
     }
 }
 
