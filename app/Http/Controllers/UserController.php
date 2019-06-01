@@ -163,4 +163,33 @@ class UserController extends Controller
             ->with('alert-success', 'Te acreditamos 1 crédito y $'.$balance);
 
     }
+
+    public function showModifyPaymentDetailsForm(){
+        return view('user.user-modify-payment-details');
+    }
+
+    public function modifyPaymentDetails(){
+        $rules = [
+            'password' => 'required',
+            'numeroTarjeta' => 'required|min:16|max:16',
+            'fechaCaducidadTarjeta' => 'required|date',
+            'cvvTarjeta' => 'required|min:3|max:3',
+        ];
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+        else{
+            if (Hash::check(Input::get('password'), Auth::user()->password)){
+                $user = Auth::user();
+                $user->numero_tarjeta = Input::get('numeroTarjeta');
+                $user->save();
+                return redirect()->back()->with('alert-success', 'Datos de pago modificados exitosamente!');
+            }
+            else
+            {
+                return redirect()->back()->with('alert-error', 'Contraseña incorrecta');
+            }
+        }
+    }
 }

@@ -29,6 +29,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{url('/profile/modify-password')}}">Modificar contraseña</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{url('/profile/modify-payment-details')}}">Modificar datos de pago</a>
+                                </li>
                             </ul>
                         </div>
                     </li>

@@ -59,6 +59,10 @@ Route::put('/profile/modify-email', 'UserController@modifyEmail')->name('user.mo
 Route::get('/profile/modify-password', 'UserController@showPasswordForm')->middleware('verified');
 Route::put('/profile/modify-password', 'UserController@modifyPassword');
 
+// Modify payment details
+Route::get('/profile/modify-payment-details', 'UserController@showModifyPaymentDetailsForm')->middleware('verified');
+Route::put('/profile/modify-payment-details', 'UserController@modifyPaymentDetails')->name('user.modifyPaymentDetails');
+
 // Inscriptions
 Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList')->middleware('verified');
 
