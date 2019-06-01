@@ -51,6 +51,8 @@ Route::get('/profile', 'UserController@showUserProfile')->middleware('verified')
 
 Route::put('/add-balance', 'UserController@addBalance');
 
+Route::post('/request-premium', 'PremiumRequestController@store');
+
 // Modify email
 Route::get('/profile/modify-email', 'UserController@showEmailForm')->middleware('verified');
 Route::put('/profile/modify-email', 'UserController@modifyEmail')->name('user.modifyEmail');

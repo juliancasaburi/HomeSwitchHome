@@ -60,7 +60,7 @@
 															<i class="fas fa-ticket-alt text-success"></i>
 															<p class="d-inline-block text-dark">USUARIO PREMIUM</p>
 															<br>
-															<p class="d-inline-block text-dark">Costo subscripción: ${{ $premiumUserSubscriptionPrice }}</p>
+															<p class="d-inline-block text-dark">Costo subscripción: ${{ $normalUserSubscriptionPrice }} + Plus Premium: ${{ $premiumPlusPrice }}</p>
 														</div>
 													@else
 														<div class="rating-star  d-inline-block">
@@ -126,7 +126,7 @@
 										<h5 class="mb-0">{{ Auth::user()->saldo }}</h5>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
-										<span data-toggle="modal" data-target="#balanceModal">
+										<span data-toggle="modal" data-target="#premiumModal">
 											<a href="#" data-toggle="tooltip" data-placement="bottom" title="Cargar Saldo"><i class="fas fa-wallet fa-fw fa-sm text-primary"></i></a>
 										</span>
 									</div>
@@ -238,4 +238,11 @@
 	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
 	<!-- dashboard js -->
 	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
+
+	<script>
+		// Button
+		function premium_submit() {
+			document.getElementById("premiumForm").submit();
+		}
+	</script>
 @endsection

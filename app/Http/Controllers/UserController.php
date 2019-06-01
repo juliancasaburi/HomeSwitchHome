@@ -44,7 +44,7 @@ class UserController extends Controller
     {
         return view('user.user-profile')->with(
             [
-                'premiumUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
+                'premiumPlusPrice' => DB::table('precios')->where('concepto', 'Plus usuario premium')->pluck('valor')->first(),
                 'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
             ]
         );

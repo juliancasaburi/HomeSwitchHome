@@ -54,6 +54,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#balanceModal"><i class="fas fa-hand-holding-usd"></i>Cargar Saldo</a>
                     </li>
+                    @if(!Auth::user()->premium)
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#premiumModal"><i class="fas fa-ticket-alt"></i>Solicitar Premium</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
@@ -68,7 +73,7 @@
 <!-- wrapper  -->
 <!-- ============================================================== -->
 
-<!-- Modal -->
+<!-- Balance Modal -->
 <div class="modal fade" id="balanceModal" tabindex="-1" role="dialog" aria-labelledby="balanceModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -87,7 +92,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <h5>Datos de pago</h5>
                             <label for="inputNumeroTarjeta">Numero de tarjeta</label>
-                            <input type="string" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control" placeholder="{{Auth::user()->numero_tarjeta}}" disabled>
+                            <input type="text" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control" placeholder="{{Auth::user()->numero_tarjeta}}" disabled>
                         <label for="inputfechaCaducidadTarjeta">Fecha de caducidad</label>
                         <input type="month" name="fecha_caducidad_tarjeta" id="inputFechaCaducidadTarjeta" class="form-control @error('fechaCaducidadTarjeta') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
                         @error('fechaCaducidadTarjeta')
@@ -96,7 +101,7 @@
         </span>
                         @enderror
                         <label for="inputCvvTarjeta">CVV</label>
-                        <input type="string" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
+                        <input type="text" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
                         @error('cvvTarjeta')
                         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -119,10 +124,67 @@
         </div>
     </div>
 </div>
+<!-- End Balance Modal-->
+
+<!-- Request premium Modal -->
+<div class="modal fade" id="premiumModal" tabindex="-1" role="dialog" aria-labelledby="premiumModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="premiumModalLabel">Solicitar Membresía Premium</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-muted">Tu saldo actual es: ${{Auth::user()->saldo}}</h5>
+                <h5 class="text-muted">Costo Plus Mensual Membresía Premium: ${{$premiumPlusPrice}}</h5>
+                <form class="needs-validation" id="premiumForm" action="{{ url('request-premium') }}" role="form" method="POST">
+                    @csrf
+                    <div class="row">
+                        <input type="text" name="userID" id="userID" value="{{Auth::user()->id}}" hidden>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h5>Datos de pago</h5>
+                            <label for="inputNumeroTarjeta">Numero de tarjeta</label>
+                            <input type="text" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control" placeholder="{{Auth::user()->numero_tarjeta}}" disabled>
+                            <label for="inputfechaCaducidadTarjeta">Fecha de caducidad</label>
+                            <input type="month" name="fecha_caducidad_tarjeta" id="inputFechaCaducidadTarjeta" class="form-control @error('fechaCaducidadTarjeta') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
+                            @error('fechaCaducidadTarjeta')
+                            <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+                            @enderror
+                            <label for="inputCvvTarjeta">CVV</label>
+                            <input type="text" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
+                            @error('cvvTarjeta')
+                            <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+                            @enderror
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                <button type="button" class="btn btn-primary" onclick="premiumForm_submit()">Solicitar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Request premium Modal -->
 
 <script>
     // Button
     function balance_submit() {
         document.getElementById("balanceForm").submit();
+    }
+</script>
+
+
+<script>
+    // Button
+    function premiumForm_submit() {
+        document.getElementById("premiumForm").submit();
     }
 </script>
