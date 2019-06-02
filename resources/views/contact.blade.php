@@ -33,7 +33,7 @@
                 <div class="col-sm-12">
                     <div class="contact-map box">
                         <div id="map" class="contact-map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.116747977639!2d-57.93816005690638!3d-34.90351957542984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e66a8fcdf951%3A0x9191a5ff1fbbe5d5!2sUNLP+-+Facultad+de+Inform%C3%A1tica!5e0!3m2!1ses-419!2sar!4v1553286342958" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.116747977639!2d-57.93816005690638!3d-34.90351957542984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e66a8fcdf951%3A0x9191a5ff1fbbe5d5!2sUNLP+-+Facultad+de+Inform%C3%A1tica!5e0!3m2!1ses-419!2sar!4v1553286342958" width="100%" height="450" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
