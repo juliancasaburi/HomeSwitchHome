@@ -142,7 +142,7 @@
             </div>
             <div class="modal-body">
                 <h5 class="text-muted">Tu saldo actual es: ${{Auth::user()->saldo}}</h5>
-                <h5 class="text-muted">Costo Plus Mensual Membresía Premium: ${{$premiumPlusPrice}}</h5>
+                <h5 class="text-muted">Costo Plus Mensual Membresía Premium: ${{App\Price::price('Plus usuario premium')}}</h5>
                 <form class="needs-validation" id="premiumForm" action="{{ url('request-premium') }}" role="form" method="POST">
                     @csrf
                     <div class="row">
