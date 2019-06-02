@@ -6,12 +6,14 @@ use App\Notifications\ReservationCancelled;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 use App\Notifications\VerificarEmail;
 use App\Notifications\ResetPassword;
 use App\Notifications\EmailChanged;
 use App\Notifications\PaymentDetailsChanged;
 use App\Notifications\AuctionStarted;
-use Carbon\Carbon;
+use App\Notifications\PremiumAccepted;
+use App\Notifications\PremiumRejected;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -111,6 +113,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendAuctionStartedNotification($propertyName, $date, $auctionID)
     {
         $this->notify(new AuctionStarted($propertyName, $date, $auctionID));
+    }
+
+    /**
+     * Send the Premium Request Accepted notification
+     *
+     * @return void
+     */
+    public function sendPremiumAcceptedNotification($date)
+    {
+        $this->notify(new PremiumAccepted($date));
+    }
+
+    /**
+     * Send the Premium Request Rejected notification
+     *
+     * @return void
+     */
+    public function sendPremiumRejectedNotification($date)
+    {
+        $this->notify(new PremiumRejected($date));
     }
 
     /**

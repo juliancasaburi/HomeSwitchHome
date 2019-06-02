@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Property;
 use App\Auction;
 use App\Week;
 use App\Reservation;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use App\Price;
+use App\PremiumRequest;
 
 class AdminController extends Controller
 {
@@ -171,5 +172,48 @@ class AdminController extends Controller
     public function showActiveAuctions(){
         $auctions = Auction::where('inicio', '<=', Carbon::now())->where('fin', '>=', Carbon::now())->get();
         return view('admin/admin-active-auction-list')->with('auctions',$auctions);
+    }
+
+    /**
+     * Show the premium request list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showPremiumRequestList()
+    {
+        $requests = PremiumRequest::all();
+        return view('admin.admin-premium-request-list')->with ('requests',$requests);
+    }
+
+    public function acceptPremiumRequest(Request $request)
+    {
+        $premiumRequest = PremiumRequest::find($request->requestID);
+
+        $user = User::find($request->userID);
+        $user->premium = true;
+        $user->save();
+        $user->sendPremiumAcceptedNotification(Carbon::now());
+        $premiumRequest->delete();
+
+        // Redirect back and flash success message
+        return redirect()
+            ->back()
+            ->with('alert-success', 'Solicitud aceptada para el usuario '. $user->nombre. ' '. $user->apellido);
+    }
+
+    public function rejectPremiumRequest(Request $request)
+    {
+        $premiumRequest = PremiumRequest::find($request->requestID);
+
+        $user = User::find($request->userID);
+        $user->saldo += $premiumRequest->valor;
+        $user->save();
+        $user->sendPremiumRejectedNotification(Carbon::now());
+        $premiumRequest->delete();
+
+        // Redirect back and flash success message
+        return redirect()
+            ->back()
+            ->with('alert-success', 'Solicitud rechazada para el usuario '. $user->nombre. ' '. $user->apellido);
     }
 }

@@ -114,6 +114,9 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/prices', 'AdminController@showUpdatePriceForm')->name('admin.updatePrices');
     Route::put('/dashboard/prices', 'AdminController@updatePrice')->name('admin.updatePrice');
     Route::get('/dashboard/active-auctions', 'AdminController@showActiveAuctions')->name('admin.activeAuction');
+    Route::get('/dashboard/premium-request-list', 'AdminController@showPremiumRequestList')->name('admin.premiumRequestList');
+    Route::delete('/dashboard/premium-request-accept', 'AdminController@acceptPremiumRequest')->name('admin.premiumRequestAccept');
+    Route::delete('/dashboard/premium-request-reject', 'AdminController@rejectPremiumRequest')->name('admin.premiumRequestReject');
     //--------------------------------------------
 });
 

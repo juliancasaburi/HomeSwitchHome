@@ -104,7 +104,10 @@
                         <div id="submenu-7" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ url('admin/dashboard/user-list') }}>Ver listado</a>
+                                    <a class="nav-link" href={{ url('admin/dashboard/user-list') }}>Ver todos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href={{ url('admin/dashboard/premium-request-list') }}>Ver Solicitudes Premium</a>
                                 </li>
                             </ul>
                         </div>
