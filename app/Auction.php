@@ -14,7 +14,7 @@ class Auction extends Model
     protected $table = 'subastas';
 
     protected $fillable = [
-        'semana_id', 'precio_inicial', 'inscripcion_inicio', 'inscripcion_fin', 'inicio', 'fin',
+        'semana_id', 'precio_inicial', 'inscripcion_inicio', 'inscripcion_fin', 'inicio', 'fin', 'notificaciones_enviadas',
     ];
 
     public function week(){

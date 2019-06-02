@@ -10,6 +10,7 @@ use App\Notifications\VerificarEmail;
 use App\Notifications\ResetPassword;
 use App\Notifications\EmailChanged;
 use App\Notifications\PaymentDetailsChanged;
+use App\Notifications\AuctionStarted;
 use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -100,6 +101,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendReservationCancelledNotification($propertyName, $date, $balance)
     {
         $this->notify(new ReservationCancelled($propertyName, $date, $balance));
+    }
+
+    /**
+     * Send the auction started notification.
+     *
+     * @return void
+     */
+    public function sendAuctionStartedNotification($propertyName, $date, $auctionID)
+    {
+        $this->notify(new AuctionStarted($propertyName, $date, $auctionID));
     }
 
     /**

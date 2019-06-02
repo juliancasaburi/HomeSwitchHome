@@ -21,6 +21,7 @@ class CreateAuctionsTable extends Migration
             $table->dateTime('inscripcion_fin');
             $table->dateTime('inicio');
             $table->dateTime('fin');
+            $table->timestamp('notificaciones_enviadas')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
 
