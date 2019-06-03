@@ -39,18 +39,28 @@
                     <div class="ecommerce-widget">
                         <h3>Usuarios</h3>
                         <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad Usuarios</h5>
+                                        <h5 class="text-muted">Total Usuarios</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $usersCount }}</h1>
+                                            <h1 class="mb-1">{{ $userCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">Usuarios normales</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">{{ $userCount - $premiumUserCount }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
                                         <h5 class="text-muted">Precio subscripción</h5>
                                         <div class="metric-value d-inline-block">
@@ -60,17 +70,17 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad premium</h5>
+                                        <h5 class="text-muted">Usuarios premium</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $premiumUsersCount }}</h1>
+                                            <h1 class="mb-1">{{ $premiumUserCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                                <div class="card text-center">
                                     <div class="card-body">
                                         <h5 class="text-muted">Precio Plus Premium</h5>
                                         <div class="metric-value d-inline-block">
@@ -82,22 +92,22 @@
                         </div>
                         <h3>Propiedades</h3>
                         <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad Propiedades</h5>
+                                        <h5 class="text-muted">Propiedades</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $propertiesCount }}</h1>
+                                            <h1 class="mb-1">{{ $propertyCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad Semanas</h5>
+                                        <h5 class="text-muted">Semanas</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $weeksCount }}</h1>
+                                            <h1 class="mb-1">{{ $weekCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -105,52 +115,52 @@
                         </div>
                         <h3>Subastas</h3>
                         <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad en espera</h5>
+                                        <h5 class="text-muted">En espera</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $pendingAuctionsCount }}</h1>
+                                            <h1 class="mb-1">{{ $pendingAuctionCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad en período de inscripción</h5>
+                                        <h5 class="text-muted">En período de inscripción</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $inscriptionAuctionsCount }}</h1>
+                                            <h1 class="mb-1">{{ $inscriptionAuctionCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad en curso</h5>
+                                        <h5 class="text-muted">En curso</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">{{ $activeAuctionsCount }}</h1>
+                                            <h1 class="mb-1">{{ $activeAuctionCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad inscripciones</h5>
+                                        <h5 class="text-muted">Total inscripciones</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">0</h1>
+                                            <h1 class="mb-1">{{ $inscriptionCount }}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card text-center">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Cantidad pujas</h5>
+                                        <h5 class="text-muted">Total pujas</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">0</h1>
+                                            <h1 class="mb-1">{{ $bidCount }}</h1>
                                         </div>
                                     </div>
                                 </div>

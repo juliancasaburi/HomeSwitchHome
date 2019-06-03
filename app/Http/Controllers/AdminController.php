@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\User;
 use App\Property;
 use App\Auction;
 use App\Week;
+use App\InscriptionForFutureAuction;
 use App\Reservation;
-use Carbon\Carbon;
 use App\Price;
 use App\PremiumRequest;
+use App\Bid;
 
 class AdminController extends Controller
 {
@@ -40,15 +41,17 @@ class AdminController extends Controller
     {
         return view('admin.admin-dashboard')->with(
             [
-                'usersCount' => User::all()->count(),
-                'premiumUsersCount' => User::premium()->count(),
+                'userCount' => User::all()->count(),
+                'premiumUserCount' => User::premium()->count(),
                 'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
                 'premiumPlusPrice' => Price::price('Plus usuario premium'),
-                'propertiesCount' => Property::all()->count(),
-                'weeksCount' => Week::all()->count(),
-                'pendingAuctionsCount' => Auction::pending()->count(),
-                'inscriptionAuctionsCount' => Auction::awaitingInscriptionPeriod()->count(),
-                'activeAuctionsCount' => Auction::active()->count(),
+                'propertyCount' => Property::all()->count(),
+                'weekCount' => Week::all()->count(),
+                'pendingAuctionCount' => Auction::pending()->count(),
+                'inscriptionAuctionCount' => Auction::awaitingInscriptionPeriod()->count(),
+                'activeAuctionCount' => Auction::active()->count(),
+                'inscriptionCount' => InscriptionForFutureAuction::all()->count(),
+                'bidCount' => Bid::all()->count(),
             ]
         );
     }
