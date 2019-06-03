@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Rules\CurrentPassword;
 use App\Bid;
+use App\Price;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
@@ -44,8 +45,8 @@ class UserController extends Controller
     {
         return view('user.user-profile')->with(
             [
-                'premiumPlusPrice' => DB::table('precios')->where('concepto', 'Plus usuario premium')->pluck('valor')->first(),
-                'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
+                'premiumPlusPrice' => Price::price('Plus usuario premium'),
+                'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
             ]
         );
     }

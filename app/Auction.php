@@ -3,9 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Auction extends Model
 {
@@ -50,6 +50,41 @@ class Auction extends Model
         $week = $this->week;
         $property = $week->property;
         return $property->nombre;
+    }
+
+    /**
+     * Scope a query to only include auctions awaiting bidding period.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePending($query)
+    {
+        return $query->where('inscripcion_inicio', '>', Carbon::now());
+    }
+
+    /**
+     * Scope a query to only include auctions awaiting inscription period.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAwaitingInscriptionPeriod($query)
+    {
+        return $query->where('inscripcion_inicio', '<=', Carbon::now())
+            ->where('inscripcion_fin', '>', Carbon::now());
+    }
+
+    /**
+     * Scope a query to only include active auctions.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('inicio', '<=', Carbon::now())
+            ->where('fin', '>', Carbon::now());
     }
 }
 

@@ -41,18 +41,14 @@ class AdminController extends Controller
         return view('admin.admin-dashboard')->with(
             [
                 'usersCount' => User::all()->count(),
-                'premiumUsersCount' => User::where('premium', 1)->count(),
-                'normalUserSubscriptionPrice' => DB::table('precios')->where('concepto', 'Subscripcion usuario normal')->pluck('valor')->first(),
-                'premiumPlusPrice' => DB::table('precios')->where('concepto', 'Plus usuario premium')->pluck('valor')->first(),
+                'premiumUsersCount' => User::premium()->count(),
+                'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
+                'premiumPlusPrice' => Price::price('Plus usuario premium'),
                 'propertiesCount' => Property::all()->count(),
                 'weeksCount' => Week::all()->count(),
-                'pendingAuctionsCount' => Auction::where('inscripcion_inicio', '>', Carbon::now())->count(),
-                'inscriptionAuctionsCount' => Auction::where('inscripcion_inicio', '<=', Carbon::now())
-                    ->where('inscripcion_fin', '>', Carbon::now())
-                    ->count(),
-                'activeAuctionsCount' => Auction::where('inicio', '<=', Carbon::now())
-                    ->where('fin', '>', Carbon::now())
-                    ->count(),
+                'pendingAuctionsCount' => Auction::pending()->count(),
+                'inscriptionAuctionsCount' => Auction::awaitingInscriptionPeriod()->count(),
+                'activeAuctionsCount' => Auction::active()->count(),
             ]
         );
     }

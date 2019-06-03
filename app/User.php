@@ -162,5 +162,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function premiumRequest(){
         return $this->hasOne(PremiumRequest::class, 'usuario_id', 'id');
     }
+
+    /**
+     * Scope a query to only include premium users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePremium($query)
+    {
+        return $query->where('premium', 1);
+    }
 }
 
