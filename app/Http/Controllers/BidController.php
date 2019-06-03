@@ -39,10 +39,8 @@ class BidController extends Controller
             return redirect()->back()->with('alert-error', 'El monto debe superar al precio inicial');
         }
 
-        if (!$auction->bids->isEmpty()) {
-            if($request->amount < $auction->latestBid->first()->monto) {
+        if (!$auction->bids->isEmpty() && $request->amount < $auction->latestBid->first()->monto) {
                 return redirect()->back()->with('alert-error', 'El monto debe superar al de la última puja');
-            }
         }
 
         // Place bid
