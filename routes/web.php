@@ -71,7 +71,7 @@ Route::put('/profile/modify-payment-details', 'UserController@modifyPaymentDetai
 Route::get('/profile/inscription-list', 'UserController@showInscriptionList')->name('user.inscriptionList')->middleware('verified');
 
 // Bids
-Route::get('/profile/bid-list', 'UserController@showBidList')->name('user.bidList')->middleware('verified');;
+Route::get('/profile/bid-list', 'UserController@showBidList')->name('user.bidList')->middleware('verified');
 
 // Auctions
 Route::get('/auction', function() {
