@@ -14,9 +14,9 @@ class WeekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $week = Week::where('id', Request()->id)
+        $week = Week::where('id', $request->id)
             ->withTrashed()
             ->get()
             ->first();
@@ -37,9 +37,17 @@ class WeekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showGrid()
+    public function showGrid(Request $request)
     {
-        $weeks = Week::has('auction')->paginate(2);
+        $weekStart = Carbon::parse($request->fecha)
+            ->startOfWeek()
+            ->toDateString();
+
+        $weeks = Week::where('fecha', '=', $weekStart)
+            ->whereNull('deleted_at')
+            ->whereHas('auction')
+            ->paginate(2);
+
         return view('weeks', [
             'weeks' => $weeks,
         ]);

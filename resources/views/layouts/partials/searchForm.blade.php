@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
-                        <label for="semana">Semana</label>
-                        <input type="date" class="form-control form-control-lg form-control-a" id="semana">
+                        <label for="semana">Fecha</label>
+                        <input type="date" name="fecha" class="form-control form-control-lg form-control-a" id="fecha" value="{{ Carbon\Carbon::now()->startOfWeek()->toDateString() }}">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
