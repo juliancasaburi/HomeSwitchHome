@@ -47,7 +47,11 @@
                     <div class="col-md-4">
                         <div class="card-box-a card-shadow">
                             <div class="img-box-a">
-                                <img src="{{asset($w->property->image_path)}}" alt="" class="img-a img-fluid">
+                                @if($w->property->image_path == null)
+                                    <img src="{{'https://via.placeholder.com/683x1024?text='.$w->property->nombre}}" alt="" class="img-a img-fluid">
+                                @else
+                                    <img src="{{asset($w->property->image_path)}}" alt="" class="img-a img-fluid">
+                                @endif
                             </div>
                             <div class="card-overlay">
                                 <div class="price-box d-flex float-right">
