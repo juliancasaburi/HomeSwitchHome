@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Auction;
 use Illuminate\Http\Request;
 use App\Property;
 use App\Week;
@@ -58,46 +57,4 @@ class PropertyController extends Controller
             'weeks' => $weeks,
         ]);
     }
-
-    public function showPropertiesOfASpecificDay(Request $request){
-        /*
-        |--------------------------------------------------------------------------
-        | Date validation
-        |--------------------------------------------------------------------------
-        */
-
-        // Convert YYYY-MM-DD from $request to a Unix timestamp
-        $formDate = strtotime($request->fecha);
-
-        // Get the day of the week using PHP's date function.
-        $dayOfWeek = date("l", $formDate);
-
-        // Is it monday?
-        if($dayOfWeek  == 'Monday') {
-            //Day is Monday
-
-            $properties = Property::whereHas('weeks', function ($query) use ($request) {
-                $query->where('fecha', "=", $request->fecha)->where('deleted_at', '=', null)->whereHas('auction', function ($query) {
-                    $query->where('inscripcion_fin', '>=', Carbon::now());
-                });
-            })->orderBy('nombre', 'asc')->paginate(2);
-
-            $weeks = array();
-            foreach($properties as $p){
-                array_push($weeks, $p->weeks()->count());
-            }
-
-            return view('properties', [
-                'properties' => $properties,
-                'weeks' => $weeks,
-            ]);
-        }
-        else {
-            // Day is not Monday
-            // Redirect back and flash error message
-            return redirect('/');
-        }
-    }
-
-
 }
