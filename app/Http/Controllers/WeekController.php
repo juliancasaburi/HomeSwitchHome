@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Week;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\URL;
 
 class WeekController extends Controller
 {
@@ -39,6 +41,16 @@ class WeekController extends Controller
      */
     public function showGrid(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'fecha' => ['required', 'date'],
+        ]);
+
+        if($validator->fails()){
+            // Redirect to home
+            return redirect('/');
+        }
+
         $weekStart = Carbon::parse($request->fecha)
             ->startOfWeek()
             ->toDateString();
