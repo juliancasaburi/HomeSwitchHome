@@ -60,7 +60,8 @@ class WeekController extends Controller
             ->whereHas('auction', function ($query) {
                 $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
             })
-            ->paginate(2);
+            ->paginate(2)
+            ->withPath('?fecha='.$weekStart);
 
         return view('weeks', [
             'weeks' => $weeks,
