@@ -45,7 +45,9 @@ class WeekController extends Controller
 
         $weeks = Week::where('fecha', '=', $weekStart)
             ->whereNull('deleted_at')
-            ->whereHas('auction')
+            ->whereHas('auction', function ($query) {
+                $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
+            })
             ->paginate(2);
 
         return view('weeks', [

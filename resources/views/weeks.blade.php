@@ -65,13 +65,7 @@
                                     </div>
                                     <div class="card-body-a">
                                         <div class="price-box d-flex">
-                                            @if($w->auction->inscripcion_inicio <= Carbon\Carbon::now() && $w->auction->inscripcion_fin > Carbon\Carbon::now())
-                                                <span class="alert-info">Subasta en inscripción</span>
-                                            @elseif($w->auction->inicio <= Carbon\Carbon::now() && $w->auction->fin > Carbon\Carbon::now())
-                                                <span class="alert-danger">Subasta en curso</span>
-                                            @else
-                                                <span class="alert-warning">Subasta en espera</span>
-                                            @endif
+                                            <span class="alert-info">Subasta en inscripción</span>
                                         </div>
                                         <a href={{ url('week?id=').$w->id }} class="link-a"> Ver semana</a>
                                         <span class="ion-ios-arrow-forward"></span>
