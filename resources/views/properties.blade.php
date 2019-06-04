@@ -29,7 +29,6 @@
         </div>
     </section>
     <!--/ Intro Single End /-->
-
     <!--/ Property Grid Start /-->
     <section class="property-grid grid">
         <div class="container">

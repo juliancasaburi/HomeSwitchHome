@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Property;
 use Illuminate\Http\Request;
 use App\Week;
 use Carbon\Carbon;

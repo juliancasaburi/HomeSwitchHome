@@ -144,7 +144,7 @@ Route::post('/auction/bid', 'BidController@store');
 
 Route::get('/property', 'PropertyController@index');
 Route::get('/properties', 'PropertyController@showGrid');
-
+Route::post('/properties-of-a-specific-day', 'PropertyController@showPropertiesOfASpecificDay');
 /*
 |--------------------------------------------------------------------------
 | Week Routes
