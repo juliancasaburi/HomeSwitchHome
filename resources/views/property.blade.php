@@ -24,17 +24,19 @@
                 <!-- ============================================================== -->
                 <!-- End Alerts  -->
                 <!-- ============================================================== -->
-                <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-                    <div class="carousel-item-a">
-                        <img src="{{asset($property->image_path)}}" alt="">
+                @if($property->image_path != null)
+                    <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+                        <div class="carousel-item-a">
+                            <img src="{{asset($property->image_path)}}" alt="">
+                        </div>
+                        <div class="carousel-item-a">
+                            <img src="{{asset($property->image_path)}}" alt="">
+                        </div>
+                        <div class="carousel-item-a">
+                            <img src="{{asset($property->image_path)}}" alt="">
+                        </div>
                     </div>
-                    <div class="carousel-item-a">
-                        <img src="{{asset($property->image_path)}}" alt="">
-                    </div>
-                    <div class="carousel-item-a">
-                        <img src="{{asset($property->image_path)}}" alt="">
-                    </div>
-                </div>
+                @endif
                 <div class="row card-header">
                     <h3 class="title-a color-b">{{ $property->nombre }}</h3>
                 </div>

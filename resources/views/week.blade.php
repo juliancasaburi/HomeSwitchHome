@@ -24,17 +24,19 @@
                 <!-- ============================================================== -->
                 <!-- End Alerts  -->
                 <!-- ============================================================== -->
-                <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-                    <div class="carousel-item-a">
-                        <img src="{{asset($week->property->image_path)}}" alt="">
+                @if($week->property->image_path != null)
+                    <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+                        <div class="carousel-item-a">
+                            <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
+                        </div>
+                        <div class="carousel-item-a">
+                            <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
+                        </div>
+                        <div class="carousel-item-a">
+                            <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
+                        </div>
                     </div>
-                    <div class="carousel-item-a">
-                        <img src="{{asset($week->property->image_path)}}" alt="">
-                    </div>
-                    <div class="carousel-item-a">
-                        <img src="{{asset($week->property->image_path)}}" alt="">
-                    </div>
-                </div>
+                @endif
                 <div class="row card-header">
                     <h3 class="title-a color-b">{{ $week->property->nombre }} | Semana {{ $week->fecha }}</h3>
                 </div>
