@@ -12,6 +12,8 @@
             <form class="form-register" action="{{ route('register') }}" method="POST">
                 @csrf
                 <h1 class="h3 mb-3 font-weight-normal text-center">Crear una cuenta</h1>
+                <h5 class="text-success">Podrás obtener reservas de una semana entera para una propiedad al participar en subastas</h5>
+                <h5>Solo tienes que pagar: ${{ $normalUserSubscriptionPrice }} por mes!</h5>
                 <hr class="hr-primary">
                 <h2 style="padding-top: 5px">Datos personales</h2>
                 <label for="inputApellido">Apellido</label>

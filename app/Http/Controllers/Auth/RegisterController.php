@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Price;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -39,6 +40,13 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showRegistrationForm()
+    {
+        $normalUserSubscriptionPrice = Price::price('Subscripción usuario normal');
+
+        return view('auth.register')->with('normalUserSubscriptionPrice', $normalUserSubscriptionPrice);
     }
 
     /**
