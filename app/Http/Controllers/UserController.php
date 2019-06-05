@@ -133,8 +133,6 @@ class UserController extends Controller
         // validate
         $rules = array(
             'amount'       => ['required', 'numeric', 'min:1'],
-            'fecha_caducidad_tarjeta' => ['required'],
-            'cvv_tarjeta' => ['required', 'min:3', 'max:3'],
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -172,25 +170,34 @@ class UserController extends Controller
     public function modifyPaymentDetails(){
         $rules = [
             'password' => 'required',
-            'numeroTarjeta' => 'required|min:16|max:16',
-            'fechaCaducidadTarjeta' => 'required|date',
-            'cvvTarjeta' => 'required|min:3|max:3',
+            'numero_tarjeta' => 'required|min:16|max:16',
+            'marca' => 'required|max:50',
+            'nombre_titular' => 'required|max:80',
+            'fecha_vencimiento' => 'required|date',
+            'cvv' => 'required|min:3|max:3',
         ];
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->fails()){
             return redirect()->back()->withErrors($validator);
         }
         else{
-            if (Hash::check(Input::get('password'), Auth::user()->password)){
-                $user = Auth::user();
-                $user->numero_tarjeta = Input::get('numeroTarjeta');
-                $user->save();
+            $user = Auth::user();
+            if (Hash::check(Input::get('password'), $user->password)){
+                $userCard = $user->card;
+                $userCard->numero = Input::get('numero_tarjeta');
+                $userCard->marca = Input::get('marca');
+                $userCard->nombre_titular = Input::get('nombre_titular');
+                $userCard->fecha_vencimiento = Input::get('fecha_vencimiento');
+                $userCard->codigo_verificacion = Input::get('cvv');
+                $userCard->save();
                 $user->sendPaymentDetailsChangedNotification();
                 return redirect()->back()->with('alert-success', 'Datos de pago modificados exitosamente!');
             }
             else
             {
-                return redirect()->back()->with('alert-error', 'Contraseña incorrecta');
+                return redirect()->back()->with('alert-error', 'Contraseña incorrecta')->withErrors([
+                    'password' => 'Contraseña incorrecta',
+                ]);
             }
         }
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Card;
 
 class RegisterController extends Controller
 {
@@ -57,20 +58,22 @@ class RegisterController extends Controller
             'fecha_nacimiento' => ['required'],
             'DNI' => ['required', 'string', 'unique:usuarios'],
             'numero_tarjeta' => ['required', 'string', 'min:16', 'max:16'],
-            'fecha_caducidad_tarjeta' => ['required'],
-            'cvv_tarjeta' => ['required', 'min:3', 'max:3'],
+            'marca' => ['required'],
+            'nombre_titular' => ['required', 'string', 'max:80'],
+            'fecha_vencimiento' => ['required'],
+            'cvv' => ['required', 'min:3', 'max:3'],
         ]);
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Create a new user instance after a valid registration and register their card
      *
      * @param  array  $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $newUser = User::create([
             'email' => $data['email'],
             'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
@@ -78,7 +81,18 @@ class RegisterController extends Controller
             'DNI' => $data['DNI'],
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
-            'numero_tarjeta' => $data['numero_tarjeta'],
         ]);
+
+        // Create and save user's card
+        $userCard = new Card();
+        $userCard->usuario_id = $newUser->id;
+        $userCard->numero = $data['numero_tarjeta'];
+        $userCard->marca = $data['marca'];
+        $userCard->nombre_titular = $data['nombre_titular'];
+        $userCard->fecha_vencimiento = $data['fecha_vencimiento'];
+        $userCard->codigo_verificacion = $data['cvv'];
+        $userCard->save();
+
+        return $newUser;
     }
 }

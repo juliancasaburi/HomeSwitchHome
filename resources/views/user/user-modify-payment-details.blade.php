@@ -41,28 +41,67 @@
                     <!-- ============================================================== -->
                     <!-- content  -->
                     <!-- ============================================================== -->
+                    <h5>Datos de la Tarjeta actual</h5>
+                    <h6 class="text-muted">Marca</h6>
+                    <p>{{ Auth::user()->card->marca }}</p>
+                    <h6 class="text-muted">Número (Últimos 4 dígitos)</h6>
+                    <p>{{ substr(Auth::user()->card->numero, -4)}}</p>
                     <form class="needs-validation" action="{{ route('user.modifyPaymentDetails') }}" role="form" method="POST">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
-                            <label for="actualCard">Tarjeta Actual</label>
-                            <input type="text" class="form-control" name="actualCard" id="actualCard" placeholder="{{ Auth::user()->numero_tarjeta }}" readonly="readonly">
-                        </div>
-                        <div class="form-group">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password" autofocus>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" autofocus>
+                            @error('passsword')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="numeroTarjeta">Numero</label>
-                            <input type="text" class="form-control" name="numeroTarjeta" id="numeroTarjeta" placeholder="**** **** **** ****" minlength="16" maxlength="16" required autocomplete="off">
+                            <label for="inputNumeroTarjeta">Numero</label>
+                            <input type="text" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control @error('numero_tarjeta') is-invalid @enderror" placeholder="**** **** **** ****" minlength="16" maxlength="16" required autocomplete="off">
+                            @error('numero_tarjeta')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="fechaCaducidadTarjeta">Fecha de caducidad</label>
-                            <input type="month" class="form-control" name="fechaCaducidadTarjeta" id="fechaCaducidadTarjeta" placeholder="MM/AA" required autocomplete="off">
+                            <label for="inputMarca">Marca</label>
+                            <input type="text" name="marca" id="inputMarca" class="form-control @error('marca') is-invalid @enderror" required>
+                            @error('marca')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="cvvTarjeta">CVV</label>
-                            <input type="text" class="form-control" name="cvvTarjeta" id="cvvTarjeta" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
+                            <label for="inputTitular">Nombre del Titular</label>
+                            <input type="text" name="nombre_titular" id="inputTitular" class="form-control @error('nombre_titular') is-invalid @enderror" required>
+                            @error('nombre_titular')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputFechaVencimiento">Fecha de Vencimiento</label>
+                            <input type="month" name="fecha_vencimiento" id="inputFechaVencimiento" class="form-control @error('fecha_vencimiento') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
+                            @error('fecha_vencimiento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCvv">CVV</label>
+                            <input type="text" name="cvv" id="inputCvv" class="form-control @error('cvv') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
+                            @error('cvv')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Modificar</button>
                     </form>
@@ -92,8 +131,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
-                    <!-- ============================================================== -->
+                @endif
+                <!-- ============================================================== -->
                     <!-- End Alerts  -->
                     <!-- ============================================================== -->
                 </div>

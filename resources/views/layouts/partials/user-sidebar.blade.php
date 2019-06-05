@@ -89,31 +89,25 @@
             </div>
             <div class="modal-body">
                 <h5 class="text-muted">Tu saldo actual es: {{Auth::user()->saldo}}</h5>
+                <hr class="hr-primary">
+                <h5>Datos de la Tarjeta actual</h5>
+                <h6 class="text-muted">Marca</h6>
+                <p>{{ Auth::user()->card->marca }}</p>
+                <h6 class="text-muted">Número (Últimos 4 dígitos)</h6>
+                <p>{{ substr(Auth::user()->card->numero, -4)}}</p>
+                <hr class="hr-primary">
                 <form class="needs-validation" id="balanceForm" action="{{ url('add-balance') }}" role="form" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <h5>Datos de pago</h5>
-                            <label for="inputNumeroTarjeta">Numero de tarjeta</label>
-                            <input type="text" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control" placeholder="{{Auth::user()->numero_tarjeta}}" disabled>
-                        <label for="inputfechaCaducidadTarjeta">Fecha de caducidad</label>
-                        <input type="month" name="fecha_caducidad_tarjeta" id="inputFechaCaducidadTarjeta" class="form-control @error('fechaCaducidadTarjeta') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
-                        @error('fechaCaducidadTarjeta')
-                        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-                        @enderror
-                        <label for="inputCvvTarjeta">CVV</label>
-                        <input type="text" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
-                        @error('cvvTarjeta')
-                        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-                        @enderror
-                        <hr class="hr-primary">
                             <label for="amount">Monto</label>
-                            <input type="number" name="amount" class="form-control" id="amount">
+                            <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror" id="amount" min="1" required>
+                            @error('amount')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <div class="valid-feedback">
                                 Válido
                             </div>

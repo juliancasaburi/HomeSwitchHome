@@ -25,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'activa', 'email', 'nombre', 'apellido', 'pais', 'DNI', 'fecha_nacimiento', 'creditos', 'saldo', 'password', 'numero_tarjeta', 'premium',
+        'activa', 'email', 'nombre', 'apellido', 'pais', 'DNI', 'fecha_nacimiento', 'creditos', 'saldo', 'password', 'premium',
     ];
 
     /**
@@ -161,6 +161,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function premiumRequest(){
         return $this->hasOne(PremiumRequest::class, 'usuario_id', 'id');
+    }
+
+    public function card(){
+        return $this->hasOne(Card::class, 'usuario_id', 'id');
     }
 
     /**

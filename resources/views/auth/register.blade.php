@@ -16,8 +16,8 @@
         </span>
         @enderror
         <label for="inputNombre">Nombre</label>
-        <input type="text" name="nombre" id="inputNombre" class="form-control @error('name') is-invalid @enderror" placeholder="Nombre" required>
-        @error('name')
+        <input type="text" name="nombre" id="inputNombre" class="form-control @error('nombre') is-invalid @enderror" placeholder="Nombre" required>
+        @error('nombre')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -285,7 +285,7 @@
         @enderror
         <label for="password-confirm">Confirmar Password</label>
         <input type="password" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Contraseña" required autocomplete="off">
-        @error('password')
+        @error('password_confirmation')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -303,22 +303,36 @@
         <hr class="hr-primary">
         <h2>Datos de pago</h2>
         <label for="inputNumeroTarjeta">Numero</label>
-        <input type="string" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control @error('numeroTarjeta') is-invalid @enderror" placeholder="**** **** **** ****" minlength="16" maxlength="16" required autocomplete="off">
-        @error('numeroTarjeta')
+        <input type="text" name="numero_tarjeta" id="inputNumeroTarjeta" class="form-control @error('numero_tarjeta') is-invalid @enderror" placeholder="**** **** **** ****" minlength="16" maxlength="16" required autocomplete="off">
+        @error('numero_tarjeta')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
-        <label for="inputfechaCaducidadTarjeta">Fecha de caducidad</label>
-        <input type="month" name="fecha_caducidad_tarjeta" id="inputFechaCaducidadTarjeta" class="form-control @error('fechaCaducidadTarjeta') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
-        @error('fechaCaducidadTarjeta')
+        <label for="inputMarca">Marca</label>
+        <input type="text" name="marca" id="inputMarca" class="form-control @error('marca') is-invalid @enderror" required>
+        @error('marca')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
         @enderror
-        <label for="inputCvvTarjeta">CVV</label>
-        <input type="string" name="cvv_tarjeta" id="inputCvvTarjeta" class="form-control @error('cvvTarjeta') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
-        @error('cvvTarjeta')
+        <label for="inputTitular">Nombre del Titular</label>
+        <input type="text" name="nombre_titular" id="inputTitular" class="form-control @error('nombre_titular') is-invalid @enderror" required>
+        @error('nombre_titular')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+        <label for="inputFechaVencimiento">Fecha de Vencimiento</label>
+        <input type="month" name="fecha_vencimiento" id="inputFechaVencimiento" class="form-control @error('fecha_vencimiento') is-invalid @enderror" placeholder="MM/AA" required autocomplete="off">
+        @error('fecha_vencimiento')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+        <label for="inputCvv">CVV</label>
+        <input type="text" name="cvv" id="inputCvv" class="form-control @error('cvv') is-invalid @enderror" placeholder="123" minlength="3" maxlength="3" required autocomplete="off">
+        @error('cvv')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
