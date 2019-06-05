@@ -29,7 +29,9 @@
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Mi Cuenta</a></li>
+                                            <li class="breadcrumb-item"><a href={{ url('profile') }} class="breadcrumb-link">Mi Cuenta</a></li>
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Modificar datos</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Modificar email</li>
                                         </ol>
                                     </nav>
                                 </div>
