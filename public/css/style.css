@@ -1024,6 +1024,15 @@ hr {
 
 
 /*======================================
+//--//-->   REGISTER
+======================================*/
+
+.register {
+  padding: 12rem 0rem 3rem;
+}
+
+
+/*======================================
 //--//-->   Password Reset
 ======================================*/
 
@@ -2101,7 +2110,7 @@ footer .credits {
 
 .form-register {
   width: 50%;
-  padding-top: 150px;
+  padding-top: 1rem;
   margin: 0 auto;
 }
 
