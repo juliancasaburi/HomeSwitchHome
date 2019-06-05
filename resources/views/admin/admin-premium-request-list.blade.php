@@ -165,8 +165,6 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="text" name="userID" class="form-control" id="userID" value="" hidden>
                         <input type="text" name="requestID" class="form-control" id="requestID" value="" hidden>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -194,8 +192,6 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="text" name="userID" class="form-control" id="userID" value="" hidden>
                         <input type="text" name="requestID" class="form-control" id="requestID" value="" hidden>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
                 </div>
                 <div class="modal-footer">
