@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Price;
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Price;
+use App\User;
 use App\Card;
+use App\Property;
 
 class RegisterController extends Controller
 {
@@ -46,7 +47,14 @@ class RegisterController extends Controller
     {
         $normalUserSubscriptionPrice = Price::price('Subscripción usuario normal');
 
-        return view('auth.register')->with('normalUserSubscriptionPrice', $normalUserSubscriptionPrice);
+        $property = Property::inRandomOrder()->first();
+
+        return view('auth.register')->with(
+            [
+                'normalUserSubscriptionPrice' => $normalUserSubscriptionPrice,
+                'property' => $property,
+            ]
+        );
     }
 
     /**

@@ -9,6 +9,49 @@
                 <p>Ya tienes una cuenta?<p>
                     <a href={{ url('login') }}>Iniciar sesión!</a>
             </div>
+            <div class="col-md-4 column-in-center">
+                <div class="card-box-a card-shadow mt-5 mb-5">
+                    <div class="img-box-a">
+                        @if($property->image_path == null)
+                            <img src="{{'https://via.placeholder.com/683x1024?text='.$property->nombre}}" alt="" class="img-a img-fluid">
+                        @else
+                            <img src="{{asset($property->image_path)}}" alt="" class="img-a img-fluid">
+                        @endif
+                    </div>
+                    <div class="card-overlay">
+                        <div class="price-box d-flex float-right">
+                            @for ($i = 1; $i <= $property->estrellas; $i++)
+                                <span><i class="far fa-star fa-2x fa-fw star"></i></span>
+                            @endfor
+                        </div>
+                        <div class="card-overlay-a-content">
+                            <div class="card-header-a">
+                                <h2 class="card-title-a">
+                                    <a href="{{ url('property?id=').$property->id }}"> {{$property->localidad}},
+                                        <br /> {{$property->provincia}},
+                                        <br /> {{$property->pais}}</a>
+                                </h2>
+                            </div>
+                            <div class="card-body-a">
+                                <a href={{ url('property?id=').$property->id }} class="link-a"> Ver info y semanas</a>
+                                <span class="ion-ios-arrow-forward"></span>
+                            </div>
+                            <div class="card-footer-a">
+                                <ul class="card-info d-flex justify-content-around">
+                                    <li>
+                                        <h4 class="card-info-title">Capacidad</h4>
+                                        <span>{{$property->capacidad}}</span>
+                                    </li>
+                                    <li>
+                                        <h4 class="card-info-title">Habitaciones</h4>
+                                        <span>{{$property->habitaciones}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <form class="form-register" action="{{ route('register') }}" method="POST">
                 @csrf
                 <h1 class="h3 mb-3 font-weight-normal text-center">Crear una cuenta</h1>

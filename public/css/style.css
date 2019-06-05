@@ -112,6 +112,11 @@ hr {
   margin: 0;
 }
 
+.column-in-center{
+    float: none;
+    margin: 0 auto;
+}
+
 /*------/ Items  /------*/
 .star {
   color: #C5B358;
