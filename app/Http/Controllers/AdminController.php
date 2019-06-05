@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 use Carbon\Carbon;
 use App\User;
 use App\Property;
@@ -73,8 +75,20 @@ class AdminController extends Controller
      */
     public function showUserList()
     {
-        $users = User::all();
+        // Return users ordered by created_at in descending order (latest first)
+        $users = User::latest()->get();
         return view('admin.admin-user-list')->with ('users',$users);
+    }
+
+    /**
+     * Show all data for a single user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUserInfo(Request $request)
+    {
+        $user = User::find($request->id);
+        return view('admin.admin-user-info')->with ('user',$user);
     }
 
     public function showPropertyList()
@@ -97,7 +111,9 @@ class AdminController extends Controller
 
         if($validator->fails()){
             // Return admin back and show an error flash message
-            return redirect('admin/dashboard/user-list')->withErrors($validator);
+            return redirect()
+                ->back()
+                ->withErrors($validator);
         }
 
         $user = User::find($request->userID);
@@ -112,9 +128,13 @@ class AdminController extends Controller
         if ($userHasBeenModified) {
             $user->save();
             // Return user back and show a flash message
-            return redirect('admin/dashboard/user-list')->with('alert-success', 'Usuario modificado');
+            return redirect()
+                ->back()
+                ->with('alert-success', 'Usuario modificado');
         }
-        return redirect('admin/dashboard/user-list')->with('alert-warning', 'Los datos no cambiaron');
+        return redirect()
+            ->back()
+            ->with('alert-warning', 'Los datos no cambiaron');
     }
 
     public function showAuctionList()
@@ -214,5 +234,25 @@ class AdminController extends Controller
         return redirect()
             ->back()
             ->with('alert-success', 'Solicitud rechazada para el usuario '. $user->nombre. ' '. $user->apellido);
+    }
+
+    public function promoteUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->premium = 1;
+        $user->save();
+
+        Session::flash('success', 'Usuario promovido a Premium');
+        return View::make('layouts/partials/flash-messages');
+    }
+
+    public function demoteUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->premium = 0;
+        $user->save();
+
+        Session::flash('success', 'Usuario degradado a Básico');
+        return View::make('layouts/partials/flash-messages');
     }
 }

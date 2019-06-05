@@ -102,6 +102,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/create-property', 'AdminController@showPropertyCreationForm')->name('admin.createProperty');
     Route::post('/dashboard/create-property', 'PropertyCreationController@store')->name('property.create');
     Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');
+    Route::get('/dashboard/user-info', 'AdminController@showUserInfo')->name('admin.userInfo');
     Route::post('/dashboard/user-list', 'AdminController@editUser')->name('admin.editUser');
     Route::get('/dashboard/property-list', 'AdminController@showPropertyList')->name('admin.propertyList');
     Route::get('/dashboard/create-week', 'AdminController@showWeekCreationForm')->name('admin.createWeek');
@@ -117,6 +118,9 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/premium-request-list', 'AdminController@showPremiumRequestList')->name('admin.premiumRequestList');
     Route::delete('/dashboard/premium-request-accept', 'AdminController@acceptPremiumRequest')->name('admin.premiumRequestAccept');
     Route::delete('/dashboard/premium-request-reject', 'AdminController@rejectPremiumRequest')->name('admin.premiumRequestReject');
+    Route::post('/dashboard/promote-user', 'AdminController@promoteUser')->name('admin.promoteUser');
+    Route::post('/dashboard/demote-user', 'AdminController@demoteUser')->name('admin.demoteUser');
+
     //--------------------------------------------
 });
 
