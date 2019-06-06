@@ -24,6 +24,9 @@
                         <div id="submenu-1" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{url('/profile/modify-data')}}">Modificar datos personales</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/profile/modify-email') }}">Modificar email</a>
                                 </li>
                                 <li class="nav-item">

@@ -80,6 +80,37 @@ class UserController extends Controller
         return view('user.user-password-form');
     }
 
+    public function showModifyDataForm()
+    {
+        return view('user.user-modify-data');
+    }
+
+    public function modifyData()
+    {
+        $rules = [
+            'nombre' => 'required|min:2|max:40',
+            'apellido' => 'required|min:2|max:40',
+            'pais' => 'required',
+            'fecha_nacimiento' => 'required|date|before:-18 years',
+        ];
+        $messages = [
+            'fecha_nacimiento.before' => 'Debes ser mayor de 18 años de edad.',
+        ];
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $usuario = Auth::user();
+        $usuario->nombre = Input::get('nombre');
+        $usuario->apellido = Input::get('apellido');
+        $usuario->pais = Input::get('pais');
+        $usuario->fecha_nacimiento = Input::get('fecha_nacimiento');
+        $usuario->save();
+
+        return redirect()->back()->with('alert-success', 'Tus datos fueron modificados exitosamente!');
+    }
+
     public function modifyPassword(){
         $rules = [
             'mypassword' => 'required',
