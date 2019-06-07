@@ -50,8 +50,10 @@
                         <div class="card">
                             <h5 class="card-header">Listado de Reservas</h5>
                             <div class="card-body">
+                                <input class="form-control" id="tableSearch" type="text" placeholder="Buscar">
+                                <br>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
+                                    <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
                                             <th>Cancelar</th>

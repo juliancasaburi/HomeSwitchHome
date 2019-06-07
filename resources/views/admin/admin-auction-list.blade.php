@@ -49,9 +49,11 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <h5 class="card-header">Listado de Subastas</h5>
+                            <br>
                             <div class="card-body">
+                                <input class="form-control" id="tableSearch" type="text" placeholder="Buscar">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
+                                    <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
                                             <th></th>
@@ -134,4 +136,15 @@
 
 @section('js')
     <script src="{{ asset('js/dashboard.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#tableSearch").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 @endsection

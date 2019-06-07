@@ -50,8 +50,10 @@
                         <div class="card">
                             <h5 class="card-header">Listado de Solicitudes</h5>
                             <div class="card-body">
+                                <input class="form-control" id="tableSearch" type="text" placeholder="Buscar">
+                                <br>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
+                                    <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
                                             <th>Accion</th>
@@ -206,6 +208,17 @@
 @endsection
 
 @section('js')
+    <script>
+        $(document).ready(function(){
+            $("#tableSearch").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
     <script> // Accept Request
         // Fill (user & request) data for request
         $('#acceptRequestModal').on('show.bs.modal', function (event) {

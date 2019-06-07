@@ -51,8 +51,10 @@
                         <div class="card">
                             <h5 class="card-header">Listado de Inscripciones</h5>
                             <div class="card-body">
+                                <input class="form-control" id="tableSearch" type="text" placeholder="Buscar">
+                                <br>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
+                                    <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
                                             <th>Numero</th>
@@ -101,4 +103,15 @@
 
 @section('js')
     <script src="{{ asset('js/dashboard.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#tableSearch").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#table tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 @endsection
