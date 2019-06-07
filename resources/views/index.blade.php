@@ -1,36 +1,38 @@
 @extends('layouts.mainlayout')
 
 @section('content')
-    <!--/ Carousel Start /-->
-    <div class="intro intro-carousel">
-        <div id="carousel" class="owl-carousel owl-theme">
-            @foreach($properties as $p)
-                <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset($p->image_path)}})">
-                    <div class="overlay overlay-a"></div>
-                    <div class="intro-content display-table">
-                        <div class="table-cell">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <div class="intro-body">
-                                            <p class="intro-title-top">{{$p->pais}}
-                                                <br> {{$p->provincia}} <br> {{$p->localidad}}</p>
-                                            <h1 class="intro-title mb-4">
-                                                <span class="color-b">{{$p->numero}} </span> {{$p->calle}}</h1>
-                                            <p class="intro-subtitle intro-price">
-                                                <a href="{{ url('property?id=').$p->id }}"><span class="price-a">Ver más</span></a>
-                                            </p>
+    @if($properties->count() == 3)
+        <!--/ Carousel Start /-->
+        <div class="intro intro-carousel">
+            <div id="carousel" class="owl-carousel owl-theme">
+                @foreach($properties as $p)
+                    <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset($p->image_path)}})">
+                        <div class="overlay overlay-a"></div>
+                        <div class="intro-content display-table">
+                            <div class="table-cell">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="intro-body">
+                                                <p class="intro-title-top">{{$p->pais}}
+                                                    <br> {{$p->provincia}} <br> {{$p->localidad}}</p>
+                                                <h1 class="intro-title mb-4">
+                                                    <span class="color-b">{{$p->numero}} </span> {{$p->calle}}</h1>
+                                                <p class="intro-subtitle intro-price">
+                                                    <a href="{{ url('property?id=').$p->id }}"><span class="price-a">Ver más</span></a>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
-    <!--/ Carousel end /-->
+        <!--/ Carousel end /-->
+    @endif
 
     <!--/ Services Start /-->
     <section class="section-services section-t8">
@@ -139,62 +141,66 @@
                     </div>
                 </div>
             </div>
-            <div id="property-carousel" class="owl-carousel owl-theme">
-                @foreach($properties as $p)
-                    <div class="carousel-item-b">
-                        <div class="card-box-a card-shadow">
-                            <div class="img-box-a">
-                                <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
-                            </div>
-                            <div class="card-overlay">
-                                <div class="price-box d-flex float-right">
-                                    @for ($i = 1; $i <= $p->estrellas; $i++)
-                                        <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                    @endfor
+            @if(!$properties->isEmpty())
+                <div id="property-carousel" class="owl-carousel owl-theme">
+                    @foreach($properties as $p)
+                        <div class="carousel-item-b">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
                                 </div>
-                                <div class="card-overlay-a-content">
-                                    <div class="card-header-a">
-                                        <h2 class="card-title-a">
-                                            <a href="{{ url('property?id=').$p->id }}"> {{$p->localidad}},
-                                                <br /> {{$p->provincia}},
-                                                <br /> {{$p->pais}}</a>
-                                        </h2>
+                                <div class="card-overlay">
+                                    <div class="price-box d-flex float-right">
+                                        @for ($i = 1; $i <= $p->estrellas; $i++)
+                                            <span><i class="far fa-star fa-2x fa-fw star"></i></span>
+                                        @endfor
                                     </div>
-                                    <div class="card-body-a">
-                                        <div class="price-box d-flex">
-                                            @switch($weeks[$loop->index])
-                                                @case(0)
-                                                <span class="alert-danger">0 subastas en inscripción</span>
-                                                @break
-                                                @case(1)
-                                                <span class="alert-info">1 subasta en inscripción</span>
-                                                @break
-                                                @default
-                                                <span class="alert-info">{{ $weeks[$loop->index] }} subastas en inscripción</span>
-                                                @break
-                                            @endswitch
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="{{ url('property?id=').$p->id }}"> {{$p->localidad}},
+                                                    <br /> {{$p->provincia}},
+                                                    <br /> {{$p->pais}}</a>
+                                            </h2>
                                         </div>
-                                        <a href={{ url('property?id=').$p->id }} class="link-a"> Ver info y semanas</a>
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </div>
-                                    <div class="card-footer-a">
-                                        <ul class="card-info d-flex justify-content-around">
-                                            <li>
-                                                <h4 class="card-info-title">Capacidad</h4>
-                                                <span>{{$p->capacidad}}</span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Habitaciones</h4>
-                                                <span>{{$p->habitaciones}}</span>
-                                            </li>
-                                        </ul>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                @switch($weeks[$loop->index])
+                                                    @case(0)
+                                                    <span class="alert-danger">0 subastas en inscripción</span>
+                                                    @break
+                                                    @case(1)
+                                                    <span class="alert-info">1 subasta en inscripción</span>
+                                                    @break
+                                                    @default
+                                                    <span class="alert-info">{{ $weeks[$loop->index] }} subastas en inscripción</span>
+                                                    @break
+                                                @endswitch
+                                            </div>
+                                            <a href={{ url('property?id=').$p->id }} class="link-a"> Ver info y semanas</a>
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Capacidad</h4>
+                                                    <span>{{$p->capacidad}}</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Habitaciones</h4>
+                                                    <span>{{$p->habitaciones}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @else
+                <h5 class="text-muted">Actualmente no tenemos propiedades</h5>
+            @endif
         </div>
     </section>
     <!--/ Property grid End /-->

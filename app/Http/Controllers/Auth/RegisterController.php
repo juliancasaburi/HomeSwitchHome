@@ -49,12 +49,11 @@ class RegisterController extends Controller
 
         $property = Property::inRandomOrder()->first();
 
-        return view('auth.register')->with(
-            [
-                'normalUserSubscriptionPrice' => $normalUserSubscriptionPrice,
-                'property' => $property,
-            ]
-        );
+        $registerView = view('auth.register', ['normalUserSubscriptionPrice' => $normalUserSubscriptionPrice]);
+        if($property) {
+            $registerView->with('property', $property);
+        }
+        return $registerView;
     }
 
     /**

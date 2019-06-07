@@ -42,7 +42,10 @@ class LoginController extends Controller
     {
 
         $property = Property::inRandomOrder()->first();
-
-        return view('auth.login')->with('property', $property);
+        $loginView = view('auth.login');
+        if($property){
+            $loginView->with('property', $property);
+        }
+        return $loginView;
     }
 }
