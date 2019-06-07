@@ -124,6 +124,7 @@ Route::prefix('admin')->group(function() {
     Route::delete('/dashboard/premium-request-reject', 'AdminController@rejectPremiumRequest')->name('admin.premiumRequestReject');
     Route::post('/dashboard/promote-user', 'AdminController@promoteUser')->name('admin.promoteUser');
     Route::post('/dashboard/demote-user', 'AdminController@demoteUser')->name('admin.demoteUser');
+    Route::post('/dashboard/delete-property', 'AdminController@deleteProperty')->name("admin.deleteProperty");
 
     //--------------------------------------------
 });

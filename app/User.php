@@ -177,5 +177,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->where('premium', 1);
     }
+
+    public function sendAuctionCancelledNotification($property, $auctionID){
+        $this->notify(new AuctionCancelled($property, $auctionID));
+    }
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -254,5 +255,30 @@ class AdminController extends Controller
 
         Session::flash('success', 'Usuario degradado a Básico');
         return View::make('layouts/partials/flash-messages');
+    }
+
+    public function deleteProperty(Request $request){
+        $property = Property::find($request->idPropiedad);
+
+        if(($property->weeks()->get()->isEmpty())){
+            //Property doesn't have weeks
+            $property->forceDelete();
+
+        }
+        else if($property->weeks()->has('auction')->get()->isEmpty()){
+            //Property has weeks but these don't have auctions
+            $property->forceDelete();
+        }
+        else{
+            //Property has weeks and some of these have auctions (deleted or not)
+            //Notify users about what happened
+
+            /*CODE*/
+            
+            $property->delete();
+
+        }
+
+        return back();
     }
 }

@@ -75,7 +75,7 @@
                                         <tbody>
                                         @foreach ($properties as $p)
                                             <tr>
-                                                <td><button class="btn-primary"  data-toggle="modal" data-target="#adminPropertyModal" data-pid="{{ $p->id }}"><i class="fas fa-tools"></i>Administrar</button></td>
+                                                <td><button class="btn-primary"><i class="fas fa-tools"></i>Editar</button></td>
                                                 <td>{{ $p->id }}</td>
                                                 <td><a href={{ url('property?id=').$p->id }}>{{ $p->nombre}}</a></td>
                                                 <td>{{ $p->pais }}</td>
@@ -88,7 +88,10 @@
                                                 <td>{{ $p->habitaciones }}</td>
                                                 <td>{{ $p->baños }}</td>
                                                 <td>{{ $p->capacidad_vehiculos }}</td>
-                                                <td><button class="btn-primary"><i class="fas fa-tools"></i>Editar</button></td>
+                                                <td><form class="form-signin" method="POST" onsubmit="return confirmar()" action="{{ route('admin.deleteProperty') }}">
+                                                        @csrf
+                                                        <button class="btn btn-danger" type="submit" name="idPropiedad" value="{{ $p->id }}"><i class="fas fa-exclamation-circle"></i>Eliminar</button>
+                                                    </form></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -155,5 +158,17 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        function confirmar() {
+            if (confirm("Eliminar propiedad?")) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
     </script>
 @endsection

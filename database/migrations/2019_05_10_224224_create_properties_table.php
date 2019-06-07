@@ -28,6 +28,7 @@ class CreatePropertiesTable extends Migration
             $table->tinyInteger('capacidad_vehiculos');
             $table->string('image_path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
