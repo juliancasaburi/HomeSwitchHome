@@ -61,7 +61,11 @@
                 <div class="copyright-footer">
                     <a class="copyright color-text-a" href="{{ url('/') }}">
                         &copy; Copyright
-                        <span class="color-a">Home Switch Home</span> All Rights Reserved.
+                        Home Switch Home All Rights Reserved.
+                    </a>
+                    <br>
+                    <a class="copyright color-text-a" href="{{ url('https://github.com/juliancasaburi/HomeSwitchHome') }}">
+                        Made by Eleven Studio
                     </a>
                 </div>
             </div>
