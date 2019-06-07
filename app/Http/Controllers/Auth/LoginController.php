@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Property;
+use App\Week;
 
 class LoginController extends Controller
 {
@@ -40,12 +41,18 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+        $loginView = view('auth.login');
 
         $property = Property::inRandomOrder()->first();
-        $loginView = view('auth.login');
         if($property){
             $loginView->with('property', $property);
         }
+
+        $week = Week::has('auction')->inRandomOrder()->first();
+        if($week){
+            $loginView->with('week', $week);
+        }
+
         return $loginView;
     }
 }

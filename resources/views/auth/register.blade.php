@@ -397,12 +397,61 @@
                                 <a href="#modalTOS" data-toggle="modal" data-target="#modalTOS">Ver términos y condiciones</a><br>
                                 <input type="checkbox" id="acceptTOS" onclick="validarRegistro()"> Acepto los términos y condiciones
                                 <div>
-                                    <button class="btn btn-b" style="width:100%" type="submit" disabled id="buttonCrear">Crear cuenta</button>
+                                    <button class="btn btn-b mb-5" style="width:100%" type="submit" disabled id="buttonCrear">Crear cuenta</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+                @if(isset($week))
+                    <div class="col-md-4">
+                        <h1 class="h3 mb-3 font-weight-normal">Subasta aleatoria</h1>
+                        <div class="card-box-a card-shadow mt-5 mb-5">
+                            <div class="img-box-a">
+                                @if($week->property->image_path == null)
+                                    <img src="{{'https://via.placeholder.com/683x1024?text='.$week->property->nombre}}" alt="" class="img-a img-fluid">
+                                @else
+                                    <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
+                                @endif
+                            </div>
+                            <div class="card-overlay">
+                                <div class="price-box d-flex float-right">
+                                    @for ($i = 1; $i <= $week->property->estrellas; $i++)
+                                        <span><i class="far fa-star fa-2x fa-fw star"></i></span>
+                                    @endfor
+                                </div>
+                                <div class="card-overlay-a-content">
+                                    <div class="card-header-a">
+                                        <h2 class="card-title-a">
+                                            <a href="{{ url('property?id=').$week->property->id }}"> {{$week->property->localidad}},
+                                                <br /> {{$week->property->provincia}},
+                                                <br /> {{$week->property->pais}}</a>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body-a">
+                                        <div class="price-box d-flex">
+                                            <span class="alert-info">Subasta en inscripción</span>
+                                        </div>
+                                        <a href={{ url('week?id=').$week->id }} class="link-a"> Ver semana</a>
+                                        <span class="ion-ios-arrow-forward"></span>
+                                    </div>
+                                    <div class="card-footer-a">
+                                        <ul class="card-info d-flex justify-content-around">
+                                            <li>
+                                                <h4 class="card-info-title">Fecha</h4>
+                                                <span>{{$week->fecha}}</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Precio inicial</h4>
+                                                <span>${{$week->auction->precio_inicial}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

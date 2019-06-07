@@ -10,6 +10,7 @@ use App\Price;
 use App\User;
 use App\Card;
 use App\Property;
+use App\Week;
 
 class RegisterController extends Controller
 {
@@ -46,13 +47,18 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $normalUserSubscriptionPrice = Price::price('Subscripción usuario normal');
+        $registerView = view('auth.register', ['normalUserSubscriptionPrice' => $normalUserSubscriptionPrice]);
 
         $property = Property::inRandomOrder()->first();
-
-        $registerView = view('auth.register', ['normalUserSubscriptionPrice' => $normalUserSubscriptionPrice]);
         if($property) {
             $registerView->with('property', $property);
         }
+
+        $week = Week::has('auction')->inRandomOrder()->first();
+        if($week){
+            $registerView->with('week', $week);
+        }
+
         return $registerView;
     }
 

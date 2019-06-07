@@ -45,7 +45,7 @@
                 </div>
                 @foreach($weeks as $w)
                     <div class="col-md-4">
-                        <div class="card-box-a card-shadow">
+                        <div class="card-box-a card-shadow mt-5 mb-5">
                             <div class="img-box-a">
                                 @if($w->property->image_path == null)
                                     <img src="{{'https://via.placeholder.com/683x1024?text='.$w->property->nombre}}" alt="" class="img-a img-fluid">
@@ -77,12 +77,12 @@
                                     <div class="card-footer-a">
                                         <ul class="card-info d-flex justify-content-around">
                                             <li>
-                                                <h4 class="card-info-title">Capacidad</h4>
-                                                <span>{{$w->property->capacidad}}</span>
+                                                <h4 class="card-info-title">Fecha</h4>
+                                                <span>{{$w->fecha}}</span>
                                             </li>
                                             <li>
-                                                <h4 class="card-info-title">Habitaciones</h4>
-                                                <span>{{$w->property->habitaciones}}</span>
+                                                <h4 class="card-info-title">Precio inicial</h4>
+                                                <span>${{$w->auction->precio_inicial}}</span>
                                             </li>
                                         </ul>
                                     </div>
