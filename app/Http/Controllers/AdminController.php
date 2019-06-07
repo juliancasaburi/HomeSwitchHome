@@ -267,6 +267,7 @@ class AdminController extends Controller
         }
         else if($property->weeks()->has('auction')->get()->isEmpty()){
             //Property has weeks but these don't have auctions
+            $property->weeks()->forceDelete();
             $property->forceDelete();
         }
         else{
@@ -274,7 +275,7 @@ class AdminController extends Controller
             //Notify users about what happened
 
             /*CODE*/
-            
+
             $property->delete();
 
         }
