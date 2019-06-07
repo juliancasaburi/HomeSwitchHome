@@ -6,11 +6,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class AuctionCancelled
+class AuctionCancelled extends Notification
 {
     use Queueable;
 
-    protected $property_name;
+    protected $propertyName;
     protected $auctionID;
 
 
@@ -19,9 +19,9 @@ class AuctionCancelled
      *
      * @return void
      */
-    public function __construct($property_name, $auctionID)
+    public function __construct($propertyName, $auctionID)
     {
-        $this->property_name = $property_name;
+        $this->propertyName = $propertyName;
         $this->auctionID = $auctionID;
     }
 
@@ -49,7 +49,7 @@ class AuctionCancelled
         return (new MailMessage)
             ->subject('HSH | Una subasta se ha cancelado')
             ->greeting('Hola, ' . $notifiable->nombre)
-            ->line('Se ha cancelado una subasta de la propiedad ' .$this->property_name. '. Lo sentimos!')
+            ->line('Se ha cancelado una subasta de la propiedad ' .$this->propertyName. '. Lo sentimos!')
             ->action('Ver Subasta', $link)
             ->salutation('Home Switch Home - Cadena de Residencias');
     }

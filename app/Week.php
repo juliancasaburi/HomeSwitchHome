@@ -17,7 +17,7 @@ class Week extends Model
     ];
 
     public function property(){
-        return $this->belongsTo(Property::class, 'propiedad_id', 'id');
+        return $this->belongsTo(Property::class, 'propiedad_id', 'id')->withTrashed();
     }
 
     public function auction(){
@@ -26,9 +26,5 @@ class Week extends Model
 
     public function reservation(){
         return $this->hasOne(Reservation::class, 'semana_id', 'id');
-    }
-
-    public function inscriptions(){
-        return $this->hasManyThrough(InscriptionForFutureAuction::class, Auction::class, 'semana_id', 'usuario_id', 'id', 'id');
     }
 }

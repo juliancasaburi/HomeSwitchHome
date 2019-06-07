@@ -14,6 +14,7 @@ use App\Notifications\PaymentDetailsChanged;
 use App\Notifications\AuctionStarted;
 use App\Notifications\PremiumAccepted;
 use App\Notifications\PremiumRejected;
+use App\Notifications\AuctionCancelled;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -136,6 +137,15 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Send the Auction Cancelled notification
+     *
+     * @return void
+     */
+    public function sendAuctionCancelledNotification($propertyName, $auctionID){
+        $this->notify(new AuctionCancelled($propertyName, $auctionID));
+    }
+
+    /**
      * Accessor for Age.
      */
     public function getAgeAttribute()
@@ -176,10 +186,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopePremium($query)
     {
         return $query->where('premium', 1);
-    }
-
-    public function sendAuctionCancelledNotification($property, $auctionID){
-        $this->notify(new AuctionCancelled($property, $auctionID));
     }
 }
 

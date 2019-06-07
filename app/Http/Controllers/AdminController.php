@@ -260,23 +260,35 @@ class AdminController extends Controller
     public function deleteProperty(Request $request){
         $property = Property::find($request->idPropiedad);
 
-        if(($property->weeks()->get()->isEmpty())){
+        $propertyWeeks = $property->weeks()->get();
+
+        //Property doesn't have weeks
+        if($propertyWeeks->isEmpty()){
             //Property doesn't have weeks
             $property->forceDelete();
 
         }
-        else if($property->weeks()->has('auction')->get()->isEmpty()){
-            //Property has weeks but these don't have auctions
-            $property->forceDelete();
-        }
+        //Property has weeks
         else{
-            //Property has weeks and some of these have auctions (deleted or not)
-            //Notify users about what happened
-
-            /*CODE*/
-            
-            $property->delete();
-
+            foreach($propertyWeeks as $w){
+                $weekAuction = Auction::where('semana_id', '=', $w->id)->first();
+                if(!$weekAuction){
+                    $w->forceDelete();
+                }
+                elseif(($weekAuction->inscripcion_inicio <= Carbon::now()) && ($weekAuction->inscripcion_fin > Carbon::now())){
+                    $inscriptions = $weekAuction->inscriptions()->get();
+                    foreach($inscriptions as $i){
+                        $i->user->sendAuctionCancelledNotification($property->nombre, $weekAuction->id);
+                    }
+                    $weekAuction->delete();
+                    $w->delete();
+                }
+                elseif(($weekAuction->inicio >= Carbon::now())){
+                    $weekAuction->delete();
+                    $w->delete();
+                }
+                $property->delete();
+            }
         }
 
         return back();
