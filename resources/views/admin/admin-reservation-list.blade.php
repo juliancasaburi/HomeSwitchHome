@@ -182,10 +182,7 @@
 @endsection
 
 @section('js')
-
     <!-- Optional JavaScript -->
-    <!-- dashboard js -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     <!-- slimscroll js -->
     <script src="{{ asset('lib/slimscroll/jquery.slimscroll.js') }}"></script>
     <!-- morris-chart js -->

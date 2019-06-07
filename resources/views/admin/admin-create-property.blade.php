@@ -419,7 +419,6 @@
 @section('js')
     <!-- Optional JavaScript -->
     <script src="{{ asset('lib/parsley/parsley.js') }}"></script>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     <script>
         $('#form').parsley();
     </script>

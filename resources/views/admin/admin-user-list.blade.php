@@ -108,8 +108,6 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-
     <script>
         $(document).ready(function(){
             $("#tableSearch").on("keyup", function() {

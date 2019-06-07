@@ -243,7 +243,6 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     <script> // Edit User
 
         // Reset modal input after closing it
