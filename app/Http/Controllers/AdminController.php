@@ -94,7 +94,7 @@ class AdminController extends Controller
 
     public function showPropertyList()
     {
-        $properties = Property::all();
+        $properties = Property::orderBy('nombre', 'asc')->get();
         return view('admin.admin-property-list')->with ('properties',$properties);
     }
 
