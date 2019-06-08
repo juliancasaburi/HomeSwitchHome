@@ -258,7 +258,7 @@ class AdminController extends Controller
     }
 
     public function deleteProperty(Request $request){
-        $property = Property::find($request->idPropiedad);
+        $property = Property::find($request->id);
 
         $propertyWeeks = $property->weeks()->get();
 
@@ -291,6 +291,6 @@ class AdminController extends Controller
             }
         }
 
-        return back();
+        return back()->with('alert-success', 'Propiedad '. $property->nombre. ' eliminada');
     }
 }

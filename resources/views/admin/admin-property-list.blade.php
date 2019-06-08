@@ -88,10 +88,11 @@
                                                 <td>{{ $p->habitaciones }}</td>
                                                 <td>{{ $p->baños }}</td>
                                                 <td>{{ $p->capacidad_vehiculos }}</td>
-                                                <td><form class="form-signin" method="POST" onsubmit="return confirmar()" action="{{ route('admin.deleteProperty') }}">
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit" name="idPropiedad" value="{{ $p->id }}"><i class="fas fa-exclamation-circle"></i>Eliminar</button>
-                                                    </form></td>
+                                                <td>
+                                                    <button class="btn-outline-danger pt-2 pb-2" id="deletePropertyButton" data-toggle="modal" data-target="#deletePropertyModal" data-pid="{{ $p->id }}" data-pname="{{ $p->nombre }}">
+                                                        <i class="fas fa-trash"></i>Eliminar
+                                                    </button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -122,6 +123,27 @@
                     <!-- end Property table  -->
                     <!-- ============================================================== -->
                 </div>
+                <!-- ============================================================== -->
+                <!-- Alerts  -->
+                <!-- ============================================================== -->
+                @if(session()->has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ session()->get('alert-success') }}
+                    </div>
+                @elseif ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+            @endif
+            <!-- ============================================================== -->
+                <!-- End Alerts  -->
+                <!-- ============================================================== -->
             </div>
         </div>
     </div>
@@ -129,7 +151,7 @@
     <!-- end main wrapper -->
     <!-- ============================================================== -->
 
-    <!-- Modal -->
+    <!-- Admin Property Modal -->
     <div class="modal fade" id="adminPropertyModal" tabindex="-1" role="dialog" aria-labelledby="adminPropertyModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -146,6 +168,33 @@
             </div>
         </div>
     </div>
+    <!-- End Admin Property Modal -->
+
+    <!-- Delete property Modal -->
+    <div class="modal fade" id="deletePropertyModal" tabindex="-1" role="dialog" aria-labelledby="deletePropertyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePropertyModalLabel">Desea eliminar la propiedad?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 id="propertyText">aa</h5>
+                    <form id="deletePropertyForm" action="{{ route('admin.deleteProperty') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="button" id="btn-createauction" class="btn btn-primary" onclick="deletePropertyForm_submit()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Delete property Modal -->
 @endsection
 
 @section('js')
@@ -160,15 +209,20 @@
         });
     </script>
 
-    <script>
-        function confirmar() {
-            if (confirm("Eliminar propiedad?")) {
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+    <script> // Delete Property
+        // Fill property id for request
+        $('#deletePropertyModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('pid');
+            var name = $(event.relatedTarget).data('pname');
+            document.getElementById("propertyText").innerHTML = name;
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
 
+        // Submit form
+        function deletePropertyForm_submit() {
+            $('#deletePropertyButton').attr('disabled','disabled');
+            $('#deletePropertyModal').modal('hide');
+            document.getElementById("deletePropertyForm").submit();
+        }
     </script>
 @endsection
