@@ -27,4 +27,15 @@ class Week extends Model
     public function reservation(){
         return $this->hasOne(Reservation::class, 'semana_id', 'id');
     }
+
+    public function inscriptions(){
+        return $this->hasManyThrough(
+            'App\InscriptionForFutureAuction',
+            'App\Auction',
+            'semana_id', // Foreign key on Auction table
+            'subasta_id', // Foreign key on InscriptionForFutureAuction table
+            'id', // Local key on Week table
+            'id' // Local key on users table
+        );
+    }
 }
