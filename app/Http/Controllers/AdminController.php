@@ -275,17 +275,17 @@ class AdminController extends Controller
                 if(!$weekAuction){
                     $w->forceDelete();
                 }
-                elseif(($weekAuction->inscripcion_inicio <= Carbon::now()) && ($weekAuction->inscripcion_fin > Carbon::now())){
+                elseif($weekAuction->inscripcion_inicio > Carbon::now()){
+                    $weekAuction->delete();
+                    $w->delete();
+                }
+                elseif($weekAuction->inicio > Carbon::now()){
+                    $weekAuction->delete();
+                    $w->delete();
                     $inscriptions = $weekAuction->inscriptions()->get();
                     foreach($inscriptions as $i){
                         $i->user->sendAuctionCancelledNotification($property->nombre, $w->fecha, $weekAuction->id);
                     }
-                    $weekAuction->delete();
-                    $w->delete();
-                }
-                elseif(($weekAuction->inicio >= Carbon::now())){
-                    $weekAuction->delete();
-                    $w->delete();
                 }
                 $property->delete();
             }
