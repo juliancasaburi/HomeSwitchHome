@@ -75,7 +75,7 @@
                                         <tbody>
                                         @foreach ($properties as $p)
                                             <tr>
-                                                <td><button class="btn-primary"><i class="fas fa-tools"></i>Editar</button></td>
+                                                <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Editar</button></td>
                                                 <td>{{ $p->id }}</td>
                                                 <td><a href={{ url('property?id=').$p->id }}>{{ $p->nombre}}</a></td>
                                                 <td>{{ $p->pais }}</td>

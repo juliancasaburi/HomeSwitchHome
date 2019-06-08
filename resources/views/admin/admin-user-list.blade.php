@@ -67,7 +67,7 @@
                                         <tbody>
                                         @foreach ($users as $u)
                                             <tr>
-                                                <td><a href="{{ url('admin/dashboard/user-info?id=') .$u->id}}" class="btn-primary"><i class="fas fa-search-plus"></i>+INFO</a></td>
+                                                <td><a href="{{ url('admin/dashboard/user-info?id=') .$u->id}}" class="btn-outline-primary"><i class="fas fa-search-plus"></i>+INFO</a></td>
                                                 <td>{{ $u->created_at}}</td>
                                                 <td>{{ $u->nombre}}</td>
                                                 <td>{{ $u->apellido }}</td>

@@ -70,12 +70,12 @@
                                         @foreach ($reservations as $r)
                                             <tr>
                                                 @if($r->trashed())
-                                                    <td><button class="btn-primary" disabled><i class="fas fa-times-circle text-gray"></i>Cancelada</button></td>
+                                                    <td><button class="btn-outline-primary" disabled><i class="fas fa-times-circle text-gray"></i>Cancelada</button></td>
                                                 @else
                                                     @if(\Carbon\Carbon::now()->diffInMonths($r->week->fecha) > 0)
-                                                        <td><button class="btn-primary" data-toggle="modal" data-target="#cancelReservationModal" data-rid="{{ $r->id }}"><i class="fas fa-times-circle"></i>Cancelar</button></td>
+                                                        <td><button class="btn-outline-primary" data-toggle="modal" data-target="#cancelReservationModal" data-rid="{{ $r->id }}"><i class="fas fa-times-circle"></i>Cancelar</button></td>
                                                     @else
-                                                        <td><button class="btn-primary" disabled><i class="fas fa-times-circle text-gray"></i>Plazo expirado</button></td>
+                                                        <td><button class="btn-outline-primary" disabled><i class="fas fa-times-circle text-gray"></i>Plazo expirado</button></td>
                                                     @endif
                                                 @endif
                                                 <td>{{ $r->id}}</td>

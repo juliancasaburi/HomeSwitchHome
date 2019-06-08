@@ -71,7 +71,7 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td><button class="btn-primary" data-toggle="modal" data-target="#editUserModal" data-uid="{{ $user->id }}" data-nombre="{{ $user->nombre }}" data-apellido="{{ $user->apellido }}" data-saldo="{{ $user->saldo }}" data-creditos="{{ $user->creditos }}"><i class="far fa-edit"></i>Editar</button></td><td>{{ $user->id}}</td>
+                                            <td><button class="btn-outline-primary" data-toggle="modal" data-target="#editUserModal" data-uid="{{ $user->id }}" data-nombre="{{ $user->nombre }}" data-apellido="{{ $user->apellido }}" data-saldo="{{ $user->saldo }}" data-creditos="{{ $user->creditos }}"><i class="far fa-edit"></i>Editar</button></td><td>{{ $user->id}}</td>
                                             <td>{{ $user->nombre}}</td>
                                             <td>{{ $user->apellido }}</td>
                                             <td>{{ $user->email }}</td>
@@ -79,13 +79,13 @@
                                                 <td>
                                                     <i class="fas fa-ticket-alt"></i>Premium
                                                     <br>
-                                                    <button class="btn-primary" data-toggle="modal" data-target="#demoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-user"></i>Convertir en básico</button>
+                                                    <button class="btn-outline-primary" data-toggle="modal" data-target="#demoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-user"></i>Convertir en básico</button>
                                                 </td>
                                             @else
                                                 <td>
                                                     <p class="text-center"><i class="fas fa-user"></i>Regular</p>
                                                     <br>
-                                                    <button class="btn-primary" data-toggle="modal" data-target="#promoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-ticket-alt"></i>Convertir en premium</button>
+                                                    <button class="btn-outline-primary" data-toggle="modal" data-target="#promoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-ticket-alt"></i>Convertir en premium</button>
                                                 </td>
                                             @endif
                                             <td>{{ $user->pais }}</td>

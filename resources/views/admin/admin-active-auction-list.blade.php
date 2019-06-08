@@ -73,7 +73,7 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
-                                                <td><button class="btn-danger"><i class="fa fa-times"></i>Cancelar</button></td>
+                                                <td><button class="btn-outline-danger"><i class="fa fa-times"></i>Cancelar</button></td>
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
                                                 <td><a href={{ url('week?id=').$a->week->id }}>ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
                                                 <td><a href={{ url('property?id=').$a->week->property->id }}>ID: {{ $a->week->property->id }} "{{ $a->week->property->nombre }}"</a></td>

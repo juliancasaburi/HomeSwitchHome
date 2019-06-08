@@ -79,7 +79,7 @@
                                                 @elseif($a->trashed())
                                                     <td>Finalizada</td>
                                                 @else
-                                                    <td><button class="btn-primary"><i class="fas fa-tools"></i>Administrar</button></td>
+                                                    <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Administrar</button></td>
                                                 @endif
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
                                                 <td><a href={{ url('week?id=').$a->week->id }}>ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>

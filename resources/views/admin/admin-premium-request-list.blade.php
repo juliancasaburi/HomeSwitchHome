@@ -74,10 +74,10 @@
                                             <tr>
                                                 <td>
                                                     <div class="row mb-5">
-                                                        <button class="btn-primary pt-2 pb-2" data-toggle="modal" data-target="#acceptRequestModal" data-uid="{{ $r->user->id }}" data-rid="{{ $r->id }}"><i class="fas fa-vote-yea" style="color:lawngreen"></i>Aceptar</button>
+                                                        <button class="btn-outline-primary pt-2 pb-2" data-toggle="modal" data-target="#acceptRequestModal" data-uid="{{ $r->user->id }}" data-rid="{{ $r->id }}"><i class="fas fa-vote-yea" style="color:lawngreen"></i>Aceptar</button>
                                                     </div>
                                                     <div class="row mt-5">
-                                                        <button class="btn-primary pt-2 pb-2" data-toggle="modal" data-target="#rejectRequestModal" data-uid="{{ $r->user->id }}" data-rid="{{ $r->id }}"><i class="fas fa-trash" style="color:red"></i>Rechazar</button>
+                                                        <button class="btn-outline-primary pt-2 pb-2" data-toggle="modal" data-target="#rejectRequestModal" data-uid="{{ $r->user->id }}" data-rid="{{ $r->id }}"><i class="fas fa-trash" style="color:red"></i>Rechazar</button>
                                                     </div>
                                                 </td>
                                                 <td>{{ $r->user->id}}</td>
