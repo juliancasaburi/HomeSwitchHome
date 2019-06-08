@@ -141,8 +141,8 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return void
      */
-    public function sendAuctionCancelledNotification($propertyName, $auctionID){
-        $this->notify(new AuctionCancelled($propertyName, $auctionID));
+    public function sendAuctionCancelledNotification($propertyName, $date, $auctionID){
+        $this->notify(new AuctionCancelled($propertyName, $date, $auctionID));
     }
 
     /**

@@ -11,6 +11,7 @@ class AuctionCancelled extends Notification
     use Queueable;
 
     protected $propertyName;
+    protected $date;
     protected $auctionID;
 
 
@@ -19,10 +20,11 @@ class AuctionCancelled extends Notification
      *
      * @return void
      */
-    public function __construct($propertyName, $auctionID)
+    public function __construct($propertyName, $date, $auctionID)
     {
         $this->propertyName = $propertyName;
         $this->auctionID = $auctionID;
+        $this->date = $date;
     }
 
     /**
@@ -47,10 +49,13 @@ class AuctionCancelled extends Notification
         $link = url( "/auction?id=" . $this->auctionID );
 
         return (new MailMessage)
-            ->subject('HSH | Una subasta se ha cancelado')
+            ->subject('HSH | Una subasta inscripta ha sido cancelada')
             ->greeting('Hola, ' . $notifiable->nombre)
-            ->line('Se ha cancelado una subasta de la propiedad ' .$this->propertyName. '. Lo sentimos!')
+            ->line('Hemos cancelado una subasta en la que estabas inscripto y aún no había comenzado')
+            ->line('Propiedad: ' .$this->propertyName)
+            ->line('Semana: ' .$this->date)
             ->action('Ver Subasta', $link)
+            ->line('Lo sentimos.')
             ->salutation('Home Switch Home - Cadena de Residencias');
     }
 
