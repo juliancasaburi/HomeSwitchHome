@@ -395,7 +395,7 @@
                             @enderror
                             <div class="text-center pt-4">
                                 <a href="#modalTOS" data-toggle="modal" data-target="#modalTOS">Ver términos y condiciones</a><br>
-                                <input type="checkbox" id="acceptTOS" onclick="validarRegistro()"> Acepto los términos y condiciones
+                                <input type="checkbox" name="acceptTOS" id="acceptTOS" onclick="validarRegistro()"> Acepto los términos y condiciones
                                 <div>
                                     <button class="btn btn-b mb-5" style="width:100%" type="submit" disabled id="buttonCrear">Crear cuenta</button>
                                 </div>

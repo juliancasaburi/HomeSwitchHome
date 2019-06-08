@@ -70,20 +70,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'fecha_nacimiento.before' => 'Debes ser mayor de 18 años de edad.',
+        ];
         return Validator::make($data, [
             'apellido' => ['required', 'string', 'max:40'],
             'nombre' => ['required', 'string', 'max:40'],
             'pais' => ['required'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:usuarios'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'fecha_nacimiento' => ['required'],
+            'fecha_nacimiento' => ['required', 'date', 'before:-18 years'],
             'DNI' => ['required', 'string', 'unique:usuarios'],
             'numero_tarjeta' => ['required', 'string', 'min:16', 'max:16'],
             'marca' => ['required'],
             'nombre_titular' => ['required', 'string', 'max:80'],
             'fecha_vencimiento' => ['required'],
             'cvv' => ['required', 'min:3', 'max:3'],
-        ]);
+            'acceptTOS' => ['accepted'],
+        ], $messages);
     }
 
     /**
