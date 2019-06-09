@@ -40,7 +40,7 @@
                         <div id="submenu-3" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Ver todas</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/weeks-list') }}">Ver todas</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/create-week') }}">Crear Semana</a>
