@@ -23,7 +23,8 @@ class PremiumRequestController extends Controller
 
         if($validator->fails()){
             // Redirect back and show an error flash message
-            return redirect('/profile')
+            return redirect()
+                ->back()
                 ->withErrors($validator);
         }
 
@@ -39,13 +40,15 @@ class PremiumRequestController extends Controller
             $user->saldo -= $premiumConcept->valor;
             $user->save();
 
-            // Redirect back and flash success message
-            return redirect('/profile')
+            // Redirect back and show a success message
+            return redirect()
+                ->back()
                 ->with('alert-success', 'Solicitud realizada exitosamente.');
         }
         else {
-            // Redirect back and flash error message
-            return redirect('/profile')
+            // Redirect back and show an error flash message
+            return redirect()
+                ->back()
                 ->with('alert-error', 'Tu saldo es menor a '.$premiumConcept->valor);
         }
     }
@@ -55,13 +58,22 @@ class PremiumRequestController extends Controller
         $user = Auth::user();
         $premiumRequest = $user->premiumRequest;
 
-        $user->saldo += $premiumRequest->valor;
-        $user->save();
-        $premiumRequest->delete();
+        if($premiumRequest) {
 
-        // Redirect back and flash success message
-        return redirect()
-            ->back()
-            ->with('alert-success', 'Solicitud cancelada. Te devolvimos $'. $premiumRequest->valor);
+            $user->saldo += $premiumRequest->valor;
+            $user->save();
+            $premiumRequest->delete();
+
+            // Redirect back and show a success message
+            return redirect()
+                ->back()
+                ->with('alert-success', 'Solicitud cancelada. Te devolvimos $' . $premiumRequest->valor);
+        }
+        else{
+            // Redirect back and show an error flash message
+            return redirect()
+                ->back()
+                ->with('alert-error', 'Operacion inválida');
+        }
     }
 }
