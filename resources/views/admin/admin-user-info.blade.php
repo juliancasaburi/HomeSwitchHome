@@ -52,7 +52,7 @@
                             <h5 class="card-header">Detalles del usuario: {{ $user->nombre}} {{ $user->apellido}}</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first">
+                                    <table id="singleUserTable" class="table table-striped table-bordered first">
                                         <thead>
                                         <tr>
                                             <th></th>
@@ -70,30 +70,30 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td><button class="btn-outline-primary" data-toggle="modal" data-target="#editUserModal" data-uid="{{ $user->id }}" data-nombre="{{ $user->nombre }}" data-apellido="{{ $user->apellido }}" data-saldo="{{ $user->saldo }}" data-creditos="{{ $user->creditos }}"><i class="far fa-edit"></i>Editar</button></td><td>{{ $user->id}}</td>
+                                        <tr id="user">
+                                            <td><button class="btn-outline-primary" id="editButton" data-toggle="modal" data-target="#editUserModal" data-uid="{{ $user->id }}" data-nombre="{{ $user->nombre }}" data-apellido="{{ $user->apellido }}" data-saldo="{{ $user->saldo }}" data-creditos="{{ $user->creditos }}"><i class="far fa-edit"></i>Editar</button></td><td>{{ $user->id}}</td>
                                             <td>{{ $user->nombre}}</td>
                                             <td>{{ $user->apellido }}</td>
                                             <td>{{ $user->email }}</td>
                                             @if($user->premium == 1)
-                                                <td>
+                                                <td id="membership">
                                                     <i class="fas fa-ticket-alt"></i>Premium
                                                     <br>
-                                                    <button class="btn-outline-primary" data-toggle="modal" data-target="#demoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-user"></i>Convertir en básico</button>
+                                                    <button class="btn-outline-primary" id="convertButton" data-toggle="modal" data-target="#demoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-user"></i>Convertir en básico</button>
                                                 </td>
                                             @else
-                                                <td>
+                                                <td id="membership">
                                                     <p class="text-center"><i class="fas fa-user"></i>Regular</p>
                                                     <br>
-                                                    <button class="btn-outline-primary" data-toggle="modal" data-target="#promoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-ticket-alt"></i>Convertir en premium</button>
+                                                    <button class="btn-outline-primary" id="convertButton" data-toggle="modal" data-target="#promoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-ticket-alt"></i>Convertir en premium</button>
                                                 </td>
                                             @endif
                                             <td>{{ $user->pais }}</td>
                                             <td>{{ $user->created_at}}</td>
                                             <td>{{ $user->fecha_nacimiento }} ({{ $user->age}})</td>
                                             <td>{{ $user->DNI }}</td>
-                                            <td>{{ $user->creditos }}</td>
-                                            <td>${{ $user->saldo }}</td>
+                                            <td id="creditos" data-value="{{ $user->creditos }}">{{ $user->creditos }}</td>
+                                            <td id="saldo" data-value="{{ $user->saldo }}">${{ $user->saldo }}</td>
                                         </tr>
                                         </tbody>
                                         <tfoot>
@@ -136,7 +136,7 @@
     <!-- end main wrapper -->
     <!-- ============================================================== -->
 
-    <!-- Modal -->
+    <!-- Edit User Modal -->
     <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -147,8 +147,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" id="editUserForm" action="{{ route('admin.editUser') }}" role="form" method="POST">
-                        @csrf
+                    <form id="editUserForm">
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <label for="userID"></label>
@@ -169,15 +168,15 @@
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <label for="inputUserCreditos">Creditos</label>
-                                <input type="number" name="userCreditos" class="form-control" id="inputUserCreditos" placeholder="" value="" autofocus>
+                                <label for="userCreditos">Creditos</label>
+                                <input type="number" name="userCreditos" class="form-control" id="userCreditos" placeholder="" autofocus>
                                 <div class="valid-feedback">
                                     Válido
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <label for="inputUserSaldo">Saldo</label>
-                                <input type="number" step="0.01" name="userSaldo" class="form-control" id="inputUserSaldo" placeholder="" value="">
+                                <label for="userSaldo">Saldo</label>
+                                <input type="number" step="0.01" name="userSaldo" class="form-control" id="userSaldo" placeholder="">
                                 <div class="valid-feedback">
                                     Válido
                                 </div>
@@ -187,11 +186,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar cambios</button>
-                    <button type="button" class="btn btn-primary" onclick="form_submit()">Guardar Cambios</button>
+                    <button type="button" class="btn btn-primary" id="editUserSubmit">Guardar Cambios</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Edit User Modal -->
 
     <!-- Promote User Modal -->
     <div class="modal fade" id="promoteUserModal" tabindex="-1" role="dialog" aria-labelledby="promoteUserModalLabel" aria-hidden="true">
@@ -245,18 +245,57 @@
 @section('js')
     <script> // Edit User
 
+        jQuery(document).ready(function(){
+            jQuery('#editUserSubmit').click(function(e){
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                });
+                jQuery.ajax({
+                    url: "{{ url('/admin/dashboard/edit-user') }}",
+                    method: 'put',
+                    data: {
+                        userID: jQuery('#userID').val(),
+                        userCreditos: jQuery('#userCreditos').val(),
+                        userSaldo: jQuery('#userSaldo').val(),
+                    },
+                    dataType: 'html', //Optional: type of data returned from server
+                    success: function(data) {
+                        var userRow = document.getElementById("user");
+                        var saldoCellIndex = document.getElementById("saldo").cellIndex;
+                        userRow.deleteCell(saldoCellIndex);
+                        var saldoNewCell = userRow.insertCell(saldoCellIndex);
+                        saldoNewCell.id = "saldo";
+                        $(saldoNewCell).attr('data-value', jQuery('#userSaldo').val());
+                        saldoNewCell.innerHTML = "$" + jQuery('#userSaldo').val();
+
+                        var creditosCellIndex = document.getElementById("creditos").cellIndex;
+                        userRow.deleteCell(creditosCellIndex);
+                        var creditosNewCell = userRow.insertCell(creditosCellIndex);
+                        creditosNewCell.id = "creditos";
+                        $(creditosNewCell).attr('data-value', jQuery('#userCreditos').val());
+                        creditosNewCell.innerHTML = jQuery('#userCreditos').val();
+                        $('#editUserModal').modal('hide')
+                        $('div.flash-message').empty();
+                        $('div.flash-message').html(data);
+                    }});
+            });
+        });
+
         // Reset modal input after closing it
         $('#editUserModal').on('hidden.bs.modal', function(e)
         {
-            $("#editUserModal .modal-body input").val("")
+            $(this).find('form').trigger('reset');
         }) ;
 
         // Display user data
         $('#editUserModal').on('show.bs.modal', function (event) {
             var nombre = $(event.relatedTarget).data('nombre');
             var apellido = $(event.relatedTarget).data('apellido');
-            var creditos = $(event.relatedTarget).data('creditos');
-            var saldo = $(event.relatedTarget).data('saldo');
+            var creditos = jQuery('#creditos').data('value');
+            var saldo = jQuery('#saldo').data('value');
             var id = $(event.relatedTarget).data('uid');
             $(event.currentTarget).find('input[name="userNombre"]').attr('placeholder',nombre);
             $(event.currentTarget).find('input[name="userApellido"]').attr('placeholder',apellido);
@@ -272,19 +311,6 @@
         $('#editUserModal').on('shown.bs.modal', function (event) {
             $(event.currentTarget).find('[autofocus]').focus();
         });
-
-        // Button
-        function form_submit() {
-            var inputCreditos = document.getElementById("inputUserCreditos");
-            var inputSaldo = document.getElementById("inputUserSaldo");
-
-            if (inputCreditos && inputCreditos.value && inputSaldo && inputSaldo.value) {
-                document.getElementById("editUserForm").submit();
-            }
-            else {
-                alert ('Saldo y créditos no pueden estar vacíos');
-            }
-        }
     </script>
 
     <script> // Promote user
@@ -314,8 +340,17 @@
                     },
                     dataType: 'html', //Optional: type of data returned from server
                     success: function(data) {
+                        $('#promoteUserModal').modal('hide')
+                        var userRow = document.getElementById("user");
+                        var cellIndex = document.getElementById("membership").cellIndex;
+                        userRow.deleteCell(cellIndex);
+                        var newCell = userRow.insertCell(cellIndex);
+                        newCell.id = "membership";
+                        newCell.innerHTML = "                                                    <i class=\"fas fa-ticket-alt\"></i>Premium\n" +
+                            "                                                    <br>\n" +
+                            "                                                    <button class=\"btn-outline-primary\" id=\"convertButton\" data-toggle=\"modal\" data-target=\"#demoteUserModal\" data-uid=\"{{ $user->id }}\"><i class=\"fas fa-user\"></i>Convertir en básico</button>";
+                        $('div.flash-message').empty();
                         $('div.flash-message').html(data);
-                        $('').append('whatever you want');
                     }});
             });
         });
@@ -330,7 +365,7 @@
         });
     </script>
 
-    // Promote User
+    // Demote User
     <script>
         jQuery(document).ready(function(){
             jQuery('#demoteUserSubmit').click(function(e){
@@ -348,6 +383,16 @@
                     },
                     dataType: 'html', //Optional: type of data returned from server
                     success: function(data) {
+                        $('#demoteUserModal').modal('hide')
+                        var row = document.getElementById("user");
+                        var cellIndex = document.getElementById("membership").cellIndex;
+                        row.deleteCell(cellIndex);
+                        var newCell = row.insertCell(cellIndex);
+                        newCell.id = "membership";
+                        newCell.innerHTML = "                                                    <p class=\"text-center\"><i class=\"fas fa-user\"></i>Regular</p>\n" +
+                            "                                                    <br>\n" +
+                            "                                                    <button class=\"btn-outline-primary\" id=\"convertButton\" data-toggle=\"modal\" data-target=\"#promoteUserModal\" data-uid=\"{{ $user->id }}\"><i class=\"fas fa-ticket-alt\"></i>Convertir en premium</button>\n";
+                        $('div.flash-message').empty();
                         $('div.flash-message').html(data);
                     }});
             });

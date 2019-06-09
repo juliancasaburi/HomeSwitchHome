@@ -111,10 +111,11 @@ class AdminController extends Controller
         ]);
 
         if($validator->fails()){
-            // Return admin back and show an error flash message
-            return redirect()
-                ->back()
-                ->withErrors($validator);
+            // Show an error flash message
+            foreach($validator->errors() as $e){
+                Session::flash('error', $e);
+                return View::make('layouts/partials/flash-messages');
+            }
         }
 
         $user = User::find($request->userID);
@@ -128,14 +129,15 @@ class AdminController extends Controller
         }
         if ($userHasBeenModified) {
             $user->save();
-            // Return user back and show a flash message
-            return redirect()
-                ->back()
-                ->with('alert-success', 'Usuario modificado');
+            // show a success flash message
+            Session::flash('success', 'Usuario '. $user->id.' modificado');
+            return View::make('layouts/partials/flash-messages');
         }
-        return redirect()
-            ->back()
-            ->with('alert-warning', 'Los datos no cambiaron');
+        else{
+            // show a success flash message
+            Session::flash('warning', 'Usuario '. $user->id.' no modificado');
+            return View::make('layouts/partials/flash-messages');
+        }
     }
 
     public function showAuctionList()

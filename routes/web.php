@@ -107,7 +107,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/create-property', 'PropertyCreationController@store')->name('property.create');
     Route::get('/dashboard/user-list', 'AdminController@showUserList')->name('admin.userList');
     Route::get('/dashboard/user-info', 'AdminController@showUserInfo')->name('admin.userInfo');
-    Route::post('/dashboard/user-list', 'AdminController@editUser')->name('admin.editUser');
+    Route::put('/dashboard/edit-user', 'AdminController@editUser')->name('admin.editUser');
     Route::get('/dashboard/property-list', 'AdminController@showPropertyList')->name('admin.propertyList');
     Route::get('/dashboard/create-week', 'AdminController@showWeekCreationForm')->name('admin.createWeek');
     Route::post('/dashboard/create-week', 'WeekCreationController@store')->name('week.create');
