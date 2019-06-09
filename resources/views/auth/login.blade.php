@@ -91,12 +91,12 @@
                                     <div class="card-footer-a">
                                         <ul class="card-info d-flex justify-content-around">
                                             <li>
-                                                <h4 class="card-info-title">Fecha</h4>
-                                                <span>{{$week->fecha}}</span>
+                                                <h4 class="card-info-title">Capacidad</h4>
+                                                <span>{{$property->capacidad}}</span>
                                             </li>
                                             <li>
-                                                <h4 class="card-info-title">Precio inicial</h4>
-                                                <span>${{$week->auction->precio_inicial}}</span>
+                                                <h4 class="card-info-title">Habitaciones</h4>
+                                                <span>{{$property->habitaciones}}</span>
                                             </li>
                                         </ul>
                                     </div>
