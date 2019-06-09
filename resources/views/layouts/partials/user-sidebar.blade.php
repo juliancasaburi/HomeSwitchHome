@@ -57,7 +57,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#balanceModal"><i class="fas fa-hand-holding-usd"></i>Cargar Saldo</a>
                     </li>
-                    @if(!Auth::user()->premium && !Auth::user()->premiumRequest)
+                    @if(Auth::user()->premium)
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#downgradeMembershipModal"><i class="fas fa-ticket-alt"></i>Cancelar Membresía Premium</a>
+                        </li>
+                    @elseif(!Auth::user()->premiumRequest)
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#premiumModal"><i class="fas fa-ticket-alt"></i>Solicitar Premium</a>
                         </li>
@@ -178,6 +182,30 @@
 </div>
 <!-- End Cancel Premium Request Modal -->
 
+<!-- Cancel Premium Request Modal -->
+<div class="modal fade" id="downgradeMembershipModal" tabindex="-1" role="dialog" aria-labelledby="downgradeMembershipModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="downgradeMembershipModalLabel">Cancelar Membresía Premium</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" id="downgradeMembershipForm" action="{{ url('downgrade-membership') }}" role="form" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Mantener</button>
+                <button type="button" class="btn btn-primary" onclick="downgradeMembershipForm_submit()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Cancel Premium Request Modal -->
+
 <script>
     // Button
     function balance_submit() {
@@ -200,5 +228,13 @@
     function cancelPremiumRequestForm_submit() {
         $('#cancelPremiumRequestModal').modal('hide');
         document.getElementById("cancelPremiumRequestForm").submit();
+    }
+</script>
+
+<script>
+    // Button
+    function downgradeMembershipForm_submit() {
+        $('downgradeMembershipModal').modal('hide');
+        document.getElementById("downgradeMembershipForm").submit();
     }
 </script>

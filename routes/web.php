@@ -46,14 +46,19 @@ Route::post('logout', function() {
 });
 
 // Profile
-
 Route::get('/profile', 'UserController@showUserProfile')->middleware('verified');
+
+//--- Profile Actions ---
 
 Route::put('/add-balance', 'UserController@addBalance');
 
 Route::post('/request-premium', 'PremiumRequestController@store');
 
 Route::delete('/cancel-premium-request', 'PremiumRequestController@delete');
+
+Route::post('/downgrade-membership', 'UserController@downgradeMembership');
+
+//-----------------------
 
 // Modify email
 Route::get('/profile/modify-email', 'UserController@showEmailForm')->middleware('verified');

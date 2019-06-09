@@ -258,4 +258,15 @@ class UserController extends Controller
             }
         }
     }
+
+    public function downgradeMembership(){
+        $user = Auth::user();
+        $user->premium = 0;
+        $user->save();
+
+        // Return back and show a success message
+        return redirect()
+            ->back()
+            ->with('alert-success', 'Membresía Premium Cancelada. Ahora eres Usuario Básico');
+    }
 }
