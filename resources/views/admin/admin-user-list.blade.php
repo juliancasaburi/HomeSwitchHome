@@ -75,7 +75,7 @@
                                                 @if($u->premium == 1)
                                                     <td><i class="fas fa-ticket-alt"></i>Premium</td>
                                                 @else
-                                                    <td><i class="fas fa-user"></i>Regular</td>
+                                                    <td><i class="fas fa-user"></i>Básico</td>
                                                 @endif
                                             </tr>
                                         @endforeach

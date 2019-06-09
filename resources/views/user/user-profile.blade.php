@@ -65,7 +65,7 @@
 													@else
 														<div class="rating-star  d-inline-block">
 															<i class="fas fa-user"></i>
-															<p class="d-inline-block text-dark">USUARIO REGULAR</p>
+															<p class="d-inline-block text-dark">USUARIO BÁSICO</p>
 															<br>
 															<p class="d-inline-block text-dark">Costo subscripción: ${{ $normalUserSubscriptionPrice }}</p>
 														</div>
