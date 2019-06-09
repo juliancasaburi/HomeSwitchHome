@@ -130,7 +130,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/promote-user', 'AdminController@promoteUser')->name('admin.promoteUser');
     Route::post('/dashboard/demote-user', 'AdminController@demoteUser')->name('admin.demoteUser');
     Route::post('/dashboard/delete-property', 'AdminController@deleteProperty')->name("admin.deleteProperty");
-
+    Route::get('/dashboard/weeks-list', 'AdminController@showWeeksList')->name('admin.weeksList');
     //--------------------------------------------
 });
 
