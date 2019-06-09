@@ -295,4 +295,13 @@ class AdminController extends Controller
 
         return back()->with('alert-success', 'Propiedad '. $property->nombre. ' eliminada');
     }
+
+    function showWeeksList(){
+
+        $weeks = Week::join('propiedades', 'propiedades.id', '=', 'semanas.propiedad_id')
+            ->orderBy('propiedades.nombre', 'asc')
+            ->get();
+
+        return view('admin/admin-weeks-list')->with('weeks', $weeks);
+    }
 }
