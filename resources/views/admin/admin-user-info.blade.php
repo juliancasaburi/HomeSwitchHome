@@ -83,7 +83,7 @@
                                                 </td>
                                             @else
                                                 <td id="membership">
-                                                    <p class="text-center"><i class="fas fa-user"></i>Regular</p>
+                                                    <p class="text-center"><i class="fas fa-user"></i>Básico</p>
                                                     <br>
                                                     <button class="btn-outline-primary" id="convertButton" data-toggle="modal" data-target="#promoteUserModal" data-uid="{{ $user->id }}"><i class="fas fa-ticket-alt"></i>Convertir en premium</button>
                                                 </td>
@@ -389,7 +389,7 @@
                         row.deleteCell(cellIndex);
                         var newCell = row.insertCell(cellIndex);
                         newCell.id = "membership";
-                        newCell.innerHTML = "                                                    <p class=\"text-center\"><i class=\"fas fa-user\"></i>Regular</p>\n" +
+                        newCell.innerHTML = "                                                    <p class=\"text-center\"><i class=\"fas fa-user\"></i>Básico</p>\n" +
                             "                                                    <br>\n" +
                             "                                                    <button class=\"btn-outline-primary\" id=\"convertButton\" data-toggle=\"modal\" data-target=\"#promoteUserModal\" data-uid=\"{{ $user->id }}\"><i class=\"fas fa-ticket-alt\"></i>Convertir en premium</button>\n";
                         $('div.flash-message').empty();
