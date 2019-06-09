@@ -142,9 +142,6 @@
                 <h5 class="text-muted">Costo Plus Mensual Membresía Premium: ${{App\Price::price('Plus usuario premium')}}</h5>
                 <form class="needs-validation" id="premiumForm" action="{{ url('request-premium') }}" role="form" method="POST">
                     @csrf
-                    <div class="row">
-                        <input type="text" name="userID" id="userID" value="{{Auth::user()->id}}" hidden>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -170,9 +167,6 @@
                 <form class="needs-validation" id="cancelPremiumRequestForm" action="{{ url('cancel-premium-request') }}" role="form" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="row">
-                        <input type="text" name="userID" id="userID" value="{{Auth::user()->id}}" hidden>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -187,6 +181,7 @@
 <script>
     // Button
     function balance_submit() {
+        $('#balanceModal').modal('hide');
         document.getElementById("balanceForm").submit();
     }
 </script>
@@ -195,6 +190,7 @@
 <script>
     // Button
     function premiumForm_submit() {
+        $('#premiumModal').modal('hide');
         document.getElementById("premiumForm").submit();
     }
 </script>
@@ -202,6 +198,7 @@
 <script>
     // Button
     function cancelPremiumRequestForm_submit() {
+        $('#cancelPremiumRequestModal').modal('hide');
         document.getElementById("cancelPremiumRequestForm").submit();
     }
 </script>

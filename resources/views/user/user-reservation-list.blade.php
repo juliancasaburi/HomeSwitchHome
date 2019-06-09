@@ -204,6 +204,7 @@
 
         // Button
         function form_submit() {
+            $('#cancelReservationModal').modal('hide');
             document.getElementById("cancelReservationForm").submit();
         }
     </script>

@@ -186,11 +186,37 @@ class UserController extends Controller
     public function cancelReservation()
     {
         $reservation = Reservation::find(Input::get('reservationID'));
-        $balance = $reservation->valor_reservado;
-        $reservation->cancel();
-        return redirect()->back()
-            ->with('alert-success-title', 'Reserva '.Input::get('reservationID').' cancelada ')
-            ->with('alert-success', 'Te acreditamos 1 crédito y $'.$balance);
+        $user = Auth::User();
+        // Validate Reservation
+        if($reservation->usuario_id == $user->id) {
+            // Cancel Reservation
+            $reservation->cancel();
+
+            // Refund credits & balance
+            $user->credits += 1;
+
+            $date = Carbon::now();
+            if($date->diffInMonths($reservation->week->fecha) >= 1){ // Refund Balance
+                $balance = $reservation->valor_reservado;
+                $user->saldo += $balance;
+                $user->save();
+                // Return back and show a success message
+                return redirect()->back()
+                    ->with('alert-success-title', 'Reserva ' . Input::get('reservationID') . ' cancelada ')
+                    ->with('alert-success', 'Te acreditamos 1 crédito y $' . $balance);
+            }
+            else{ // Don't refund balance
+                $user->save();
+                // Return back and show a success message
+                return redirect()->back()
+                    ->with('alert-success', 'Te acreditamos 1 crédito');
+            }
+        }
+        else{
+            // Return back and show an error message
+            return redirect()->back()
+                ->with('alert-error', 'Operacion inválida');
+        }
 
     }
 

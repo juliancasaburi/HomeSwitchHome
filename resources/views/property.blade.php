@@ -208,10 +208,6 @@
                             @csrf
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <label for="uid"></label>
-                                    <input type="text" name="uid" class="form-control" id="uid" value="" hidden>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <label for="auid"></label>
                                     <input type="text" name="auid" class="form-control" id="auid" value="" hidden>
                                 </div>
@@ -282,6 +278,7 @@
 
         // Button
         function form_submit() {
+            $('#inscriptionModal').modal('hide');
             document.getElementById("inscriptionForm").submit();
         }
     </script>

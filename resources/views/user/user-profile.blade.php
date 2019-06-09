@@ -239,10 +239,4 @@
 	<!-- dashboard js -->
 	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
 
-	<script>
-		// Button
-		function premium_submit() {
-			document.getElementById("premiumForm").submit();
-		}
-	</script>
 @endsection

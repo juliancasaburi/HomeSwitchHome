@@ -171,7 +171,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal -->
+        <!-- Inscription Modal -->
         <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -188,10 +188,6 @@
                             @csrf
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <label for="uid"></label>
-                                    <input type="text" name="uid" class="form-control" id="uid" value="" hidden>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <label for="auid"></label>
                                     <input type="text" name="auid" class="form-control" id="auid" value="" hidden>
                                 </div>
@@ -205,6 +201,7 @@
                 </div>
             </div>
         </div>
+        <!-- End Inscription Modal -->
     </section>
     <!--/ Property Single End /-->
 
@@ -262,6 +259,7 @@
 
         // Button
         function form_submit() {
+            $('#inscriptionModal').modal('hide');
             document.getElementById("inscriptionForm").submit();
         }
     </script>

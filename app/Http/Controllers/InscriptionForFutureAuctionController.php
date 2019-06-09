@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\InscriptionForFutureAuction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use App\Auction;
+use App\InscriptionForFutureAuction;
 
 class InscriptionForFutureAuctionController extends Controller
 {
@@ -16,18 +18,38 @@ class InscriptionForFutureAuctionController extends Controller
 
     public function store(Request $request)
     {
-        if(User::find($request->uid)->first()->creditos == 0){
-            // Return user back and show a flash message
-            return redirect()->back()->with('alert-error', 'No tienes créditos');
+        $user = Auth::user();
+        // Validate credits
+        if($user->creditos == 0){
+            // Return user back and show an error message
+            return redirect()
+                ->back()
+                ->with('alert-error', 'No tienes créditos');
         }
 
-        $inscription = new InscriptionForFutureAuction();
-        $inscription->subasta_id = $request->auid;
-        $inscription->usuario_id = $request->uid;
+        // Validate Auction
+        $auction = Auction::find($request->auid);
+        $dateTime = Carbon::now();
+        if(($auction) && ($auction->inscripcion_inicio) <= $dateTime && ($auction->inscripcion_fin > $dateTime)){
 
-        $inscription->save();
+            // Create & save a new Inscription
+            $inscription = new InscriptionForFutureAuction();
+            $inscription->subasta_id = $request->auid;
+            $inscription->usuario_id = $user->id;
 
-        // Return user back and show a flash message
-        return redirect()->back()->with('alert-success', 'Inscripcion exitosa!');
+            $inscription->save();
+
+            // Return user back and show a flash message
+            return redirect()
+                ->back()
+                ->with('alert-success', 'Inscripcion exitosa!');
+
+        }
+        else{
+            // Return user back and show an error message
+            return redirect()
+                ->back()
+                ->with('alert-error', 'Operacion inválida');
+        }
     }
 }

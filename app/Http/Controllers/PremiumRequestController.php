@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Price;
-use App\PremiumRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Price;
+use App\PremiumRequest;
 
 class PremiumRequestController extends Controller
 {
@@ -27,8 +27,8 @@ class PremiumRequestController extends Controller
                 ->withErrors($validator);
         }
 
-        $user = User::find($request->userID);
         $premiumConcept = Price::where('concepto', '=', 'Plus usuario premium')->first();
+        $user = Auth::user();
 
         if($user->saldo >= $premiumConcept->valor){
             // Create a PremiumRequest
@@ -50,11 +50,11 @@ class PremiumRequestController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function delete()
     {
-        $premiumRequest = PremiumRequest::where('usuario_id', $request->userID)->first();
+        $user = Auth::user();
+        $premiumRequest = $user->premiumRequest;
 
-        $user = User::find($request->userID);
         $user->saldo += $premiumRequest->valor;
         $user->save();
         $premiumRequest->delete();

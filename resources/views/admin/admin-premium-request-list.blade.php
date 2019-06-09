@@ -230,6 +230,7 @@
 
         // Button
         function acceptRequestForm_submit() {
+            $('#acceptRequestModal').modal('hide');
             document.getElementById("acceptRequestForm").submit();
         }
     </script>
@@ -245,6 +246,7 @@
 
         // Button
         function rejectRequestForm_submit() {
+            $('#rejectRequestModal').modal('hide');
             document.getElementById("rejectRequestForm").submit();
         }
     </script>
