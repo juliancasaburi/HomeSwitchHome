@@ -46,6 +46,8 @@ class LoginController extends Controller
         $property = Property::inRandomOrder()->first();
         if($property){
             $loginView->with('property', $property);
+            $propertyWeek = Week::where('propiedad_id', $property->id)->first();
+            $loginView->with('propertyWeek', $propertyWeek);
         }
 
         $week = Week::has('auction')->inRandomOrder()->first();

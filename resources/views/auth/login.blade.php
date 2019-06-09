@@ -92,11 +92,19 @@
                                         <ul class="card-info d-flex justify-content-around">
                                             <li>
                                                 <h4 class="card-info-title">Fecha</h4>
-                                                <span>{{$week->fecha}}</span>
+                                                @if(isset($propertyWeek))
+                                                    <span>{{$propertyWeek->fecha}}</span>
+                                                @else
+                                                    <span>No hay fechas disponibles</span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <h4 class="card-info-title">Precio inicial</h4>
-                                                <span>${{$week->auction->precio_inicial}}</span>
+                                                @if(isset($propertyWeek))
+                                                    <span>${{$propertyWeek->auction->precio_inicial}}</span>
+                                                @else
+                                                    <span>Sin precio</span>
+                                                @endif
                                             </li>
                                         </ul>
                                     </div>
