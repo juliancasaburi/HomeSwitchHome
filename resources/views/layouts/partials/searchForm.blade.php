@@ -12,7 +12,7 @@
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
                         <label for="semana">Fecha</label>
-                        <input type="date" name="fecha" class="form-control form-control-lg form-control-a" id="fecha" min="{{ Carbon\Carbon::now()->addMonths(6)->startOfWeek()->toDateString() }}" max="{{ Carbon\Carbon::now()->addMonths(8)->startOfWeek()->toDateString() }}" value="{{ Carbon\Carbon::now()->addMonths(6)->startOfWeek()->toDateString() }}">
+                        <input type="date" name="fecha" class="form-control form-control-lg form-control-a" id="fecha" value="{{ Carbon\Carbon::now()->startOfWeek()->toDateString() }}">
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
