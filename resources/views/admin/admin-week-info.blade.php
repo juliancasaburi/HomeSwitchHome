@@ -1,6 +1,10 @@
 @extends('layouts.admin-dashboard-layout')
 
-@section('title', '- Admin Dashboard - Listado de Usuarios')
+@if(isset($week))
+    @section('title', '- Admin Dashboard - Datos de la semana ' . $week->fecha)
+@else
+    @section('title', '- Admin Dashboard - Semana no disponible')
+@endif
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('libs/datatables/css/dataTables.bootstrap4.css') }}">
@@ -32,7 +36,8 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Semanas</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Ver todas</li>
+                                        <li class="breadcrumb-item"><a href={{url('admin/dashboard/weeks-list')}} class="breadcrumb-link">Ver todas</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Detalles de la semana</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -44,41 +49,65 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <!-- ============================================================== -->
-                    <!-- weeks table  -->
+                    <!-- week table  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Listado de semanas</h5>
+                            @if(isset($week))
+                                <h5 class="card-header">Detalles de la semana: {{ $week->fecha}}</h5>
+                            @else
+                                <h5 class="card-header">Semana no disponible</h5>
+                            @endif
                             <div class="card-body">
-                                <input class="form-control" id="tableSearch" type="text" placeholder="Buscar">
-                                <br>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered first" id="table">
+                                    <table id="singleWeekTable" class="table table-striped table-bordered first">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Propiedad</th>
                                             <th>Fecha</th>
+                                            <th>Foto</th>
+                                            <th>Propiedad</th>
+                                            <th>Estrellas</th>
+                                            <th>Provincia</th>
+                                            <th>Localidad</th>
+                                            <th>Calle</th>
+                                            <th>Numero</th>
+                                            <th>Creacion</th>
                                             <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($weeks as $w)
-                                            <tr>
-                                                <td><a href="{{ url('admin/dashboard/week-info?id=').$w->id }}" class="btn-outline-primary"><i class="fas fa-search-plus"></i>+INFO</a></td>
-                                                <td><a href="{{ url('property?id=').$w->property->id }}">{{ $w->property->nombre}}</a></td></td>
-                                                <td>{{ $w->fecha }}</td>
-                                                <td><button class="btn-outline-danger pt-2 pb-2" id="deleteWeekButton" data-toggle="modal" data-target="#deleteWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
-                                                        <i class="fas fa-trash"></i>Eliminar
-                                                    </button></td>
-                                            </tr>
-                                        @endforeach
+                                        @if(isset($week))
+                                        <tr>
+                                            <td>{{$week->fecha}}</td>
+                                            <td>@if($week->property->image_path == null)
+                                                <a href={{ url('property?id=').$week->property->id }}><img src="{{'https://via.placeholder.com/683x1024?text='.$week->property->nombre}}" alt="propertyPhoto" width="250"></a>
+                                            @else
+                                                <a href={{ url('property?id=').$week->property->id }}><img src="{{ asset($week->property->image_path) }}" alt="propertyPhoto" width="250"></a>
+                                            @endif</td>
+                                            <td><a href={{ url('property?id=').$week->property->id }}>{{$week->property->nombre}}</a></td>
+                                            <td>{{$week->property->estrellas}}</td>
+                                            <td>{{$week->property->provincia}}</td>
+                                            <td>{{$week->property->localidad}}</td>
+                                            <td>{{$week->property->calle}}</td>
+                                            <td>{{$week->property->numero}}</td>
+                                            <td>{{$week->created_at}}</td>
+                                            <td><button class="btn-outline-danger pt-2 pb-2" id="deleteWeekButton" data-toggle="modal" data-target="#deleteWeekModal" data-wid="{{ $week->id }}" data-wdate="{{ $week->fecha }}" data-wpropertyname="{{$week->property->nombre}}">
+                                                    <i class="fas fa-trash"></i>Eliminar
+                                                </button></td>
+                                        </tr>
+                                        @endif
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Propiedad</th>
                                             <th>Fecha</th>
+                                            <th>Foto</th>
+                                            <th>Propiedad</th>
+                                            <th>Estrellas</th>
+                                            <th>Provincia</th>
+                                            <th>Localidad</th>
+                                            <th>Calle</th>
+                                            <th>Numero</th>
+                                            <th>Creacion</th>
                                             <th></th>
                                         </tr>
                                         </tfoot>
@@ -88,21 +117,20 @@
                         </div>
                     </div>
                     <!-- ============================================================== -->
-                    <!-- end weeks table  -->
+                    <!-- end week table  -->
                     <!-- ============================================================== -->
-                </div>
                     <div>
                         <!-- ============================================================== -->
                         <!-- Alerts  -->
                         <!-- ============================================================== -->
                         @if(session()->has('alert-success'))
                             <div class="alert alert-success alert-dismissible" data-expires="10000">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                 {{ session()->get('alert-success') }}
                             </div>
                         @elseif (session()->has('alert-danger'))
                             <div class="alert alert-danger alert-dismissible" data-expires="10000">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                 {{ session()->get('alert-danger') }}
                             </div>
                         @endif
@@ -110,6 +138,7 @@
                         <!-- End Alerts  -->
                         <!-- ============================================================== -->
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -146,17 +175,6 @@
 @endsection
 
 @section('js')
-    <script>
-        $(document).ready(function(){
-            $("#tableSearch").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#table tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-    </script>
-
     <script> // Delete Week
         // Fill week id for request
         $('#deleteWeekModal').on('show.bs.modal', function (event) {

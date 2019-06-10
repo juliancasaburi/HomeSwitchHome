@@ -25,7 +25,7 @@ class WeekController extends Controller
             ->first();
 
         // If property id doesn't exist, show 404 error page
-        if(empty($week) || !$week->auction) {
+        if(empty($week)) {
             abort(404);
         }
 
