@@ -114,6 +114,26 @@
                         </div>
                     </div>
                 </div>
+                @if(Auth::user() && Auth::user()->premium)
+                <div class="row justify-content-between card-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box-d section-t4">
+                                <h3 class="title-d">Premium</h3>
+                            </div>
+                            @if($enabled && Auth::user()->creditos >=1)
+                                <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                            @elseif($enabled)
+                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
+                            @else
+                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                <h6 class="text-warning mt-2">El período de adjudicación ha finalizado o ya ha sido reservada.</h6>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="row justify-content-between card-header">
                     <div class="row">
                         <div class="col-sm-12">
@@ -171,6 +191,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Inscription Modal -->
         <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -202,6 +223,36 @@
             </div>
         </div>
         <!-- End Inscription Modal -->
+
+        <!-- Booking Modal -->
+        <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel">Quieres adjudicarte esta semana?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="needs-validation" id="bookingForm" action="{{ route('week.premiumBooking') }}" role="form" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <label for="weekID"></label>
+                                    <input type="text" name="weekID" class="form-control" id="weekID" value="{{ $week->id }}" hidden>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="submitBooking" class="btn btn-primary" onclick="bookingForm_submit()">Adjudicar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Booking Modal -->
     </section>
     <!--/ Property Single End /-->
 
@@ -261,6 +312,14 @@
         function form_submit() {
             $('#inscriptionModal').modal('hide');
             document.getElementById("inscriptionForm").submit();
+        }
+    </script>
+
+    <script> // Booking Modal
+        // Button
+        function bookingForm_submit() {
+            $('#bookingModal').modal('hide');
+            document.getElementById("bookingForm").submit();
         }
     </script>
 @endsection

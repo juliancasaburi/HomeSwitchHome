@@ -28,14 +28,27 @@ class Week extends Model
         return $this->hasOne(Reservation::class, 'semana_id', 'id');
     }
 
-    public function inscriptions(){
-        return $this->hasManyThrough(
-            'App\InscriptionForFutureAuction',
-            'App\Auction',
-            'semana_id', // Foreign key on Auction table
-            'subasta_id', // Foreign key on InscriptionForFutureAuction table
-            'id', // Local key on Week table
-            'id' // Local key on users table
-        );
+    public function sendBookedByAPremiumUserNotifications(){
+        $inscriptions = $this->auction->inscriptions()->get();
+        foreach($inscriptions as $i){
+            $i->user->sendBookedByAPremiumUserNotification($this->property->nombre, $this->fecha, $this->id);
+        }
+    }
+
+    public function bookTo(User $user){
+        $reservation = new Reservation();
+        $reservation->semana_id = $this->id;
+        $reservation->usuario_id = $user->id;
+        $reservation->valor_reservado = null;
+        $reservation->modo_reserva = 1;
+        $reservation->save();
+
+        $user->creditos -= 1;
+        $user->save();
+
+        $this->auction()->delete();
+        $this->delete();
+
+        $this->sendBookedByAPremiumUserNotifications();
     }
 }

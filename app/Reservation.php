@@ -10,7 +10,7 @@ class Reservation extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'usuario_id', 'valor_reservado', 'fecha', 'modo_reserva',
+        'semana_id', 'usuario_id', 'valor_reservado', 'modo_reserva',
     ];
 
     protected $table = 'reservas';

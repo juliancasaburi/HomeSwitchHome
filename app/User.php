@@ -15,6 +15,7 @@ use App\Notifications\AuctionStarted;
 use App\Notifications\PremiumAccepted;
 use App\Notifications\PremiumRejected;
 use App\Notifications\AuctionCancelled;
+use App\Notifications\BookedByAPremiumUser;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -143,6 +144,15 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendAuctionCancelledNotification($propertyName, $date, $auctionID){
         $this->notify(new AuctionCancelled($propertyName, $date, $auctionID));
+    }
+
+    /**
+     * Send the Booked By A Premium User notification
+     *
+     * @return void
+     */
+    public function sendBookedByAPremiumUserNotification($propertyName, $date, $weekID){
+        $this->notify(new BookedByAPremiumUser($propertyName, $date, $weekID));
     }
 
     /**

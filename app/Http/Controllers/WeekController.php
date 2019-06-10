@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Week;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
+use App\Reservation;
+use App\Week;
 
 class WeekController extends Controller
 {
@@ -28,9 +29,13 @@ class WeekController extends Controller
             abort(404);
         }
 
+        $reservation = Reservation::where('semana_id', $week->id)->get();
+        $enabled = (($reservation->isEmpty()) && ($week->auction->inscripcion_inicio <= Carbon::now()) && ($week->auction->inscripcion_fin > Carbon::now()));
+
         // Return view
         return view('week', [
             'week' => $week,
+            'enabled' => $enabled,
         ]);
     }
 
@@ -71,5 +76,41 @@ class WeekController extends Controller
         return view('weeks', [
             'weeks' => $weeks,
         ]);
+    }
+
+    public function book(Request $request)
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | Validation
+        |--------------------------------------------------------------------------
+        */
+
+        $user = Auth::user();
+        if(!$user->premium){
+            // Redirect back and show an error message
+            return redirect()
+                ->back()
+                ->with('alert-error', 'Operacion inválida');
+        }
+        else{
+            $week = Week::find($request->weekID);
+            if(($week) && (!$week->reservation) && ($week->auction->inscripcion_inicio <= Carbon::now()) && ($week->auction->inscripcion_fin > Carbon::now())){
+
+                $week->bookTo($user);
+
+                // Redirect back and show a success message
+                return redirect()
+                    ->back()
+                    ->with('alert-success', 'Adjudicada');
+
+            }
+            else{
+                // Redirect back and show an error message
+                return redirect()
+                    ->back()
+                    ->with('alert-error', 'Operacion inválida');
+            }
+        }
     }
 }
