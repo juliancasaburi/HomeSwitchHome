@@ -296,12 +296,47 @@ class AdminController extends Controller
         return back()->with('alert-success', 'Propiedad '. $property->nombre. ' eliminada');
     }
 
+    function deleteWeek(Request $request){
+        $week = Week::find($request->id);
+        $weekAuction = Auction::where('semana_id', '=', $week->id)->first();
+        if(!$weekAuction){
+            $week->forceDelete();
+        }
+        elseif ($weekAuction->inscripcion_inicio > Carbon::now()){
+            $weekAuction->delete();
+            $week->delete();
+        }
+        elseif ($weekAuction->inicio > Carbon::now()){
+            $weekAuction->delete();
+            $week->delete();
+            $inscriptions = $weekAuction->inscriptions()->get();
+            foreach($inscriptions as $i){
+                $i->user->sendAuctionCancelledNotification($week->property->nombre, $week->fecha, $weekAuction->id);
+            }
+        }
+        elseif ($weekAuction->inicio <= Carbon::now() && $weekAuction->fin >= Carbon::now()){
+            return back()->with('alert-danger', 'La semana está en período de subasta');
+        }
+
+        else{
+            $weekAuction->delete();
+            $week->delete();
+        }
+        return back()->with('alert-success', 'Semana eliminada!');
+    }
+
     function showWeeksList(){
 
         $weeks = Week::join('propiedades', 'propiedades.id', '=', 'semanas.propiedad_id')
             ->orderBy('propiedades.nombre', 'asc')
-            ->get();
+            ->get(['semanas.*']);
 
         return view('admin/admin-weeks-list')->with('weeks', $weeks);
+    }
+
+    public function showWeekInfo(Request $request)
+    {
+        $week = Week::find($request->id);
+        return view('admin.admin-week-info')->with ('week',$week);
     }
 }
