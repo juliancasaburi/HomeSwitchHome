@@ -11,24 +11,15 @@
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="form-group">
-                        <label for="semana">Fecha</label>
-                        <input type="date" name="fecha" class="form-control form-control-lg form-control-a" id="fecha" value="{{ Carbon\Carbon::now()->startOfWeek()->toDateString() }}">
+                        <label for="semanaDesde">Desde</label>
+                        <input type="date" name="semanaDesde" class="form-control form-control-lg form-control-a" id="semanaDesde" min="{{ Carbon\Carbon::now()->addMonths(6)->startOfWeek()->toDateString() }}" max="{{ Carbon\Carbon::now()->addMonths(8)->startOfWeek()->toDateString() }}" value="{{ Carbon\Carbon::now()->addMonths(6)->startOfWeek()->toDateString() }}">
                     </div>
                 </div>
-                <div class="col-md-6 mb-2">
+                <div class="col-md-12 mb-2">
                     <div class="form-group">
-                        <label for="inscripcion_inicio">Inscripcion desde</label>
-                        <input type="date" class="form-control form-control-lg form-control-a" id="inscripcion_inicio">
+                        <label for="semanaHasta">Hasta</label>
+                        <input type="date" name="semanaHasta" class="form-control form-control-lg form-control-a" id="semanaHasta" min="{{ Carbon\Carbon::now()->addMonths(6)->startOfWeek()->toDateString() }}" max="{{ Carbon\Carbon::now()->addMonths(8)->startOfWeek()->toDateString() }}" value="{{ Carbon\Carbon::now()->addMonths(6)->startOfWeek()->toDateString() }}">
                     </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <div class="form-group">
-                        <label for="inscripcion_hasta">Inscripcion hasta</label>
-                        <input type="date" class="form-control form-control-lg form-control-a" id="inscripcion_hasta">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-b" name="botonBuscar">Buscar</button>
                 </div>
             </div>
         </form>

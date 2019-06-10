@@ -43,7 +43,8 @@ class WeekController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'fecha' => ['required', 'date'],
+            'semanaDesde' => ['required', 'date'],
+            'semanaHasta' => ['required', 'date'],
         ]);
 
         if($validator->fails()){
@@ -51,17 +52,21 @@ class WeekController extends Controller
             return redirect('/');
         }
 
-        $weekStart = Carbon::parse($request->fecha)
+        $fromWeekStart = Carbon::parse($request->semanaDesde)
             ->startOfWeek()
             ->toDateString();
 
-        $weeks = Week::where('fecha', '=', $weekStart)
+        $toWeekStart = Carbon::parse($request->semanaHasta)
+            ->startOfWeek()
+            ->toDateString();
+
+        $weeks = Week::whereBetween('fecha', [$fromWeekStart, $toWeekStart ])
             ->whereNull('deleted_at')
             ->whereHas('auction', function ($query) {
                 $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
             })
             ->paginate(2)
-            ->withPath('?fecha='.$weekStart);
+            ->withPath('?semanaDesde='.$fromWeekStart.'&semanaHasta='.$toWeekStart);
 
         return view('weeks', [
             'weeks' => $weeks,
