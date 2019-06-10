@@ -121,7 +121,7 @@
                                 <h3 class="title-d">Subasta para esta semana</h3>
                             </div>
                             @guest
-                                <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                <p><span><a href="{{'/register'}}">Registrate</a></span> o <span><a href="{{'/login'}}">inicia sesión</a></span> para participar en las subastas</p>
                             @endguest
                         </div>
                     </div>

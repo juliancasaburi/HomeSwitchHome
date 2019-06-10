@@ -20,8 +20,8 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                         {{ session()->get('alert-error') }}
                     </div>
-                @endif
-                <!-- ============================================================== -->
+            @endif
+            <!-- ============================================================== -->
                 <!-- End Alerts  -->
                 <!-- ============================================================== -->
                 <div class="row card-header">
@@ -90,7 +90,7 @@
                                         @endif
                                     @endif
                                     @guest
-                                        <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                        <p><span><a href="{{'/register'}}">Registrate</a></span> o <span><a href="{{'/login'}}">inicia sesión</a></span> para participar en las subastas</p>
                                     @endguest
                                 </ul>
                             </div>
@@ -134,7 +134,7 @@
                                             <button class="btn btn-a" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
                                         @endauth
                                         @guest
-                                            <a href="{{'/register'}}">Registrate o inicia sesión para participar en las subastas</a>
+                                            <p><span><a href="{{'/register'}}">Registrate</a></span> o <span><a href="{{'/login'}}">inicia sesión</a></span> para participar en las subastas</p>
                                         @endguest
                                     </div>
                                 </div>
