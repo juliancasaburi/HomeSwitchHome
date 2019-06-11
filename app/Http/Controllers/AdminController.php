@@ -284,10 +284,7 @@ class AdminController extends Controller
                 elseif($weekAuction->inicio > Carbon::now()){
                     $weekAuction->delete();
                     $w->delete();
-                    $inscriptions = $weekAuction->inscriptions()->get();
-                    foreach($inscriptions as $i){
-                        $i->user->sendAuctionCancelledNotification($property->nombre, $w->fecha, $weekAuction->id);
-                    }
+                    $w->sendAuctionCancelledNotifications();
                 }
                 $property->delete();
             }
@@ -309,10 +306,7 @@ class AdminController extends Controller
         elseif ($weekAuction->inicio > Carbon::now()){
             $weekAuction->delete();
             $week->delete();
-            $inscriptions = $weekAuction->inscriptions()->get();
-            foreach($inscriptions as $i){
-                $i->user->sendAuctionCancelledNotification($week->property->nombre, $week->fecha, $weekAuction->id);
-            }
+            $week->sendAuctionCancelledNotifications();
         }
         elseif ($weekAuction->inicio <= Carbon::now() && $weekAuction->fin >= Carbon::now()){
             return back()->with('alert-danger', 'La semana está en período de subasta');

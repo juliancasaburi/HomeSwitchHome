@@ -51,4 +51,11 @@ class Week extends Model
 
         $this->sendBookedByAPremiumUserNotifications();
     }
+
+    public function sendAuctionCancelledNotifications(){
+        $inscriptions = $this->auction->inscriptions()->get();
+        foreach($inscriptions as $i){
+            $i->user->sendAuctionCancelledNotification($this->property->nombre, $this->fecha, $this->auction->id);
+        }
+    }
 }
