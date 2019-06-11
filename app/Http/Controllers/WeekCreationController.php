@@ -31,7 +31,8 @@ class WeekCreationController extends Controller
 
                     return $query
                         ->where('propiedad_id', $request->idPropiedad)
-                        ->where('fecha', $request->fecha);
+                        ->where('fecha', $request->fecha)
+                        ->where('deleted_at', null);
                 }),
             ],
         ]);
