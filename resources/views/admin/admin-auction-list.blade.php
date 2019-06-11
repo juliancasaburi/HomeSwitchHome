@@ -74,7 +74,7 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
-                                                @if($a->deleted_at <= $a->fin)
+                                                @if($a->deleted_at <= $a->fin && $a->deleted_at != null)
                                                     <td>Cancelada</td>
                                                 @elseif($a->trashed())
                                                     <td>Finalizada</td>
