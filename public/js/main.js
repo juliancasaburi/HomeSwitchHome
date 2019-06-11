@@ -57,8 +57,30 @@
 
 	/*--/ Navbar Collapse /--*/
 	$('.navbar-toggle-box-collapse').on('click', function () {
-		$('body').removeClass('box-collapse-closed').addClass('box-collapse-open');
-		$("[data-toggle='tooltip']").tooltip('hide');
+        $.ajax({
+            url: '/locations/get/',
+            type:"GET",
+            dataType:"json",
+            beforeSend: function(){
+                $('#loader').css("visibility", "visible");
+            },
+
+            success:function(data) {
+
+                $('select[name="searchLocalidad"]').empty();
+
+                $.each(data, function(key, value){
+
+                    $('select[name="searchLocalidad"]').append('<option value="'+ value +'">' + value + '</option>');
+
+                });
+            },
+            complete: function(){
+                $('#loader').css("visibility", "hidden");
+            }
+        });
+        $('body').removeClass('box-collapse-closed').addClass('box-collapse-open');
+        $("[data-toggle='tooltip']").tooltip('hide');
 	});
 	$('.close-box-collapse, .click-closed').on('click', function () {
 		$('body').removeClass('box-collapse-open').addClass('box-collapse-closed');

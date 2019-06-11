@@ -25,7 +25,7 @@
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    
+
     <!-- Main Stylesheet File -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 

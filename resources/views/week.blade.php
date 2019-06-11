@@ -21,7 +21,7 @@
                         {{ session()->get('alert-error') }}
                     </div>
                 @endif
-                <!-- ============================================================== -->
+            <!-- ============================================================== -->
                 <!-- End Alerts  -->
                 <!-- ============================================================== -->
                 @if($week->property->image_path != null)
@@ -115,24 +115,24 @@
                     </div>
                 </div>
                 @if(Auth::user() && Auth::user()->premium)
-                <div class="row justify-content-between card-header">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="title-box-d section-t4">
-                                <h3 class="title-d">Premium</h3>
+                    <div class="row justify-content-between card-header">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d section-t4">
+                                    <h3 class="title-d">Premium</h3>
+                                </div>
+                                @if($enabled && Auth::user()->creditos >=1)
+                                    <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                @elseif($enabled)
+                                    <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                    <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
+                                @else
+                                    <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                    <h6 class="text-warning mt-2">El período de adjudicación ha finalizado o ya ha sido reservada.</h6>
+                                @endif
                             </div>
-                            @if($enabled && Auth::user()->creditos >=1)
-                                <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                            @elseif($enabled)
-                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
-                            @else
-                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                <h6 class="text-warning mt-2">El período de adjudicación ha finalizado o ya ha sido reservada.</h6>
-                            @endif
                         </div>
                     </div>
-                </div>
                 @endif
                 <div class="row justify-content-between card-header">
                     <div class="row">
@@ -140,54 +140,59 @@
                             <div class="title-box-d section-t4">
                                 <h3 class="title-d">Subasta para esta semana</h3>
                             </div>
+                            @if(!$enabled)
+                                <h6 class="text-warning mt-2">No existen subastas para esta semana</h6>
+                            @endif
                             @guest
                                 <p><span><a href="{{'/register'}}">Registrate</a></span> o <span><a href="{{'/login'}}">inicia sesión</a></span> para participar en las subastas</p>
                             @endguest
                         </div>
                     </div>
-                    <div class="table-responsive section-t4">
-                        <table class="table table-striped table-bordered first">
-                            <thead>
-                            <tr>
-                                <th>Piso</th>
-                                <th>Plazo inscripción</th>
-                                @auth
-                                    <th></th>
-                                @endauth
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>${{ $week->auction->precio_inicial }}</td>
-                                <td>{{ $week->auction->inscripcion_inicio }} hasta {{ $week->auction->inscripcion_fin }}</td>
-                                @auth
-                                    @if($week->auction->inscripcion_inicio <= Carbon\Carbon::now() && $week->auction->inscripcion_fin > Carbon\Carbon::now())
-                                        @if($week->auction()->whereHas('inscriptions', function ($query){
-                                            $query->where('usuario_id', Auth::user()->id);
-                                            })->count() == 0 &&  Auth::user()->creditos > 0)
-                                            <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $week->auction->id }}" data-wd="{{ $week->fecha }}" data-aup="{{ $week->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
-                                        @elseif(Auth::user()->creditos == 0)
-                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
+                    @if($enabled)
+                        <div class="table-responsive section-t4">
+                            <table class="table table-striped table-bordered first">
+                                <thead>
+                                <tr>
+                                    <th>Piso</th>
+                                    <th>Plazo inscripción</th>
+                                    @auth
+                                        <th></th>
+                                    @endauth
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>${{ $week->auction->precio_inicial }}</td>
+                                    <td>{{ $week->auction->inscripcion_inicio }} hasta {{ $week->auction->inscripcion_fin }}</td>
+                                    @auth
+                                        @if($week->auction->inscripcion_inicio <= Carbon\Carbon::now() && $week->auction->inscripcion_fin > Carbon\Carbon::now())
+                                            @if($week->auction()->whereHas('inscriptions', function ($query){
+                                                $query->where('usuario_id', Auth::user()->id);
+                                                })->count() == 0 &&  Auth::user()->creditos > 0)
+                                                <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $week->auction->id }}" data-wd="{{ $week->fecha }}" data-aup="{{ $week->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                            @elseif(Auth::user()->creditos == 0)
+                                                <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
+                                            @else
+                                                <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
+                                            @endif
                                         @else
-                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
+                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripcion finalizada</button></td>
                                         @endif
-                                    @else
-                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripcion finalizada</button></td>
-                                    @endif
-                                @endauth
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Piso</th>
-                                <th>Plazo inscripción</th>
-                                @auth
-                                    <th></th>
-                                @endauth
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+                                    @endauth
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Piso</th>
+                                    <th>Plazo inscripción</th>
+                                    @auth
+                                        <th></th>
+                                    @endauth
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

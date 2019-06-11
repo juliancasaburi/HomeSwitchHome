@@ -168,6 +168,7 @@ Route::get('/properties', 'PropertyController@showGrid');
 |--------------------------------------------------------------------------
 */
 Route::get('/week', 'WeekController@index');
+Route::get('locations/get', 'WeekController@getLocations');
 Route::get('/weeks', 'WeekController@showGrid');
 Route::post('/week', 'WeekController@book')->name('week.premiumBooking');
 

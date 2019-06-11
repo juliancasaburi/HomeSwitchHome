@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Reservation;
 use App\Week;
 
@@ -30,7 +31,7 @@ class WeekController extends Controller
         }
 
         $reservation = Reservation::where('semana_id', $week->id)->get();
-        $enabled = (($reservation->isEmpty()) && ($week->auction->inscripcion_inicio <= Carbon::now()) && ($week->auction->inscripcion_fin > Carbon::now()));
+        $enabled = ((!$week->trashed()) && ($reservation->isEmpty()) && ($week->auction->inscripcion_inicio <= Carbon::now()) && ($week->auction->inscripcion_fin > Carbon::now()));
 
         // Return view
         return view('week', [
@@ -48,6 +49,7 @@ class WeekController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
+            'searchLocalidad' => ['required', 'string'],
             'semanaDesde' => ['required', 'date'],
             'semanaHasta' => ['required', 'date'],
         ]);
@@ -56,7 +58,6 @@ class WeekController extends Controller
             // Redirect to home
             return redirect('/');
         }
-
         $fromWeekStart = Carbon::parse($request->semanaDesde)
             ->startOfWeek()
             ->toDateString();
@@ -65,7 +66,10 @@ class WeekController extends Controller
             ->startOfWeek()
             ->toDateString();
 
-        $weeks = Week::whereBetween('fecha', [$fromWeekStart, $toWeekStart ])
+        $weeks = Week::whereHas('property', function($q) use($request) {
+            $q->where('localidad', $request->searchLocalidad);
+        })
+            ->whereBetween('fecha', [$fromWeekStart, $toWeekStart ])
             ->whereNull('deleted_at')
             ->whereHas('auction', function ($query) {
                 $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
@@ -76,6 +80,24 @@ class WeekController extends Controller
         return view('weeks', [
             'weeks' => $weeks,
         ]);
+    }
+
+    public function getLocations() {
+        $locations = DB::table('semanas')
+            ->join('subastas', function ($join) {
+                $join->on('semanas.id', '=', 'subastas.semana_id')
+                    ->whereNull('subastas.deleted_at');
+            })
+            ->join('propiedades', function ($join) {
+                $join->on('semanas.propiedad_id', '=', 'propiedades.id')
+                    ->whereNull('propiedades.deleted_at');
+            })
+            ->whereNull('semanas.deleted_at')
+            ->get();
+
+
+        return json_encode($locations->pluck('localidad'));
+
     }
 
     public function book(Request $request)
