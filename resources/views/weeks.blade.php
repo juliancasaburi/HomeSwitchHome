@@ -56,7 +56,7 @@
                             <div class="card-overlay">
                                 <div class="price-box d-flex float-right">
                                     <div class="price-box d-flex float-right">
-                                            <h5 class="stars-text">{{ $w->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h5>
+                                            <h2 class="stars-text">{{ $w->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h5>
                                     </div>
                                 </div>
                                 <div class="card-overlay-a-content">

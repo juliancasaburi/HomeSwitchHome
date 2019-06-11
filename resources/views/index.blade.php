@@ -156,14 +156,14 @@
             @if(!$properties->isEmpty())
                 <div id="property-carousel" class="owl-carousel owl-theme">
                     @foreach($properties as $p)
-                        <div class="carousel-item-b">
+                        <div class="carousel-item-b ">
                             <div class="card-box-a card-shadow">
                                 <div class="img-box-a">
                                     <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
                                 </div>
                                 <div class="card-overlay">
                                     <div class="price-box d-flex float-right">
-                                            <h5 class="stars-text">{{ $p->estrellas }}<i class="fas fa-star fa-fw star"></i></h5>
+                                            <h2 class="stars-text">{{ $p->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
                                     </div>
                                     <div class="card-overlay-a-content">
                                         <div class="card-header-a">
