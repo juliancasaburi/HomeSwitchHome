@@ -59,13 +59,17 @@
                         </div>
                         <div class="card-body-c">
                             <p class="content-c">
-                                Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Mauris blandit
-                                aliquet elit, eget tincidunt
-                                nibh pulvinar a.
+                                Podrás obtener reservas
+                                <br>
+                                de una semana entera
+                                <br>
+                                para una propiedad
+                                <br>
+                                al participar en subastas
                             </p>
                         </div>
                         <div class="card-footer-c">
-                            <a href="#" class="link-c link-icon">Ver más
+                            <a href="{{ url('faq') }}" class="link-c link-icon">Ver más
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
@@ -83,13 +87,17 @@
                         </div>
                         <div class="card-body-c">
                             <p class="content-c">
-                                Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Mauris blandit
-                                aliquet elit, eget tincidunt
-                                nibh pulvinar a.
+                                Tenemos promociones eventuales
+                                <br>
+                                Para que consigas una reserva
+                                <br>
+                                Pagando
+                                <br>
+                                El precio mínimo
                             </p>
                         </div>
                         <div class="card-footer-c">
-                            <a href="#" class="link-c link-icon">Ver más
+                            <a href="{{ url('faq') }}" class="link-c link-icon">Ver más
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
@@ -107,13 +115,17 @@
                         </div>
                         <div class="card-body-c">
                             <p class="content-c">
-                                Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Mauris blandit
-                                aliquet elit, eget tincidunt
-                                nibh pulvinar a.
+                                Pagando un plus
+                                <br>
+                                a tu suscripción mensual
+                                <br>
+                                podrás adjudicarte
+                                <br>
+                                una semana sin pujar
                             </p>
                         </div>
                         <div class="card-footer-c">
-                            <a href="#" class="link-c link-icon">Ver más
+                            <a href="{{ url('faq') }}" class="link-c link-icon">Ver más
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
