@@ -24,8 +24,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Usuarios</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Establecer precios</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Precios</li>
                                     </ol>
                                 </nav>
                             </div>
