@@ -88,7 +88,7 @@ class AuctionCreationController extends Controller
     }
 
 public function getWeeks($id) {
-    $weeks = DB::table("semanas")->where("propiedad_id",$id)->pluck("fecha");
+    $weeks = DB::table("semanas")->where("propiedad_id",$id)->whereNull('deleted_at')->pluck("fecha");
     return json_encode($weeks);
 
 }
