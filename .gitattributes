@@ -1,8 +1,4 @@
 * text=auto
-public/js/* linguist-vendored
-public/lib/* linguist-vendored
-*.scss linguist-vendored
-*.html linguist-vendored
-*.js linguist-vendored
+* linguist-vendored*.php linguist-vendored=false
 .styleci.yml export-ignore
 CHANGELOG.md export-ignore
