@@ -86,5 +86,14 @@ class Auction extends Model
         return $query->where('inicio', '<=', Carbon::now())
             ->where('fin', '>', Carbon::now());
     }
+
+    public function sendAuctionStartedNotifications(){
+        $inscriptions = $this->inscriptions;
+        foreach($inscriptions as $i){
+            $i->user->sendAuctionStartedNotification($this->property->nombre, $this->week->fecha, $this->id);
+        }
+        $this->notificaciones_enviadas = Carbon::now();
+        $this->save();
+    }
 }
 
