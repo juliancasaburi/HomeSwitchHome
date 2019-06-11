@@ -20,9 +20,12 @@
     <li> Install composer https://getcomposer.org/download/ </li>
     <li> Pull project </li>
     <li> Rename .env.example file to .env inside your project root and fill information. </li>
+    <li> Replace QUEUE_CONNECTION=sync with QUEUE_CONNECTION=database </li>
     <li> Open the terminal and cd your project root directory </li>
     <li> Run composer install </li>
+    <li> Run php artisan queue:table </li>
     <li> Run php artisan key:generate </li> 
     <li> Run php artisan migrate </li>
     <li> Run php artisan serve </li>
+    <li> Run php artisan queue:work database </li>
 </ol>
