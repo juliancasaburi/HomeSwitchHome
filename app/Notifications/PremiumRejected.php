@@ -6,8 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PremiumRejected extends Notification
+class PremiumRejected extends Notification implements ShouldQueue
 {
     use Queueable;
 

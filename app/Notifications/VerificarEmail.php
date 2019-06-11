@@ -8,10 +8,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Config;
 
-class VerificarEmail extends Notification
+class VerificarEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
