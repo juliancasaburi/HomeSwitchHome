@@ -117,9 +117,14 @@ hr {
     margin: 0 auto;
 }
 
+.stars-text {
+    background-color: #00A1E1;
+    color: #FFFFFF
+}
+
 /*------/ Items  /------*/
 .star {
-  color: #C5B358;
+  color: #ECC400;
 }
 
 /*------/ Auction /-----*/

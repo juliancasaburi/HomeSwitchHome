@@ -19,9 +19,9 @@
                             </div>
                             <div class="card-overlay">
                                 <div class="price-box d-flex float-right">
-                                    @for ($i = 1; $i <= $property->estrellas; $i++)
-                                        <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                    @endfor
+                                    <div class="price-box d-flex float-right">
+                                            <h5 class="stars-text">{{ $property->estrellas }}<i class="fas fa-star fa-fw star"></i></h5>
+                                    </div>
                                 </div>
                                 <div class="card-overlay-a-content">
                                     <div class="card-header-a">
