@@ -45,11 +45,13 @@ class PropertyController extends Controller
      */
     public function showGrid()
     {
-        $properties = Property::has('weeks')->orderBy('nombre', 'asc')->paginate(2);
+        $properties = Property::whereHas('weeks', function ($query) {
+            $query->whereNull('deleted_at');
+        })->orderBy('nombre', 'asc')->paginate(2);
         $weeks = array();
         foreach($properties as $p){
             array_push($weeks, $p->weeks()->whereHas('auction', function ($query) {
-                $query->where('inscripcion_fin', '>=', Carbon::now());
+                $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
             })->count());
         }
         return view('properties', [
