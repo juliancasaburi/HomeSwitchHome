@@ -79,13 +79,13 @@
                                                 <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Editar</button></td>
                                                 <td>
                                                     @if($p->image_path == null)
-                                                        <a href={{ url('property?id=').$p->id }}><img src="{{'https://via.placeholder.com/683x1024?text='.$p->nombre}}" alt="propertyPhoto" width="50"></a>
+                                                        <a href={{ url($propertyURL.$p->id) }}><img src="{{'https://via.placeholder.com/683x1024?text='.$p->nombre}}" alt="propertyPhoto" width="50"></a>
                                                     @else
-                                                        <a href={{ url('property?id=').$p->id }}><img src="{{ asset($p->image_path) }}" alt="propertyPhoto" width="50"></a>
+                                                        <a href={{ url($propertyURL.$p->id) }}><img src="{{ asset($p->image_path) }}" alt="propertyPhoto" width="50"></a>
                                                     @endif
                                                 </td>
                                                 <td>{{ $p->id }}</td>
-                                                <td><a href={{ url('property?id=').$p->id }}>{{ $p->nombre}}</a></td>
+                                                <td><a href={{ url($propertyURL.$p->id) }}>{{ $p->nombre}}</a></td>
                                                 <td>{{ $p->pais }}</td>
                                                 <td>{{ $p->provincia }}</td>
                                                 <td>{{ $p->localidad }}</td>

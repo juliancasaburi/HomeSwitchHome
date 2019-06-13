@@ -70,9 +70,9 @@
                                         @foreach ($bids as $b)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><a href={{ url('property?id=').$b->auction->property->id }}>{{ $b->auction->property->nombre }}</a></td>
+                                                <td><a href={{ url($propertyURL.$b->auction->property->id) }}>{{ $b->auction->property->nombre }}</a></td>
                                                 <td>{{ $b->auction->week->fecha }} al {{ date('Y-m-d', strtotime($b->auction->week->fecha. ' + 7 days'))}} </td>
-                                                <td><a href={{ url('auction?id=').$b->auction->id }}>Ver subasta</a></td>
+                                                <td><a href={{ url($auctionURL.$b->auction->id) }}>Ver subasta</a></td>
                                                 <td>{{ $b->created_at }}</td>
                                                 <td>${{ $b->monto }}</td>
                                                 @if(!$b->auction->trashed())

@@ -79,12 +79,12 @@
                                                     @endif
                                                 @endif
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td><a href={{ url('property?id=').$r->week->property->id }}>{{ $r->week->property->nombre }}</a></td>
-                                                <td><a href={{ url('week?id=').$r->week->id }}>{{ $r->week->fecha }} al {{ date('Y-m-d', strtotime($r->week->fecha. ' + 7 days'))}} </a></td>
+                                                <td><a href={{ url($propertyURL.$r->week->property->id) }}>{{ $r->week->property->nombre }}</a></td>
+                                                <td><a href={{ url($weekURL.$r->week->id) }}>{{ $r->week->fecha }} al {{ date('Y-m-d', strtotime($r->week->fecha. ' + 7 days'))}} </a></td>
                                                 <td>{{ $r->created_at }}</td>
                                                 <td>${{ $r->valor_reservado }}</td>
                                                 @if($r->modo_reserva == 0)
-                                                    <td><a href={{ url('auction?id=').$r->id }}><i class="fas fa-gavel fa-fw fa-sm"></i> Subasta</a></td>
+                                                    <td><a href={{ url($auctionURL.$r->id) }}><i class="fas fa-gavel fa-fw fa-sm"></i> Subasta</a></td>
                                                 @elseif($r->modo_reserva == 1)
                                                     <td><i class="fas fa-ticket-alt fa-fw fa-sm text-success"></i> Reserva Directa (Premium)</td>
                                                 @else

@@ -77,24 +77,26 @@
                                         </thead>
                                         <tbody>
                                         @if(isset($week))
-                                        <tr>
-                                            <td>{{$week->fecha}}</td>
-                                            <td>@if($week->property->image_path == null)
-                                                <a href={{ url('property?id=').$week->property->id }}><img src="{{'https://via.placeholder.com/683x1024?text='.$week->property->nombre}}" alt="propertyPhoto" width="250"></a>
-                                            @else
-                                                <a href={{ url('property?id=').$week->property->id }}><img src="{{ asset($week->property->image_path) }}" alt="propertyPhoto" width="250"></a>
-                                            @endif</td>
-                                            <td><a href={{ url('property?id=').$week->property->id }}>{{$week->property->nombre}}</a></td>
-                                            <td>{{$week->property->estrellas}}</td>
-                                            <td>{{$week->property->provincia}}</td>
-                                            <td>{{$week->property->localidad}}</td>
-                                            <td>{{$week->property->calle}}</td>
-                                            <td>{{$week->property->numero}}</td>
-                                            <td>{{$week->created_at}}</td>
-                                            <td><button class="btn-outline-danger pt-2 pb-2" id="deleteWeekButton" data-toggle="modal" data-target="#deleteWeekModal" data-wid="{{ $week->id }}" data-wdate="{{ $week->fecha }}" data-wpropertyname="{{$week->property->nombre}}">
-                                                    <i class="fas fa-trash"></i>Eliminar
-                                                </button></td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{$week->fecha}}</td>
+                                                <td>
+                                                    @if($week->property->image_path == null)
+                                                        <a href="{{ url($propertyURL.$week->property->id) }}"><img src="{{'https://via.placeholder.com/683x1024?text='.$week->property->nombre}}" alt="propertyPhoto" width="250"></a>
+                                                    @else
+                                                        <a href="{{ url($propertyURL.$week->property->id) }}"><img src="{{ asset($week->property->image_path) }}" alt="propertyPhoto" width="250"></a>
+                                                    @endif
+                                                </td>
+                                                <td><a href="{{ url($propertyURL.$week->property->id) }}">{{$week->property->nombre}}</a></td>
+                                                <td>{{$week->property->estrellas}}</td>
+                                                <td>{{$week->property->provincia}}</td>
+                                                <td>{{$week->property->localidad}}</td>
+                                                <td>{{$week->property->calle}}</td>
+                                                <td>{{$week->property->numero}}</td>
+                                                <td>{{$week->created_at}}</td>
+                                                <td><button class="btn-outline-danger pt-2 pb-2" id="deleteWeekButton" data-toggle="modal" data-target="#deleteWeekModal" data-wid="{{ $week->id }}" data-wdate="{{ $week->fecha }}" data-wpropertyname="{{$week->property->nombre}}">
+                                                        <i class="fas fa-trash"></i>Eliminar
+                                                    </button></td>
+                                            </tr>
                                         @endif
                                         </tbody>
                                         <tfoot>
@@ -133,8 +135,8 @@
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                 {{ session()->get('alert-danger') }}
                             </div>
-                        @endif
-                        <!-- ============================================================== -->
+                    @endif
+                    <!-- ============================================================== -->
                         <!-- End Alerts  -->
                         <!-- ============================================================== -->
                     </div>

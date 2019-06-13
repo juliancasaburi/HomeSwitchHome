@@ -74,16 +74,16 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
-                                                @if($a->deleted_at <= $a->fin && $a->deleted_at != null)
+                                                @if($a->wasCancelled())
                                                     <td>Cancelada</td>
-                                                @elseif($a->trashed())
+                                                @elseif($a->hasFinished())
                                                     <td>Finalizada</td>
                                                 @else
                                                     <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Administrar</button></td>
                                                 @endif
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
-                                                <td><a href={{ url('week?id=').$a->week->id }}>ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
-                                                <td><a href={{ url('property?id=').$a->week->property->id }}>ID: {{ $a->week->property->id }} "{{ $a->week->property->nombre }}"</a></td>
+                                                <td><a href="{{ url('week?id=').$a->week->id }}">ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
+                                                <td><a href="{{ url('property?id=').$a->week->property->id }}">ID: {{ $a->week->property->id }} "{{ $a->week->property->nombre }}"</a></td>
                                                 <td>{{ $a->inscriptions->count() }}</td>
                                                 <td>{{ $a->uniqueBidders($a->id) }}</td>
                                                 <td>{{ $a->bids->count() }}</td>

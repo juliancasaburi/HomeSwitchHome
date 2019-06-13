@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
+    const PROPERTYURL = 'property?id=';
+    const WEEKURL = 'week?id=';
+    const AUCTIONURL = 'auction?id=';
 
     /**
      * Create a new controller instance.
@@ -143,20 +146,39 @@ class UserController extends Controller
     public function showInscriptionList()
     {
         $inscriptions = Auth::user()->auctionInscriptions;
-        return view('user.user-inscription-list')->with ('inscriptions',$inscriptions);
+        return view('user.user-inscription-list',
+            [
+                'inscriptions' => $inscriptions,
+                'auctionURL' => self::AUCTIONURL,
+                'propertyURL' => self::PROPERTYURL,
+            ]
+        );
     }
 
     public function showBidList()
     {
         $bids = Auth::user()->bids;
-        return view('user.user-bid-list')->with ('bids',$bids);
+        return view('user.user-bid-list',
+            [
+                'bids' => $bids,
+                'auctionURL' => self::AUCTIONURL,
+                'propertyURL' => self::PROPERTYURL,
+            ]
+        );
     }
 
     public function showReservations(){
 
         $reservations = Auth::user()->reservationsWithTrashed;
 
-        return view('user.user-reservation-list')->with('reservations', $reservations);
+        return view('user.user-reservation-list',
+            [
+                'reservations' => $reservations,
+                'auctionURL' => self::AUCTIONURL,
+                'propertyURL' => self::PROPERTYURL,
+                'weekURL' => self::WEEKURL,
+            ]
+        );
     }
 
     public function addBalance()

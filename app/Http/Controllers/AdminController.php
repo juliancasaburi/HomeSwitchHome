@@ -22,6 +22,10 @@ use App\Bid;
 class AdminController extends Controller
 {
 
+    const PROPERTYURL = 'property?id=';
+    const WEEKURL = 'week?id=';
+    const AUCTIONURL = 'auction?id=';
+
     protected function guard(){
         return Auth::guard('auth:admin');
     }
@@ -95,7 +99,12 @@ class AdminController extends Controller
     public function showPropertyList()
     {
         $properties = Property::orderBy('nombre', 'asc')->get();
-        return view('admin.admin-property-list')->with ('properties',$properties);
+        return view('admin.admin-property-list',
+            [
+                'properties' => $properties,
+                'propertyURL' => self::PROPERTYURL,
+            ]
+        );
     }
 
     public function showWeekCreationForm(){
@@ -143,7 +152,14 @@ class AdminController extends Controller
     public function showAuctionList()
     {
         $auctions = Auction::withTrashed()->get();
-        return view('admin.admin-auction-list')->with ('auctions',$auctions);
+        return view('admin.admin-auction-list',
+            [
+                'auctions' => $auctions,
+                'auctionURL' => self::AUCTIONURL,
+                'propertyURL' => self::PROPERTYURL,
+                'weekURL' => self::WEEKURL,
+            ]
+        );
     }
 
     public function showAuctionCreationForm(){
@@ -156,7 +172,13 @@ class AdminController extends Controller
     public function showReservationList()
     {
         $reservations = Reservation::withTrashed()->get();
-        return view('admin.admin-reservation-list')->with ('reservations',$reservations);
+        return view('admin.admin-reservation-list',
+            [
+                'reservations' => $reservations,
+                'propertyURL' => self::PROPERTYURL,
+                'weekURL' => self::WEEKURL,
+            ]
+        );
     }
 
     public function cancelReservation()
@@ -193,7 +215,14 @@ class AdminController extends Controller
 
     public function showActiveAuctions(){
         $auctions = Auction::where('inicio', '<=', Carbon::now())->where('fin', '>=', Carbon::now())->get();
-        return view('admin/admin-active-auction-list')->with('auctions',$auctions);
+        return view('admin/admin-active-auction-list',
+            [
+                'auctions' => $auctions,
+                'auctionURL' => self::AUCTIONURL,
+                'propertyURL' => self::PROPERTYURL,
+                'weekURL' => self::WEEKURL,
+            ]
+        );
     }
 
     /**
@@ -325,12 +354,22 @@ class AdminController extends Controller
             ->orderBy('propiedades.nombre', 'asc')
             ->get(['semanas.*']);
 
-        return view('admin/admin-weeks-list')->with('weeks', $weeks);
+        return view('admin/admin-weeks-list',
+            [
+                'weeks' => $weeks,
+                'propertyURL' => self::PROPERTYURL,
+            ]
+        );
     }
 
     public function showWeekInfo(Request $request)
     {
         $week = Week::find($request->id);
-        return view('admin.admin-week-info')->with ('week',$week);
+        return view('admin.admin-week-info',
+            [
+                'week' => $week,
+                'propertyURL' => self::PROPERTYURL,
+            ]
+        );
     }
 }
