@@ -142,7 +142,7 @@
                                 <div class="card-overlay card-overlay-hover">
                                     <div class="card-header-d section-t4">
                                         <div class="card-title-d align-self-center">
-                                            <h3 class="title-d">La subasta aún no ha comenzado</h3>
+                                            <h3 class="title-d">La subasta aún no ha comenzado o ha finalizado</h3>
                                         </div>
                                     </div>
                                 </div>
