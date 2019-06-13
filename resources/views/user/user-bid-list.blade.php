@@ -84,10 +84,8 @@
                                                 @else
                                                     @if($b->auction->week->reservation && $b->auction->week->reservation->usuario_id == Auth::user()->id)
                                                         <td>Ganada</td>
-                                                    @elseif($b->auction->week->reservation)
+                                                    @else
                                                         <td>Perdida</td>
-                                                        @else
-                                                            <td>Cancelada</td>
                                                     @endif
                                                 @endif
                                             </tr>
