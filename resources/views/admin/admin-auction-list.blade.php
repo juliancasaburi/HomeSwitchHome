@@ -69,6 +69,7 @@
                                             <th>Comienza</th>
                                             <th>Finaliza</th>
                                             <th>Creada</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -97,6 +98,13 @@
                                                 <td>{{ $a->inicio }}</td>
                                                 <td>{{ $a->fin }}</td>
                                                 <td>{{ $a->created_at }}</td>
+                                                <td>
+                                                    @if($a->isDeleteable())
+                                                        <button class="btn-outline-danger pt-2 pb-2" id="deleteAuctionButton" data-toggle="modal" data-target="#deleteAuctionModal" data-aid="{{ $a->id }}" data-aname="{{$a->property->nombre}}" data-adate="{{$a->week->fecha}}">
+                                                            <i class="fas fa-trash"></i>Eliminar
+                                                        </button>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -115,6 +123,7 @@
                                             <th>Comienza</th>
                                             <th>Finaliza</th>
                                             <th>Creada</th>
+                                            <th></th>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -125,6 +134,19 @@
                     <!-- ============================================================== -->
                     <!-- end Auction table  -->
                     <!-- ============================================================== -->
+
+                    <!-- ============================================================== -->
+                    <!-- Alerts  -->
+                    <!-- ============================================================== -->
+                    @if(session()->has('alert-success'))
+                        <div class="alert alert-success alert-dismissible" data-expires="10000">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            {{ session()->get('alert-success') }}
+                        </div>
+                    @endif
+                <!-- ============================================================== -->
+                    <!-- End Alerts  -->
+                    <!-- ============================================================== -->
                 </div>
             </div>
         </div>
@@ -132,6 +154,33 @@
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
+
+    <!-- Delete auction Modal -->
+    <div class="modal fade" id="deleteAuctionModal" tabindex="-1" role="dialog" aria-labelledby="deleteAuctionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAuctionModalLabel">Desea eliminar la subasta?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="propertyText">aa</p>
+                    <p id="dateText">aa</p>
+                    <form id="deleteAuctionForm" action="{{ route('admin.deleteAuction') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="button" id="btn-deleteauction" class="btn btn-primary" onclick="deleteAuctionForm_submit()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Delete property Modal -->
 @endsection
 
 @section('js')
@@ -144,5 +193,24 @@
                 });
             });
         });
+    </script>
+
+    <script> // Delete auction
+        // Fill property id for request
+        $('#deleteAuctionModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('aid');
+            var name = $(event.relatedTarget).data('aname');
+            var fecha = $(event.relatedTarget).data('adate');
+            document.getElementById("propertyText").innerHTML = "Propiedad: ".concat(name);
+            document.getElementById("dateText").innerHTML = "Fecha: ".concat(fecha);
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
+
+        // Submit form
+        function deleteAuctionForm_submit() {
+            $('#deleteAuctionButton').attr('disabled','disabled');
+            $('#deleteAuctionModal').modal('hide');
+            document.getElementById("deleteAuctionForm").submit();
+        }
     </script>
 @endsection

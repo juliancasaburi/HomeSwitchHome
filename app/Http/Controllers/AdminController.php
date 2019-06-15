@@ -372,4 +372,20 @@ class AdminController extends Controller
             ]
         );
     }
+
+    public function deleteAuction(Request $request){
+
+        $auction = Auction::find($request->id);
+
+        if($auction->inscripcion_inicio > Carbon::now()){
+            $auction->forceDelete();
+            return back()->with('alert-success', 'Subasta eliminada!');
+        }
+        else{
+            $auction->sendAuctionCancelledNotifications();
+            $auction->delete();
+        }
+
+        return back()->with('alert-success', 'Subasta cancelada!');
+    }
 }

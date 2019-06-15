@@ -103,5 +103,16 @@ class Auction extends Model
     public function hasFinished(){
         return ($this->trashed());
     }
+
+    public function isDeleteable(){
+        return ($this->inicio > Carbon::now() && $this->deleted_at == null);
+    }
+
+    public function sendAuctionCancelledNotifications(){
+        $inscriptions = $this->inscriptions()->get();
+        foreach($inscriptions as $i){
+            $i->user->sendAuctionCancelledNotification($this->property->nombre, $this->week->fecha, $this->id);
+        }
+    }
 }
 

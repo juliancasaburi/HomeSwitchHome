@@ -133,6 +133,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/delete-week', 'AdminController@deleteWeek')->name("admin.deleteWeek");
     Route::get('/dashboard/weeks-list', 'AdminController@showWeeksList')->name('admin.weeksList');
     Route::get('/dashboard/week-info', 'AdminController@showWeekInfo')->name('admin.weekInfo');
+    Route::post('/dashboard/delete-auction', 'AdminController@deleteAuction')->name("admin.deleteAuction");
 
     //--------------------------------------------
 });
