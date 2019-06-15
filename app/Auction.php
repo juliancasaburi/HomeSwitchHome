@@ -95,5 +95,13 @@ class Auction extends Model
         $this->notificaciones_enviadas = Carbon::now();
         $this->save();
     }
+
+    public function wasCancelled(){
+        return ($this->trashed() && ($this->deleted_at < $this->fin));
+    }
+
+    public function hasFinished(){
+        return ($this->trashed());
+    }
 }
 
