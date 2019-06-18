@@ -105,7 +105,7 @@ class Auction extends Model
         return ($this->trashed());
     }
 
-    public function isDeleteable(){
+    public function isDeletable(){
         return ($this->inicio > Carbon::now() && $this->deleted_at == null);
     }
 

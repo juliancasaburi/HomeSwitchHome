@@ -99,7 +99,7 @@
                                                 <td>{{ $a->fin }}</td>
                                                 <td>{{ $a->created_at }}</td>
                                                 <td>
-                                                    @if($a->isDeleteable())
+                                                    @if($a->isDeletable())
                                                         <button class="btn-outline-danger pt-2 pb-2" id="deleteAuctionButton" data-toggle="modal" data-target="#deleteAuctionModal" data-aid="{{ $a->id }}" data-aname="{{$a->property->nombre}}" data-adate="{{$a->week->fecha}}">
                                                             <i class="fas fa-trash"></i>Eliminar
                                                         </button>
