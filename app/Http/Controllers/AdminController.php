@@ -18,6 +18,7 @@ use App\Reservation;
 use App\Price;
 use App\PremiumRequest;
 use App\Bid;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -388,4 +389,39 @@ class AdminController extends Controller
 
         return back()->with('alert-success', 'Subasta cancelada!');
     }
+
+    public function modifyWeek(Request $request){
+        $validator = Validator::make($request->all(), [
+            'fecha_nueva' => ['required', 'date', Rule::unique('semanas', 'fecha')->whereNull('deleted_at')],
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+        else{
+            $formDate = strtotime($request->fecha_nueva);
+
+            $dayOfWeek = date("l", $formDate);
+            // Is it monday?
+            if($dayOfWeek  == 'Monday') {
+
+                $week = Week::find($request->id);
+
+                if($week->auction->isInAuctionPeriod()){
+                    return redirect()->back()->withErrors(['subasta' => ['Esta semana tiene una subasta en periodo de participación!']]);
+                }
+                else{
+                    $week->update(['fecha' => $request->fecha_nueva]);
+                    return redirect()->back()->with('alert-success', 'Semana modificada exitosamente!');
+                }
+            }
+            else {
+                // Day is not Monday
+                return redirect()->back()->withErrors(['fecha' => ['El día de la fecha elegida no es lunes!']]);
+            }
+        }
+
+
+    }
+
 }

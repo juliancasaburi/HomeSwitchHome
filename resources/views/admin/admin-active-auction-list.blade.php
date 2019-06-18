@@ -56,7 +56,6 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
-                                            <th></th>
                                             <th>ID</th>
                                             <th>Semana</th>
                                             <th>Propiedad</th>
@@ -73,7 +72,6 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
-                                                <td><button class="btn-outline-danger"><i class="fa fa-times"></i>Cancelar</button></td>
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
                                                 <td><a href="{{ url('week?id=').$a->week->id }}">ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
                                                 <td><a href="{{ url('property?id=').$a->week->property->id }}">ID: {{ $a->week->property->id }} "{{ $a->week->property->nombre }}"</a></td>
@@ -94,7 +92,6 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th></th>
                                             <th>ID</th>
                                             <th>Semana</th>
                                             <th>Propiedad</th>
@@ -126,16 +123,6 @@
 @endsection
 
 @section('js')
-    <script>
-        $(document).ready(function(){
-            $("#tableSearch").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#table tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-
     <script>
         $(document).ready(function(){
             $("#tableSearch").on("keyup", function() {
