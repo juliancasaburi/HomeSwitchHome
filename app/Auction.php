@@ -116,6 +116,10 @@ class Auction extends Model
         }
     }
 
+    public function isInAuctionPeriod(){
+        return ($this->inicio <= Carbon::now() && $this->fin >= Carbon::now() && $this->deleted_at == null);
+    }
+
     /**
      * Scope a query to only include to be closed auctions.
      *
