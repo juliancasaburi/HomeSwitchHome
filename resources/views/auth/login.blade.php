@@ -72,9 +72,7 @@
                             </div>
                             <div class="card-overlay">
                                 <div class="price-box d-flex float-right">
-                                    <div class="price-box d-flex float-right">
-                                            <h2 class="stars-text">{{ $property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
-                                    </div>
+                                    <h2 class="stars-text">{{ $property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
                                 </div>
                                 <div class="card-overlay-a-content">
                                     <div class="card-header-a">
@@ -118,9 +116,7 @@
                             </div>
                             <div class="card-overlay">
                                 <div class="price-box d-flex float-right">
-                                    @for ($i = 1; $i <= $week->property->estrellas; $i++)
-                                        <span><i class="far fa-star fa-2x fa-fw star"></i></span>
-                                    @endfor
+                                    <h2 class="stars-text">{{ $week->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
                                 </div>
                                 <div class="card-overlay-a-content">
                                     <div class="card-header-a">
