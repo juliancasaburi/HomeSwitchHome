@@ -462,7 +462,7 @@ class AdminController extends Controller
         $admin->nombre = Input::get('nombre');
         $admin->apellido = Input::get('apellido');
         $admin->email = Input::get('newEmail');
-        $admin->password = Input::get('password');
+        $admin->password = bcrypt(Input::get('password'));
         $admin->save();
 
         return redirect()->back()->with('alert-success', 'Tus datos fueron modificados exitosamente!');
