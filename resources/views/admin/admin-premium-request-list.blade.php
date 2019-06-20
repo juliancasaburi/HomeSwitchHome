@@ -56,6 +56,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>Accion</th>
                                             <th>ID</th>
                                             <th>Fecha Solicitud</th>
@@ -72,6 +73,7 @@
                                         <tbody>
                                         @foreach ($requests as $r)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 <td>
                                                     <div class="row mb-5">
                                                         <button class="btn-outline-primary pt-2 pb-2" data-toggle="modal" data-target="#acceptRequestModal" data-uid="{{ $r->user->id }}" data-rid="{{ $r->id }}"><i class="fas fa-vote-yea" style="color:lawngreen"></i>Aceptar</button>
@@ -95,6 +97,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>Accion</th>
                                             <th>ID</th>
                                             <th>Fecha Solicitud</th>

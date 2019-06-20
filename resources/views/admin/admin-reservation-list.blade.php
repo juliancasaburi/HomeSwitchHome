@@ -56,6 +56,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>Cancelar</th>
                                             <th>ID</th>
                                             <th>Semana ID</th>
@@ -69,6 +70,7 @@
                                         <tbody>
                                         @foreach ($reservations as $r)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 @if($r->trashed())
                                                     <td><button class="btn-outline-primary" disabled><i class="fas fa-times-circle text-gray"></i>Cancelada</button></td>
                                                 @else
@@ -96,6 +98,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>Cancelar</th>
                                             <th>ID</th>
                                             <th>Semana ID</th>

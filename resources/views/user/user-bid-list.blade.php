@@ -57,7 +57,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
-                                            <th>Numero</th>
+                                            <th>Índice</th>
                                             <th>Propiedad</th>
                                             <th>Semana</th>
                                             <th>Subasta</th>
@@ -69,7 +69,7 @@
                                         <tbody>
                                         @foreach ($bids as $b)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $loop->index }}</td>
                                                 <td><a href={{ url($propertyURL.$b->auction->property->id) }}>{{ $b->auction->property->nombre }}</a></td>
                                                 <td>{{ $b->auction->week->fecha }} al {{ date('Y-m-d', strtotime($b->auction->week->fecha. ' + 7 days'))}} </td>
                                                 <td><a href={{ url($auctionURL.$b->auction->id) }}>Ver subasta</a></td>
@@ -93,7 +93,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th>Numero</th>
+                                            <th>Índice</th>
                                             <th>Propiedad</th>
                                             <th>Semana</th>
                                             <th>Subasta</th>

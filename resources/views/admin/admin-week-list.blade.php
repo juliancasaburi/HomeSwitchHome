@@ -56,6 +56,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>ID</th>
                                             <th>Propiedad</th>
                                             <th>Fecha</th>
@@ -66,6 +67,7 @@
                                         <tbody>
                                         @foreach ($weeks as $w)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 <td><a href="{{ url('admin/dashboard/week-info?id=').$w->id }}" class="btn-outline-primary"><i class="fas fa-search-plus"></i>+INFO</a></td>
                                                 <td><a href="{{ url($propertyURL.$w->property->id) }}">{{ $w->property->nombre}}</a></td></td>
                                                 <td>{{ $w->fecha }}</td>
@@ -80,6 +82,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>ID</th>
                                             <th>Propiedad</th>
                                             <th>Fecha</th>

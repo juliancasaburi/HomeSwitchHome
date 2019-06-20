@@ -56,7 +56,8 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>Índice</th>
+                                            <th>Editar</th>
                                             <th>Foto</th>
                                             <th>ID</th>
                                             <th>Nombre</th>
@@ -76,6 +77,7 @@
                                         <tbody>
                                         @foreach ($properties as $p)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Editar</button></td>
                                                 <td>
                                                     @if($p->image_path == null)
@@ -106,7 +108,8 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th></th>
+                                            <th>Índice</th>
+                                            <th>Editar</th>
                                             <th>Foto</th>
                                             <th>ID</th>
                                             <th>Nombre</th>

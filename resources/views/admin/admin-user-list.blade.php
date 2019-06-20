@@ -56,6 +56,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>INFO</th>
                                             <th>Fecha de registro</th>
                                             <th>Nombre/s</th>
@@ -67,6 +68,7 @@
                                         <tbody>
                                         @foreach ($users as $u)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 <td><a href="{{ url('admin/dashboard/user-info?id=') .$u->id}}" class="btn-outline-primary"><i class="fas fa-search-plus"></i>+INFO</a></td>
                                                 <td>{{ $u->created_at}}</td>
                                                 <td>{{ $u->nombre}}</td>
@@ -82,6 +84,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>INFO</th>
                                             <th>Fecha de registro</th>
                                             <th>Nombre/s</th>

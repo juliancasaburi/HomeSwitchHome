@@ -56,7 +56,8 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>Índice</th>
+                                            <th>Administrar</th>
                                             <th>ID</th>
                                             <th>Semana</th>
                                             <th>Propiedad</th>
@@ -75,6 +76,7 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 @if($a->wasCancelled())
                                                     <td>Cancelada</td>
                                                 @elseif($a->hasFinished())
@@ -110,7 +112,8 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <th></th>
+                                            <th>Índice</th>
+                                            <th>Administrar</th>
                                             <th>ID</th>
                                             <th>Semana</th>
                                             <th>Propiedad</th>

@@ -57,6 +57,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>Numero</th>
                                             <th>Propiedad</th>
                                             <th>Semana</th>
@@ -67,6 +68,7 @@
                                         <tbody>
                                         @foreach ($inscriptions as $i)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td><a href={{ url($propertyURL.$i->property->id) }}>{{ $i->property->nombre }}</a></td>
                                                 <td>{{ $i->auction->week->fecha }} al {{ date('Y-m-d', strtotime($i->auction->week->fecha. ' + 7 days'))}} </td>
@@ -77,6 +79,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>Numero</th>
                                             <th>Propiedad</th>
                                             <th>Semana</th>

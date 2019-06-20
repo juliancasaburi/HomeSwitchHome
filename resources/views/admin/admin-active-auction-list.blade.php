@@ -56,6 +56,7 @@
                                     <table class="table table-striped table-bordered first" id="table">
                                         <thead>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>ID</th>
                                             <th>Semana</th>
                                             <th>Propiedad</th>
@@ -72,6 +73,7 @@
                                         <tbody>
                                         @foreach ($auctions as $a)
                                             <tr>
+                                                <td>{{ $loop->index }}</td>
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
                                                 <td><a href="{{ url('week?id=').$a->week->id }}">ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
                                                 <td><a href="{{ url('property?id=').$a->week->property->id }}">ID: {{ $a->week->property->id }} "{{ $a->week->property->nombre }}"</a></td>
@@ -92,6 +94,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>Índice</th>
                                             <th>ID</th>
                                             <th>Semana</th>
                                             <th>Propiedad</th>
