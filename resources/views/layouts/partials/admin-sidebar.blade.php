@@ -52,14 +52,11 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-signature"></i></i>Inscripciones a subastas</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-signature"></i>Inscripciones</a>
                         <div id="submenu-4" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Ver todas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Eliminar Inscripcion</a>
+                                    <a class="nav-link"  href="{{ url('admin/dashboard/inscription-list') }}">Ver todas</a>
                                 </li>
                             </ul>
                         </div>

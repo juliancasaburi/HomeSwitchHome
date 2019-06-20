@@ -424,4 +424,15 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * Show the inscription list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showinscriptionList()
+    {
+        $inscriptions = InscriptionForFutureAuction::all();
+        return view('admin.admin-inscription-list')->with ('inscriptions',$inscriptions);
+    }
+
 }
