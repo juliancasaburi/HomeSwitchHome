@@ -19,7 +19,7 @@ class CreateCardsTable extends Migration
             $table->string('numero', 16);
             $table->string('marca', 50);
             $table->string('nombre_titular', 80);
-            $table->date('fecha_vencimiento');
+            $table->string('fecha_vencimiento', 7);
             $table->string('codigo_verificacion', 3);
 
             $table->foreign('usuario_id')->references('id')->on('usuarios');
