@@ -124,7 +124,7 @@ class AdminController extends Controller
             // Show an error flash message
             foreach($validator->errors() as $e){
                 Session::flash('error', $e);
-                return View::make('layouts/partials/flash-messages');
+                return View::make('partials/flash-messages');
             }
         }
 
@@ -141,12 +141,12 @@ class AdminController extends Controller
             $user->save();
             // show a success flash message
             Session::flash('success', 'Usuario '. $user->id.' modificado');
-            return View::make('layouts/partials/flash-messages');
+            return View::make('partials/flash-messages');
         }
         else{
             // show a success flash message
             Session::flash('warning', 'Usuario '. $user->id.' no modificado');
-            return View::make('layouts/partials/flash-messages');
+            return View::make('partials/flash-messages');
         }
     }
 
@@ -276,7 +276,7 @@ class AdminController extends Controller
         $user->save();
 
         Session::flash('success', 'Usuario promovido a Premium');
-        return View::make('layouts/partials/flash-messages');
+        return View::make('partials/flash-messages');
     }
 
     public function demoteUser(Request $request)
@@ -286,7 +286,7 @@ class AdminController extends Controller
         $user->save();
 
         Session::flash('success', 'Usuario degradado a Básico');
-        return View::make('layouts/partials/flash-messages');
+        return View::make('partials/flash-messages');
     }
 
     public function deleteProperty(Request $request){
