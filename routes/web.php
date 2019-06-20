@@ -106,6 +106,10 @@ Route::prefix('admin')->group(function() {
     Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
     //--------------------------------------------
 
+    // Admin Account
+    Route::get('/modify-data', 'AdminController@showModifyData')->name('admin.showModifyData');
+    Route::put('/modify-data', 'AdminController@modifyData')->name('admin.modifyData');
+
     //---------------- Dashboard -----------------
     Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
     Route::get('/dashboard/create-property', 'AdminController@showPropertyCreationForm')->name('admin.createProperty');

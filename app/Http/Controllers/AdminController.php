@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use App\Property;
@@ -18,7 +19,6 @@ use App\Reservation;
 use App\Price;
 use App\PremiumRequest;
 use App\Bid;
-use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -429,10 +429,43 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showinscriptionList()
+    public function showInscriptionList()
     {
         $inscriptions = InscriptionForFutureAuction::all();
         return view('admin.admin-inscription-list')->with ('inscriptions',$inscriptions);
+    }
+
+    /**
+     * Show the modify account details form
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showModifyData()
+    {
+        return view('admin.admin-modify-data');
+    }
+
+    public function modifyData()
+    {
+        $rules = [
+            'nombre' => 'required|max:40',
+            'apellido' => 'required|max:40',
+            'newEmail' => 'required|email|unique:usuarios,email',
+            'password' => 'required|min:8',
+        ];
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $admin = Auth::user();
+        $admin->nombre = Input::get('nombre');
+        $admin->apellido = Input::get('apellido');
+        $admin->email = Input::get('newEmail');
+        $admin->password = Input::get('password');
+        $admin->save();
+
+        return redirect()->back()->with('alert-success', 'Tus datos fueron modificados exitosamente!');
     }
 
 }
