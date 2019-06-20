@@ -26,12 +26,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href={{ url('admin/dashboard/create-property') }}>Crear Propiedad</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Modificar Propiedad</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Eliminar Propiedad</a>
-                                </li>
                             </ul>
                         </div>
                     </li>
@@ -44,9 +38,6 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/create-week') }}">Crear Semana</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Eliminar Semana</a>
                                 </li>
                             </ul>
                         </div>
@@ -77,9 +68,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Modificar Subasta</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Eliminar Subasta</a>
-                                </li>
                             </ul>
                         </div>
                     </li>
@@ -89,9 +77,6 @@
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/reservation-list') }}">Ver todas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Cancelar una Reserva</a>
                                 </li>
                             </ul>
                         </div>
