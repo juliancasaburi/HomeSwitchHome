@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Carbon\Carbon;
 use App\Property;
 use App\Week;
 
@@ -45,12 +46,20 @@ class LoginController extends Controller
 
         $property = Property::inRandomOrder()->first();
         if($property){
-            $loginView->with('property', $property);
+            $weeks = $property->weeks()->whereHas('auction', function ($query) {
+                $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
+            })->count();
+            $loginView->with(
+                [
+                    'p' => $property,
+                    'weeks' => $weeks,
+                ]
+            );
         }
 
         $week = Week::has('auction')->inRandomOrder()->first();
         if($week){
-            $loginView->with('week', $week);
+            $loginView->with('w', $week);
         }
 
         return $loginView;

@@ -6,49 +6,11 @@
     <section class="register">
         <div class="container">
             <div class="row">
-                @if(isset($property))
+                @if(isset($p))
                     <div class="col-md-4">
                         <h1 class="h3 mb-3 font-weight-normal">Propiedad aleatoria</h1>
                         <div class="card-box-a card-shadow mt-5 mb-5">
-                            <div class="img-box-a">
-                                @if($property->image_path == null)
-                                    <img src="{{'https://via.placeholder.com/683x1024?text='.$property->nombre}}" alt="" class="img-a img-fluid">
-                                @else
-                                    <img src="{{asset($property->image_path)}}" alt="" class="img-a img-fluid">
-                                @endif
-                            </div>
-                            <div class="card-overlay">
-                                <div class="price-box d-flex float-right">
-                                    <div class="price-box d-flex float-right">
-                                            <h2 class="stars-text">{{ $property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
-                                    </div>
-                                </div>
-                                <div class="card-overlay-a-content">
-                                    <div class="card-header-a">
-                                        <h2 class="card-title-a">
-                                            <a href="{{ url('property?id=').$property->id }}"> {{$property->localidad}},
-                                                <br /> {{$property->provincia}},
-                                                <br /> {{$property->pais}}</a>
-                                        </h2>
-                                    </div>
-                                    <div class="card-body-a">
-                                        <a href={{ url('property?id=').$property->id }} class="link-a"> Ver info y semanas</a>
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </div>
-                                    <div class="card-footer-a">
-                                        <ul class="card-info d-flex justify-content-around">
-                                            <li>
-                                                <h4 class="card-info-title">Capacidad</h4>
-                                                <span>{{$property->capacidad}}</span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Habitaciones</h4>
-                                                <span>{{$property->habitaciones}}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('partials/propertyItem', ['weeks' => $weeks])
                         </div>
                     </div>
                 @endif
@@ -403,50 +365,11 @@
                         </form>
                     </div>
                 </div>
-                @if(isset($week))
+                @if(isset($w))
                     <div class="col-md-4">
                         <h1 class="h3 mb-3 font-weight-normal">Subasta aleatoria</h1>
                         <div class="card-box-a card-shadow mt-5 mb-5">
-                            <div class="img-box-a">
-                                @if($week->property->image_path == null)
-                                    <img src="{{'https://via.placeholder.com/683x1024?text='.$week->property->nombre}}" alt="" class="img-a img-fluid">
-                                @else
-                                    <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
-                                @endif
-                            </div>
-                            <div class="card-overlay">
-                                <div class="price-box d-flex float-right">
-                                    <h2 class="stars-text">{{ $week->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
-                                </div>
-                                <div class="card-overlay-a-content">
-                                    <div class="card-header-a">
-                                        <h2 class="card-title-a">
-                                            <a href="{{ url('property?id=').$week->property->id }}"> {{$week->property->localidad}},
-                                                <br /> {{$week->property->provincia}},
-                                                <br /> {{$week->property->pais}}</a>
-                                        </h2>
-                                    </div>
-                                    <div class="card-body-a">
-                                        <div class="price-box d-flex">
-                                            <span class="alert-info">Subasta en inscripción</span>
-                                        </div>
-                                        <a href={{ url('week?id=').$week->id }} class="link-a"> Ver semana</a>
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </div>
-                                    <div class="card-footer-a">
-                                        <ul class="card-info d-flex justify-content-around">
-                                            <li>
-                                                <h4 class="card-info-title">Fecha</h4>
-                                                <span>{{$week->fecha}}</span>
-                                            </li>
-                                            <li>
-                                                <h4 class="card-info-title">Precio inicial</h4>
-                                                <span>${{$week->auction->precio_inicial}}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('partials/weekItem')
                         </div>
                     </div>
                 @endif

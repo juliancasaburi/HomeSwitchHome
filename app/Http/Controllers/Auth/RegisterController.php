@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Carbon\Carbon;
 use App\Price;
 use App\User;
 use App\Card;
@@ -50,13 +51,21 @@ class RegisterController extends Controller
         $registerView = view('auth.register', ['normalUserSubscriptionPrice' => $normalUserSubscriptionPrice]);
 
         $property = Property::inRandomOrder()->first();
-        if($property) {
-            $registerView->with('property', $property);
+        if($property){
+            $weeks = $property->weeks()->whereHas('auction', function ($query) {
+                $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
+            })->count();
+            $registerView->with(
+                [
+                    'p' => $property,
+                    'weeks' => $weeks,
+                ]
+            );
         }
 
         $week = Week::has('auction')->inRandomOrder()->first();
         if($week){
-            $registerView->with('week', $week);
+            $registerView->with('w', $week);
         }
 
         return $registerView;
