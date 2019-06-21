@@ -351,9 +351,7 @@ class AdminController extends Controller
 
     function showWeekList(){
 
-        $weeks = Week::join('propiedades', 'propiedades.id', '=', 'semanas.propiedad_id')
-            ->orderBy('propiedades.nombre', 'asc')
-            ->get(['semanas.*']);
+        $weeks = Week::all();
 
         return view('admin/admin-week-list',
             [
