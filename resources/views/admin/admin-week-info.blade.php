@@ -63,6 +63,7 @@
                                     <table id="singleWeekTable" class="table table-striped table-bordered first">
                                         <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Fecha</th>
                                             <th>Foto</th>
                                             <th>Propiedad</th>
@@ -78,6 +79,7 @@
                                         <tbody>
                                         @if(isset($week))
                                             <tr>
+                                                <td>{{$week->id}}</td>
                                                 <td>{{$week->fecha}}</td>
                                                 <td>
                                                     @if($week->property->image_path == null)
@@ -101,6 +103,7 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Fecha</th>
                                             <th>Foto</th>
                                             <th>Propiedad</th>
