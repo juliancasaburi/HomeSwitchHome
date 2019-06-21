@@ -69,10 +69,10 @@
                                             <tr>
                                                 <td>{{ $loop->index }}</td>
                                                 <td><a href="{{ url('admin/dashboard/week-info?id=').$w->id }}" class="btn-outline-primary"><i class="fas fa-search-plus"></i>+INFO</a></td>
-                                                <td><a href="{{ url($propertyURL.$w->property->id) }}">{{ $w->property->nombre}}</a></td></td>
+                                                <td><a href="{{ url($propertyURL.$w->property->id) }}">{{ $w->property->nombre}}</a></td>
                                                 <td>{{ $w->fecha }}</td>
                                                 <td><button class="btn-outline-primary pt-2 pb-2" id="modifyWeekButton" data-toggle="modal" data-target="#modifyWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
-                                                        <i class="fas fa-calendar-alt"></i></i>Modificar
+                                                        <i class="fas fa-calendar-alt"></i>Modificar
                                                     </button></td>
                                                 <td><button class="btn-outline-danger pt-2 pb-2" id="deleteWeekButton" data-toggle="modal" data-target="#deleteWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
                                                         <i class="fas fa-trash"></i>Eliminar
