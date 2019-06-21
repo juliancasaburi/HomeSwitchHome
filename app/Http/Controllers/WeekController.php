@@ -75,7 +75,7 @@ class WeekController extends Controller
                 $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
             })
             ->paginate(2)
-            ->withPath('?semanaDesde='.$fromWeekStart.'&semanaHasta='.$toWeekStart);
+            ->withPath('?searchLocalidad='.$request->searchLocalidad.'&semanaDesde='.$fromWeekStart.'&semanaHasta='.$toWeekStart);
 
         return view('weeks', [
             'weeks' => $weeks,
