@@ -6,6 +6,9 @@
     @endif
 </div>
 <div class="card-overlay">
+    <div class="text-sm-center">
+        <h4 class="text-info">{{$p->nombre}}</h4>
+    </div>
     <div class="price-box d-flex float-right">
         <div class="price-box d-flex float-right">
             <h2 class="stars-text">{{ $w->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>

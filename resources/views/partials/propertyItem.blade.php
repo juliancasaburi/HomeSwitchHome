@@ -2,6 +2,9 @@
     <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
 </div>
 <div class="card-overlay">
+    <div class="text-sm-center">
+        <h4 class="text-info">{{$p->nombre}}</h4>
+    </div>
     <div class="price-box d-flex float-right">
         <h2 class="stars-text">{{ $p->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
     </div>
