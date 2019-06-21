@@ -95,6 +95,7 @@ class WeekController extends Controller
             ->whereNull('semanas.deleted_at')
             ->get();
 
+        $locations = $locations->unique('localidad');
 
         return json_encode($locations->pluck('localidad'));
 
