@@ -25,16 +25,8 @@
                 <!-- End Alerts  -->
                 <!-- ============================================================== -->
                 @if($property->image_path != null)
-                    <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-                        <div class="carousel-item-a">
-                            <img src="{{asset($property->image_path)}}" alt="">
-                        </div>
-                        <div class="carousel-item-a">
-                            <img src="{{asset($property->image_path)}}" alt="">
-                        </div>
-                        <div class="carousel-item-a">
-                            <img src="{{asset($property->image_path)}}" alt="">
-                        </div>
+                    <div class="img-box-a text-center">
+                        <img src="{{asset($property->image_path)}}" alt="" class="img-a img-fluid">
                     </div>
                 @endif
                 <div class="row card-header">
