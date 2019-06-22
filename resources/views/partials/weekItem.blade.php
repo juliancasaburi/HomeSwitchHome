@@ -7,7 +7,7 @@
 </div>
 <div class="card-overlay">
     <div class="text-sm-center">
-        <h4 class="text-info">{{$p->nombre}}</h4>
+        <h4 class="text-info">{{$w->property->nombre}}</h4>
     </div>
     <div class="price-box d-flex float-right">
         <div class="price-box d-flex float-right">
