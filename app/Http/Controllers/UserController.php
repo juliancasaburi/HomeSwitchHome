@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\InscriptionForFutureAuction;
-use App\Property;
 use App\Reservation;
-use App\User;
-use App\Week;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use App\Rules\CurrentPassword;
-use App\Bid;
 use App\Price;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
