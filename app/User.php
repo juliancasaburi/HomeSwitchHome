@@ -16,6 +16,7 @@ use App\Notifications\PremiumAccepted;
 use App\Notifications\PremiumRejected;
 use App\Notifications\AuctionCancelled;
 use App\Notifications\BookedByAPremiumUser;
+use App\Notifications\ReservationObtained;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -105,6 +106,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendReservationCancelledNotification($propertyName, $date, $balance)
     {
         $this->notify(new ReservationCancelled($propertyName, $date, $balance));
+    }
+
+    /**
+     * Send the reservation obtained notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendReservationObtainedNotification($propertyName, $date)
+    {
+        $this->notify(new ReservationObtained($propertyName, $date));
     }
 
     /**

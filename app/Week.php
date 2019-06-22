@@ -49,6 +49,7 @@ class Week extends Model
         $this->auction()->delete();
         $this->delete();
 
+        $user->sendReservationObtainedNotification($this->property->nombre, $this->fecha);
         $this->sendBookedByAPremiumUserNotifications();
     }
 

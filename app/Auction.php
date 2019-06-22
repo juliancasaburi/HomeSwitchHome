@@ -149,7 +149,7 @@ class Auction extends Model
                 $winnerUser->creditos -= 1;
                 $winnerUser->saldo -= $winnerBid->monto;
                 $winnerUser->save();
-                $winnerUser->notify(new ReservationObtained($this->week->property->nombre, $this->week->fecha));
+                $winnerUser->sendReservationObtainedNotification($this->week->property->nombre, $this->week->fecha);
             }
         }
         $this->delete();
