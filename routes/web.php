@@ -140,6 +140,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/inscription-list', 'AdminController@showInscriptionList')->name('admin.inscriptionList');
     Route::post('/dashboard/delete-auction', 'AdminController@deleteAuction')->name("admin.deleteAuction");
     Route::post('/dashboard/modify-week', 'AdminController@modifyWeek')->name("admin.modifyWeek");
+    Route::get('/dashboard/auctions-inscription-period', 'AdminController@showAuctionsInscriptionPeriod')->name('admin.auctionInscriptionPeriod');
 
     //--------------------------------------------
 });

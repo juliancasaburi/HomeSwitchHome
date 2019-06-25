@@ -226,6 +226,18 @@ class AdminController extends Controller
         );
     }
 
+    public function showAuctionsInscriptionPeriod(){
+        $auctions = Auction::where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>=', Carbon::now())->get();
+        return view('admin/admin-auction-inscription-period-list',
+            [
+                'auctions' => $auctions,
+                'auctionURL' => self::AUCTIONURL,
+                'propertyURL' => self::PROPERTYURL,
+                'weekURL' => self::WEEKURL,
+            ]
+        );
+    }
+
     /**
      * Show the premium request list
      *
