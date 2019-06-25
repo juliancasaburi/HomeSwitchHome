@@ -28,6 +28,10 @@ class Week extends Model
         return $this->hasOne(Reservation::class, 'semana_id', 'id');
     }
 
+    public function allReservations(){
+        return $this->hasMany(Reservation::class, 'semana_id', 'id')->withTrashed();
+    }
+
     public function sendBookedByAPremiumUserNotifications(){
         $inscriptions = $this->auction->inscriptions()->get();
         foreach($inscriptions as $i){
