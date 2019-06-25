@@ -392,9 +392,8 @@ class AdminController extends Controller
             $auction->forceDelete();
             return back()->with('alert-success', 'Subasta eliminada!');
         }
-        else{
-            $auction->sendAuctionCancelledNotifications();
-            $auction->delete();
+        else if($auction->inicio >= Carbon::now()){
+            return back()->with('alert-danger', 'La subasta ya ha comenzado!');
         }
 
         return back()->with('alert-success', 'Subasta cancelada!');
