@@ -25,6 +25,7 @@ class AuctionCreationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'idPropiedad' => ['required', 'numeric'],
+            'semana' => ['required', 'numeric'],
             'inscripcionFechaApertura' => ['required', 'date'],
             'inscripcionFechaCierre' => ['required', 'date'],
             'subastaFechaApertura' => ['required', 'date'],
