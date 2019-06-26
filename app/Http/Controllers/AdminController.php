@@ -405,7 +405,11 @@ class AdminController extends Controller
 
     public function modifyWeek(Request $request){
         $validator = Validator::make($request->all(), [
-            'fecha_nueva' => ['required', 'date', Rule::unique('semanas', 'fecha')->where('id', $request->id)->whereNull('deleted_at')],
+            'fecha_nueva' => ['required', 'date',
+                Rule::unique('semanas', 'fecha')->where(function ($query) use ($request){
+                    return $query->where('fecha', $request->fecha_nueva)
+                                 ->where('deleted_at', null);
+                })]
         ]);
 
         if ($validator->fails()){
