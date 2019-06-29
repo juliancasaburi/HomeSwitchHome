@@ -47,7 +47,7 @@ class Week extends Model
         $user->creditos -= 1;
         $user->save();
 
-        $auction = $this->activeAuction();
+        $auction = $this->activeAuction;
 
         $auction->delete();
         $this->delete();
