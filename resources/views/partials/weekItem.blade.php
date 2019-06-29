@@ -37,7 +37,7 @@
                 </li>
                 <li>
                     <h4 class="card-info-title">Precio inicial</h4>
-                    <span>${{$w->auction->precio_inicial}}</span>
+                    <span>${{$w->activeAuction->precio_inicial}}</span>
                 </li>
             </ul>
         </div>

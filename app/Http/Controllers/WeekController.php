@@ -31,7 +31,7 @@ class WeekController extends Controller
         }
 
         $reservation = Reservation::where('semana_id', $week->id)->get();
-        $enabled = ((!$week->trashed()) && ($reservation->isEmpty()) && ($week->auction->inscripcion_inicio <= Carbon::now()) && ($week->auction->inscripcion_fin > Carbon::now()));
+        $enabled = ((!$week->trashed()) && ($reservation->isEmpty()) && ($week->activeAuction->inscripcion_inicio <= Carbon::now()) && ($week->activeAuction->inscripcion_fin > Carbon::now()));
 
         // Return view
         return view('week', [
@@ -71,7 +71,7 @@ class WeekController extends Controller
         })
             ->whereBetween('fecha', [$fromWeekStart, $toWeekStart ])
             ->whereNull('deleted_at')
-            ->whereHas('auction', function ($query) {
+            ->whereHas('activeAuction', function ($query) {
                 $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
             })
             ->paginate(2)
@@ -118,7 +118,7 @@ class WeekController extends Controller
         }
         else{
             $week = Week::find($request->weekID);
-            if(($week) && (!$week->reservation) && ($week->auction->inscripcion_inicio <= Carbon::now()) && ($week->auction->inscripcion_fin > Carbon::now())){
+            if(($week) && (!$week->reservation) && ($week->activeAuction->inscripcion_inicio <= Carbon::now()) && ($week->activeAuction->inscripcion_fin > Carbon::now())){
 
                 $week->bookTo($user);
 

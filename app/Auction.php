@@ -116,7 +116,14 @@ class Auction extends Model
         }
     }
 
-    public function isInAuctionPeriod(){
+    public function sendBookedByAPremiumUserNotifications(){
+        $inscriptions = $this->inscriptions()->get();
+        foreach($inscriptions as $i){
+            $i->user->sendBookedByAPremiumUserNotification($this->property->nombre, $this->fecha, $this->id);
+        }
+    }
+
+    public function isInBiddingPeriod(){
         return ($this->inicio <= Carbon::now() && $this->fin >= Carbon::now() && $this->deleted_at == null);
     }
 

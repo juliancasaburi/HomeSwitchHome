@@ -52,7 +52,7 @@ class RegisterController extends Controller
 
         $property = Property::inRandomOrder()->first();
         if($property){
-            $weeks = $property->weeks()->whereHas('auction', function ($query) {
+            $weeks = $property->weeks()->whereHas('activeAuction', function ($query) {
                 $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
             })->count();
             $registerView->with(
@@ -63,7 +63,7 @@ class RegisterController extends Controller
             );
         }
 
-        $week = Week::has('auction')->inRandomOrder()->first();
+        $week = Week::has('activeAuction')->inRandomOrder()->first();
         if($week){
             $registerView->with('w', $week);
         }

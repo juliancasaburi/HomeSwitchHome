@@ -20,7 +20,7 @@ class HomeController extends Controller
 
         $weeks = array();
         foreach($properties as $p){
-            array_push($weeks, $p->weeks()->whereHas('auction', function ($query) {
+            array_push($weeks, $p->weeks()->whereHas('activeAuction', function ($query) {
                 $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
             })->count());
         }

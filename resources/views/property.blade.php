@@ -1,7 +1,6 @@
 @extends('layouts.mainlayout')
 
 @section('title', ' - Propiedad '.$property->nombre)
-
 @section('content')
     <!--/ Property Single Start /-->
     <section class="property-single nav-arrow-b">
@@ -150,13 +149,13 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td><a href="{{'/week?id='.$w->id}}">{{ $w->fecha }} hasta {{ date('Y-m-d', strtotime($w->fecha. ' + 7 days'))}} <br> Ver semana</a></td>
-                                        <td>${{ $w->auction->precio_inicial }}</td>
-                                        <td>{{ $w->auction->inscripcion_inicio }} hasta {{ $w->auction->inscripcion_fin }}</td>
+                                        <td>${{ $w->activeAuction->precio_inicial }}</td>
+                                        <td>{{ $w->activeAuction->inscripcion_inicio }} hasta {{ $w->activeAuction->inscripcion_fin }}</td>
                                         @auth
-                                            @if($w->auction()->whereHas('inscriptions', function ($query){
+                                            @if($w->activeAuction()->whereHas('inscriptions', function ($query){
                                                 $query->where('usuario_id', Auth::user()->id);
                                                 })->count() == 0 &&  Auth::user()->creditos > 0)
-                                                <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->auction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                                <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->activeAuction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->activeAuction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
                                             @elseif(Auth::user()->creditos == 0)
                                                 <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
                                             @else

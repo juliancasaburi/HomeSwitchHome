@@ -25,7 +25,7 @@ class AuctionCreationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'idPropiedad' => ['required', 'numeric'],
-            'semana' => ['required', 'numeric'],
+            'semana' => ['required', 'date'],
             'inscripcionFechaApertura' => ['required', 'date'],
             'inscripcionFechaCierre' => ['required', 'date'],
             'subastaFechaApertura' => ['required', 'date'],
@@ -38,7 +38,7 @@ class AuctionCreationController extends Controller
             return redirect()
                 ->back()
                 ->withInput($request->all())
-                ->with('alert-error', 'Fecha finaliza Inscripcion debe ser mayor a Fecha comienzo Inscripcion');
+                ->withErrors('Fecha finaliza Inscripcion debe ser mayor a Fecha comienzo Inscripcion');
         }
 
         if($request->subastaFechaApertura <= $request->inscripcionFechaCierre){
@@ -46,7 +46,7 @@ class AuctionCreationController extends Controller
             return redirect()
                 ->back()
                 ->withInput($request->all())
-                ->with('alert-error', 'Fecha comienzo Subasta debe ser mayor a Fecha finaliza Inscripcion');
+                ->withErrors('Fecha comienzo Subasta debe ser mayor a Fecha finaliza Inscripcion');
         }
 
         if($request->subastaFechaCierre <= $request->subastaFechaAperura){
@@ -54,7 +54,7 @@ class AuctionCreationController extends Controller
             return redirect()
                 ->back()
                 ->withInput($request->all())
-                ->with('alert-error', 'Fecha finaliza Subasta debe ser mayor a Fecha comienzo Subasta');
+                ->withErrors('Fecha finaliza Subasta debe ser mayor a Fecha comienzo Subasta');
         }
 
         if($validator->fails()){
@@ -69,7 +69,7 @@ class AuctionCreationController extends Controller
         $week = Week::where('propiedad_id', $request->idPropiedad)
             ->where('fecha', $request->semana)
             ->first();
-        if (Auction::where('semana_id', $week->id)->count() == 0) {
+        if (!$week->activeAuction) {
             // Create Auction and save it to DB
             $auction = new Auction();
             $auction->semana_id = $week->id;
@@ -85,7 +85,7 @@ class AuctionCreationController extends Controller
         return redirect()
             ->back()
             ->withInput($request->all())
-            ->with('alert-error', 'Ya existe una subasta para esta semana');
+            ->withErrors('Ya existe una subasta para esta semana');
     }
 
 public function getWeeks($id) {

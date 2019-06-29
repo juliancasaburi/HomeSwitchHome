@@ -20,8 +20,12 @@ class Week extends Model
         return $this->belongsTo(Property::class, 'propiedad_id', 'id')->withTrashed();
     }
 
-    public function auction(){
-        return $this->hasOne(Auction::class, 'semana_id', 'id')->withTrashed();
+    public function activeAuction(){
+        return $this->hasOne(Auction::class, 'semana_id', 'id');
+    }
+
+    public function deletedAuctions(){
+        return $this->hasMany(Auction::class, 'semana_id', 'id')->onlyTrashed();
     }
 
     public function reservation(){
@@ -30,13 +34,6 @@ class Week extends Model
 
     public function allReservations(){
         return $this->hasMany(Reservation::class, 'semana_id', 'id')->withTrashed();
-    }
-
-    public function sendBookedByAPremiumUserNotifications(){
-        $inscriptions = $this->auction->inscriptions()->get();
-        foreach($inscriptions as $i){
-            $i->user->sendBookedByAPremiumUserNotification($this->property->nombre, $this->fecha, $this->id);
-        }
     }
 
     public function bookTo(User $user){
@@ -50,17 +47,12 @@ class Week extends Model
         $user->creditos -= 1;
         $user->save();
 
-        $this->auction()->delete();
+        $auction = $this->activeAuction();
+
+        $auction->delete();
         $this->delete();
 
         $user->sendReservationObtainedNotification($this->property->nombre, $this->fecha);
-        $this->sendBookedByAPremiumUserNotifications();
-    }
-
-    public function sendAuctionCancelledNotifications(){
-        $inscriptions = $this->auction->inscriptions()->get();
-        foreach($inscriptions as $i){
-            $i->user->sendAuctionCancelledNotification($this->property->nombre, $this->fecha, $this->auction->id);
-        }
+        $auction->sendBookedByAPremiumUserNotifications();
     }
 }

@@ -315,20 +315,17 @@ class AdminController extends Controller
         //Property has weeks
         else{
             foreach($propertyWeeks as $week){
-                $weekAuction = $week->auction;
-                if(!$week->allReservations && !$weekAuction){
-                    $week->forceDelete();
-                }
-                elseif (!$weekAuction->trashed() && $weekAuction->inscripcion_inicio > Carbon::now()){
-                    $weekAuction->delete();
+                $weekActiveAuction = $week->activeAuction;
+                if ($weekActiveAuction && $weekActiveAuction->inscripcion_inicio > Carbon::now()){
+                    $weekActiveAuction->delete();
                     $week->delete();
                 }
-                elseif (!$weekAuction->trashed() && $weekAuction->inicio > Carbon::now()){
-                    $weekAuction->delete();
+                elseif ($weekActiveAuction && $weekActiveAuction->inicio > Carbon::now()){
+                    $weekActiveAuction->delete();
                     $week->delete();
-                    $week->sendAuctionCancelledNotifications();
+                    $weekActiveAuction->sendAuctionCancelledNotifications();
                 }
-                elseif (!$weekAuction->trashed() && $weekAuction->inicio <= Carbon::now() && $weekAuction->fin >= Carbon::now()){
+                elseif ($weekActiveAuction && $weekActiveAuction->inicio <= Carbon::now() && $weekActiveAuction->fin >= Carbon::now()){
                     return back()->with('alert-danger', 'La semana está en período de subasta');
                 }
                 else{
@@ -343,20 +340,17 @@ class AdminController extends Controller
 
     function deleteWeek(Request $request){
         $week = Week::find($request->id);
-        $weekAuction = $week->auction;
-        if(!$week->allReservations && !$weekAuction){
-            $week->forceDelete();
-        }
-        elseif (!$weekAuction->trashed() && $weekAuction->inscripcion_inicio > Carbon::now()){
-            $weekAuction->delete();
+        $weekActiveAuction = $week->activeAuction;
+        if ($weekActiveAuction && $weekActiveAuction->inscripcion_inicio > Carbon::now()){
+            $weekActiveAuction->delete();
             $week->delete();
         }
-        elseif (!$weekAuction->trashed() && $weekAuction->inicio > Carbon::now()){
-            $weekAuction->delete();
+        elseif ($weekActiveAuction && $weekActiveAuction->inicio > Carbon::now()){
+            $weekActiveAuction->delete();
             $week->delete();
-            $week->sendAuctionCancelledNotifications();
+            $weekActiveAuction->sendAuctionCancelledNotifications();
         }
-        elseif (!$weekAuction->trashed() && $weekAuction->inicio <= Carbon::now() && $weekAuction->fin >= Carbon::now()){
+        elseif ($weekActiveAuction && $weekActiveAuction->inicio <= Carbon::now() && $weekActiveAuction->fin >= Carbon::now()){
             return back()->with('alert-danger', 'La semana está en período de subasta');
         }
         else{
@@ -424,7 +418,7 @@ class AdminController extends Controller
 
                 $week = Week::find($request->id);
 
-                if($week->auction->isInAuctionPeriod()){
+                if($week->activeAuction->isInBiddingPeriod()){
                     return redirect()->back()->withErrors(['subasta' => ['Esta semana tiene una subasta en periodo de participación!']]);
                 }
                 else{
