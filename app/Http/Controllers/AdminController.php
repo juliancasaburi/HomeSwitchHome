@@ -334,8 +334,8 @@ class AdminController extends Controller
                 else{
                     $week->delete();
                 }
-                $property->delete();
             }
+            $property->delete();
         }
 
         return back()->with('alert-success', 'Propiedad '. $property->nombre. ' eliminada');
