@@ -49,7 +49,7 @@ class PremiumRequestController extends Controller
             // Redirect back and show an error flash message
             return redirect()
                 ->back()
-                ->with('alert-error', 'Tu saldo es menor a '.$premiumConcept->valor);
+                ->withErrors(['Tu saldo es menor a $'.$premiumConcept->valor]);
         }
     }
 
