@@ -2,7 +2,7 @@
     <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
 </div>
 <div class="card-overlay">
-    <div class="text-sm-center">
+    <div class="text-center">
         <h4 class="text-info">{{$p->nombre}}</h4>
     </div>
     <div class="price-box d-flex float-right">

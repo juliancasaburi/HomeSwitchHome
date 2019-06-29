@@ -3,9 +3,9 @@
 @section('title', ' - Subasta - Semana '.$auction->week->fecha. ' - De propiedad '.$auction->week->property->nombre)
 
 @section('content')
-    <!--/ Auction Start /-->
     <section class="auction nav-arrow-b">
         <div class="container">
+            <!--/ Auction Start /-->
             <div class="col-sm-12 ">
                 <!-- ============================================================== -->
                 <!-- Alerts  -->
@@ -31,7 +31,7 @@
                     <div class="col-xl-4">
                         <div class="col-sm-12">
                             <div class="title-box-d section-t4">
-                                <h3 class="title-d">Subasta </h3>
+                                <h3 class="title-a color-b">Subasta </h3>
                                 <h8 class="title-d">De la semana {{ $auction->week->fecha }}</h8>
                                 <br>
                             </div>
@@ -75,6 +75,7 @@
                                             <h8>La subasta está en período de inscripción.</h8>
                                             @auth
                                                 <h8>Puedes inscribirte clickeando el siguiente botón</h8>
+                                                <br>
                                                 @if($auction->whereHas('inscriptions', function ($query){
                                                     $query->where('usuario_id', '=', Auth::user()->id);
                                                     })->count() == 0 &&  Auth::user()->creditos > 0)
@@ -153,7 +154,6 @@
             </div>
         </div>
     </section>
-
     <!-- Auction End -->
 
     <!-- Bid Modal -->

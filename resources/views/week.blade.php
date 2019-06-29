@@ -4,261 +4,263 @@
 
 @section('content')
     <!--/ Property Single Start /-->
-    <section class="property-single nav-arrow-b">
-        <div class="container">
-            <div class="col-sm-12 ">
-                <!-- ============================================================== -->
-                <!-- Alerts  -->
-                <!-- ============================================================== -->
-                @if(session()->has('alert-success'))
-                    <div class="alert alert-success alert-dismissible" data-expires="10000">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        {{ session()->get('alert-success') }}
-                    </div>
-                @elseif (session()->has('alert-error'))
-                    <div class="alert alert-error alert-dismissible" data-expires="10000">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        {{ session()->get('alert-error') }}
-                    </div>
-                @endif
-            <!-- ============================================================== -->
-                <!-- End Alerts  -->
-                <!-- ============================================================== -->
-                @if($week->property->image_path != null)
-                    <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
-                        <div class="carousel-item-a">
-                            <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="carousel-item-a">
-                            <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="carousel-item-a">
-                            <img src="{{asset($week->property->image_path)}}" alt="" class="img-a img-fluid">
-                        </div>
-                    </div>
-                @endif
-                <div class="row card-header">
-                    <h3 class="title-a color-b">{{ $week->property->nombre }} | Semana {{ $week->fecha }}</h3>
-                </div>
-                <div class="row justify-content-between card-header">
-                    <div class="col-md-4 col-lg-4">
-                        <div class="property-summary">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="title-box-d section-t4">
-                                        <h3 class="title-d">Comodidades</h3>
+    @if($week->property->image_path != null)
+        <!--/ Carousel Start /-->
+        <div class="intro intro-carousel">
+            <div id="carousel" class="owl-carousel owl-theme">
+                <div class="carousel-item-a intro-item bg-image" style="background-image: url({{asset($week->property->image_path)}})">
+                    <div class="overlay overlay-a"></div>
+                    <div class="intro-content display-table">
+                        <div class="table-cell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="intro-body">
+                                            <p class="intro-title-top">{{$week->property->pais}}
+                                                <br> {{$week->property->provincia}} <br> {{$week->property->localidad}}</p>
+                                            <h1 class="intro-title mb-4">
+                                                <span class="color-b">{{$week->property->numero}} </span> {{$week->property->calle}}</h1>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="summary-list">
-                                <ul class="list">
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Capacidad:</strong>
-                                        <span>{{ $week->property->capacidad }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Habitaciones:</strong>
-                                        <span>{{ $week->property->habitaciones }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Baños:</strong>
-                                        <span>{{ $week->property->baños }}</span>
-                                    </li>
-                                    <li class="d-flex justify-content-between">
-                                        <strong>Capacidad Vehiculos:</strong>
-                                        <span>{{ $week->property->capacidad_vehiculos }}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6">
-                        <div class="property-summary">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="title-box-d section-t4">
-                                        <h3 class="title-d">Datos</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="property-description">
-                                <div class="summary-list">
-                                    <ul class="list">
-                                        <li class="d-flex justify-content-between">
-                                            <strong>ID:</strong>
-                                            <span>{{ $week->property->id }}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Nombre:</strong>
-                                            <span>{{ $week->property->nombre }}</span>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Estrellas:</strong>
-                                            <ul class="list">
-                                                <li class="d-flex justify-content-between">
-                                                    <span>{{ $week->property->estrellas }}</span>
-                                                    @for ($i = 1; $i <= $week->property->estrellas; $i++)
-                                                        <i class="far fa-star fa-xs fa-fw fa-sm text-primary"></i>
-                                                        <br>
-                                                    @endfor
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="d-flex justify-content-between">
-                                            <strong>Ubicación:</strong>
-                                            <span>{{ $week->property->calle }}, {{ $week->property->numero }}, <br> {{ $week->property->localidad }}, {{ $week->property->provincia }}, {{ $week->property->pais }}</span>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @if(Auth::user() && Auth::user()->premium)
-                    <div class="row justify-content-between card-header">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="title-box-d section-t4">
-                                    <h3 class="title-d">Premium</h3>
-                                </div>
-                                @if($enabled && Auth::user()->creditos >=1)
-                                    <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                @elseif($enabled)
-                                    <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                    <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
-                                @else
-                                    <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                    <h6 class="text-warning mt-2">El período de adjudicación ha finalizado o ya ha sido reservada.</h6>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                <div class="row justify-content-between card-header">
+            </div>
+        </div>
+        <!--/ Carousel end /-->
+    @endif
+    <div class="col-sm-12 ">
+        <!-- ============================================================== -->
+        <!-- Alerts  -->
+        <!-- ============================================================== -->
+        @if(session()->has('alert-success'))
+            <div class="alert alert-success alert-dismissible" data-expires="10000">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                {{ session()->get('alert-success') }}
+            </div>
+        @elseif (session()->has('alert-error'))
+            <div class="alert alert-error alert-dismissible" data-expires="10000">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                {{ session()->get('alert-error') }}
+            </div>
+        @endif
+    <!-- ============================================================== -->
+        <!-- End Alerts  -->
+        <!-- ============================================================== -->
+        <div class="row card-header">
+            <h3 class="title-a color-b">{{ $week->property->nombre }} | Semana {{ $week->fecha }}</h3>
+        </div>
+        <div class="row justify-content-between card-header">
+            <div class="col-md-4 col-lg-4">
+                <div class="property-summary">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="title-box-d section-t4">
-                                <h3 class="title-d">Subasta para esta semana</h3>
+                                <h3 class="title-d">Comodidades</h3>
                             </div>
-                            @if(!$enabled)
-                                <h6 class="text-warning mt-2">No existen subastas para esta semana</h6>
-                            @endif
-                            @guest
-                                <p><span><a href="{{'/register'}}">Registrate</a></span> o <span><a href="{{'/login'}}">inicia sesión</a></span> para participar en las subastas</p>
-                            @endguest
                         </div>
                     </div>
-                    @if($enabled)
-                        <div class="table-responsive section-t4">
-                            <table class="table table-striped table-bordered first">
-                                <thead>
-                                <tr>
-                                    <th>Piso</th>
-                                    <th>Plazo inscripción</th>
-                                    @auth
-                                        <th></th>
-                                    @endauth
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>${{ $week->activeAuction->precio_inicial }}</td>
-                                    <td>{{ $week->activeAuction->inscripcion_inicio }} hasta {{ $week->activeAuction->inscripcion_fin }}</td>
-                                    @auth
-                                        @if($week->activeAuction->inscripcion_inicio <= Carbon\Carbon::now() && $week->activeAuction->inscripcion_fin > Carbon\Carbon::now())
-                                            @if($week->activeAuction()->whereHas('inscriptions', function ($query){
-                                                $query->where('usuario_id', Auth::user()->id);
-                                                })->count() == 0 &&  Auth::user()->creditos > 0)
-                                                <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $week->activeAuction->id }}" data-wd="{{ $week->fecha }}" data-aup="{{ $week->activeAuction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
-                                            @elseif(Auth::user()->creditos == 0)
-                                                <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
-                                            @else
-                                                <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
-                                            @endif
-                                        @else
-                                            <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripcion finalizada</button></td>
-                                        @endif
-                                    @endauth
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Piso</th>
-                                    <th>Plazo inscripción</th>
-                                    @auth
-                                        <th></th>
-                                    @endauth
-                                </tr>
-                                </tfoot>
-                            </table>
+                    <div class="summary-list">
+                        <ul class="list">
+                            <li class="d-flex justify-content-between">
+                                <strong>Capacidad:</strong>
+                                <span>{{ $week->property->capacidad }}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Habitaciones:</strong>
+                                <span>{{ $week->property->habitaciones }}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Baños:</strong>
+                                <span>{{ $week->property->baños }}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <strong>Capacidad Vehiculos:</strong>
+                                <span>{{ $week->property->capacidad_vehiculos }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="property-summary">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box-d section-t4">
+                                <h3 class="title-d">Datos</h3>
+                            </div>
                         </div>
+                    </div>
+                    <div class="property-description">
+                        <div class="summary-list">
+                            <ul class="list">
+                                <li class="d-flex justify-content-between">
+                                    <strong>ID:</strong>
+                                    <span>{{ $week->property->id }}</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Nombre:</strong>
+                                    <span>{{ $week->property->nombre }}</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Estrellas:</strong>
+                                    <h5 class="stars-text">{{ $week->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h5>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Ubicación:</strong>
+                                    <span>{{ $week->property->calle }}, {{ $week->property->numero }}, <br> {{ $week->property->localidad }}, {{ $week->property->provincia }}, {{ $week->property->pais }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if(Auth::user() && Auth::user()->premium)
+            <div class="row justify-content-center card-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box-d section-t4">
+                            <h3 class="title-d">Premium</h3>
+                        </div>
+                        @if($enabled && Auth::user()->creditos >=1)
+                            <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                        @elseif($enabled)
+                            <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                            <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
+                        @else
+                            <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                            <h6 class="text-warning mt-2">El período de adjudicación ha finalizado o ya ha sido reservada.</h6>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+        <div class="row justify-content-between card-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box-d section-t4">
+                        <h3 class="title-d">Subasta para esta semana</h3>
+                    </div>
+                    @if(!$enabled)
+                        <h6 class="text-warning mt-2">No existen subastas para esta semana</h6>
                     @endif
+                    @guest
+                        <p><span><a href="{{'/register'}}">Registrate</a></span> o <span><a href="{{'/login'}}">inicia sesión</a></span> para participar en las subastas</p>
+                    @endguest
                 </div>
             </div>
+            @if($enabled)
+                <div class="table-responsive section-t4">
+                    <table class="table table-striped table-bordered first">
+                        <thead>
+                        <tr>
+                            <th>Piso</th>
+                            <th>Plazo inscripción</th>
+                            @auth
+                                <th></th>
+                            @endauth
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>${{ $week->activeAuction->precio_inicial }}</td>
+                            <td>{{ $week->activeAuction->inscripcion_inicio }} hasta {{ $week->activeAuction->inscripcion_fin }}</td>
+                            @auth
+                                @if($week->activeAuction->inscripcion_inicio <= Carbon\Carbon::now() && $week->activeAuction->inscripcion_fin > Carbon\Carbon::now())
+                                    @if($week->activeAuction()->whereHas('inscriptions', function ($query){
+                                        $query->where('usuario_id', Auth::user()->id);
+                                        })->count() == 0 &&  Auth::user()->creditos > 0)
+                                        <td><button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $week->activeAuction->id }}" data-wd="{{ $week->fecha }}" data-aup="{{ $week->activeAuction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+                                    @elseif(Auth::user()->creditos == 0)
+                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
+                                    @else
+                                        <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button></td>
+                                    @endif
+                                @else
+                                    <td><button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripcion finalizada</button></td>
+                                @endif
+                            @endauth
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>Piso</th>
+                            <th>Plazo inscripción</th>
+                            @auth
+                                <th></th>
+                            @endauth
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            @endif
         </div>
+    </div>
 
-        <!-- Inscription Modal -->
-        <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="inscriptionModalLabel">Inscribirse a la subasta</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h3 id="weekDate">Semana:</h3>
-                        <h3 id="initialPrice">Precio inicial:</h3>
-                        <form class="needs-validation" id="inscriptionForm" action="{{ route('auction.signIn') }}" role="form" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <label for="auid"></label>
-                                    <input type="text" name="auid" class="form-control" id="auid" value="" hidden>
-                                </div>
+    <!-- Inscription Modal -->
+    <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inscriptionModalLabel">Inscribirse a la subasta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="weekDate">Semana:</h3>
+                    <h3 id="initialPrice">Precio inicial:</h3>
+                    <form class="needs-validation" id="inscriptionForm" action="{{ route('auction.signIn') }}" role="form" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="auid"></label>
+                                <input type="text" name="auid" class="form-control" id="auid" value="" hidden>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No inscribir</button>
-                        <button type="button" id="submitInscription" class="btn btn-primary" onclick="form_submit()">Inscribir</button>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No inscribir</button>
+                    <button type="button" id="submitInscription" class="btn btn-primary" onclick="form_submit()">Inscribir</button>
                 </div>
             </div>
         </div>
-        <!-- End Inscription Modal -->
+    </div>
+    <!-- End Inscription Modal -->
 
-        <!-- Booking Modal -->
-        <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="bookingModalLabel">Quieres adjudicarte esta semana?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="needs-validation" id="bookingForm" action="{{ route('week.premiumBooking') }}" role="form" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <label for="weekID"></label>
-                                    <input type="text" name="weekID" class="form-control" id="weekID" value="{{ $week->id }}" hidden>
-                                </div>
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Quieres adjudicarte esta semana?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" id="bookingForm" action="{{ route('week.premiumBooking') }}" role="form" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="weekID"></label>
+                                <input type="text" name="weekID" class="form-control" id="weekID" value="{{ $week->id }}" hidden>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" id="submitBooking" class="btn btn-primary" onclick="bookingForm_submit()">Adjudicar</button>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="submitBooking" class="btn btn-primary" onclick="bookingForm_submit()">Adjudicar</button>
                 </div>
             </div>
         </div>
-        <!-- End Booking Modal -->
-    </section>
+    </div>
+    <!-- End Booking Modal -->
     <!--/ Property Single End /-->
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
