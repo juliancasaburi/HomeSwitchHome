@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Property;
+use App\Price;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,8 @@ class HomeController extends Controller
         return view('index', [
             'properties' => $properties,
             'weeks' => $weeks,
+            'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
+            'premiumPlusPrice' => Price::price('Plus usuario premium'),
         ]);
     }
 }

@@ -34,6 +34,101 @@
         <!--/ Carousel end /-->
     @endif
 
+    <!--/ Property grid Start /-->
+    <section class="section-property section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">Últimas propiedades agregadas</h2>
+                        </div>
+                        <div class="title-link">
+                            <a href={{ url('properties') }}>Ver todas
+                                <span class="ion-ios-arrow-forward"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if(!$properties->isEmpty())
+                <div id="property-carousel" class="owl-carousel owl-theme">
+                    @foreach($properties as $p)
+                        <div class="carousel-item-b ">
+                            <div class="card-box-a card-shadow">
+                                @include('partials/propertyItem', ['weeks' => $weeks[$loop->index]])
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <h5 class="text-muted">Actualmente no tenemos propiedades</h5>
+            @endif
+        </div>
+    </section>
+    <!--/ Property grid End /-->
+
+    <!--/ Pricing Start /-->
+    <section class="pricing py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a color-w">Nuestros precios</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- Basic Tier -->
+                <div class="col-sm-8 col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">Subscripción Normal</h5>
+                            <h6 class="card-price text-center">${{$normalUserSubscriptionPrice}}<br><span class="period">/mes</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Subastas</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>HotSales</li>
+                                <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Reserva Premium</li>
+                            </ul>
+                            @guest
+                                <a href="{{(url('register'))}}" class="btn btn-block btn-primary text-uppercase">Registrate</a>
+                            @endguest
+                            @auth
+                                <a href="#" class="btn btn-block btn-primary text-uppercase" disabled>Ya eres Usuario</a>
+                            @endauth
+                        </div>
+                    </div>
+                </div>
+                <!-- Premium Tier -->
+                <div class="col-sm-8 col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-muted text-uppercase text-center">Plus Premium</h5>
+                            <h6 class="card-price text-center">${{($premiumPlusPrice)}}<br><span class="period">adicionales /mes</span></h6>
+                            <hr>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Subastas</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>HotSales</li>
+                                <li><span class="fa-li"><i class="fas fa-check"></i></span>Reserva Premium</li>
+                            </ul>
+                            @if(Auth::user() && !Auth::user()->premium)
+                                <a href="{{(url('profile'))}}" class="btn btn-block btn-primary text-uppercase">Solicitar</a>
+                            @elseif(Auth::user())
+                                <a href="#" class="btn btn-block btn-primary text-uppercase" disabled>Ya eres Premium</a>
+                            @else
+                                <a href="{{(url('register'))}}" class="btn btn-block btn-primary text-uppercase">Registrate</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Pricing End /-->
+
     <!--/ Services Start /-->
     <section class="section-services section-t8">
         <div class="container">
@@ -135,40 +230,6 @@
         </div>
     </section>
     <!--/ Services End /-->
-
-    <!--/ Property grid Start /-->
-    <section class="section-property section-t8">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title-wrap d-flex justify-content-between">
-                        <div class="title-box">
-                            <h2 class="title-a">Últimas propiedades agregadas</h2>
-                        </div>
-                        <div class="title-link">
-                            <a href={{ url('properties') }}>Ver todas
-                                <span class="ion-ios-arrow-forward"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @if(!$properties->isEmpty())
-                <div id="property-carousel" class="owl-carousel owl-theme">
-                    @foreach($properties as $p)
-                        <div class="carousel-item-b ">
-                            <div class="card-box-a card-shadow">
-                                @include('partials/propertyItem', ['weeks' => $weeks[$loop->index]])
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <h5 class="text-muted">Actualmente no tenemos propiedades</h5>
-            @endif
-        </div>
-    </section>
-    <!--/ Property grid End /-->
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
     <div id="preloader"></div>

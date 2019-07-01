@@ -87,6 +87,10 @@ a:hover {
   color: #00A1E1;
 }
 
+.color-w {
+  color: #FFFFFF;
+}
+
 .color-d {
   color: #adadad;
 }
@@ -1530,6 +1534,74 @@ hr {
 }
 
 /*======================================
+//--//-->   PRICING
+======================================*/
+
+section.pricing {
+  margin: 4rem 0rem -4rem;
+  background: #00A1E1;
+  background: linear-gradient(to right, #0062E6, #00A1E1);
+}
+
+.pricing .card {
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing hr {
+  margin: 1.5rem 0;
+}
+
+.pricing .card-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+}
+
+.pricing .card-price {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.pricing .card-price .period {
+  font-size: 0.8rem;
+}
+
+.pricing ul li {
+  margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+  opacity: 0.7;
+}
+
+.pricing .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .pricing .card:hover {
+    margin-top: -.25rem;
+    margin-bottom: .25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+  .pricing .card:hover .btn {
+    opacity: 1;
+  }
+}
+
+/*======================================
 //--//-->   TESTIMONIALS
 ======================================*/
 
@@ -1619,7 +1691,7 @@ hr {
 footer {
   background: #f3f3f3;
   text-align: center;
-  padding: 30px 0;
+  padding: 70px 0;
 }
 
 footer .copyright-footer {
