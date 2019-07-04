@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="contact-map box">
+                    <div class="contact-map box wow fadeInUp" data-wow-duration="1.5s">
                         <div id="map" class="contact-map">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.116747977639!2d-57.93816005690638!3d-34.90351957542984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e66a8fcdf951%3A0x9191a5ff1fbbe5d5!2sUNLP+-+Facultad+de+Inform%C3%A1tica!5e0!3m2!1ses-419!2sar!4v1553286342958" width="100%" height="450" style="border:0" allowfullscreen></iframe>
                         </div>
@@ -44,7 +44,7 @@
                                 <h3 class="title-d">Dejanos un mensaje</h3>
                             </div>
                             <!-- Form Start -->
-                            <form class="form-a contactForm" role="form">
+                            <form class="form-a contactForm wow fadeInUp" data-wow-duration="1.5s">
                                 <div id="sendmessage">Mensaje enviado!</div>
                                 <div id="errormessage"></div>
                                 <div class="row">
@@ -79,7 +79,7 @@
                             </form>
                             <!-- Form End -->
                         </div>
-                        <div class="col-md-5 section-md-t3 section-t4">
+                        <div class="col-md-5 section-md-t3 section-t4 wow fadeInUp" data-wow-duration="1.5s">
                             <div class="icon-box section-b2">
                                 <div class="icon-box-icon">
                                     <span class="ion-ios-paper-plane"></span>
@@ -117,5 +117,4 @@
         </div>
     </section>
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-    <div id="preloader"></div>
 @endsection

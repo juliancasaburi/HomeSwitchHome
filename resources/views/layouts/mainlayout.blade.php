@@ -44,6 +44,7 @@
 
 <body>
 <div>
+    <div id="preloader"></div>
     @include('layouts.partials.searchForm')
 
     @yield('content')
@@ -64,12 +65,17 @@
 <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('lib/scrollreveal/scrollreveal.min.js') }}"></script>
 <script src="{{ asset('lib/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('lib/wow/wow.min.js') }}"></script>
 
 <!-- Template Main Javascript File -->
 <script src="{{ asset('js/main.js') }}"></script>
 
 <!-- Include per-page JS -->
 @yield('js')
+
+<script>
+    new WOW().init();
+</script>
 
 <script>
     $(document).ready(function(){

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW X8 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="244.048mm" height="98.1983mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 28296 11385"
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="244.048mm" height="19.9867mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2791 229"
  xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
-  <font id="FontID0" horiz-adv-x="666" font-variant="normal" style="fill-rule:nonzero" font-style="normal" font-weight="400">
+  <font id="FontID0" horiz-adv-x="666" font-variant="normal" style="fill-rule:nonzero" font-weight="400">
 	<font-face 
 		font-family="The Queen">
 		<font-face-src>
@@ -26,27 +26,19 @@ viewBox="0 0 28296 11385"
   </font>
   <style type="text/css">
    <![CDATA[
-    @font-face { font-family:"The Queen";font-variant:normal;font-style:normal;font-weight:normal;src:url("#FontID0") format(svg)}
-    .fil0 {fill:#00A1E1}
-    .fil1 {fill:#4C4D4F}
-    .fnt0 {font-weight:normal;font-size:3203.96px;font-family:'The Queen'}
+    @font-face { font-family:"The Queen";font-variant:normal;font-weight:normal;src:url("#FontID0") format(svg)}
+    .fil1 {fill:#00A1E1}
+    .fil0 {fill:#4C4D4F}
+    .fnt0 {font-weight:normal;font-size:316.04px;font-family:'The Queen'}
    ]]>
   </style>
  </defs>
  <g id="Capa_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <g id="_3041432806352">
-   <g>
-    <path class="fil0" d="M13910 32l11 3828 14 4591 -53 0 0 -4591 0 -3844 28 16zm11 3828l-39 0 -4267 0 0 4591 4267 0 0 -4591 0 -3844 -3256 1922 -3256 1922 2245 0 4267 0 39 0z"/>
-    <path class="fil1" d="M14199 0l11 3828 14 4591 4214 0 0 -4591 -4228 0 -11 -3828zm11 3828l4228 0 2245 0 -3256 -1922 -3228 -1906 11 3828z"/>
-    <path class="fil1" d="M16572 3793l0 2114c-16,-18 -34,-38 -53,-62 -11,-15 -15,-19 -29,-35l-770 -944c-143,-174 -465,-603 -611,-754l-542 -538c-139,-113 -360,-267 -558,-267l-778 0c0,363 57,603 -270,603 -63,0 -164,-82 -265,-132l-1681 -970c-74,-65 -70,-121 -70,-200 0,-156 296,-271 447,-362 91,-55 164,-99 260,-152l1046 -606c128,-77 342,-225 473,-58 29,37 60,114 60,178l0 365 905 0c148,0 333,62 457,99 334,98 611,311 874,523l755 769c105,135 227,280 350,429z"/>
-    <path class="fil0" d="M11794 5671l0 -2114c16,17 33,38 52,62 12,15 15,18 29,34l771 944c143,174 465,604 611,754l542 538c139,114 360,268 558,268l778 0c0,-364 -58,-604 269,-604 63,0 164,83 265,133l1682 970c73,65 70,121 70,199 0,156 -297,271 -448,362 -91,55 -164,100 -260,153l-1045 606c-129,76 -343,225 -474,58 -29,-38 -59,-115 -59,-179l0 -365 -905 0c-149,0 -333,-62 -458,-98 -333,-99 -611,-311 -874,-523l-755 -769c-105,-135 -226,-281 -349,-429z"/>
-   </g>
-   <g>
-    <text x="0" y="11278"  class="fil1 fnt0">home</text>
-    <text x="7700" y="11278"  class="fil0 fnt0">SWITCH</text>
-    <text x="20465" y="11278"  class="fil1 fnt0">home</text>
-   </g>
+  <g id="_3041432769888">
+   <text x="0" y="218"  class="fil0 fnt0">home</text>
+   <text x="822" y="228"  class="fil1 fnt0">SWITCH</text>
+   <text x="2019" y="229"  class="fil0 fnt0">home</text>
   </g>
  </g>
 </svg>

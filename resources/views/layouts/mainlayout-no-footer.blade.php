@@ -44,10 +44,10 @@
 
 <body>
 <div>
+    <div id="preloader"></div>
     @include('layouts.partials.searchForm')
 
     @yield('content')
-
 </div>
 
 {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script --}}
@@ -61,12 +61,17 @@
 <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('lib/scrollreveal/scrollreveal.min.js') }}"></script>
 <script src="{{ asset('lib/momentjs/moment.min.js') }}"></script>
+<script src="{{ asset('lib/wow/wow.min.js') }}"></script>
 
 <!-- Template Main Javascript File -->
 <script src="{{ asset('js/main.js') }}"></script>
 
 <!-- Include per-page JS -->
 @yield('js')
+
+<script>
+    new WOW().init();
+</script>
 
 <script>
     $(document).ready(function(){

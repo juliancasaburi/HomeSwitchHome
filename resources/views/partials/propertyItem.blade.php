@@ -1,4 +1,4 @@
-<div class="img-box-a">
+<div class="img-box-a wow fadeInUp" data-wow-duration="1.5">
     <img src="{{asset($p->image_path)}}" alt="" class="img-a img-fluid">
 </div>
 <div class="card-overlay">

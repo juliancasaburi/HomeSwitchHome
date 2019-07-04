@@ -5,9 +5,11 @@
             <div class="col-sm-12">
                 <div class="widget-a">
                     <div class="w-header-a">
-                            <a href="{{ url('/') }}"><img id="logo" src="{{ asset('img/HSH-Complete.svg') }}" alt="Home Switch Home Logo" height="20%" width="20%"></a>
+                            <a href="{{ url('/') }}"><img class="shadowed" id="logo" src="{{ asset('img/HSH-Logo.svg') }}" alt="Home Switch Home Logo" height="15%" width="15%"></a>
+                            <br>
+                            <a href="{{ url('/') }}"><img id="logo" class="mt-2" src="{{ asset('img/HSH-Text.svg') }}" alt="Home Switch Home" height="15%" width="15%"></a>
                     </div>
-                    <div class="w-body-a">
+                    <div class="w-body-a mt-2">
                         <p class="w-text-a color-text-a">
                            Cadena de residencias
                         </p>

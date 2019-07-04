@@ -41,9 +41,9 @@
                 <div class="col-md-12">
                     <div class="title-wrap d-flex justify-content-between">
                         <div class="title-box">
-                            <h2 class="title-a">Últimas propiedades agregadas</h2>
+                            <h2 class="title-a wow fadeInUp">Últimas propiedades agregadas</h2>
                         </div>
-                        <div class="title-link">
+                        <div class="title-link wow fadeInLeft" data-wow-delay="1.5s" data-wow-duration="2s">
                             <a href={{ url('properties') }}>Ver todas
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
@@ -54,7 +54,7 @@
             @if(!$properties->isEmpty())
                 <div id="property-carousel" class="owl-carousel owl-theme">
                     @foreach($properties as $p)
-                        <div class="carousel-item-b ">
+                        <div class="carousel-item-b wow fadeInUp" data-wow-duration="2s">
                             <div class="card-box-a card-shadow">
                                 @include('partials/propertyItem', ['weeks' => $weeks[$loop->index]])
                             </div>
@@ -75,7 +75,7 @@
                 <div class="col-md-12">
                     <div class="title-wrap d-flex justify-content-between">
                         <div class="title-box">
-                            <h2 class="title-a color-w">Nuestros precios</h2>
+                            <h2 class="title-a color-w wow fadeInUp shadowed">Nuestros precios</h2>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             <div class="row justify-content-center">
                 <!-- Basic Tier -->
                 <div class="col-sm-8 col-lg-4">
-                    <div class="card mb-5 mb-lg-0">
+                    <div class="card mb-5 mb-lg-0 shadowed wow slideInUp" data-wow-delay="0.5s" data-wow-duration="1.5s">
                         <div class="card-body">
                             <h5 class="card-title text-muted text-uppercase text-center">Subscripción Normal</h5>
                             <h6 class="card-price text-center">${{$normalUserSubscriptionPrice}}<br><span class="period">/mes</span></h6>
@@ -104,7 +104,7 @@
                 </div>
                 <!-- Premium Tier -->
                 <div class="col-sm-8 col-lg-4">
-                    <div class="card mb-5 mb-lg-0">
+                    <div class="card mb-5 mb-lg-0 shadowed wow slideInUp" data-wow-delay="0.7s" data-wow-duration="1.5s">
                         <div class="card-body">
                             <h5 class="card-title text-muted text-uppercase text-center">Plus Premium</h5>
                             <h6 class="card-price text-center">${{($premiumPlusPrice)}}<br><span class="period">adicionales /mes</span></h6>
@@ -136,7 +136,7 @@
                 <div class="col-md-12">
                     <div class="title-wrap d-flex justify-content-between">
                         <div class="title-box">
-                            <h2 class="title-a">Nuestros servicios</h2>
+                            <h2 class="title-a wow fadeInUp">Nuestros servicios</h2>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card-box-c foo">
-                        <div class="card-header-c d-flex">
+                        <div class="card-header-c d-flex wow slideInDown">
                             <div class="card-box-ico">
                                 <span class="fas fa-gavel"></span>
                             </div>
@@ -164,7 +164,7 @@
                             </p>
                         </div>
                         <div class="card-footer-c">
-                            <a href="{{ url('faq') }}" class="link-c link-icon">Ver más
+                            <a href="{{ url('faq') }}" class="link-c link-icon wow fadeInLeft" data-wow-duration="2s">Ver más
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
@@ -172,7 +172,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card-box-c foo">
-                        <div class="card-header-c d-flex">
+                        <div class="card-header-c d-flex wow slideInUp">
                             <div class="card-box-ico">
                                 <span class="fas fa-fire"></span>
                             </div>
@@ -192,15 +192,15 @@
                             </p>
                         </div>
                         <div class="card-footer-c">
-                            <a href="{{ url('faq') }}" class="link-c link-icon">Ver más
+                            <a href="{{ url('faq') }}" class="link-c link-icon wow fadeInLeft" data-wow-duration="2s">Ver más
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card-box-c foo">
-                        <div class="card-header-c d-flex">
+                    <div class="card-box-c foo wow">
+                        <div class="card-header-c d-flex wow slideInDown">
                             <div class="card-box-ico">
                                 <span class="fas fa-ticket-alt"></span>
                             </div>
@@ -220,7 +220,7 @@
                             </p>
                         </div>
                         <div class="card-footer-c">
-                            <a href="{{ url('faq') }}" class="link-c link-icon">Ver más
+                            <a href="{{ url('faq') }}" class="link-c link-icon wow fadeInLeft" data-wow-duration="2s">Ver más
                                 <span class="ion-ios-arrow-forward"></span>
                             </a>
                         </div>
@@ -232,5 +232,4 @@
     <!--/ Services End /-->
 
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-    <div id="preloader"></div>
 @endsection

@@ -121,14 +121,19 @@ hr {
     margin: 0 auto;
 }
 
-.stars-text {
-    background-color: #00A1E1;
-    color: #FFFFFF
+.shadowed {
+  -webkit-filter: drop-shadow(5px 5px 5px #222222);
+  filter: drop-shadow(5px 5px 5px #222222);
 }
 
 /*------/ Items  /------*/
 .star {
   color: #ECC400;
+}
+
+.stars-text {
+  background-color: #00A1E1;
+  color: #FFFFFF
 }
 
 /*------/ Auction /-----*/
@@ -495,7 +500,7 @@ hr {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #FF8700;
+  background: #00A1E1;
   color: #fff;
   width: 44px;
   height: 44px;

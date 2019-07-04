@@ -1,4 +1,4 @@
-<div class="img-box-a">
+<div class="img-box-a wow fadeInUp" data-wow-duration="1.5">
     @if($w->property->image_path == null)
         <img src="{{'https://via.placeholder.com/683x1024?text='.$w->property->nombre}}" alt="" class="img-a img-fluid">
     @else

@@ -195,7 +195,7 @@
 					<!-- end content -->
 					<!-- ============================================================== -->
 					@if(session()->has('alert-success'))
-						<div class="alert alert-success alert-dismissible" data-expires="10000">
+						<div class="alert alert-success alert-dismissible wow slideInUp" data-expires="10000">
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 							{{ session()->get('alert-success') }}
 						</div>
