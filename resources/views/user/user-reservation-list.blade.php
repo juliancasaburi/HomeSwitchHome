@@ -84,7 +84,13 @@
                                                 <td><a href={{ url($propertyURL.$r->week->property->id) }}>{{ $r->week->property->nombre }}</a></td>
                                                 <td><a href={{ url($weekURL.$r->week->id) }}>{{ $r->week->fecha }} al {{ date('Y-m-d', strtotime($r->week->fecha. ' + 7 days'))}} </a></td>
                                                 <td>{{ $r->created_at }}</td>
-                                                <td>${{ $r->valor_reservado }}</td>
+                                                <td>
+                                                    @if($r->valor_reservado != null)
+                                                        <p>${{ $r->valor_reservado }}</p>
+                                                    @else
+                                                        <p> - (Premium)</p>
+                                                    @endif
+                                                </td>
                                                 @if($r->modo_reserva == 0)
                                                     <td><a href={{ url($auctionURL.$r->id) }}><i class="fas fa-gavel fa-fw fa-sm"></i> Subasta</a></td>
                                                 @elseif($r->modo_reserva == 1)
@@ -138,8 +144,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
-                    <!-- ============================================================== -->
+                @endif
+                <!-- ============================================================== -->
                     <!-- End Alerts  -->
                     <!-- ============================================================== -->
                 </div>
