@@ -30,4 +30,10 @@ class Reservation extends Model
         $this->user->save();
         $this->delete();
     }
+
+    public function property()
+    {
+        $week = $this->week;
+        return $week->property();
+    }
 }

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Reservation;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\CurrentPassword;
-use App\Price;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use App\Price;
+use App\Reservation;
+use App\InscriptionForFutureAuction;
+use App\Bid;
 
 class UserController extends Controller
 {
@@ -39,8 +41,19 @@ class UserController extends Controller
 
     public function showUserProfile()
     {
+        $userID = Auth::user()->id;
+        $inscriptions = InscriptionForFutureAuction::where('usuario_id', $userID)->get();
+        $bids = Bid::where('usuario_id', $userID)->get();
+        $reservations = Reservation::where('usuario_id', $userID)->get();
+        $activities = $inscriptions
+            ->concat($bids)
+            ->concat($reservations);
+        $activities = $activities->sortByDesc('created_at');
         return view('user.user-profile')->with(
             [
+                'propertyURL' => self::PROPERTYURL,
+                'weekURL' => self::WEEKURL,
+                'activities' => $activities,
                 'premiumPlusPrice' => Price::price('Plus usuario premium'),
                 'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
             ]

@@ -151,38 +151,62 @@
 									<table class="table">
 										<thead>
 										<tr class="border-0">
+											<th class="border-0">Actividad</th>
 											<th class="border-0">Propiedad</th>
-											<th class="border-0">Nombre propiedad</th>
+											<th class="border-0">Semana</th>
 											<th class="border-0">Fecha</th>
-											<th class="border-0">Tipo de reserva</th>
 										</tr>
 										</thead>
 										<tbody>
-										<tr>
-											<td>
-												<div class="m-r-10"><img src="{{ asset('img/dribbble.png') }}" alt="user" width="35"></div>
-											</td>
-											<td>Rino Venda Road Five </td>
-											<td>9 Mayo, 2019</td>
-											<td><i class="fas fa-gavel fa-fw fa-sm"></i> Subasta</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="m-r-10"><img src="{{ asset('img/dribbble.png') }}" alt="user" width="35"></div>
-											</td>
-											<td>Mount Olive, Road Two </td>
-											<td>1 Mayo, 2019</td>
-											<td><i class="fas fa-fire fa-fw fa-sm text-hotsale"></i> Hotsale</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="m-r-10"><img src="{{ asset('img/dribbble.png') }}" alt="user" width="35"></div>
-											</td>
-											<td>Alira Roan, Road One </td>
-											<td>1 Enero, 2018</td>
-											<td><i class="fas fa-ticket-alt fa-fw fa-sm text-success"></i> Reserva Directa (Premium)</td>
-										</tr>
+										@foreach($activities as $a)
+											<tr>
+												@switch(class_basename($a))
+													@case('InscriptionForFutureAuction')
+													<td>
+														<p>
+															<i class="fas fa-signature fa-fw fa-sm inscriptionIcon"></i>
+															Inscripción
+														</p>
+													</td>
+													@break
+													@case('Bid')
+													<td>
+														<p>
+															<i class="fas fa-gavel fa-fw fa-sm auctionIcon"></i>
+															Puja
+														</p>
+													</td>
+													@break
+													@case('Reservation')
+													<td>
+														<p>
+															<i class="fas fa-calendar-check fa-fw fa-sm reservationIcon"></i>
+															Reserva
+														</p>
+													</td>
+													@break
+												@endswitch
+												<td>
+													<div class="m-r-10">
+														<a href={{ url($propertyURL).$a->property->id }}><img src="{{$a->property->image_path}}" alt="user" width="128"></a>
+														<a href={{ url($propertyURL).$a->property->id }}>{{$a->property->nombre}}</a>
+													</div>
+												</td>
+												<td>
+													<a href={{ url($weekURL).$a->week->id }}>{{$a->week->fecha}}</a>
+												</td>
+												<td>{{$a->created_at}}</td>
+											</tr>
+										@endforeach
 										</tbody>
+										<tfoot>
+										<tr class="border-0">
+											<th class="border-0">Actividad</th>
+											<th class="border-0">Propiedad</th>
+											<th class="border-0">Semana</th>
+											<th class="border-0">Fecha</th>
+										</tr>
+										</tfoot>
 									</table>
 								</div>
 							</div>

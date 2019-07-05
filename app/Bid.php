@@ -19,4 +19,16 @@ class Bid extends Model
     public function user(){
         return $this->belongsTo(User::class, 'usuario_id', 'id');
     }
+
+    public function property()
+    {
+        $auction = $this->auction;
+        return $auction->property();
+    }
+
+    public function week()
+    {
+        $auction = $this->auction;
+        return $auction->week();
+    }
 }

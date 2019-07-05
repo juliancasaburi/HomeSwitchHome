@@ -43,13 +43,13 @@
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url('/profile/inscription-list')}}">Inscripciones a subastas</a>
+                                    <a class="nav-link" href="{{url('/profile/inscription-list')}}"><i class="fas fa-signature fa-fw fa-xs inscriptionIcon"></i>Inscripciones a subastas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url('/profile/bid-list')}}">Mis pujas</a>
+                                    <a class="nav-link" href="{{url('/profile/bid-list')}}"><i class="fas fa-gavel fa-fw fa-xs auctionIcon"></i>Mis pujas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.reservations') }}">Reservas</a>
+                                    <a class="nav-link" href="{{ route('user.reservations') }}"><i class="fas fa-calendar-check fa-fw fa-xs reservationIcon"></i>Reservas</a>
                                 </li>
                             </ul>
                         </div>

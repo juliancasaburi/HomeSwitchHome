@@ -136,6 +136,18 @@ hr {
   color: #FFFFFF
 }
 
+.auctionIcon{
+  color: orangered !important;
+}
+
+.inscriptionIcon{
+  color: limegreen !important;
+}
+
+.reservationIcon{
+  color: deepskyblue !important;
+}
+
 /*------/ Auction /-----*/
 
 .auction {

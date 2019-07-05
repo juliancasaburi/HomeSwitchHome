@@ -25,6 +25,12 @@ class InscriptionForFutureAuction extends Model
         $auction = $this->auction;
         return $auction->property();
     }
+
+    public function week()
+    {
+        $auction = $this->auction;
+        return $auction->week();
+    }
 }
 
 
