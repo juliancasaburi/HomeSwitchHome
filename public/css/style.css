@@ -500,7 +500,7 @@ hr {
 .back-to-top {
   position: fixed;
   display: none;
-  background: #00A1E1;
+  background: #FF8700;
   color: #fff;
   width: 44px;
   height: 44px;
@@ -1812,7 +1812,7 @@ footer .credits {
 }
 
 .btn.btn-b-n:hover {
-  background-color: #26a356;
+  background-color: #FF8700;
   color: #ffffff;
 }
 
