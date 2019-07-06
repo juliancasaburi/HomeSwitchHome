@@ -162,5 +162,23 @@ class Auction extends Model
         $this->delete();
         $this->week->delete();
     }
+
+    public function state(){
+        if(Carbon::now() < $this->inscripcion_inicio){
+            return "Esperando periodo de inscripcion";
+        }
+        elseif(Carbon::now() < $this->inscripcion_fin){
+            return "En periodo de inscripcion";
+        }
+        elseif(Carbon::now() < $this->inicio){
+            return "Esperando participacion";
+        }
+        else if(Carbon::now() < $this->fin){
+            return "En periodo de participacion";
+        }
+        else{
+            return "Subasta finalizada";
+        }
+    }
 }
 

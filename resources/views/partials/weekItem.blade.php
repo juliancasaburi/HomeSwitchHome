@@ -24,7 +24,7 @@
         </div>
         <div class="card-body-a">
             <div class="price-box d-flex">
-                <span class="alert-info">Subasta en inscripción</span>
+                <span class="alert-info">{{$w->activeAuction->state()}}</span>
             </div>
             <a href={{ url('week?id=').$w->id }} class="link-a"> Ver semana</a>
             <span class="ion-ios-arrow-forward"></span>
