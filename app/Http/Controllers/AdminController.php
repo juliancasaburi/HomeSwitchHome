@@ -314,28 +314,31 @@ class AdminController extends Controller
         }
         //Property has weeks
         else{
+            $hasNotAuctionsInParticipationPeriod = true;
             foreach($propertyWeeks as $week){
-                $weekActiveAuction = $week->activeAuction;
-                if ($weekActiveAuction && $weekActiveAuction->inscripcion_inicio > Carbon::now()){
-                    $weekActiveAuction->delete();
-                    $week->delete();
-                }
-                elseif ($weekActiveAuction && $weekActiveAuction->inicio > Carbon::now()){
-                    $weekActiveAuction->delete();
-                    $week->delete();
-                    $weekActiveAuction->sendAuctionCancelledNotifications();
-                }
-                elseif ($weekActiveAuction && $weekActiveAuction->inicio <= Carbon::now() && $weekActiveAuction->fin >= Carbon::now()){
-                    return back()->with('alert-danger', 'La semana está en período de subasta');
-                }
-                else{
-                    $week->delete();
+                if($week->activeAuction && $week->activeAuction->inicio <= Carbon::now() && $week->activeAuction->fin >= Carbon::now()){
+                    $hasNotAuctionsInParticipationPeriod = false;
                 }
             }
-            $property->delete();
+            if($hasNotAuctionsInParticipationPeriod){
+                foreach($propertyWeeks as $week){
+                    $weekActiveAuction = $week->activeAuction;
+                    if ($weekActiveAuction && $weekActiveAuction->inscripcion_inicio > Carbon::now()){
+                        $weekActiveAuction->delete();
+                    }
+                    elseif ($weekActiveAuction && $weekActiveAuction->inicio > Carbon::now()){
+                        $weekActiveAuction->delete();
+                        $weekActiveAuction->sendAuctionCancelledNotifications();
+                    }
+                    $week->delete();
+                }
+                $property->delete();
+                return back()->with('alert-success', 'Propiedad '. $property->nombre. ' eliminada');
+            }
+            else{
+                return back()->with('alert-danger', 'La propiedad tiene subastas activas!');
+            }
         }
-
-        return back()->with('alert-success', 'Propiedad '. $property->nombre. ' eliminada');
     }
 
     function deleteWeek(Request $request){
