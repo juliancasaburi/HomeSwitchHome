@@ -62,6 +62,7 @@
                                             <th>Fecha</th>
                                             <th></th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -81,6 +82,17 @@
                                                 <td><button class="btn-outline-danger pt-2 pb-2" id="deleteWeekButton" data-toggle="modal" data-target="#deleteWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
                                                         <i class="fas fa-trash"></i>Eliminar
                                                     </button></td>
+                                                <td>
+                                                    @if(!$w->activeAuction && !$w->reservation)
+                                                        @if($w->isInHotsale)
+                                                            <span class="badge badge-warning">Publicada en Hotsale</span>
+                                                        @else
+                                                            <button class="btn-outline-brand pt-2 pb-2" id="hotsaleWeekButton" data-toggle="modal" data-target="#hotsaleWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
+                                                                <i class="fas fa-fire"></i>Publicar en Hotsale
+                                                            </button>
+                                                        @endif
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -90,6 +102,7 @@
                                             <th>ID</th>
                                             <th>Propiedad</th>
                                             <th>Fecha</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -126,8 +139,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                @endif
-                <!-- ============================================================== -->
+                    @endif
+                    <!-- ============================================================== -->
                     <!-- End Alerts  -->
                     <!-- ============================================================== -->
                 </div>
@@ -193,6 +206,39 @@
         </div>
     </div>
     <!-- End modify week Modal -->
+
+    <!-- Hotsale week Modal -->
+    <div class="modal fade" id="hotsaleWeekModal" tabindex="-1" role="dialog" aria-labelledby="hotsaleWeekModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hotsaleWeekModalLabel">Desea publicar la semana en Hotsales?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="hotsaleWeekPropertyText">aa</p>
+                    <p id="hotsaleWeekDateText">aa</p>
+                    <form id="hotsaleWeekForm" action="{{ route('admin.hotsaleWeek') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                        <label for="fecha_inicio">Fecha inicio: </label>
+                        <input type="date" id="fecha_inicio" name="fecha_inicio"><br>
+                        <label for="fecha_fin" style="margin-top: 15px">Fecha fin: </label>
+                        <input type="date" id="fecha_fin" name="fecha_fin"><br>
+                        <label for="precio" style="margin-top: 15px">Precio: </label>
+                        <input type="number" id="precio" name="precio">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="button" id="btn-hotsaleWeek" class="btn btn-primary" onclick="hotsaleWeekForm_submit()">Publicar en hotsales</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Hotsale week Modal -->
 @endsection
 
 @section('js')
@@ -242,6 +288,25 @@
             $('#modifyWeekButton').attr('disabled','disabled');
             $('#modifyWeekModal').modal('hide');
             document.getElementById("modifyWeekForm").submit();
+        }
+    </script>
+
+    <script> // Hotsale Week
+        // Fill week id for request
+        $('#hotsaleWeekModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('wid');
+            var date = $(event.relatedTarget).data('wdate');
+            var property = $(event.relatedTarget).data('wpropertyname');
+            document.getElementById("hotsaleWeekPropertyText").innerHTML = "Propiedad: ".concat(property);
+            document.getElementById("hotsaleWeekDateText").innerHTML = "Fecha: ".concat(date);
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
+
+        // Submit form
+        function hotsaleWeekForm_submit() {
+            $('#hotsaleWeekButton').attr('disabled','disabled');
+            $('#hotsaleWeekModal').modal('hide');
+            document.getElementById("hotsaleWeekForm").submit();
         }
     </script>
 @endsection

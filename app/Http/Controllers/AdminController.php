@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hotsale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
@@ -480,6 +481,27 @@ class AdminController extends Controller
         $admin->save();
 
         return redirect()->back()->with('alert-success', 'Tus datos fueron modificados exitosamente!');
+    }
+
+    public function hotsaleWeek(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'fecha_inicio' => 'required', 'date',
+            'fecha_fin' => 'required', 'date',
+            'precio' => 'required', 'numeric',
+        ]);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+        $week = Week::find($request->id);
+        $newHotsale = new Hotsale();
+        $newHotsale->semana_id = $week->id;
+        $newHotsale->fecha_inicio = $request->fecha_inicio;
+        $newHotsale->fecha_fin = $request->fecha_fin;
+        $newHotsale->precio = $request->precio;
+        $newHotsale->save();
+
+        return redirect()->back()->with('alert-success', 'Semana agregada a Hotsale!');
     }
 
 }

@@ -36,6 +36,10 @@ class Week extends Model
         return $this->hasMany(Reservation::class, 'semana_id', 'id')->withTrashed();
     }
 
+    public function isInHotsale(){
+        return $this->hasOne(Hotsale::class, 'semana_id', 'id');
+    }
+
     public function bookTo(User $user){
         $reservation = new Reservation();
         $reservation->semana_id = $this->id;
