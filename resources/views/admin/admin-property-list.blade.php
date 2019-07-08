@@ -58,6 +58,7 @@
                                         <tr>
                                             <th>Índice</th>
                                             <th>Editar</th>
+                                            <th>Comentarios</th>
                                             <th>Foto</th>
                                             <th>ID</th>
                                             <th>Nombre</th>
@@ -79,6 +80,9 @@
                                             <tr>
                                                 <td>{{ $loop->index }}</td>
                                                 <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Editar</button></td>
+                                                <td>
+                                                    <a href={{ route('admin.comments', ['property' => $p->id]) }}>Ver Comentarios</a>
+                                                </td>
                                                 <td>
                                                     @if($p->image_path == null)
                                                         <a href={{ url($propertyURL.$p->id) }}><img src="{{'https://via.placeholder.com/683x1024?text='.$p->nombre}}" alt="propertyPhoto" width="50"></a>
@@ -110,6 +114,7 @@
                                         <tr>
                                             <th>Índice</th>
                                             <th>Editar</th>
+                                            <th>Comentarios</th>
                                             <th>Foto</th>
                                             <th>ID</th>
                                             <th>Nombre</th>

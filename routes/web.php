@@ -142,7 +142,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/delete-auction', 'AdminController@deleteAuction')->name("admin.deleteAuction");
     Route::post('/dashboard/modify-week', 'AdminController@modifyWeek')->name("admin.modifyWeek");
     Route::get('/dashboard/auctions-inscription-period', 'AdminController@showAuctionsInscriptionPeriod')->name('admin.auctionInscriptionPeriod');
-    Route::get('/dashboard/comments', 'AdminController@propertyComments')->name('admin.comments');
+    Route::get('/dashboard/comments/{property}', 'AdminController@propertyComments')->name('admin.comments');
     //--------------------------------------------
 });
 
