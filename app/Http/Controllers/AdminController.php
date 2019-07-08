@@ -517,4 +517,8 @@ class AdminController extends Controller
         return view('admin.admin-comments')->with('property', $property);
     }
 
+    public function showHotsaleList(){
+        $hotsale = Hotsale::where('deleted_at', null)->get();
+        return view('admin.admin-hotsale-list')->with ('hotsale',$hotsale);
+    }
 }

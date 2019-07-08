@@ -39,6 +39,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/create-week') }}">Crear Semana</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('admin/dashboard/hotsale-list') }}">Ver hotsale</a>
+                                </li>
                             </ul>
                         </div>
                     </li>

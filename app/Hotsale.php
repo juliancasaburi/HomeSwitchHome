@@ -16,6 +16,6 @@ class Hotsale extends Model
     ];
 
     public function week(){
-        return $this->hasOne(Week::class, 'semana_id', 'id');
+        return $this->belongsTo(Week::class, 'semana_id', 'id');
     }
 }
