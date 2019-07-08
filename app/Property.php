@@ -34,5 +34,15 @@ class Property extends Model
     public function activeWeeks(){
         return $this->hasMany(Week::class, "propiedad_id", "id");
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, "propiedad_id", "id")->whereNull('parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, "propiedad_id", "id")->whereNotNull('parent_id');
+    }
 }
 

@@ -2508,7 +2508,18 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
 2.2  Buttons
 -------------------------*/
 
+.btn.btn-b {
+  background-color: #00A1E1;
+  color: #000000;
+  border-radius: 0;
+  padding: 1rem 3rem;
+  letter-spacing: .05rem;
+}
 
+.btn.btn-b:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
 
 .btn-wishlist {
     background-color: #efeff6;

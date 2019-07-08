@@ -504,4 +504,17 @@ class AdminController extends Controller
         return redirect()->back()->with('alert-success', 'Semana agregada a Hotsale!');
     }
 
+    public function propertyComments(Request $request){
+        $property = Property::where('id', Request()->property)
+            ->withTrashed()
+            ->get()
+            ->first();
+
+        // If property id doesn't exist, show 404 error page
+        if(empty($property)) {
+            abort(404);
+        }
+        return view('admin.admin-comments')->with('property', $property);
+    }
+
 }

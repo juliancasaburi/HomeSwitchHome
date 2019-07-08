@@ -166,25 +166,25 @@
                                 @auth
                                     <td>
                                         <div class="row ml-5 justify-content-center">
-                                        @if($w->activeAuction()->whereHas('inscriptions', function ($query){
-                                            $query->where('usuario_id', Auth::user()->id);
-                                            })->count() == 0 &&  Auth::user()->creditos > 0)
-                                            <button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->activeAuction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->activeAuction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button>
-                                        @elseif(Auth::user()->creditos == 0)
-                                            <button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button>
-                                        @else
-                                            <button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button>
-                                        @endif
+                                            @if($w->activeAuction()->whereHas('inscriptions', function ($query){
+                                                $query->where('usuario_id', Auth::user()->id);
+                                                })->count() == 0 &&  Auth::user()->creditos > 0)
+                                                <button class="btn-primary" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $w->activeAuction->id }}" data-wd="{{ $w->fecha }}" data-aup="{{ $w->activeAuction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button>
+                                            @elseif(Auth::user()->creditos == 0)
+                                                <button class="btn-secondary" disabled><i class="fas fa-signature"></i>Sin créditos</button>
+                                            @else
+                                                <button class="btn-secondary" disabled><i class="fas fa-signature"></i>Inscripto</button>
+                                            @endif
                                         </div>
                                         <div class="row ml-5 mt-5 justify-content-center">
-                                        @if(Auth::user()->premium)
-                                            @if(Auth::user()->creditos >=1)
-                                                <button class="btn-primary" data-toggle="modal" data-target="#bookingModal" data-wid="{{$w->id}}"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                            @else
-                                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
-                                                <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
+                                            @if(Auth::user()->premium)
+                                                @if(Auth::user()->creditos >=1)
+                                                    <button class="btn-primary" data-toggle="modal" data-target="#bookingModal" data-wid="{{$w->id}}"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                                @else
+                                                    <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                                                    <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
+                                                @endif
                                             @endif
-                                        @endif
                                         </div>
                                     </td>
                                 @endauth
@@ -206,6 +206,34 @@
                 </div>
             </div>
         @endif
+        @auth
+            <div class="row justify-content-between card-header">
+                <div class="title-box-d section-t4">
+                    <h3 class="title-d">Comentarios</h3>
+                </div>
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            @include('partials.commentsDisplay', ['comments' => Auth::user()->comments, 'propiedad_id' => $property->id])
+
+                            <hr />
+                            <h4>Agregar un comentario</h4>
+                            <form method="post" action="{{ route('comments.store'   ) }}">
+                                @csrf
+                                <div class="form-group">
+                                    <textarea placeholder="Comenta algo..." name="texto"></textarea>
+                                    <input type="hidden" name="propiedad_id" value="{{ $property->id }}" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-b" value="Comentar    " />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endauth
     </div>
 
     <!-- Inscription Modal -->

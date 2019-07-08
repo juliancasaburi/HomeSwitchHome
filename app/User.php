@@ -199,6 +199,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Card::class, 'usuario_id', 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, "usuario_id", "id")->whereNull('parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, "usuario_id", "id")->whereNotNull('parent_id');
+    }
+
     /**
      * Scope a query to only include premium users.
      *

@@ -142,7 +142,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/delete-auction', 'AdminController@deleteAuction')->name("admin.deleteAuction");
     Route::post('/dashboard/modify-week', 'AdminController@modifyWeek')->name("admin.modifyWeek");
     Route::get('/dashboard/auctions-inscription-period', 'AdminController@showAuctionsInscriptionPeriod')->name('admin.auctionInscriptionPeriod');
-
+    Route::get('/dashboard/comments', 'AdminController@propertyComments')->name('admin.comments');
     //--------------------------------------------
 });
 
@@ -170,6 +170,8 @@ Route::post('/auction/bid', 'BidController@store');
 
 Route::get('/property', 'PropertyController@index');
 Route::get('/properties', 'PropertyController@showGrid');
+
+Route::post('/createComment', 'CommentController@store')->name("comments.store");
 
 /*
 |--------------------------------------------------------------------------
