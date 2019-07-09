@@ -17,8 +17,8 @@ class CreateHotsalesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('semana_id')->unsigned()->index();
             $table->decimal('precio', 9, 2);
-            $table->dateTime('fecha_inicio');
-            $table->dateTime('fecha_fin');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
             $table->softDeletes();
 

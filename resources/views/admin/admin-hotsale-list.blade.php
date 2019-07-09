@@ -63,6 +63,7 @@
                                             <th>Fecha inicio</th>
                                             <th>Fecha fin</th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -74,6 +75,11 @@
                                                 <td>{{$h->precio}}</td>
                                                 <td>{{ $h->fecha_inicio}}</td>
                                                 <td>{{ $h->fecha_fin}}</td>
+                                                <th>
+                                                    <button class="btn-outline-primary pt-2 pb-2" id="modifyHotsaleButton" data-toggle="modal" data-target="#modifyHotsaleModal" data-hid="{{ $h->id }}" data-hdate="{{ $h->week->fecha }}" data-hpropertyname="{{$h->week->property->nombre}}" data-hfecha_inicio="{{$h->fecha_inicio}}" data-hfecha_fin="{{$h->fecha_fin}}" data-hprecio="{{$h->precio}}">
+                                                        <i class="fas fa-tools"></i>Modificar
+                                                    </button>
+                                                </th>
                                                 <th>
                                                     <button class="btn-outline-warning pt-2 pb-2" id="deleteHotsaleButton" data-toggle="modal" data-target="#deleteHotsaleModal" data-hid="{{ $h->id }}" data-hdate="{{ $h->week->fecha }}" data-hpropertyname="{{$h->week->property->nombre}}">
                                                         <i class="fas fa-undo"></i> Sacar de hotsale
@@ -90,6 +96,7 @@
                                             <th>Precio</th>
                                             <th>Fecha inicio</th>
                                             <th>Fecha fin</th>
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                         </tfoot>
@@ -163,6 +170,39 @@
         </div>
     </div>
     <!-- End delete hotsale Modal -->
+
+    <!-- Modify hotsale Modal -->
+    <div class="modal fade" id="modifyHotsaleModal" tabindex="-1" role="dialog" aria-labelledby="modifyHotsaleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifyHotsaleModalLabel">Modificar hotsale</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modifyWeekPropertyText">aa</p>
+                    <p id="modifyWeekDateText">aa</p>
+                    <form id="modifyHotsaleForm" action="{{ route('admin.modifyHotsale') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                        <label for="fecha_inicio">Fecha inicio: </label>
+                        <input type="date" id="fecha_inicio" name="fecha_inicio"><br>
+                        <label for="fecha_fin" style="margin-top: 15px">Fecha fin: </label>
+                        <input type="date" id="fecha_fin" name="fecha_fin"><br>
+                        <label for="precio" style="margin-top: 15px">Precio: </label>
+                        <input type="number" id="precio" name="precio">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="button" id="btn-modifyHotsale" class="btn btn-primary" onclick="modifyHotsaleForm_submit()">Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End modify hotsale Modal -->
 @endsection
 
 @section('js')
@@ -195,4 +235,30 @@
             document.getElementById("deleteHotsaleForm").submit();
         }
     </script>
+
+    <script> // Modify Hotsale
+        // Fill hotsale id for request
+        $('#modifyHotsaleModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('hid');
+            var date = $(event.relatedTarget).data('hdate');
+            var property = $(event.relatedTarget).data('hpropertyname');
+            var fecha_inicio = $(event.relatedTarget).data('hfecha_inicio');
+            var fecha_fin = $(event.relatedTarget).data('hfecha_fin');
+            var precio = $(event.relatedTarget).data('hprecio');
+            document.getElementById("modifyWeekPropertyText").innerHTML = "Propiedad: ".concat(property);
+            document.getElementById("modifyWeekDateText").innerHTML = "Fecha: ".concat(date);
+            document.getElementById("fecha_inicio").value = fecha_inicio;
+            document.getElementById("fecha_fin").value = fecha_fin;
+            document.getElementById("precio").value = precio;
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
+
+        // Submit form
+        function modifyHotsaleForm_submit() {
+            $('#modifyHotsaleButton').attr('disabled','disabled');
+            $('#modifyHotsaleModal').modal('hide');
+            document.getElementById("modifyHotsaleForm").submit();
+        }
+    </script>
+
 @endsection

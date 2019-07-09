@@ -145,6 +145,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/comments/{property}', 'AdminController@propertyComments')->name('admin.comments');
     Route::get('/dashboard/hotsale-list', 'AdminController@showHotsaleList')->name('admin.hotsaleList');
     Route::post('/dashboard/delete-hotsale', 'AdminController@deleteHotsale')->name('admin.deleteHotsale');
+    Route::post('/dashboard/modify-hotsale', 'AdminController@modifyHotsale')->name('admin.modifyHotsale');
     //--------------------------------------------
 });
 

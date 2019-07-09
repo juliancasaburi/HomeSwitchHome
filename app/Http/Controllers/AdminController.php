@@ -527,4 +527,23 @@ class AdminController extends Controller
         $hotsale->forceDelete();
         return redirect()->back()->with('alert-success', 'Semana eliminada de Hotsale!');
     }
+
+    public function modifyHotsale(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'fecha_inicio' => 'required', 'date',
+            'fecha_fin' => 'required', 'date',
+            'precio' => 'required', 'numeric',
+        ]);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+        $hotsale = Hotsale::find($request->id);
+        $hotsale->fecha_inicio = $request->fecha_inicio;
+        $hotsale->fecha_fin = $request->fecha_fin;
+        $hotsale->precio = $request->precio;
+        $hotsale->save();
+
+        return redirect()->back()->with('alert-success', 'Modificacion exitosa!');
+    }
 }
