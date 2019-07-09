@@ -75,7 +75,7 @@
                                                 <td>{{ $h->fecha_inicio}}</td>
                                                 <td>{{ $h->fecha_fin}}</td>
                                                 <th>
-                                                    <button class="btn-outline-warning pt-2 pb-2">
+                                                    <button class="btn-outline-warning pt-2 pb-2" id="deleteHotsaleButton" data-toggle="modal" data-target="#deleteHotsaleModal" data-hid="{{ $h->id }}" data-hdate="{{ $h->week->fecha }}" data-hpropertyname="{{$h->week->property->nombre}}">
                                                         <i class="fas fa-undo"></i> Sacar de hotsale
                                                     </button>
                                                 </th>
@@ -102,12 +102,67 @@
                     <!-- end users table  -->
                     <!-- ============================================================== -->
                 </div>
+                <div>
+                    <!-- ============================================================== -->
+                    <!-- Alerts  -->
+                    <!-- ============================================================== -->
+                    @if(session()->has('alert-success'))
+                        <div class="alert alert-success alert-dismissible" data-expires="10000">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            {{ session()->get('alert-success') }}
+                        </div>
+                    @elseif (session()->has('alert-danger'))
+                        <div class="alert alert-danger alert-dismissible" data-expires="10000">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            {{ session()->get('alert-danger') }}
+                        </div>
+                    @elseif ($errors->any())
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <!-- ============================================================== -->
+                    <!-- End Alerts  -->
+                    <!-- ============================================================== -->
+                </div>
             </div>
         </div>
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
+
+    <!-- Delete hotsale Modal -->
+    <div class="modal fade" id="deleteHotsaleModal" tabindex="-1" role="dialog" aria-labelledby="deleteHotsaleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteHotsaleModalLabel">Desea sacar la semana de hotsale?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="weekPropertyText">aa</p>
+                    <p id="weekDateText">aa</p>
+                    <form id="deleteHotsaleForm" action="{{ route('admin.deleteHotsale') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="button" id="btn-deleteHotsale" class="btn btn-primary" onclick="deleteHotsaleForm_submit()">Quitar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End delete hotsale Modal -->
 @endsection
 
 @section('js')
@@ -120,5 +175,24 @@
                 });
             });
         });
+    </script>
+
+    <script> // Delete Hotsale
+        // Fill hotsale id for request
+        $('#deleteHotsaleModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('hid');
+            var date = $(event.relatedTarget).data('hdate');
+            var property = $(event.relatedTarget).data('hpropertyname');
+            document.getElementById("weekPropertyText").innerHTML = "Propiedad: ".concat(property);
+            document.getElementById("weekDateText").innerHTML = "Fecha: ".concat(date);
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
+
+        // Submit form
+        function deleteHotsaleForm_submit() {
+            $('#deleteHotsaleButton').attr('disabled','disabled');
+            $('#deleteHotsaleModal').modal('hide');
+            document.getElementById("deleteHotsaleForm").submit();
+        }
     </script>
 @endsection

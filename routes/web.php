@@ -144,6 +144,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/auctions-inscription-period', 'AdminController@showAuctionsInscriptionPeriod')->name('admin.auctionInscriptionPeriod');
     Route::get('/dashboard/comments/{property}', 'AdminController@propertyComments')->name('admin.comments');
     Route::get('/dashboard/hotsale-list', 'AdminController@showHotsaleList')->name('admin.hotsaleList');
+    Route::post('/dashboard/delete-hotsale', 'AdminController@deleteHotsale')->name('admin.deleteHotsale');
     //--------------------------------------------
 });
 

@@ -521,4 +521,10 @@ class AdminController extends Controller
         $hotsale = Hotsale::where('deleted_at', null)->get();
         return view('admin.admin-hotsale-list')->with ('hotsale',$hotsale);
     }
+
+    public function deleteHotsale(Request $request){
+        $hotsale = Hotsale::find($request->id);
+        $hotsale->forceDelete();
+        return redirect()->back()->with('alert-success', 'Semana eliminada de Hotsale!');
+    }
 }
