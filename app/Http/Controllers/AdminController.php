@@ -331,6 +331,9 @@ class AdminController extends Controller
                         $weekActiveAuction->delete();
                         $weekActiveAuction->sendAuctionCancelledNotifications();
                     }
+                    if($week->activeHotsale){
+                        $week->activeHotsale->delete();
+                    }
                     $week->delete();
                 }
                 $property->delete();
@@ -345,6 +348,11 @@ class AdminController extends Controller
     function deleteWeek(Request $request){
         $week = Week::find($request->id);
         $weekActiveAuction = $week->activeAuction;
+        $weekActiveHotsale = $week->activeHotsale;
+
+        if($weekActiveHotsale){
+            $weekActiveHotsale->delete();
+        }
         if ($weekActiveAuction && $weekActiveAuction->inscripcion_inicio > Carbon::now()){
             $weekActiveAuction->delete();
             $week->delete();
@@ -524,7 +532,7 @@ class AdminController extends Controller
 
     public function deleteHotsale(Request $request){
         $hotsale = Hotsale::find($request->id);
-        $hotsale->forceDelete();
+        $hotsale->delete();
         return redirect()->back()->with('alert-success', 'Semana eliminada de Hotsale!');
     }
 

@@ -36,8 +36,12 @@ class Week extends Model
         return $this->hasMany(Reservation::class, 'semana_id', 'id')->withTrashed();
     }
 
-    public function isInHotsale(){
+    public function activeHotsale(){
         return $this->hasOne(Hotsale::class, 'semana_id', 'id');
+    }
+
+    public function deletedHotsale(){
+        return $this->hasMany(Hotsale::class, 'semana_id', 'id')->onlyTrashed();
     }
 
     public function bookTo(User $user){

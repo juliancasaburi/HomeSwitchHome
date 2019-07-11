@@ -84,7 +84,7 @@
                                                     </button></td>
                                                 <td>
                                                     @if(!$w->activeAuction && !$w->reservation)
-                                                        @if($w->isInHotsale)
+                                                        @if($w->activeHotsale)
                                                             <span class="badge badge-warning">Publicada en Hotsale</span>
                                                         @else
                                                             <button class="btn-outline-brand pt-2 pb-2" id="hotsaleWeekButton" data-toggle="modal" data-target="#hotsaleWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
