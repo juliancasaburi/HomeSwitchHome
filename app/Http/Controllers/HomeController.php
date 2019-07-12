@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hotsale;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Property;
@@ -18,6 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         $properties = Property::orderBy('created_at', 'desc')->take(3)->get();
+        $hotsales = Hotsale::where('deleted_at', null)->get();
 
         $weeks = array();
         foreach($properties as $p){
@@ -30,6 +32,7 @@ class HomeController extends Controller
         return view('index', [
             'properties' => $properties,
             'weeks' => $weeks,
+            'hotsales' => $hotsales,
             'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
             'premiumPlusPrice' => Price::price('Plus usuario premium'),
         ]);

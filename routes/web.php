@@ -17,14 +17,18 @@
 |--------------------------------------------------------------------------
 */
 
+use App\Hotsale;
+
 Route::get('/', 'HomeController@index');
 
 Route::get('contact', function () {
-    return view('contact');
+    $hotsales = Hotsale::where('deleted_at', null)->get();
+    return view('contact')->with('hotsales', $hotsales);
 });
 
 Route::get('faq', function () {
-    return view('faq');
+    $hotsales = Hotsale::where('deleted_at', null)->get();
+    return view('faq')->with('hotsales', $hotsales);
 });
 
 //--------- User Auth ---------
@@ -182,8 +186,17 @@ Route::post('/createComment', 'CommentController@store')->name("comments.store")
 |--------------------------------------------------------------------------
 */
 Route::get('/week', 'WeekController@index');
+Route::get('/hotsale-week', 'WeekController@showHotsaleWeek');
 Route::get('locations/get', 'WeekController@getLocations');
 Route::get('/weeks', 'WeekController@showGrid');
 Route::post('/week', 'WeekController@book')->name('week.premiumBooking');
 
+
+/*
+|--------------------------------------------------------------------------
+| Hotsale Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/hotsales', 'HotsaleController@index');
 //

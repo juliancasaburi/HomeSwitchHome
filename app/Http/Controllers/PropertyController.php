@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hotsale;
 use Illuminate\Http\Request;
 use App\Property;
 use App\Week;
@@ -31,10 +32,13 @@ class PropertyController extends Controller
             ->where('inscripcion_fin', '>', Carbon::now());
         })->get();
 
+        $hotsales = Hotsale::where('deleted_at', null)->get();
+
          // Return view
         return view('property', [
             'property' => $property,
             'weeks' => $weeks,
+            'hotsales' => $hotsales,
         ]);
     }
 
@@ -54,9 +58,13 @@ class PropertyController extends Controller
                 $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
             })->count());
         }
+
+        $hotsales = Hotsale::where('deleted_at', null)->get();
+
         return view('properties', [
             'properties' => $properties,
             'weeks' => $weeks,
+            'hotsales' => $hotsales,
         ]);
     }
 }

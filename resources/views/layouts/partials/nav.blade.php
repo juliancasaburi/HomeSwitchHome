@@ -51,6 +51,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('properties') }}"><span class="fas fa-hotel fa-fw fa-sm color-b"></span>Propiedades</a>
                 </li>
+                @if(isset($hotsales))
+                    @if(!$hotsales->isEmpty())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/hotsales') }}"><span class="fas fa-fire fa-fw fa-sm" style="color:orangered"></span>Hotsales</a>
+                        </li>
+                    @endif
+                @endif
             </ul>
         </div>
         <span  data-placement="bottom" data-toggle="tooltip" title="Buscar estadías">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hotsale;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -33,10 +34,38 @@ class WeekController extends Controller
         $reservation = Reservation::where('semana_id', $week->id)->get();
         $enabled = ((!$week->trashed()) && ($reservation->isEmpty()) && ($week->activeAuction->inscripcion_inicio <= Carbon::now()) && ($week->activeAuction->inscripcion_fin > Carbon::now()));
 
+        $hotsales = Hotsale::where('deleted_at', null)->get();
+
         // Return view
         return view('week', [
             'week' => $week,
             'enabled' => $enabled,
+            'hotsales' => $hotsales,
+        ]);
+    }
+
+    public function showHotsaleWeek(Request $request)
+    {
+        $week = Week::where('id', $request->id)
+            ->withTrashed()
+            ->get()
+            ->first();
+
+        // If property id doesn't exist, show 404 error page
+        if(empty($week)) {
+            abort(404);
+        }
+
+        $reservation = Reservation::where('semana_id', $week->id)->get();
+        $enabled = ((!$week->trashed()) && ($reservation->isEmpty()));
+
+        $hotsales = Hotsale::where('deleted_at', null)->get();
+
+        // Return view
+        return view('hotsaleWeek', [
+            'week' => $week,
+            'enabled' => $enabled,
+            'hotsales' => $hotsales,
         ]);
     }
 
@@ -77,8 +106,11 @@ class WeekController extends Controller
             ->paginate(2)
             ->withPath('?searchLocalidad='.$request->searchLocalidad.'&semanaDesde='.$fromWeekStart.'&semanaHasta='.$toWeekStart);
 
+        $hotsales = Hotsale::where('deleted_at', null)->get();
+
         return view('weeks', [
             'weeks' => $weeks,
+            'hotsales' => $hotsales,
         ]);
     }
 
