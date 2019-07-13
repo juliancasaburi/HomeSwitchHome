@@ -45,7 +45,7 @@
                 </div>
                 @foreach($weeks as $w)
                     <div class="col-md-4">
-                        <div class="card-box-a card-shadow mt-5 mb-5">
+                        <div class="card-box-a border card-shadow mt-5 mb-5">
                             @include('partials/weekItem')
                         </div>
                     </div>

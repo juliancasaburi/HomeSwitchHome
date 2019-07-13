@@ -55,7 +55,7 @@
                 <div id="property-carousel" class="owl-carousel owl-theme">
                     @foreach($properties as $p)
                         <div class="carousel-item-b wow fadeInUp" data-wow-duration="2s">
-                            <div class="card-box-a card-shadow">
+                            <div class="card-box-a border card-shadow">
                                 @include('partials/propertyItem', ['weeks' => $weeks[$loop->index]])
                             </div>
                         </div>
