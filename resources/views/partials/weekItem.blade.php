@@ -27,7 +27,7 @@
                 <span class="alert-info">{{$w->activeAuction->state()}}</span>
             </div>
             <a href={{ url('week?id=').$w->id }} class="link-a"> Ver semana</a>
-            <span class="ion-ios-arrow-forward"></span>
+            <span class="ion-ios-arrow-forward" style="color: white"></span>
         </div>
         <div class="card-footer-a">
             <ul class="card-info d-flex justify-content-around">

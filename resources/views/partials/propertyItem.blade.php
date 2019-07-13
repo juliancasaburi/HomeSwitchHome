@@ -31,7 +31,7 @@
                 @endswitch
             </div>
             <a href={{ url('property?id=').$p->id }} class="link-a"> Ver info y semanas</a>
-            <span class="ion-ios-arrow-forward"></span>
+            <span class="ion-ios-arrow-forward" style="color: white"></span>
         </div>
         <div class="card-footer-a">
             <ul class="card-info d-flex justify-content-around">
