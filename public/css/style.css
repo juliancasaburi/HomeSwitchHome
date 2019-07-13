@@ -161,6 +161,14 @@ textarea {
   color: deepskyblue !important;
 }
 
+.premiumIcon{
+  color: #28a745!important;
+}
+
+.hotsaleIcon{
+  color: #ff4500 !important;
+}
+
 /*------/ Auction /-----*/
 
 .auction {
@@ -634,7 +642,7 @@ textarea {
 
 .navbar-default.navbar-trans .nav-link,
 .navbar-default.navbar-reduce .nav-link {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: #000000;
   font-weight: 600;
   letter-spacing: 0.030em;

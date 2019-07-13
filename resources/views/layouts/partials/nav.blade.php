@@ -54,7 +54,7 @@
                 @if(isset($hotsales))
                     @if(!$hotsales->isEmpty())
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/hotsales') }}"><span class="fas fa-fire fa-fw fa-sm" style="color:orangered"></span>Hotsales</a>
+                            <a class="nav-link" href="{{ url('/hotsales') }}"><span class="fas fa-fire fa-fw fa-sm hotsaleIcon"></span>Hotsales</a>
                         </li>
                     @endif
                 @endif
