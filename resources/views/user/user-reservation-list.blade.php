@@ -92,11 +92,11 @@
                                                     @endif
                                                 </td>
                                                 @if($r->modo_reserva == 0)
-                                                    <td><a href={{ url($auctionURL.$r->id) }}><i class="fas fa-gavel fa-fw fa-sm"></i> Subasta</a></td>
+                                                    <td><a href={{ url($auctionURL.$r->id) }}><i class="fas fa-gavel fa-fw fa-sm auctionIcon"></i>Subasta</a></td>
                                                 @elseif($r->modo_reserva == 1)
-                                                    <td><i class="fas fa-ticket-alt fa-fw fa-sm text-success"></i> Reserva Directa (Premium)</td>
+                                                    <td><i class="fas fa-ticket-alt fa-fw fa-sm text-success"></i>Reserva Directa (Premium)</td>
                                                 @else
-                                                    <td><i class="fas fa-fire fa-fw fa-sm text-hotsale"></i>Hotsale</td>
+                                                    <td><i class="fas fa-fire fa-fw fa-sm text-hotsale"></i> Hotsale</td>
                                                 @endif
                                             </tr>
                                         @endforeach
