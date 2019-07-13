@@ -183,6 +183,26 @@
 															<i class="fas fa-calendar-check fa-fw fa-sm reservationIcon"></i>
 															Reserva
 														</p>
+														@switch($a->modo_reserva)
+															@case(0)
+															<p class="text-muted">
+																<i class="fas fa-gavel fa-fw fa-xs"></i>
+																Modo: Subasta
+															</p>
+															@break
+															@case(1)
+															<p class="text-muted">
+																<i class="fas fa-ticket-alt fa-fw fa-xs"></i>
+																Modo: Premium
+															</p>
+															@break
+															@case(2)
+															<p class="text-muted">
+																<i class="fas fa-fire fa-fw fa-xs"></i>
+																Modo: HotSale
+															</p>
+															@break
+														@endswitch
 													</td>
 													@break
 												@endswitch
