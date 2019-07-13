@@ -18,6 +18,11 @@
 */
 
 use App\Hotsale;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
 Route::get('/', 'HomeController@index');
 
@@ -25,6 +30,23 @@ Route::get('contact', function () {
     $hotsales = Hotsale::where('deleted_at', null)->get();
     return view('contact')->with('hotsales', $hotsales);
 });
+
+Route::post('contact', function (Request $request) {
+
+    $rules = [
+        'name' => 'required|min:4',
+        'email' => 'required|email',
+        'subject' => 'required|min:4',
+        'message' => 'required|min:4',
+    ];
+    $validator = Validator::make(Input::all(), $rules);
+    if ($validator->fails()){
+        return redirect(url()->current() . "#contactForm")->withErrors($validator);
+    }
+
+    Mail::send(new ContactMail($request));
+    return redirect(url()->current() . "#contactForm")->with('alert-success', 'Mensaje enviado!');
+})->name('contact.sendMail');
 
 Route::get('faq', function () {
     $hotsales = Hotsale::where('deleted_at', null)->get();

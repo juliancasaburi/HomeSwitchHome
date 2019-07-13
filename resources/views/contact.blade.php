@@ -37,39 +37,54 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 section-t8">
+                <div class="col-sm-12 section-t8" id="contactForm">
                     <div class="row">
                         <div class="col-md-7">
                             <div class="title-box-d">
                                 <h3 class="title-d">Dejanos un mensaje</h3>
                             </div>
                             <!-- Form Start -->
-                            <form class="form-a contactForm wow fadeInUp" data-wow-duration="1.5s">
-                                <div id="sendmessage">Mensaje enviado!</div>
-                                <div id="errormessage"></div>
+                            <form class="form-a contactForm wow fadeInUp" action="{{ route('contact.sendMail') }}" role="form" method="POST" data-wow-duration="1.5s">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="name" class="form-control form-control-lg form-control-a" placeholder="Nombre" data-rule="minlen:4" data-msg="Ingrese al menos 4 caracteres">
-                                            <div class="validation"></div>
+                                            <input type="text" name="name" class="form-control form-control-lg form-control-a @error('name') is-invalid @enderror" placeholder="Nombre" minlength="4" required>
+                                            @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-group">
-                                            <input name="email" type="email" class="form-control form-control-lg form-control-a" placeholder="Email" data-rule="email" data-msg="El email ingresado no es valido">
-                                            <div class="validation"></div>
+                                            <input name="email" type="email" class="form-control form-control-lg form-control-a @error('email') is-invalid @enderror" placeholder="Email" required>
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" name="subject" class="form-control form-control-lg form-control-a" placeholder="Asunto" data-rule="minlen:4" data-msg="Ingrese al menos 4 caracteres">
-                                            <div class="validation"></div>
+                                            <input type="text" name="subject" class="form-control form-control-lg form-control-a @error('subject') is-invalid @enderror" placeholder="Asunto" minlength="4" required>
+                                            @error('subject')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
                                         <div class="form-group">
-                                            <textarea name="message" class="form-control" name="message" cols="45" rows="8" data-rule="required" data-msg="Debe contener un mensaje" placeholder="Mensaje"></textarea>
-                                            <div class="validation"></div>
+                                            <textarea class="form-control @error('message') is-invalid @enderror" name="message" cols="45" rows="8" placeholder="Mensaje" minlength="4" required></textarea>
+                                            @error('message')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -113,6 +128,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- Alerts  -->
+                <!-- ============================================================== -->
+                @if(session()->has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ session()->get('alert-success') }}
+                    </div>
+            @endif
+            <!-- ============================================================== -->
+                <!-- End Alerts  -->
+                <!-- ============================================================== -->
             </div>
         </div>
     </section>
