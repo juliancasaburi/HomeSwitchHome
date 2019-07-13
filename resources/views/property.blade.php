@@ -207,7 +207,7 @@
             </div>
         @endif
         @auth
-            <div class="row justify-content-between card-header">
+            <div class="row justify-content-between card-header" id="comments">
                 <div class="title-box-d section-t4">
                     <h3 class="title-d">Comentarios</h3>
                 </div>

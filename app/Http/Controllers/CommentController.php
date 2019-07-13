@@ -29,6 +29,6 @@ class CommentController extends Controller
 
         Comment::create($input);
 
-        return back();
+        return redirect(url()->previous() . "#comments");
     }
 }
