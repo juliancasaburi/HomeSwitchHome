@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Hotsale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
@@ -20,6 +19,7 @@ use App\Reservation;
 use App\Price;
 use App\PremiumRequest;
 use App\Bid;
+use App\Hotsale;
 
 class AdminController extends Controller
 {
@@ -61,6 +61,10 @@ class AdminController extends Controller
                 'activeAuctionCount' => Auction::active()->count(),
                 'inscriptionCount' => InscriptionForFutureAuction::all()->count(),
                 'bidCount' => Bid::all()->count(),
+                'activeHotSaleCount' => HotSale::all()->count(),
+                'auctionReservationCount' => Reservation::where('modo_reserva', '0')->count(),
+                'premiumReservationCount' => Reservation::where('modo_reserva', '1')->count(),
+                'hotSalesReservationCount' => Reservation::where('modo_reserva', '2')->count(),
             ]
         );
     }

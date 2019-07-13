@@ -113,6 +113,52 @@
                                 </div>
                             </div>
                         </div>
+                        <h3>Reservas</h3>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">Reservas por Subastas</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">{{ $auctionReservationCount }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">Reservas Premium</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">{{ $premiumReservationCount }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">Reservas por HotSale</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">{{ $hotSalesReservationCount }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>HotSales</h3>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">Activas</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">{{ $activeHotSaleCount }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <h3>Subastas</h3>
                         <div class="row">
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
