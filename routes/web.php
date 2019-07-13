@@ -208,7 +208,6 @@ Route::post('/createComment', 'CommentController@store')->name("comments.store")
 |--------------------------------------------------------------------------
 */
 Route::get('/week', 'WeekController@index');
-Route::get('/hotsale-week', 'WeekController@showHotsaleWeek');
 Route::get('locations/get', 'WeekController@getLocations');
 Route::get('/weeks', 'WeekController@showGrid');
 Route::post('/week', 'WeekController@book')->name('week.premiumBooking');
@@ -221,4 +220,5 @@ Route::post('/week', 'WeekController@book')->name('week.premiumBooking');
 */
 
 Route::get('/hotsales', 'HotsaleController@index');
+Route::get('/hotsale-week', 'HotsaleController@showHotsaleWeek');
 //

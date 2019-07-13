@@ -23,7 +23,7 @@
             </h2>
         </div>
         <div class="card-body-a">
-            <a href={{ url('hotsale-week?id=').$h->week->id }} class="link-a"> Ver semana</a>
+            <a href={{ url('hotsale-week?id=').$h->id }} class="link-a"> Ver semana</a>
             <span class="ion-ios-arrow-forward" style="color: white"></span>
         </div>
         <div class="card-footer-a">

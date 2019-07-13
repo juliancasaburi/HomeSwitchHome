@@ -44,31 +44,6 @@ class WeekController extends Controller
         ]);
     }
 
-    public function showHotsaleWeek(Request $request)
-    {
-        $week = Week::where('id', $request->id)
-            ->withTrashed()
-            ->get()
-            ->first();
-
-        // If property id doesn't exist, show 404 error page
-        if(empty($week)) {
-            abort(404);
-        }
-
-        $reservation = Reservation::where('semana_id', $week->id)->get();
-        $enabled = ((!$week->trashed()) && ($reservation->isEmpty()));
-
-        $hotsales = Hotsale::where('deleted_at', null)->get();
-
-        // Return view
-        return view('hotsaleWeek', [
-            'week' => $week,
-            'enabled' => $enabled,
-            'hotsales' => $hotsales,
-        ]);
-    }
-
     /**
      * Show the week grid.
      *
