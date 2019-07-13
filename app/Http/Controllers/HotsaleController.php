@@ -12,8 +12,7 @@ class HotsaleController extends Controller
 {
     public function index(){
 
-        $hotsales = Hotsale::whereNull('deleted_at')
-            ->paginate(2);
+        $hotsales = Hotsale::paginate(2);
 
         return view('hotsales', [
             'hotsales' => $hotsales,
