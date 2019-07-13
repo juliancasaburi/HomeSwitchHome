@@ -21,10 +21,10 @@
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('admin/dashboard/property-list') }}">Ver todas</a>
+                                    <a class="nav-link" href={{ url('admin/dashboard/create-property') }}>Crear Propiedad</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ url('admin/dashboard/create-property') }}>Crear Propiedad</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/property-list') }}">Ver listado</a>
                                 </li>
                             </ul>
                         </div>
@@ -34,33 +34,46 @@
                         <div id="submenu-3" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('admin/dashboard/week-list') }}">Ver todas</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/create-week') }}">Crear Semana</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('admin/dashboard/hotsale-list') }}">Ver hotsale</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/week-list') }}">Ver listado</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-signature"></i>Inscripciones</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-fire"></i>HotSales</a>
                         <div id="submenu-4" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link"  href="{{ url('admin/dashboard/inscription-list') }}">Ver todas</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/hotsale-list') }}">Ver listado</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-gavel"></i></i>Subastas</a>
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-signature"></i>Inscripciones</a>
                         <div id="submenu-5" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('admin/dashboard/auction-list') }}">Ver todas</a>
+                                    <a class="nav-link"  href="{{ url('admin/dashboard/inscription-list') }}">Ver listado</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-gavel"></i></i>Subastas</a>
+                        <div id="submenu-6" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('admin/dashboard/create-auction') }}">Crear Subasta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Modificar Subasta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('admin/dashboard/auction-list') }}">Ver listado</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/active-auctions') }}">Ver subastas activas</a>
@@ -68,31 +81,25 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('admin/dashboard/auctions-inscription-period') }}">Ver subastas en período de inscripción</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('admin/dashboard/create-auction') }}">Crear Subasta</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Modificar Subasta</a>
-                                </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-calendar-check"></i>Reservas</a>
-                        <div id="submenu-6" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-calendar-check"></i>Reservas</a>
+                        <div id="submenu-7" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('admin/dashboard/reservation-list') }}">Ver todas</a>
+                                    <a class="nav-link" href="{{ url('admin/dashboard/reservation-list') }}">Ver listado</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-users"></i>Usuarios</a>
-                        <div id="submenu-7" class="collapse submenu" style="">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-users"></i>Usuarios</a>
+                        <div id="submenu-8" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href={{ url('admin/dashboard/user-list') }}>Ver todos</a>
+                                    <a class="nav-link" href={{ url('admin/dashboard/user-list') }}>Ver listado</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href={{ url('admin/dashboard/premium-request-list') }}>Ver Solicitudes Premium</a>

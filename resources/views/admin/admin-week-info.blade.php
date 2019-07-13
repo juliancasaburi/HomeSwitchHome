@@ -36,7 +36,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Semanas</a></li>
-                                        <li class="breadcrumb-item"><a href={{url('admin/dashboard/weeks-list')}} class="breadcrumb-link">Ver todas</a></li>
+                                        <li class="breadcrumb-item"><a href={{url('admin/dashboard/weeks-list')}} class="breadcrumb-link">Ver listado</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Detalles de la semana</li>
                                     </ol>
                                 </nav>

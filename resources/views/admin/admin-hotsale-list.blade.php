@@ -31,8 +31,8 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Hotsale</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Ver todos</li>
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">HotSales</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Ver listado</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -48,7 +48,7 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Listado de Hotsale</h5>
+                            <h5 class="card-header">Listado de HotSales</h5>
                             <div class="card-body">
                                 <input class="form-control" id="tableSearch" type="text" placeholder="Buscar">
                                 <br>

@@ -32,7 +32,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Inscripciones</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Ver todas</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Ver listado</li>
                                     </ol>
                                 </nav>
                             </div>

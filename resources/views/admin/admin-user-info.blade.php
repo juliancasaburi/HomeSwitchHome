@@ -32,7 +32,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href={{ url('admin/dashboard') }} class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Usuarios</a></li>
-                                        <li class="breadcrumb-item"><a href={{ url('admin/dashboard/user-list') }} class="breadcrumb-link">Ver todos</a></li>
+                                        <li class="breadcrumb-item"><a href={{ url('admin/dashboard/user-list') }} class="breadcrumb-link">Ver listado</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Detalles del usuario</li>
                                     </ol>
                                 </nav>
