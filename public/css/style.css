@@ -126,6 +126,19 @@ hr {
   filter: drop-shadow(5px 5px 5px #222222);
 }
 
+.textareaContainer {
+    display: block;
+    border: 3px solid #38c;
+    padding: 10px;
+}
+
+textarea {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+}
+
 /*------/ Items  /------*/
 .star {
   color: #ECC400;

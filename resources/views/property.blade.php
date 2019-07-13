@@ -222,7 +222,9 @@
                             <form method="post" action="{{ route('comments.store'   ) }}">
                                 @csrf
                                 <div class="form-group">
-                                    <textarea placeholder="Comenta algo..." name="texto"></textarea>
+                                    <label class="textareaContainer">
+                                        <textarea placeholder="Comenta algo..." name="texto"></textarea>
+                                    </label>
                                     <input type="hidden" name="propiedad_id" value="{{ $property->id }}" />
                                 </div>
                                 <div class="form-group">

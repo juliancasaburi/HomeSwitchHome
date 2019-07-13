@@ -11,7 +11,9 @@
     <form method="post" action="{{ route('comments.store') }}">
         @csrf
         <div class="form-group">
-            <textarea name="texto" placeholder="Contesta algo..."> </textarea>
+            <label class="textareaContainer">
+                <textarea name="texto" placeholder="Contesta algo..."> </textarea>
+            </label>
             <input type="hidden" name="propiedad_id" value="{{ $propiedad_id }}" />
             <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
         </div>
