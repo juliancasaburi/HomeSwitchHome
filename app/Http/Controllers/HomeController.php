@@ -19,7 +19,6 @@ class HomeController extends Controller
     public function index()
     {
         $properties = Property::orderBy('created_at', 'desc')->take(3)->get();
-        $hotsales = Hotsale::where('deleted_at', null)->get();
 
         $weeks = array();
         foreach($properties as $p){
@@ -28,11 +27,13 @@ class HomeController extends Controller
             })->count());
         }
 
+        $availableHotsales = Hotsale::all()->count();
+
          // Return view
         return view('index', [
             'properties' => $properties,
             'weeks' => $weeks,
-            'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
             'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
             'premiumPlusPrice' => Price::price('Plus usuario premium'),
         ]);

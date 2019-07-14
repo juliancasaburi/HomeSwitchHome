@@ -14,9 +14,10 @@ class HotsaleController extends Controller
     public function index(){
 
         $hotsales = Hotsale::paginate(2);
-
+        $availableHotsales = Hotsale::all()->count();
         return view('hotsales', [
             'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
         ]);
     }
 
@@ -42,13 +43,15 @@ class HotsaleController extends Controller
         $reservation = Reservation::where('semana_id', $week->id)->get();
         $enabled = ((!$week->trashed()) && ($reservation->isEmpty()));
 
-        $hotsales = Hotsale::where('deleted_at', null)->get();
+        $hotsales = Hotsale::all();
+        $availableHotsales = Hotsale::all()->count();
 
         // Return view
         return view('hotsaleWeek', [
             'week' => $week,
             'enabled' => $enabled,
             'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
         ]);
     }
 }

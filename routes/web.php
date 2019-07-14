@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\Input;
 Route::get('/', 'HomeController@index');
 
 Route::get('contact', function () {
-    $hotsales = Hotsale::where('deleted_at', null)->get();
-    return view('contact')->with('hotsales', $hotsales);
+    $availableHotsales = Hotsale::all()->count();
+    return view('contact')->with('availableHotsales', $availableHotsales);
 });
 
 Route::post('contact', function (Request $request) {
@@ -49,8 +49,8 @@ Route::post('contact', function (Request $request) {
 })->name('contact.sendMail');
 
 Route::get('faq', function () {
-    $hotsales = Hotsale::where('deleted_at', null)->get();
-    return view('faq')->with('hotsales', $hotsales);
+    $availableHotsales = Hotsale::all()->count();
+    return view('faq')->with('availableHotsales', $availableHotsales);
 });
 
 //--------- User Auth ---------

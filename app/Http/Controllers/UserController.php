@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hotsale;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\CurrentPassword;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,9 @@ class UserController extends Controller
             ->concat($bids)
             ->concat($reservations);
         $activities = $activities->sortByDesc('created_at');
+
+        $availableHotsales = Hotsale::all()->count();
+
         return view('user.user-profile')->with(
             [
                 'propertyURL' => self::PROPERTYURL,
@@ -56,13 +60,15 @@ class UserController extends Controller
                 'activities' => $activities,
                 'premiumPlusPrice' => Price::price('Plus usuario premium'),
                 'normalUserSubscriptionPrice' => Price::price('Subscripcion usuario normal'),
+                'availableHotsales' => $availableHotsales,
             ]
         );
     }
 
     public function showEmailForm()
     {
-        return view('user.user-email-form');
+        $availableHotsales = Hotsale::all()->count();
+        return view('user.user-email-form')->with('availableHotsales', $availableHotsales);
     }
 
     public function modifyEmail()
@@ -86,12 +92,14 @@ class UserController extends Controller
     }
 
     public function showPasswordForm(){
-        return view('user.user-password-form');
+        $availableHotsales = Hotsale::all()->count();
+        return view('user.user-password-form')->with('availableHotsales', $availableHotsales);
     }
 
     public function showModifyDataForm()
     {
-        return view('user.user-modify-data');
+        $availableHotsales = Hotsale::all()->count();
+        return view('user.user-modify-data')->with('availableHotsales', $availableHotsales);
     }
 
     public function modifyData()
@@ -152,11 +160,13 @@ class UserController extends Controller
     public function showInscriptionList()
     {
         $inscriptions = Auth::user()->auctionInscriptions;
+        $availableHotsales = Hotsale::all()->count();
         return view('user.user-inscription-list',
             [
                 'inscriptions' => $inscriptions,
                 'auctionURL' => self::AUCTIONURL,
                 'propertyURL' => self::PROPERTYURL,
+                'availableHotsales' => $availableHotsales,
             ]
         );
     }
@@ -164,11 +174,14 @@ class UserController extends Controller
     public function showBidList()
     {
         $bids = Auth::user()->bids;
+        $availableHotsales = Hotsale::all()->count();
+
         return view('user.user-bid-list',
             [
                 'bids' => $bids,
                 'auctionURL' => self::AUCTIONURL,
                 'propertyURL' => self::PROPERTYURL,
+                'availableHotsales' => $availableHotsales,
             ]
         );
     }
@@ -177,12 +190,15 @@ class UserController extends Controller
 
         $reservations = Auth::user()->reservationsWithTrashed;
 
+        $availableHotsales = Hotsale::all()->count();
+
         return view('user.user-reservation-list',
             [
                 'reservations' => $reservations,
                 'auctionURL' => self::AUCTIONURL,
                 'propertyURL' => self::PROPERTYURL,
                 'weekURL' => self::WEEKURL,
+                'availableHotsales' => $availableHotsales,
             ]
         );
     }
@@ -249,7 +265,8 @@ class UserController extends Controller
     }
 
     public function showModifyPaymentDetailsForm(){
-        return view('user.user-modify-payment-details');
+        $availableHotsales = Hotsale::all()->count();
+        return view('user.user-modify-payment-details')->with('availableHotsales', $availableHotsales);
     }
 
     public function modifyPaymentDetails(){

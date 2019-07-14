@@ -34,13 +34,13 @@ class WeekController extends Controller
         $reservation = Reservation::where('semana_id', $week->id)->get();
         $enabled = ((!$week->trashed()) && ($reservation->isEmpty()) && ($week->activeAuction->inscripcion_inicio <= Carbon::now()) && ($week->activeAuction->inscripcion_fin > Carbon::now()));
 
-        $hotsales = Hotsale::where('deleted_at', null)->get();
+        $availableHotsales = Hotsale::all()->count();
 
         // Return view
         return view('week', [
             'week' => $week,
             'enabled' => $enabled,
-            'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
         ]);
     }
 
@@ -81,11 +81,11 @@ class WeekController extends Controller
             ->paginate(2)
             ->withPath('?searchLocalidad='.$request->searchLocalidad.'&semanaDesde='.$fromWeekStart.'&semanaHasta='.$toWeekStart);
 
-        $hotsales = Hotsale::where('deleted_at', null)->get();
+        $availableHotsales = Hotsale::all()->count();
 
         return view('weeks', [
             'weeks' => $weeks,
-            'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
         ]);
     }
 

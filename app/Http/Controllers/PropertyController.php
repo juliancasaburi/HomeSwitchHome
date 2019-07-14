@@ -32,13 +32,13 @@ class PropertyController extends Controller
             ->where('inscripcion_fin', '>', Carbon::now());
         })->get();
 
-        $hotsales = Hotsale::where('deleted_at', null)->get();
+        $availableHotsales = Hotsale::all()->count();
 
          // Return view
         return view('property', [
             'property' => $property,
             'weeks' => $weeks,
-            'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
         ]);
     }
 
@@ -59,12 +59,12 @@ class PropertyController extends Controller
             })->count());
         }
 
-        $hotsales = Hotsale::where('deleted_at', null)->get();
+        $availableHotsales = Hotsale::all()->count();
 
         return view('properties', [
             'properties' => $properties,
             'weeks' => $weeks,
-            'hotsales' => $hotsales,
+            'availableHotsales' => $availableHotsales,
         ]);
     }
 }

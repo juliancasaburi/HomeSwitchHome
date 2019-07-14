@@ -51,8 +51,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('properties') }}"><span class="fas fa-hotel fa-fw fa-sm color-b"></span>Propiedades</a>
                 </li>
-                @if(isset($hotsales))
-                    @if(!$hotsales->isEmpty())
+                @if(isset($availableHotsales))
+                    @if($availableHotsales > 0)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/hotsales') }}"><span class="fas fa-fire fa-fw fa-sm hotsaleIcon"></span>Hotsales</a>
                         </li>
