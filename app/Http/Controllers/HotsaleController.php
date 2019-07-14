@@ -41,7 +41,7 @@ class HotsaleController extends Controller
             ->first();
 
         $reservation = Reservation::where('semana_id', $week->id)->get();
-        $enabled = ((!$week->trashed()) && ($reservation->isEmpty()));
+        $enabled = ((!$week->trashed()) && (!$hotsale->trashed()) && ($reservation->isEmpty()));
 
         $availableHotsales = Hotsale::all()->count();
 

@@ -25,9 +25,7 @@ class Reservation extends Model
 
     public function cancel(){
         $this->user->sendReservationCancelledNotification($this->week->property->nombre, $this->week->fecha, $this->valor_reservado);
-        $this->user->creditos += 1;
-        $this->user->saldo += $this->valor_reservado;
-        $this->user->save();
+        $this->week->restore();
         $this->delete();
     }
 
