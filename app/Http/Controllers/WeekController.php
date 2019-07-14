@@ -78,8 +78,19 @@ class WeekController extends Controller
             ->whereHas('activeAuction', function ($query) {
                 $query->where('inscripcion_inicio', '<=', Carbon::now())->where('inscripcion_fin', '>', Carbon::now());
             })
-            ->paginate(2)
-            ->withPath('?searchLocalidad='.$request->searchLocalidad.'&semanaDesde='.$fromWeekStart.'&semanaHasta='.$toWeekStart);
+            ->get();
+
+        $hotsaleWeeks = Week::whereHas('property', function($q) use($request) {
+            $q->where('localidad', $request->searchLocalidad);
+        })
+            ->whereBetween('fecha', [$fromWeekStart, $toWeekStart ])
+            ->whereNull('deleted_at')
+            ->whereHas('activeHotsale', function ($query) {
+                $query->where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>', Carbon::now());
+            })
+            ->get();
+
+        $weeks = $weeks->merge($hotsaleWeeks);
 
         $availableHotsales = Hotsale::all()->count();
 

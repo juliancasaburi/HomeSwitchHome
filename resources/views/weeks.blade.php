@@ -44,19 +44,20 @@
                     </div>
                 </div>
                 @foreach($weeks as $w)
+                    @if($w->activeAuction)
                     <div class="col-md-4">
                         <div class="card-box-a border card-shadow mt-5 mb-5">
                             @include('partials/weekItem')
                         </div>
                     </div>
+                    @else
+                        <div class="col-md-4">
+                            <div class="card-box-a border-hotsale card-shadow mt-5 mb-5">
+                                @include('partials/hotsaleItem', ['h' => $w->activeHotSale])
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <nav class="pagination-a">
-                        {{ $weeks->links() }}
-                    </nav>
-                </div>
             </div>
         </div>
     </section>
