@@ -147,20 +147,19 @@ class WeekController extends Controller
     public function hotsaleBook(Request $request)
     {
         $user = Auth::user();
-
         $week = Week::find($request->weekID);
 
-        if(($week) && (!$week->reservation)){
+        if(($week) && ($week->activeHotsale) && (!$week->reservation) && ($user->saldo >= $week->activeHotsale->precio)) {
 
-            $week->hotsaleBookTo($user, $request->valorReservado);
+            $week->hotsaleBookTo($user);
 
-                // Redirect back and show a success message
-                return redirect()
-                    ->back()
-                    ->with('alert-success', 'Adquirida');
+            // Redirect back and show a success message
+            return redirect()
+                ->back()
+                ->with('alert-success', 'Adquirida');
 
-            }
-        else{
+        }
+        else {
             // Redirect back and show an error message
             return redirect()
                 ->back()
