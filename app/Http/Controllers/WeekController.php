@@ -101,7 +101,7 @@ class WeekController extends Controller
     }
 
     public function getLocations() {
-        $locations = DB::table('semanas')
+        $locationsAuctions = DB::table('semanas')
             ->join('subastas', function ($join) {
                 $join->on('semanas.id', '=', 'subastas.semana_id')
                     ->whereNull('subastas.deleted_at');
@@ -112,6 +112,20 @@ class WeekController extends Controller
             })
             ->whereNull('semanas.deleted_at')
             ->get();
+
+        $locationsHotSale = DB::table('semanas')
+            ->join('hotsales', function ($join) {
+                $join->on('semanas.id', '=', 'hotsales.semana_id')
+                    ->whereNull('hotsales.deleted_at');
+            })
+            ->join('propiedades', function ($join) {
+                $join->on('semanas.propiedad_id', '=', 'propiedades.id')
+                    ->whereNull('propiedades.deleted_at');
+            })
+            ->whereNull('semanas.deleted_at')
+            ->get();
+
+        $locations = $locationsAuctions->merge($locationsHotSale);
 
         $locations = $locations->unique('localidad');
 
