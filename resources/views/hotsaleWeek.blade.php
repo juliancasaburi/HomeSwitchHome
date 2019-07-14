@@ -127,11 +127,14 @@
                         </div>
                         <div align="center">
                             <h4 class="text-hotsale">Precio: ${{ $hotsale->precio }}</h4>
-                            @if(Auth::user()->saldo >= $hotsale->precio && $enabled)
+                            @if($enabled && (Auth::user()->saldo >= $hotsale->precio) && (Auth::user()->creditos >= 1))
                                 <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
-                            @elseif($enabled)
+                            @elseif($enabled && (Auth::user()->saldo < $hotsale->precio))
                                 <button class="btn-outline-primary" disabled><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                                 <h6 class="text-danger mt-2">No tienes saldo suficiente</h6>
+                            @elseif($enabled && (Auth::user()->creditos == 0))
+                                <button class="btn-outline-primary" disabled><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
+                                <h6 class="text-danger mt-2">No tienes créditos</h6>
                             @else
                                 <button class="btn-outline-primary" disabled><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                                 <h6 class="text-warning mt-2">La semana ya ha sido reservada.</h6>

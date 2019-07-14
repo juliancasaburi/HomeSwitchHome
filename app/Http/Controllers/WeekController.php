@@ -160,7 +160,7 @@ class WeekController extends Controller
         $user = Auth::user();
         $week = Week::find($request->weekID);
 
-        if(($week) && ($week->activeHotsale) && (!$week->reservation) && ($user->saldo >= $week->activeHotsale->precio)) {
+        if(($week) && ($week->activeHotsale) && (!$week->reservation) && ($user->creditos >= 1) && ($user->saldo >= $week->activeHotsale->precio)) {
 
             $week->hotsaleBookTo($user);
 

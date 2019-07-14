@@ -73,6 +73,7 @@ class Week extends Model
         $reservation->save();
 
         $user->saldo -= $this->activeHotsale->precio;
+        $user->creditos -= 1;
         $user->save();
 
         $this->activeHotsale->delete();
