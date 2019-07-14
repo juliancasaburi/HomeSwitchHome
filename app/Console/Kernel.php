@@ -29,6 +29,9 @@ class Kernel extends ConsoleKernel
 
         // Close concluded auctions
         $schedule->command('auctions:close')->everyMinute();
+
+        // Close concluded hotsales
+        $schedule->command('hotsales:close')->everyMinute();
     }
 
     /**

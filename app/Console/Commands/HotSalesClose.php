@@ -2,23 +2,23 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Auction;
+use App\Hotsale;
 
-class AuctionsClose extends Command
+class HotSalesClose extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'auctions:close';
+    protected $signature = 'hotsales:close';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Close Auctions';
+    protected $description = 'Close HotSales';
 
     /**
      * Create a new command instance.
@@ -37,9 +37,9 @@ class AuctionsClose extends Command
      */
     public function handle()
     {
-        $auctionsToBeClosed = Auction::toBeClosed()->get();
-        foreach ($auctionsToBeClosed as $a) {
-            $a->close();
+        $hotsalesToBeClosed = HotSale::toBeClosed()->get();
+        foreach ($hotsalesToBeClosed as $h) {
+            $h->delete();
         }
     }
 }
