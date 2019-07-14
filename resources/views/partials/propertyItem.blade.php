@@ -20,13 +20,13 @@
             <div class="price-box d-flex">
                 @switch($weeks)
                     @case(0)
-                    <span class="alert-danger">0 subastas en inscripción</span>
+                    <span class="alert-danger">0 subastas en inscripción <i class="fas fa-gavel fa-fw fa-xs"></i></span>
                     @break
                     @case(1)
-                    <span class="alert-info">1 subasta en inscripción</span>
+                    <span class="alert-info">1 subasta en inscripción <i class="fas fa-gavel fa-fw fa-xs auctionIcon"></i></span>
                     @break
                     @default
-                    <span class="alert-info">{{ $weeks }} subastas en inscripción</span>
+                    <span class="alert-info">{{ $weeks }} subastas en inscripción <i class="fas fa-gavel fa-fw fa-xs auctionIcon"></i></span>
                     @break
                 @endswitch
             </div>

@@ -14,6 +14,7 @@
             <h2 class="stars-text">{{ $w->property->estrellas }}<i class="fas fa-star fa-fw star"></i></h2>
         </div>
     </div>
+    <p class="text-muted"><i class="fas fa-gavel fa-fw fa-4x color-d"></i>Subasta</p>
     <div class="card-overlay-a-content">
         <div class="card-header-a">
             <h2 class="card-title-a">
