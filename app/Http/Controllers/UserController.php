@@ -237,7 +237,7 @@ class UserController extends Controller
             $reservation->cancel();
 
             // Refund credits & balance
-            $user->credits += 1;
+            $user->creditos += 1;
 
             $date = Carbon::now();
             if($date->diffInMonths($reservation->week->fecha) >= 1){ // Refund Balance
