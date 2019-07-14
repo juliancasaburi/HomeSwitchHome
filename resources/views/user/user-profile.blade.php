@@ -107,7 +107,7 @@
 										<h5 class="mb-0">{{ Auth::user()->creditos }}</h5>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
-										<i data-toggle="tooltip" data-placement="bottom" title="Se renovarán el {{Auth::user()->created_at->addYear()}}" class="fas fa-coins fa-fw fa-sm text-info"></i>
+										<i data-toggle="tooltip" data-placement="bottom" title="Se renovarán el {{Auth::user()->created_at->addYear()}}" class="fas fa-coins fa-fw fa-2x text-info"></i>
 									</div>
 								</div>
 							</div>
@@ -127,7 +127,7 @@
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
 										<span data-toggle="modal" data-target="#premiumModal">
-											<a href="#" data-toggle="tooltip" data-placement="bottom" title="Cargar Saldo"><i class="fas fa-wallet fa-fw fa-sm text-primary"></i></a>
+											<a href="#" data-toggle="tooltip" data-placement="bottom" title="Cargar Saldo"><i class="fas fa-wallet fa-fw fa-2x text-primary"></i></a>
 										</span>
 									</div>
 								</div>
