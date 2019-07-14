@@ -126,6 +126,7 @@
                             <h3 class="title-d">Semana en hotsale</h3>
                         </div>
                         <div align="center">
+                            <h4 class="text-hotsale">Precio: ${{ $hotsale->precio }}</h4>
                             @if(Auth::user()->saldo >= $hotsale->precio && $enabled)
                                 <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                             @elseif($enabled)
