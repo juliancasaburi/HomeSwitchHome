@@ -127,12 +127,12 @@
                         </div>
                         <div align="center">
                             @if(Auth::user()->creditos >=1 && $enabled)
-                                <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adquirir</button>
+                                <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                             @elseif($enabled)
-                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adquirir</button>
+                                <button class="btn-outline-primary" disabled><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                                 <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
                             @else
-                                <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adquirir</button>
+                                <button class="btn-outline-primary" disabled><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                                 <h6 class="text-warning mt-2">La semana ya ha sido reservada.</h6>
                             @endif
                         </div>
@@ -143,5 +143,46 @@
     </div>
     <!--/ Property Single End /-->
 
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Quieres adquirir esta semana?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" id="bookingForm" action="{{ route('week.hotsaleBooking') }}" role="form" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="weekID"></label>
+                                <input type="text" name="weekID" class="form-control" id="weekID" value="{{ $week->id }}" hidden>
+                                <input type="text" name="valorReservado" class="form-control" id="valorReservado" value="{{ $hotsale->precio }}" hidden>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" id="submitBooking" class="btn btn-primary" onclick="bookingForm_submit()">Adquirir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Booking Modal -->
+
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+@endsection
+
+@section('js')
+    <script> // Booking Modal
+        // Button
+        function bookingForm_submit() {
+            $('#bookingModal').modal('hide');
+            document.getElementById("bookingForm").submit();
+        }
+    </script>
 @endsection

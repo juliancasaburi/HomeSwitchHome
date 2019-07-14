@@ -63,4 +63,21 @@ class Week extends Model
         $user->sendReservationObtainedNotification($this->property->nombre, $this->fecha);
         $auction->sendBookedByAPremiumUserNotifications();
     }
+
+    public function hotsaleBookTo(User $user, float $valorReservado){
+        $reservation = new Reservation();
+        $reservation->semana_id = $this->id;
+        $reservation->usuario_id = $user->id;
+        $reservation->valor_reservado = $valorReservado;
+        $reservation->modo_reserva = 2;
+        $reservation->save();
+
+        $user->creditos -= 1;
+        $user->save();
+
+        $this->activeHotsale->delete();
+        $this->delete();
+
+        $user->sendHotsaleReservationObtainedNotification($this->property->nombre, $this->fecha);
+    }
 }

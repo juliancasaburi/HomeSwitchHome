@@ -17,6 +17,7 @@ use App\Notifications\PremiumRejected;
 use App\Notifications\AuctionCancelled;
 use App\Notifications\BookedByAPremiumUser;
 use App\Notifications\ReservationObtained;
+use App\Notifications\HotsaleReservationObtained;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -117,6 +118,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendReservationObtainedNotification($propertyName, $date)
     {
         $this->notify(new ReservationObtained($propertyName, $date));
+    }
+
+    public function sendHotsaleReservationObtainedNotification($propertyName, $date)
+    {
+        $this->notify(new HotsaleReservationObtained($propertyName, $date));
     }
 
     /**

@@ -143,4 +143,28 @@ class WeekController extends Controller
             }
         }
     }
+
+    public function hotsaleBook(Request $request)
+    {
+        $user = Auth::user();
+
+        $week = Week::find($request->weekID);
+
+        if(($week) && (!$week->reservation)){
+
+            $week->hotsaleBookTo($user, $request->valorReservado);
+
+                // Redirect back and show a success message
+                return redirect()
+                    ->back()
+                    ->with('alert-success', 'Adquirida');
+
+            }
+        else{
+            // Redirect back and show an error message
+            return redirect()
+                ->back()
+                ->with('alert-error', 'Operacion inválida');
+        }
+    }
 }

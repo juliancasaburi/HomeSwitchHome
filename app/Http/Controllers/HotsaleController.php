@@ -51,6 +51,7 @@ class HotsaleController extends Controller
             'week' => $week,
             'enabled' => $enabled,
             'hotsales' => $hotsales,
+            'hotsale' => $hotsale,
             'availableHotsales' => $availableHotsales,
         ]);
     }
