@@ -164,7 +164,7 @@
 													@case('InscriptionForFutureAuction')
 													<td>
 														<p>
-															<i class="fas fa-signature fa-fw fa-sm inscriptionIcon"></i>
+															<i class="fas fa-signature fa-fw fa-2x inscriptionIcon"></i>
 															Inscripción
 														</p>
 													</td>
@@ -172,7 +172,7 @@
 													@case('Bid')
 													<td>
 														<p>
-															<i class="fas fa-gavel fa-fw fa-sm auctionIcon"></i>
+															<i class="fas fa-gavel fa-fw fa-2x auctionIcon"></i>
 															Puja
 														</p>
 													</td>
@@ -180,7 +180,7 @@
 													@case('Reservation')
 													<td>
 														<p>
-															<i class="fas fa-calendar-check fa-fw fa-sm reservationIcon"></i>
+															<i class="fas fa-calendar-check fa-fw fa-2x reservationIcon"></i>
 															Reserva
 														</p>
 														@switch($a->modo_reserva)
