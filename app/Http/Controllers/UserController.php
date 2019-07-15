@@ -188,7 +188,7 @@ class UserController extends Controller
 
     public function showReservations(){
 
-        $reservations = Auth::user()->reservationsWithTrashed;
+        $reservations = Auth::user()->reservationsWithTrashed->sortByDesc('created_at');
 
         $availableHotsales = Hotsale::all()->count();
 
