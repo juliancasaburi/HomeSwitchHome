@@ -69,7 +69,7 @@
                                         @foreach ($inscriptions as $i)
                                             <tr>
                                                 <td>{{ $loop->index }}</td>
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $i->id }}</td>
                                                 <td><a href={{ url($propertyURL.$i->property->id) }}>{{ $i->property->nombre }}</a></td>
                                                 <td>{{ $i->auction->week->fecha }} al {{ date('Y-m-d', strtotime($i->auction->week->fecha. ' + 7 days'))}} </td>
                                                 <td><a href={{ url($auctionURL.$i->auction->id) }}>Ver subasta</a></td>
