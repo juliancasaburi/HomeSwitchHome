@@ -58,10 +58,11 @@
                                         <tr>
                                             <th>Índice</th>
                                             <th>ID</th>
+                                            <th>Estado</th>
                                             <th>Propiedad</th>
                                             <th>Fecha</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>Modificar</th>
+                                            <th>Eliminar</th>
                                             <th></th>
                                         </tr>
                                         </thead>
@@ -74,6 +75,17 @@
                                                         <br>
                                                         <i class="fas fa-search-plus"></i>+INFO</a>
                                                 </td>
+                                                <td>
+                                                    @if($w->activeAuction)
+                                                        <i class="fas fa-gavel fa-fw fa-sm"></i>Subasta Creada
+                                                        <p class="text-muted">{{$w->activeAuction->state()}}</p>
+                                                    @elseif($w->activeHotSale)
+                                                        <i class="fas fa-fire fa-fw fa-sm"></i>HotSale Creada
+                                                        <p class="text-muted">{{$w->activeHotsale->state()}}</p>
+                                                    @else
+                                                        <p>Libre</p>
+                                                    @endif
+                                                </td>
                                                 <td><a href="{{ url($propertyURL.$w->property->id) }}">{{ $w->property->nombre}}</a></td>
                                                 <td>{{ $w->fecha }}</td>
                                                 <td><button class="btn-outline-primary pt-2 pb-2" id="modifyWeekButton" data-toggle="modal" data-target="#modifyWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
@@ -83,14 +95,10 @@
                                                         <i class="fas fa-trash"></i>Eliminar
                                                     </button></td>
                                                 <td>
-                                                    @if(!$w->activeAuction && !$w->reservation)
-                                                        @if($w->activeHotsale)
-                                                            <span class="badge badge-warning">Publicada en Hotsale</span>
-                                                        @else
-                                                            <button class="btn-outline-brand pt-2 pb-2" id="hotsaleWeekButton" data-toggle="modal" data-target="#hotsaleWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
-                                                                <i class="fas fa-fire"></i>Publicar en Hotsale
-                                                            </button>
-                                                        @endif
+                                                    @if(!$w->activeAuction && !$w->activeHotsale && !$w->reservation)
+                                                        <button class="btn-outline-brand pt-2 pb-2" id="hotsaleWeekButton" data-toggle="modal" data-target="#hotsaleWeekModal" data-wid="{{ $w->id }}" data-wdate="{{ $w->fecha }}" data-wpropertyname="{{$w->property->nombre}}">
+                                                            <i class="fas fa-fire"></i>Publicar en Hotsale
+                                                        </button>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -100,10 +108,11 @@
                                         <tr>
                                             <th>Índice</th>
                                             <th>ID</th>
+                                            <th>Estado</th>
                                             <th>Propiedad</th>
                                             <th>Fecha</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>Modificar</th>
+                                            <th>Eliminar</th>
                                             <th></th>
                                         </tr>
                                         </tfoot>
@@ -139,8 +148,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
-                    <!-- ============================================================== -->
+                @endif
+                <!-- ============================================================== -->
                     <!-- End Alerts  -->
                     <!-- ============================================================== -->
                 </div>

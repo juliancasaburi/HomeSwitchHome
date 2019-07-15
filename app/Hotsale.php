@@ -30,4 +30,13 @@ class Hotsale extends Model
     {
         return $query->where('fin', '<=', Carbon::now());
     }
+
+    public function state(){
+        if(Carbon::now() < $this->fecha_inicio){
+            return "Esperando fecha de inicio";
+        }
+        else{
+            return "Disponible para compra";
+        }
+    }
 }
