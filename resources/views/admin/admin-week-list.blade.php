@@ -189,13 +189,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="modifyWeekPropertyText">aa</p>
-                    <p id="modifyWeekDateText">aa</p>
+                    <p id="modifyWeekPropertyText">-</p>
+                    <p id="modifyWeekDateText">-</p>
                     <form id="modifyWeekForm" action="{{ route('admin.modifyWeek') }}" role="form" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" id="id" value="">
                         Fecha nueva (Debe ser lunes):
-                        <input type="date" id="fecha_nueva" name="fecha_nueva">
+                        <input type="date" class="form-control" id="fecha_nueva" name="fecha_nueva">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -212,23 +212,23 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="hotsaleWeekModalLabel">Desea publicar la semana en Hotsales?</h5>
+                    <h5 class="modal-title" id="hotsaleWeekModalLabel">Desea publicar la semana en HotSale?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="hotsaleWeekPropertyText">aa</p>
-                    <p id="hotsaleWeekDateText">aa</p>
+                    <p id="hotsaleWeekPropertyText">-</p>
+                    <p id="hotsaleWeekDateText">-</p>
                     <form id="hotsaleWeekForm" action="{{ route('admin.hotsaleWeek') }}" role="form" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" id="id" value="">
                         <label for="fecha_inicio">Fecha inicio: </label>
-                        <input type="date" id="fecha_inicio" name="fecha_inicio"><br>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio"><br>
                         <label for="fecha_fin" style="margin-top: 15px">Fecha fin: </label>
-                        <input type="date" id="fecha_fin" name="fecha_fin"><br>
+                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin"><br>
                         <label for="precio" style="margin-top: 15px">Precio: </label>
-                        <input type="number" id="precio" name="precio">
+                        <input type="number" class="form-control" id="precio" name="precio" step="0.01">
                     </form>
                 </div>
                 <div class="modal-footer">
