@@ -82,7 +82,7 @@
                                                 </th>
                                                 <th>
                                                     <button class="btn-outline-warning pt-2 pb-2" id="deleteHotsaleButton" data-toggle="modal" data-target="#deleteHotsaleModal" data-hid="{{ $h->id }}" data-hdate="{{ $h->week->fecha }}" data-hpropertyname="{{$h->week->property->nombre}}">
-                                                        <i class="fas fa-undo"></i> Sacar de hotsale
+                                                        <i class="fas fa-undo"></i> Quitar de HotSale
                                                     </button>
                                                 </th>
                                             </tr>
