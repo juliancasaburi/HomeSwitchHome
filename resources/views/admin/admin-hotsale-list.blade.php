@@ -176,7 +176,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modifyHotsaleModalLabel">Modificar hotsale</h5>
+                    <h5 class="modal-title" id="modifyHotsaleModalLabel">Modificar HotSale</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -188,11 +188,11 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" id="id" value="">
                         <label for="fecha_inicio">Fecha inicio: </label>
-                        <input type="date" id="fecha_inicio" name="fecha_inicio"><br>
+                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio"><br>
                         <label for="fecha_fin" style="margin-top: 15px">Fecha fin: </label>
-                        <input type="date" id="fecha_fin" name="fecha_fin"><br>
+                        <input type="date" class="form-control"  id="fecha_fin" name="fecha_fin"><br>
                         <label for="precio" style="margin-top: 15px">Precio: </label>
-                        <input type="number" id="precio" name="precio">
+                        <input type="number" class="form-control" id="precio" name="precio" step="0.01">
                     </form>
                 </div>
                 <div class="modal-footer">
