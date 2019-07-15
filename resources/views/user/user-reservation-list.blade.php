@@ -80,7 +80,7 @@
                                                         <td><button class="btn-outline-primary" disabled><i class="fas fa-times-circle text-gray"></i>Plazo expirado</button></td>
                                                     @endif
                                                 @endif
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $r->id }}</td>
                                                 <td><a href={{ url($propertyURL.$r->week->property->id) }}>{{ $r->week->property->nombre }}</a></td>
                                                 <td><a href={{ url($weekURL.$r->week->id) }}>{{ $r->week->fecha }} al {{ date('Y-m-d', strtotime($r->week->fecha. ' + 7 days'))}} </a></td>
                                                 <td>{{ $r->created_at }}</td>
