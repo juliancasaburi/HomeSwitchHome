@@ -159,7 +159,7 @@ class UserController extends Controller
 
     public function showInscriptionList()
     {
-        $inscriptions = Auth::user()->auctionInscriptions;
+        $inscriptions = Auth::user()->auctionInscriptions->sortByDesc('created_at');
         $availableHotsales = Hotsale::all()->count();
         return view('user.user-inscription-list',
             [
@@ -173,7 +173,7 @@ class UserController extends Controller
 
     public function showBidList()
     {
-        $bids = Auth::user()->bids;
+        $bids = Auth::user()->bids->sortByDesc('created_at');
         $availableHotsales = Hotsale::all()->count();
 
         return view('user.user-bid-list',
