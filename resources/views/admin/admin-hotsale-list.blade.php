@@ -42,6 +42,33 @@
                 <!-- ============================================================== -->
                 <!-- end pageheader  -->
                 <!-- ============================================================== -->
+
+                <!-- ============================================================== -->
+                <!-- Alerts  -->
+                <!-- ============================================================== -->
+                @if(session()->has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ session()->get('alert-success') }}
+                    </div>
+                @elseif (session()->has('alert-danger'))
+                    <div class="alert alert-danger alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ session()->get('alert-danger') }}
+                    </div>
+                @elseif ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <!-- ============================================================== -->
+                <!-- End Alerts  -->
+                <!-- ============================================================== -->
                 <div class="row">
                     <!-- ============================================================== -->
                     <!-- users table  -->
@@ -107,34 +134,6 @@
                     </div>
                     <!-- ============================================================== -->
                     <!-- end users table  -->
-                    <!-- ============================================================== -->
-                </div>
-                <div>
-                    <!-- ============================================================== -->
-                    <!-- Alerts  -->
-                    <!-- ============================================================== -->
-                    @if(session()->has('alert-success'))
-                        <div class="alert alert-success alert-dismissible" data-expires="10000">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            {{ session()->get('alert-success') }}
-                        </div>
-                    @elseif (session()->has('alert-danger'))
-                        <div class="alert alert-danger alert-dismissible" data-expires="10000">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            {{ session()->get('alert-danger') }}
-                        </div>
-                    @elseif ($errors->any())
-                        <div class="alert alert-danger alert-dismissible">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <!-- ============================================================== -->
-                    <!-- End Alerts  -->
                     <!-- ============================================================== -->
                 </div>
             </div>

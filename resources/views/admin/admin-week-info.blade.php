@@ -47,6 +47,25 @@
                 <!-- ============================================================== -->
                 <!-- end pageheader  -->
                 <!-- ============================================================== -->
+
+                <!-- ============================================================== -->
+                <!-- Alerts  -->
+                <!-- ============================================================== -->
+                @if(session()->has('alert-success'))
+                    <div class="alert alert-success alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ session()->get('alert-success') }}
+                    </div>
+                @elseif (session()->has('alert-danger'))
+                    <div class="alert alert-danger alert-dismissible" data-expires="10000">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        {{ session()->get('alert-danger') }}
+                    </div>
+                @endif
+                <!-- ============================================================== -->
+                <!-- End Alerts  -->
+                <!-- ============================================================== -->
+
                 <div class="row">
                     <!-- ============================================================== -->
                     <!-- week table  -->
@@ -124,25 +143,6 @@
                     <!-- ============================================================== -->
                     <!-- end week table  -->
                     <!-- ============================================================== -->
-                    <div>
-                        <!-- ============================================================== -->
-                        <!-- Alerts  -->
-                        <!-- ============================================================== -->
-                        @if(session()->has('alert-success'))
-                            <div class="alert alert-success alert-dismissible" data-expires="10000">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                {{ session()->get('alert-success') }}
-                            </div>
-                        @elseif (session()->has('alert-danger'))
-                            <div class="alert alert-danger alert-dismissible" data-expires="10000">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                {{ session()->get('alert-danger') }}
-                            </div>
-                    @endif
-                    <!-- ============================================================== -->
-                        <!-- End Alerts  -->
-                        <!-- ============================================================== -->
-                    </div>
                 </div>
             </div>
         </div>

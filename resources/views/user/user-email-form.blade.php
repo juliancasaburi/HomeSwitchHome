@@ -41,30 +41,6 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- content  -->
-                    <!-- ============================================================== -->
-                    <form class="needs-validation" action="{{ route('user.modifyEmail') }}" role="form" method="POST">
-                        <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group">
-                            <label for="actualEmail">Email actual</label>
-                            <input type="text" class="form-control" id="actualEmail" placeholder="{{ Auth::user()->email }}" readonly="readonly">
-                            <input type="hidden" name="actualEmail" value={{ Auth::user()->id }}>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="inputPassword" autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNewEmail">Nuevo email</label>
-                            <input type="text" class="form-control" name="newEmail" id="inputNewEmail" autocomplete="off">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Cambiar email</button>
-                    </form>
-                    <!-- ============================================================== -->
-                    <!-- end content  -->
-                    <!-- ============================================================== -->
 
                     <!-- ============================================================== -->
                     <!-- Alerts  -->
@@ -91,6 +67,31 @@
                     @endif
                     <!-- ============================================================== -->
                     <!-- End Alerts  -->
+                    <!-- ============================================================== -->
+
+                    <!-- ============================================================== -->
+                    <!-- content  -->
+                    <!-- ============================================================== -->
+                    <form class="needs-validation" action="{{ route('user.modifyEmail') }}" role="form" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <label for="actualEmail">Email actual</label>
+                            <input type="text" class="form-control" id="actualEmail" placeholder="{{ Auth::user()->email }}" readonly="readonly">
+                            <input type="hidden" name="actualEmail" value={{ Auth::user()->id }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Contraseña</label>
+                            <input type="password" class="form-control" name="password" id="inputPassword" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNewEmail">Nuevo email</label>
+                            <input type="text" class="form-control" name="newEmail" id="inputNewEmail" autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cambiar email</button>
+                    </form>
+                    <!-- ============================================================== -->
+                    <!-- end content  -->
                     <!-- ============================================================== -->
                 </div>
             </div>

@@ -404,13 +404,13 @@ class AdminController extends Controller
 
         if($auction->inscripcion_inicio > Carbon::now()){
             $auction->forceDelete();
-            return back()->with('alert-success', 'Subasta eliminada!');
+            return redirect()->back()->with('alert-success', 'Subasta eliminada!');
         }
         else if($auction->inicio >= Carbon::now()){
-            return back()->with('alert-danger', 'La subasta ya ha comenzado!');
+            return redirect()->back()->withErrors(['comenzo' => ['La subasta ya ha comenzado!']]);
         }
 
-        return back()->with('alert-success', 'Subasta cancelada!');
+        return redirect()->back()->with('alert-success', 'Subasta cancelada!');
     }
 
     public function modifyWeek(Request $request){
