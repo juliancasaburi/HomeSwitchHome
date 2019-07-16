@@ -209,7 +209,7 @@
 													<div class="m-r-10 text-center">
 														<a href={{ url($propertyURL).$a->property->id }}><img src="{{$a->property->image_path}}" alt="user" width="256"></a>
 													</div>
-													<span class="cd-timeline__date">{{$a->created_at}}</span>
+													<span class="cd-timeline__date text-dark">{{$a->created_at}}</span>
 												</div>
 												<!-- cd-timeline__content -->
 											</div>
