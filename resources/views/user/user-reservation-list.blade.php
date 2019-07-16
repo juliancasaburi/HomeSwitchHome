@@ -50,6 +50,7 @@
                 @if(session()->has('alert-success'))
                     <div class="alert alert-success alert-dismissible" data-expires="10000">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <h4 class="alert-heading">{{ session()->get('alert-success-title') }}</h4>
                         {{ session()->get('alert-success') }}
                     </div>
                 @elseif (session()->has('alert-warning'))
