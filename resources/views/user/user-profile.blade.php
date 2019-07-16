@@ -57,8 +57,8 @@
 								@endforeach
 							</ul>
 						</div>
-					@endif
-					<!-- ============================================================== -->
+				@endif
+				<!-- ============================================================== -->
 					<!-- content  -->
 					<!-- ============================================================== -->
 					<!-- ============================================================== -->
@@ -158,103 +158,71 @@
 						<!-- ============================================================== -->
 						<!-- ============================================================== -->
 					</div>
-					<div class="row">
-						<!-- ============================================================== -->
-						<!-- user activity  -->
-						<!-- ============================================================== -->
-						<div class="col-lg-12">
-							<div class="section-block">
-								<h3 class="section-title">Mi Historial</h3>
-							</div>
-							<div class="card">
-								<div class="campaign-table table-responsive">
-									<table class="table">
-										<thead>
-										<tr class="border-0">
-											<th class="border-0">Actividad</th>
-											<th class="border-0">Propiedad</th>
-											<th class="border-0">Semana</th>
-											<th class="border-0">Fecha</th>
-										</tr>
-										</thead>
-										<tbody>
-										@foreach($activities as $a)
-											<tr>
-												@switch(class_basename($a))
-													@case('InscriptionForFutureAuction')
-													<td>
-														<p>
-															<i class="fas fa-signature fa-fw fa-2x inscriptionIcon"></i>
-															Inscripción
-														</p>
-													</td>
-													@break
-													@case('Bid')
-													<td>
-														<p>
-															<i class="fas fa-gavel fa-fw fa-2x auctionIcon"></i>
-															Puja
-														</p>
-													</td>
-													@break
-													@case('Reservation')
-													<td>
-														<p>
-															<i class="fas fa-calendar-check fa-fw fa-2x reservationIcon"></i>
-															Reserva
-														</p>
-														@switch($a->modo_reserva)
-															@case(0)
-															<p class="text-muted">
-																<i class="fas fa-gavel fa-fw fa-xs"></i>
-																Modo: Subasta
-															</p>
-															@break
-															@case(1)
-															<p class="text-muted">
-																<i class="fas fa-ticket-alt fa-fw fa-xs"></i>
-																Modo: Premium
-															</p>
-															@break
-															@case(2)
-															<p class="text-muted">
-																<i class="fas fa-fire fa-fw fa-xs"></i>
-																Modo: HotSale
-															</p>
-															@break
-														@endswitch
-													</td>
+					<!-- ============================================================== -->
+					<!-- user activity timeline  -->
+					<!-- ============================================================== -->
+					<section class="cd-timeline js-cd-timeline">
+						<div class="cd-timeline__container">
+							@foreach($activities as $a)
+								<div class="cd-timeline__block js-cd-block">
+									@switch(class_basename($a))
+										@case('InscriptionForFutureAuction')
+										<div class="cd-timeline__i inscriptionBackground js-cd-img">
+											<i class="fas fa-signature fa-fw fa-2x inscriptionIcon"></i>
+										</div>
+										<!-- cd-timeline__i -->
+										<div class="cd-timeline__content js-cd-content">
+											<h3>Inscripción</h3>
+											@break
+											@case('Bid')
+											<div class="cd-timeline__i auctionBackground js-cd-img">
+												<i class="fas fa-gavel fa-fw fa-2x auctionIcon"></i>
+											</div>
+											<!-- cd-timeline__i -->
+											<div class="cd-timeline__content js-cd-content">
+												<h3>Puja</h3>
+												<h5 class="text-muted"><i class="fas fa-gavel fa-fw fa-1x"></i>Monto: ${{ $a->monto }}</h5>
+												@break
+												@case('Reservation')
+												<div class="cd-timeline__i reservationBackground js-cd-img">
+													<i class="fas fa-calendar-check fa-fw fa-2x reservationIcon"></i>
+												</div>
+												<!-- cd-timeline__i -->
+												<div class="cd-timeline__content js-cd-content">
+													<h3>Reserva</h3>
+													@switch($a->modo_reserva)
+														@case(0)
+														<h5 class="text-muted"><i class="fas fa-gavel fa-fw fa-1x"></i>Modo: Subasta</h5>
+														@break
+														@case(1)
+														<h5 class="text-muted"><i class="fas fa-ticket-alt fa-fw fa-1x"></i>Modo: Premium</h5>
+														@break
+														@case(2)
+														<h5 class="text-muted"><i class="fas fa-fire fa-fw fa-1x"></i>Modo: HotSale</h5>
 													@break
 												@endswitch
-												<td>
-													<div class="m-r-10">
-														<a href={{ url($propertyURL).$a->property->id }}><img src="{{$a->property->image_path}}" alt="user" width="128"></a>
-														<a href={{ url($propertyURL).$a->property->id }}>{{$a->property->nombre}}</a>
+												@break
+												@endswitch
+												<!-- cd-timeline__i -->
+													<a href={{ url($propertyURL).$a->property->id }}><span><h3 class="text-center">{{$a->property->nombre}}</h3></span></a>
+													<a href={{ url($weekURL).$a->week->id }}><span><h5 class="text-muted text-center">{{$a->week->fecha}}</h5></span></a>
+													<div class="m-r-10 text-center">
+														<a href={{ url($propertyURL).$a->property->id }}><img src="{{$a->property->image_path}}" alt="user" width="256"></a>
 													</div>
-												</td>
-												<td>
-													<a href={{ url($weekURL).$a->week->id }}>{{$a->week->fecha}}</a>
-												</td>
-												<td>{{$a->created_at}}</td>
-											</tr>
-										@endforeach
-										</tbody>
-										<tfoot>
-										<tr class="border-0">
-											<th class="border-0">Actividad</th>
-											<th class="border-0">Propiedad</th>
-											<th class="border-0">Semana</th>
-											<th class="border-0">Fecha</th>
-										</tr>
-										</tfoot>
-									</table>
+													<span class="cd-timeline__date">{{$a->created_at}}</span>
+												</div>
+												<!-- cd-timeline__content -->
+											</div>
+											<!-- cd-timeline__block -->
+											@endforeach
+										</div>
 								</div>
-							</div>
 						</div>
-						<!-- ============================================================== -->
-						<!-- end user activity -->
-						<!-- ============================================================== -->
-					</div>
+					</section>
+					<!-- cd-timeline -->
+					<!-- ============================================================== -->
+					<!-- end user activity timeline  -->
+					<!-- ============================================================== -->
 					<!-- ============================================================== -->
 					<!-- end content -->
 					<!-- ============================================================== -->
@@ -285,5 +253,7 @@
 	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
 	<!-- dashboard js -->
 	<script src="{{ asset('lib/charts/charts-bundle/chartjs.js') }}"></script>
+	<!-- timeline js -->
+	<script src="{{ asset('lib/timeline/js/main.js') }}"></script>
 
 @endsection

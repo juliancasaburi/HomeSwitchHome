@@ -4608,7 +4608,7 @@ Vertical Timeline - by CodyHouse.co
     }
 }
 
-.cd-timeline__img {
+.cd-timeline__i {
     position: absolute;
     top: 0;
     left: 0;
@@ -4619,31 +4619,41 @@ Vertical Timeline - by CodyHouse.co
     box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 
-.cd-timeline__img img {
+.cd-timeline__i i {
     display: block;
-    width: 24px;
-    height: 24px;
     position: relative;
     left: 50%;
     top: 50%;
-    margin-left: -12px;
+    margin-left: -18px;
     margin-top: -12px;
 }
 
-.cd-timeline__img.cd-timeline__img--picture {
+.cd-timeline__i.auctionBackground{
+    background: #00BAFF !important;
+}
+
+.cd-timeline__i.inscriptionBackground{
+    background: #CD32CD !important;
+}
+
+.cd-timeline__i.reservationBackground{
+    background: #FF4400 !important;
+}
+
+.cd-timeline__i.cd-timeline__i--picture {
     background: #2ec551;
 }
 
-.cd-timeline__img.cd-timeline__img--movie {
+.cd-timeline__i.cd-timeline__i--movie {
     background: #ef172c;
 }
 
-.cd-timeline__img.cd-timeline__img--location {
+.cd-timeline__i.cd-timeline__i--location {
     background: #ffc108;
 }
 
 @media only screen and (min-width:1170px) {
-    .cd-timeline__img {
+    .cd-timeline__i {
         width: 60px;
         height: 60px;
         left: 50%;
@@ -4652,7 +4662,7 @@ Vertical Timeline - by CodyHouse.co
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
     }
-    .cd-timeline__img.cd-timeline__img--bounce-in {
+    .cd-timeline__i.cd-timeline__i--bounce-in {
         visibility: visible;
         -webkit-animation: cd-bounce-1 0.6s;
         animation: cd-bounce-1 0.6s;
