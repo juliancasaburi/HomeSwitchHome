@@ -22,17 +22,14 @@
 
     <!-- Libraries CSS Files -->
     <link href="{{ asset('lib/fonts/circular-std/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
     <link href="{{ asset('lib/fontawesome/css/all.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('lib/charts/morris-bundle/morris.css') }}">
-    <link rel="stylesheet" href="{{ asset('lib/fonts/material-design-iconic-font/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('lib/charts/chartist-bundle/chartist.css') }}">
-    <link rel="stylesheet" href="{{ asset('libcharts/c3charts/c3.css') }}">
-    <link rel="stylesheet" href="{{ asset('lib/fonts/flag-icon-css/flag-icon.min.css') }}">
 
     <link href="{{ asset('css/themes.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/widgets.min.css') }}" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link rel="stylesheet" href="{{ asset('css/style-dashboard.css') }}">
 
     <!-- Additional per-page css -->
     @yield('css')
@@ -48,7 +45,6 @@
 
 </div>
 
-{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script --}}
 <!-- JavaScript Libraries -->
 <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('lib/jquery/jquery-migrate.min.js') }}"></script>
@@ -59,16 +55,6 @@
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <!-- slimscroll js -->
 <script src="{{ asset('lib/slimscroll/jquery.slimscroll.js') }}"></script>
-<!-- sparkline js -->
-<script src="{{ asset('lib/charts/sparkline/jquery.sparkline.js') }}"></script>
-<!-- morris js -->
-<script src="{{ asset('lib/charts/morris-bundle/raphael.min.js') }}"></script>
-<script src="{{ asset('lib/charts/morris-bundle/morris.js') }}"></script>
-<!-- chart c3 js -->
-<script src="{{ asset('lib/charts/c3charts/c3.min.js') }}"></script>
-<script src="{{ asset('lib/charts/c3charts/d3-5.4.0.min.js') }}"></script>
-<script src="{{ asset('lib/charts/c3charts/C3chartjs.js') }}"></script>
-<script src="{{ asset('assets/libs/js/dashboard-ecommerce.js') }}"></script>
 
 <script>
     // Result alert
