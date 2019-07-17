@@ -51,7 +51,7 @@ class UserController extends Controller
             ->concat($reservations);
         $activities = $activities->sortByDesc('created_at');
 
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
 
         return view('user.user-profile')->with(
             [
@@ -67,7 +67,7 @@ class UserController extends Controller
 
     public function showEmailForm()
     {
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
         return view('user.user-email-form')->with('availableHotsales', $availableHotsales);
     }
 
@@ -92,13 +92,13 @@ class UserController extends Controller
     }
 
     public function showPasswordForm(){
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
         return view('user.user-password-form')->with('availableHotsales', $availableHotsales);
     }
 
     public function showModifyDataForm()
     {
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
         return view('user.user-modify-data')->with('availableHotsales', $availableHotsales);
     }
 
@@ -160,7 +160,7 @@ class UserController extends Controller
     public function showInscriptionList()
     {
         $inscriptions = Auth::user()->auctionInscriptions->sortByDesc('created_at');
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
         return view('user.user-inscription-list',
             [
                 'inscriptions' => $inscriptions,
@@ -174,7 +174,7 @@ class UserController extends Controller
     public function showBidList()
     {
         $bids = Auth::user()->bids->sortByDesc('created_at');
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
 
         return view('user.user-bid-list',
             [
@@ -190,7 +190,7 @@ class UserController extends Controller
 
         $reservations = Auth::user()->reservationsWithTrashed->sortByDesc('created_at');
 
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
 
         return view('user.user-reservation-list',
             [
@@ -265,7 +265,7 @@ class UserController extends Controller
     }
 
     public function showModifyPaymentDetailsForm(){
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
         return view('user.user-modify-payment-details')->with('availableHotsales', $availableHotsales);
     }
 

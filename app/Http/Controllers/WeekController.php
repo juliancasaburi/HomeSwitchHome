@@ -34,7 +34,7 @@ class WeekController extends Controller
         $reservation = Reservation::where('semana_id', $week->id)->get();
         $enabled = ((!$week->trashed()) && ($reservation->isEmpty()) && ($week->activeAuction->inscripcion_inicio <= Carbon::now()) && ($week->activeAuction->inscripcion_fin > Carbon::now()));
 
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
 
         // Return view
         return view('week', [
@@ -92,7 +92,7 @@ class WeekController extends Controller
 
         $weeks = $weeks->merge($hotsaleWeeks);
 
-        $availableHotsales = Hotsale::all()->count();
+        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
 
         return view('weeks', [
             'weeks' => $weeks,
