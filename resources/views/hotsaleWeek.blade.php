@@ -128,7 +128,7 @@
                         <div align="center">
                             <h4 class="text-hotsale">Precio: ${{ $hotsale->precio }}</h4>
                             @if($enabled && (Auth::user()->saldo >= $hotsale->precio) && (Auth::user()->creditos >= 1))
-                                <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
+                                <button class="btn-primary fa-3x" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                             @elseif($enabled && (Auth::user()->saldo < $hotsale->precio))
                                 <button class="btn-outline-primary" disabled><i class="fas fa-fire fa-fw fa-sm hotsaleIcon"></i>Adquirir</button>
                                 <h6 class="text-danger mt-2">No tienes saldo suficiente</h6>

@@ -66,7 +66,7 @@
 								@endif
 								<br>
 								@auth
-									<button class="btn btn-b mt-5" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
+									<button class="btn btn-b mt-5 fa-2x" data-toggle="modal" data-target="#bidModal" data-uid="{{ Auth::id() }}">Pujar</button>
 								@endauth
 							@else
 								@if(!$auction->trashed() && $auction->inscripcion_inicio <= \Carbon\Carbon::now() && $auction->inscripcion_fin > \Carbon\Carbon::now())
@@ -78,7 +78,7 @@
 										@if($auction->whereHas('inscriptions', function ($query){
                                             $query->where('usuario_id', '=', Auth::user()->id);
                                             })->count() == 0 &&  Auth::user()->creditos > 0)
-											<td><button class="btn-primary mt-5" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $auction->id }}" data-wd="{{ $auction->week->fecha }}" data-aup="{{ $auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
+											<td><button class="btn-primary mt-5 fa-2x" data-toggle="modal" data-target="#inscriptionModal" data-uid="{{ Auth::user()->id }}" data-auid="{{ $auction->id }}" data-wd="{{ $auction->week->fecha }}" data-aup="{{ $auction->precio_inicial }}"><i class="fas fa-signature"></i>Inscribirse</button></td>
 										@elseif(Auth::user()->creditos == 0)
 											<td><button class="btn-secondary mt-5" disabled><i class="fas fa-signature"></i>Sin créditos</button></td>
 										@else

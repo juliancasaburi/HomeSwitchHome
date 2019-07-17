@@ -126,12 +126,12 @@
                             <h3 class="title-d">Premium</h3>
                         </div>
                         @if($enabled && Auth::user()->creditos >=1)
-                            <button class="btn-primary" data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                            <button class="btn-primary fa-2x    " data-toggle="modal" data-target="#bookingModal"><i class="fas fa-ticket-alt"></i>Adjudicar</button>
                         @elseif($enabled)
                             <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
                             <h6 class="text-danger mt-2">No tienes créditos disponibles</h6>
                         @else
-                            <button class="btn-outline-primary" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
+                            <button class="btn-outline-primary fa-2x" disabled><i class="fas fa-ticket-alt"></i>Adjudicar</button>
                             <h6 class="text-warning mt-2">El período de adjudicación ha finalizado o ya ha sido reservada.</h6>
                         @endif
                     </div>
