@@ -146,7 +146,7 @@
 										<h5 class="mb-0">{{ Auth::user()->saldo }}</h5>
 									</div>
 									<div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
-										<span data-toggle="modal" data-target="#premiumModal">
+										<span data-toggle="modal" data-target="#balanceModal">
 											<a href="#" data-toggle="tooltip" data-placement="bottom" title="Cargar Saldo"><i class="fas fa-wallet fa-fw fa-2x text-primary"></i></a>
 										</span>
 									</div>
