@@ -139,7 +139,13 @@ textarea {
   border-width: 0;
 }
 
-.border {
+.border-property {
+  border-style: solid !important;
+  border-width: 5px !important;
+  border-color: #2a004f !important;
+}
+
+.border-auction {
   border-style: solid !important;
   border-width: 5px !important;
   border-color: #00A1E1 !important;

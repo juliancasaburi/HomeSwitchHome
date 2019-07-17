@@ -46,7 +46,7 @@
                 @foreach($weeks as $w)
                     @if($w->activeAuction)
                     <div class="col-md-4">
-                        <div class="card-box-a border card-shadow mt-5 mb-5">
+                        <div class="card-box-a border-auction card-shadow mt-5 mb-5">
                             @include('partials/weekItem')
                         </div>
                     </div>

@@ -46,7 +46,7 @@
                 </div>
                 @foreach($properties as $p)
                     <div class="col-md-4">
-                        <div class="card-box-a border card-shadow">
+                        <div class="card-box-a border-property card-shadow">
                             @include('partials/propertyItem', ['weeks' => $weeks[$loop->index]])
                         </div>
                     </div>
