@@ -32,7 +32,7 @@ class PropertyController extends Controller
             ->where('inscripcion_fin', '>', Carbon::now());
         })->get();
 
-        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+        $availableHotsales = Hotsale::active()->count();
 
          // Return view
         return view('property', [
@@ -59,7 +59,7 @@ class PropertyController extends Controller
             })->count());
         }
 
-        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+        $availableHotsales = Hotsale::active()->count();
 
         return view('properties', [
             'properties' => $properties,

@@ -14,7 +14,7 @@ class HotsaleController extends Controller
     public function index(){
 
         $hotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->paginate(2);
-        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+        $availableHotsales = Hotsale::active()->count();
         return view('hotsales', [
             'hotsales' => $hotsales,
             'availableHotsales' => $availableHotsales,
@@ -43,7 +43,7 @@ class HotsaleController extends Controller
         $reservation = Reservation::where('semana_id', $week->id)->get();
         $enabled = ((!$week->trashed()) && (!$hotsale->trashed()) && ($reservation->isEmpty()));
 
-        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+        $availableHotsales = Hotsale::active()->count();
 
         // Return view
         return view('hotsaleWeek', [

@@ -27,7 +27,7 @@ class HomeController extends Controller
             })->count());
         }
 
-        $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+        $availableHotsales = Hotsale::active()->count();
 
          // Return view
         return view('index', [

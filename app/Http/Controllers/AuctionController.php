@@ -30,10 +30,13 @@ class AuctionController extends Controller
 
         $enabled = ($auction->inicio <= Carbon::now() && $auction->fin > Carbon::now() && !$auction->trashed());
 
+        $availableHotsales = Hotsale::active()->count();
+
         if(Auth::user()) {
             $myLatestBid = $auction->latestBidForUser(Auth::user())->first();
             // Return view
             return view('auction', [
+                'availableHotsales' => $availableHotsales,
                 'auction' => $auction,
                 'latestBid' => $latestBid,
                 'enabled' => $enabled,
@@ -43,6 +46,7 @@ class AuctionController extends Controller
 
         // Return view
         return view('auction', [
+            'availableHotsales' => $availableHotsales,
             'auction' => $auction,
             'latestBid' => $latestBid,
             'enabled' => $enabled,

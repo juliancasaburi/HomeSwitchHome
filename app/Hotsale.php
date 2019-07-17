@@ -31,6 +31,19 @@ class Hotsale extends Model
         return $query->where('fin', '<=', Carbon::now());
     }
 
+    /**
+     * Scope a query to only include active hotsales.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query
+            ->where('fecha_inicio', '<=', Carbon::now())
+            ->where('fecha_fin', '>=', Carbon::now());
+    }
+
     public function state(){
         if(Carbon::now() < $this->fecha_inicio){
             return "Esperando fecha de inicio";

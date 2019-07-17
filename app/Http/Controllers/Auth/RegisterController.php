@@ -12,6 +12,7 @@ use App\User;
 use App\Card;
 use App\Property;
 use App\Week;
+use App\Hotsale;
 
 class RegisterController extends Controller
 {
@@ -48,7 +49,12 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $normalUserSubscriptionPrice = Price::price('Subscripción usuario normal');
-        $registerView = view('auth.register', ['normalUserSubscriptionPrice' => $normalUserSubscriptionPrice]);
+        $availableHotsales = Hotsale::active()->count();
+
+        $registerView = view('auth.register', [
+            'normalUserSubscriptionPrice' => $normalUserSubscriptionPrice,
+            'availableHotsales' => $availableHotsales,
+        ]);
 
         $property = Property::inRandomOrder()->first();
         if($property){

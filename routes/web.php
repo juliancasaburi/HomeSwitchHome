@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Input;
 Route::get('/', 'HomeController@index');
 
 Route::get('contact', function () {
-    $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+    $availableHotsales = Hotsale::active()->count();
     return view('contact')->with('availableHotsales', $availableHotsales);
 });
 
@@ -50,7 +50,7 @@ Route::post('contact', function (Request $request) {
 })->name('contact.sendMail');
 
 Route::get('faq', function () {
-    $availableHotsales = Hotsale::where('fecha_inicio', '<=', Carbon::now())->where('fecha_fin', '>=', Carbon::now())->count();
+    $availableHotsales = Hotsale::active()->count();
     return view('faq')->with('availableHotsales', $availableHotsales);
 });
 

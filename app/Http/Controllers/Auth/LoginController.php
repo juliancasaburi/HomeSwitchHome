@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Carbon\Carbon;
 use App\Property;
 use App\Week;
+use App\Hotsale;
 
 class LoginController extends Controller
 {
@@ -42,9 +43,14 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $loginView = view('auth.login');
+        $availableHotsales = Hotsale::active()->count();
+
+        $loginView = view('auth.login',  [
+            'availableHotsales' => $availableHotsales,
+        ]);
 
         $property = Property::inRandomOrder()->first();
+
         if($property){
             $weeks = $property->weeks()->whereHas('activeAuction', function ($query) {
                 $query->whereNull('deleted_at')->where('inscripcion_fin', '>=', Carbon::now());
