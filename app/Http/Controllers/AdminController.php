@@ -594,4 +594,29 @@ class AdminController extends Controller
           // show a success flash message
           return redirect()->back()->with('alert-success', 'Modificacion exitosa!');
     }
+
+    public function modifyAuction(Request $request){
+          $validator = Validator::make($request->all(), [
+              'id' => 'required',
+              'precio_inicial' => 'required', 'numeric',
+              'inicio_inscripcion' => 'required' , 'datetime-local',
+              'fin_inscripcion' => 'required' , 'datetime-local',
+              'inicio' => 'required' , 'datetime-local',
+              'fin' => 'required' , 'datetime-local',
+          ]);
+
+          if($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+          }
+          $auction = Auction::find($request->id);
+          $auction->precio_inicial = $request->precio_inicial;
+          $auction->inscripcion_inicio = $request->inicio_inscripcion;
+          $auction->inscripcion_fin = $request->fin_inscripcion;
+          $auction->inicio = $request->inicio;
+          $auction->fin = $request->fin;
+          $auction->save();
+          // show a success flash message
+          return redirect()->back()->with('alert-success', 'Modificacion exitosa!');
+    }
+
 }

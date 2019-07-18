@@ -174,6 +174,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/dashboard/delete-hotsale', 'AdminController@deleteHotsale')->name('admin.deleteHotsale');
     Route::post('/dashboard/modify-hotsale', 'AdminController@modifyHotsale')->name('admin.modifyHotsale');
     Route::post('/dashboard/modify-property', 'AdminController@modifyProperty')->name('admin.modifyProperty');
+    Route::post('/dashboard/modify-auction', 'AdminController@modifyAuction')->name('admin.modifyAuction');
     //--------------------------------------------
 });
 

@@ -104,8 +104,13 @@
                                                     <td>Cancelada</td>
                                                 @elseif($a->hasFinished())
                                                     <td>Finalizada</td>
+                                                @elseif($a->inscripcion_inicio > \Carbon\Carbon::now())
+                                                    <td><button class="btn-outline-primary pt-2 pb-2" id="modifyAuctionButton" data-toggle="modal" data-target="#modifyAuctionModal" data-aid="{{ $a->id }}" data-apropertyname="{{$a->week->property->nombre}}" data-adate="{{$a->week->fecha}}" data-aprecio="{{ $a->precio_inical }}" data-ainscriptionb="{{ $a->inscripcion_inicio }}" data-ainscriptione="{{ $a->inscripcion_fin }}" data-abegin="{{ $a->inicio }}" data-aend="{{ $a->fin }}">
+                                                    <i class="fas fa-calendar-alt"></i>Modificar</button></td>
                                                 @else
-                                                    <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Administrar</button></td>
+                                                    <td>
+                                                      <button class="btn-outline-primary disabled"><i class="fas fa-tools"></i>Administrar</button>
+                                                    </td>
                                                 @endif
                                                 <td><a href="{{ url('auction?id=').$a->id }}">{{ $a->id }}</a></td>
                                                 <td><a href="{{ url('week?id=').$a->week->id }}">ID: {{ $a->week->id }} "{{ $a->week->fecha }}"</a></td>
@@ -194,6 +199,44 @@
         </div>
     </div>
     <!-- End Delete property Modal -->
+
+    <!-- Modify Auction Modal -->
+    <div class="modal fade" id="modifyAuctionModal" tabindex="-1" role="dialog" aria-labelledby="modifyAuctionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifyAuctionModalLabel">Modificar Subasta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modifyPropertyText">aa</p>
+                    <p id="modifyWeekText">aa</p>
+                    <form id="modifyAuctionForm" action="{{ route('admin.modifyAuction') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                        <label for="precio_inicial">Precio inicial: </label>
+                        <input type="number" class="form-control" id="precio_inicial" name="precio_inicial" step="0.01"><br>
+                        <label for="inicio_inscripcion">Fecha inicio de inscripción: </label>
+                        <input type="datetime-local" class="form-control" id="inicio_inscripcion" name="inicio_inscripcion"><br>
+                        <label for="fin_inscripcion">Fecha fin de inscripción: </label>
+                        <input type="datetime-local" class="form-control" id="fin_inscripcion" name="fin_inscripcion"><br>
+                        <label for="inicio">Fecha inicio: </label>
+                        <input type="datetime-local" class="form-control" id="inicio" name="inicio"><br>
+                        <label for="fin">Fecha fin: </label>
+                        <input type="datetime-local" class="form-control" id="fin" name="fin"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="modifyAuctionForm_submit()">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modify Auction Modal -->
+
 @endsection
 
 @section('js')
@@ -224,6 +267,35 @@
             $('#deleteAuctionButton').attr('disabled','disabled');
             $('#deleteAuctionModal').modal('hide');
             document.getElementById("deleteAuctionForm").submit();
+        }
+    </script>
+
+    <script> // Modify Auction
+        // Fill auction id for request
+        $('#modifyAuctionModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('aid');
+            var property = $(event.relatedTarget).data('apropertyname');
+            var date = $(event.relatedTarget).data('adate');
+            var precio_inicial = $(event.relatedTarget).data('aprecio');
+            var inicio_inscripcion = $(event.relatedTarget).data('ainscriptionb');
+            var fin_inscripcion = $(event.relatedTarget).data('ainscriptione');
+            var inicio = $(event.relatedTarget).data('abegin');
+            var fin = $(event.relatedTarget).data('aend');
+            document.getElementById("modifyPropertyText").innerHTML = "Propiedad: ".concat(property);
+            document.getElementById("modifyWeekText").innerHTML = "Semana: ".concat(date);
+            document.getElementById("precio_inicial").value = precio_inicial;
+            document.getElementById("inicio_inscripcion").value = inicio_inscripcion;
+            document.getElementById("fin_inscripcion").value = fin_inscripcion;
+            document.getElementById("inicio").value = inicio;
+            document.getElementById("fin").value = fin;
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
+
+        // Submit form
+        function modifyAuctionForm_submit(){
+            $('#modifyAuctionButton').attr('disabled','disabled');
+            $('#modifyAuctionModal').modal('hide');
+            document.getElementById("modifyAuctionForm").submit();
         }
     </script>
 @endsection
