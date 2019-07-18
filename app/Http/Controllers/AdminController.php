@@ -558,4 +558,40 @@ class AdminController extends Controller
 
         return redirect()->back()->with('alert-success', 'Modificacion exitosa!');
     }
+
+    public function modifyProperty(Request $request){
+          $validator = Validator::make($request->all(), [
+              'id' => 'required',
+              'nombre' => 'required' , 'text',
+              'pais' => 'required' , 'text',
+              'provincia' => 'required' , 'text',
+              'localidad' => 'required' , 'text',
+              'calle' => 'required' , 'text',
+              'numero' => 'required' , 'numeric',
+              'estrellas' => 'required' , 'numeric',
+              'capacidad' => 'required' , 'numeric',
+              'habitaciones' => 'required' , 'numeric',
+              'baños' => 'required' , 'numeric',
+              'garages' => 'required' , 'numeric',
+          ]);
+
+          if($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+          }
+          $property = Property::find($request->id);
+          $property->nombre = $request->nombre;
+          $property->pais = $request->pais;
+          $property->provincia = $request->provincia;
+          $property->localidad = $request->localidad;
+          $property->calle = $request->calle;
+          $property->numero = $request->numero;
+          $property->estrellas = $request->estrellas;
+          $property->capacidad = $request->capacidad;
+          $property->habitaciones = $request->habitaciones;
+          $property->baños = $request->baños;
+          $property->capacidad_vehiculos = $request->garages;
+          $property->save();
+          // show a success flash message
+          return redirect()->back()->with('alert-success', 'Modificacion exitosa!');
+    }
 }

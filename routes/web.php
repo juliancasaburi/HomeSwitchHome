@@ -173,6 +173,7 @@ Route::prefix('admin')->group(function() {
     Route::get('/dashboard/hotsale-list', 'AdminController@showHotsaleList')->name('admin.hotsaleList');
     Route::post('/dashboard/delete-hotsale', 'AdminController@deleteHotsale')->name('admin.deleteHotsale');
     Route::post('/dashboard/modify-hotsale', 'AdminController@modifyHotsale')->name('admin.modifyHotsale');
+    Route::post('/dashboard/modify-property', 'AdminController@modifyProperty')->name('admin.modifyProperty');
     //--------------------------------------------
 });
 

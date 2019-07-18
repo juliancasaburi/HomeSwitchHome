@@ -107,7 +107,9 @@
                                         @foreach ($properties as $p)
                                             <tr>
                                                 <td>{{ $loop->index }}</td>
-                                                <td><button class="btn-outline-primary"><i class="fas fa-tools"></i>Editar</button></td>
+                                                <td><button class="btn-outline-primary pt-2 pb-2" id="modifyPropertyButton" data-toggle="modal" data-target="#modifyPropertyModal" data-pid="{{ $p->id }}"  data-pnombre="{{ $p->nombre }}" data-ppais="{{ $p->pais }}" data-pprovincia="{{ $p->provincia }}" data-plocalidad="{{ $p->localidad }}" data-pcalle="{{ $p->calle }}" data-pnumero="{{ $p->numero }}" data-pestrellas="{{ $p->estrellas }}" data-pcapacidad="{{ $p->capacidad }}"
+                                                    data-phabitaciones="{{ $p->habitaciones }}" data-pbaños="{{ $p->baños }}" data-pgarages="{{ $p->capacidad_vehiculos }}">
+                                                    <i class="fas fa-calendar-alt"></i>Modificar</button></td>
                                                 <td>
                                                     <a href={{ route('admin.comments', ['property' => $p->id]) }}>Ver Comentarios</a>
                                                 </td>
@@ -219,6 +221,53 @@
         </div>
     </div>
     <!-- End Delete property Modal -->
+
+    <!-- Modify Property Modal -->
+    <div class="modal fade" id="modifyPropertyModal" tabindex="-1" role="dialog" aria-labelledby="modifyPropertyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifyPropertyModalLabel">Modificar Propiedad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modifyPropertyForm" action="{{ route('admin.modifyProperty') }}" role="form" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" id="id" value="">
+                        <label for="nombre">Nombre :</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre"><br>
+                        <label for="pais">Pais : </label>
+                        <input type="text" class="form-control" id="pais" name="pais"><br>
+                        <label for="provincia">Provincia :</label>
+                        <input type="text" class="form-control" id="provincia" name="provincia"><br>
+                        <label for="localidad">Localidad :</label>
+                        <input type="text" class="form-control" id="localidad" name="localidad"><br>
+                        <label for="calle">Calle :</label>
+                        <input type="text" class="form-control" id="calle" name="calle"><br>
+                        <label for="numero">Numero :</label>
+                        <input type="number" class="form-control" id="numero" name="numero"><br>
+                        <label for="estrellas">Estrellas :</label>
+                        <input type="number" class="form-control" id="estrellas" name="estrellas"><br>
+                        <label for="capacidad">Capacidad :</label>
+                        <input type="number" class="form-control" id="capacidad" name="capacidad"><br>
+                        <label for="habitaciones">Habitaciones :</label>
+                        <input type="number" class="form-control" id="habitaciones" name="habitaciones"><br>
+                        <label for="baños">Baños :</label>
+                        <input type="number" class="form-control" id="baños" name="baños"><br>
+                        <label for="garages">Garages :</label>
+                        <input type="number" class="form-control" id="garages" name="garages"><br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar cambios</button>
+                    <button type="button" class="btn btn-primary" onclick="modifyPropertyForm_submit()">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modify Property Modal -->
 @endsection
 
 @section('js')
@@ -247,6 +296,43 @@
             $('#deletePropertyButton').attr('disabled','disabled');
             $('#deletePropertyModal').modal('hide');
             document.getElementById("deletePropertyForm").submit();
+        }
+    </script>
+
+    <script> // Modify Property
+        // Fill auction id for request
+        $('#modifyPropertyModal').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('pid');
+            var nombre = $(event.relatedTarget).data('pnombre');
+            var pais = $(event.relatedTarget).data('ppais');
+            var provincia = $(event.relatedTarget).data('pprovincia');
+            var localidad = $(event.relatedTarget).data('plocalidad');
+            var calle = $(event.relatedTarget).data('pcalle');
+            var numero = $(event.relatedTarget).data('pnumero');
+            var estrellas = $(event.relatedTarget).data('pestrellas');
+            var capacidad = $(event.relatedTarget).data('pcapacidad');
+            var habitaciones = $(event.relatedTarget).data('phabitaciones');
+            var baños = $(event.relatedTarget).data('pbaños');
+            var garages = $(event.relatedTarget).data('pgarages');
+            document.getElementById("nombre").value = nombre;
+            document.getElementById("pais").value = pais;
+            document.getElementById("provincia").value = provincia;
+            document.getElementById("localidad").value = localidad;
+            document.getElementById("calle").value = calle;
+            document.getElementById("numero").value = numero;
+            document.getElementById("estrellas").value = estrellas;
+            document.getElementById("capacidad").value = capacidad;
+            document.getElementById("habitaciones").value = habitaciones;
+            document.getElementById("baños").value = baños;
+            document.getElementById("garages").value = garages;
+            $(event.currentTarget).find('input[name="id"]').attr('value',id);
+        });
+
+        // Submit form
+        function modifyPropertyForm_submit(){
+            $('#modifyPropertyButton').attr('disabled','disabled');
+            $('#modifyPropertyModal').modal('hide');
+            document.getElementById("modifyPropertyForm").submit();
         }
     </script>
 @endsection
